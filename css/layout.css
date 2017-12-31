@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(icons/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('icons/Material Icons'),
+       local('icons/MaterialIcons-Regular'),
+       url(icons/MaterialIcons-Regular.woff2) format('woff2'),
+       url(icons/MaterialIcons-Regular.woff) format('woff'),
+       url(icons/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+html,body{height: 100%;}
+body {display: flex;min-height: 100vh;flex-direction: column;background: #ececec;}
+main {flex: 1 0 auto;} 
+.container{width: 90%;}
+header{height: 64px;width: 100%}
+#header-break{height: 64px;width: 100%;top: 0;left: 0;position: relative;margin-bottom: 64px;}
+.assinar-feed input[type=text], .assinar-feed .btn{height:36px;margin-top: 10px;}
