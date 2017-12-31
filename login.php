@@ -12,6 +12,12 @@
 			<div class="row">
 				<div class="col s12">		
 			<div class="card-panel">
+				<div class="row">
+					<div class="col s12">
+						<a href="cadastro.php">Não possui uma conta?</a>
+					</div>
+				</div>
+				
 				<form>
 					<div class="row">
 						<div class="col s12">
