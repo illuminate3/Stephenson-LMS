@@ -1,3 +1,4 @@
+<?php $logado = true ; ?>
 <!DOCTYPE html>
 
 <html>
@@ -14,22 +15,30 @@
 		<header id="home-header">
 			<nav id="transparent-nav">
 				<div class="container">
-					<!-- Dropdown Structure -->
-					<ul id="dropdown1" class="dropdown-content">
-
-						</ul>
-				
-					
 					<div class="nav-wrapper">
 						<a href="#!" class="brand-logo">Escola LTG</a>
 						<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
+						
+						<ul id="user-menu" class="dropdown-content">
+							<li><a href="perfil.php">Ver Perfil</a></li>
+							<li><a href="?logout=true">Sair</a></li>
+						</ul>
+						
 						<ul class="right hide-on-med-and-down">
-							<li><a class="waves-effect waves-light btn" href="login.php"><i class="material-icons left">person</i>ENTRAR</a></li>
+							<?php if($logado){?>
+								<li><a  class="dropdown-button" href="#!" data-activates="user-menu"><i class="material-icons left">person</i> Luan <i class="material-icons right">more_vert</i></a></li>
+							<?php } else {?>
+								<li><a class="waves-effect waves-light btn" href="login.php"><i class="material-icons left">person</i>ENTRAR</a></li>
+							<?php } ?>
 						</ul>
 
 						<ul class="side-nav" id="mobile-demo">
-							<li><a class="waves-effect waves-light btn" href="login.php"><i class="material-icons left">person</i>ENTRAR</a></li>
+							<?php if($logado){?>
+								<li><a href="perfil.php">Ver Perfil</a></li>
+								<li><a href="?logout=true">Sair</a></li>
+							<?php } else {?>
+								<li><a class="waves-effect waves-light btn" href="login.php"><i class="material-icons left">person</i>ENTRAR</a></li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>
