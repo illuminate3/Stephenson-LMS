@@ -8,6 +8,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
 		<link rel="stylesheet" href="css/materialize.min.css">
+		<link rel="stylesheet" type="text/css" href="css/material-icons.css">
 		<link rel="stylesheet" type="text/css" href="css/layout.css">
 	</head>
 
@@ -47,6 +48,7 @@
 						
 						<ul id="user-menu" class="dropdown-content">
 							<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
+							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Painel</a></li>
 							<li><a href="?logout=true">Sair</a></li>
 						</ul>
 						

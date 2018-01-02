@@ -17,23 +17,24 @@
 					</div>
 				</div>
 				
-				<form>
+				<form method="post" action="<?php echo URL::route('user.login') ?>
+">
 					<div class="row">
 						<div class="col s12">
-							<input type="text" placeholder="E-mail">
+							<input type="text" placeholder="E-mail" name="login_email">
 						</div>
 					</div>
 					
 					<div class="row">
 						<div class="col s12">
-							<input type="password" placeholder="Senha">
+							<input type="password" placeholder="Senha" name="login_senha">
 						</div>
 					</div>
 					
 					<div class="row">
 						<div class="col s12">
 							<button type="submit" class="btn">ENTRAR</button>
-							<input type="checkbox" class="filled-in" id="rememberme" />
+							<input type="checkbox" class="filled-in" id="rememberme" name="login_rememberme" value="1" />
 							<label for="rememberme" style="margin-left:20px;">Lembrar de Mim</label>
 						</div>
 					</div>
@@ -43,6 +44,7 @@
 							<a href="#">Esqueceu a senha?</a>
 						</div>
 					</div>
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 				</form>
 					</div></div>
 			</div>

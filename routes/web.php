@@ -14,9 +14,12 @@
 Route::get('/', ['uses' => 'Controller@homepage']);
 
 Route::get('/login', ['uses' => 'Controller@login']);
+Route::post('/login', ['as'=>'user.login','uses' => 'DashboardController@auth']);
+Route::get('/admin/dashboard', ['as'=>'user.dashboard','uses' => 'DashboardController@index']);
 
 Route::get('/cadastro', ['uses' => 'Controller@cadastro']);
 
 Route::get('/perfil', ['uses' => 'Controller@perfil']);
 
+Route::get('/chat', ['uses' => 'Controller@chat']);
 Route::get('/chat', ['uses' => 'Controller@chat']);
