@@ -1,4 +1,3 @@
-<?php $logado = false ; ?>
 <!DOCTYPE html>
 
 <html>
@@ -38,8 +37,8 @@
 						</ul>
 						
 						<ul class="right hide-on-med-and-down">
-							<?php if($logado){?>
-								<li><a  class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> John <i class="material-icons right">more_vert</i></a></li>
+							<?php if (Auth::check()) {?>
+								<li><a  class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
 								<li><a href="<?php echo URL::to('/chat'); ?>" ><i class="material-icons">message</i></a></li>
 							<?php } else {?>
 								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
@@ -48,7 +47,7 @@
 						
 						<ul id="user-menu" class="dropdown-content">
 							<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Painel</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
 							<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
 						</ul>
 						

@@ -9,19 +9,27 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
-use App\Http\Controllers\Auth;
 use Exception;
+use Auth;
+use App\Http\Requests;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Services\UserService;
 
-class Controller extends BaseController
-{
+class Controller extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-	private $repository;
+
+	 protected $service;
+    private $repository;
 	private $validator;
+
 	
-	public function __construct(UserRepository $repository, UserValidator $validator)
-	{
+	public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
 		$this->repository = $repository;
 		$this->validator  = $validator;
+		$this->service 	= $service;
 	}
 	public function homepage(){
 		$title = "Escola LTG - Estudarn não precisa ser chato!";
@@ -29,18 +37,45 @@ class Controller extends BaseController
 		echo view('footer');
 	}
 	
-	public function cadastro(){
-		$title = "Cadastro - Escola LTG";
-		echo view('header', ['title' => $title]);
-		echo view('cadastro');
-		echo view('footer');
+	public function criarConta(){
+		if(Auth::check()){
+			return redirect()->route('home');
+		} else{
+			$title = "Cadastro - Escola LTG";
+			echo view('header', ['title' => $title])->render();
+			echo view('cadastro')->render();
+			echo view('footer')->render();
+		}
 	}
 	
+    public function store(UserCreateRequest $request){
+		 $request = $this->service->store($request->all());
+		 $usuario = $request['success'] ? $request['data'] : null;
+		 
+		 
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->route('signup'); 
+    }
+
+	
 	public function login(){
-		$title = "Login - Escola LTG";
-		echo view('header', ['title' => $title]);
-		echo view('login');
-		echo view('footer');
+		if(Auth::check()){
+			return redirect()->route('home');
+		} else{
+			$title = "Login - Escola LTG";
+			echo view('header', ['title' => $title]);
+			echo view('login');
+			echo view('footer');
+		}
+	}
+	
+	function logout(){
+		auth()->logout();
+		return redirect()->route('login');
 	}
 	
 
@@ -74,7 +109,7 @@ class Controller extends BaseController
 					return redirect()->route('login_form');
 				} else{
 					\Auth::login($user);
-					return redirect()->route('perfil');
+					return redirect()->route('home');
 				}
 
 			}

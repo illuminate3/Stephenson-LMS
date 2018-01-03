@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
-use App\Http\Controllers\Auth;
 use Exception;
+use Auth;
 
 class DashboardController extends Controller
 {
 	private $repository;
 	private $validator;
-	
+
 	public function __construct(UserRepository $repository, UserValidator $validator)
 	{
 		$this->repository = $repository;
@@ -20,12 +20,12 @@ class DashboardController extends Controller
 	}
 	
 	public function admin_login(){
-		echo view('admin/login');
-	}
-	
-	function logout(){
-		auth()->logout();
-		return redirect()->route('dashboard.index');
+		if(Auth::check()){
+			return redirect()->route('dashboard.index');
+		} else{
+			echo view('admin/login');	
+		}
+		
 	}
 	
 	public function admin_auth(Request $request){

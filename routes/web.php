@@ -13,7 +13,7 @@
 
 /* ROTAS PARA USUÁRIO COMUM */
 
-Route::get('/', ['uses' => 'Controller@homepage']);
+Route::get('/', ['as' => 'home','uses' => 'Controller@homepage']);
 Route::get('/login',['as' => 'login_form','uses' => 'Controller@login']);
 Route::post('/login', ['as'=>'login','uses' => 'Controller@auth']);
 Route::get('/cadastro', ['uses' => 'Controller@cadastro']);
@@ -21,13 +21,16 @@ Route::post('/cadastro', ['as'=>'user.cadastro','uses' => 'Controller@auth']);
 Route::get('/chat', ['uses' => 'Controller@chat']);
 Route::get('/chat', ['uses' => 'Controller@chat']);
 Route::get('/perfil', ['as' => 'perfil', 'uses' => 'Controller@perfil']);
+Route::get('/cadastro', ['as'=>'signup','uses' => 'Controller@criarConta']);
+Route::post('/cadastro', ['as'=>'signup','uses' => 'Controller@store']);
+
 
 /* ROTAS GERAIS PARA PAINEL DE CONTROLE */
 
 Route::get('/admin/', ['as'=>'dashboard.index','uses' => 'DashboardController@index'], function () {})->middleware('auth');
-Route::get('/admin/login',['as' => 'admin.login_form','uses' => 'DashboardController@admin_login']);
+Route::get('/admin/login',['as' => 'admin.login_form','uses' => 'DashboardController@admin_login'], function () {})->middleware('auth');
 Route::post('/admin/login', ['as'=>'admin.login','uses' => 'DashboardController@admin_auth']);
-Route::get('/logout', ['uses' => 'DashboardController@logout'], function () {})->middleware('auth');
+Route::get('/logout', ['uses' => 'Controller@logout']);
 
 /* ROTAS DOS ESPECIFICAS PAINEL DE CONTROLE */
 

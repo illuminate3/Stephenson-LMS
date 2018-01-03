@@ -18,16 +18,30 @@
 										<a href="<?php echo URL::to('/login'); ?>">Já tem uma conta?</a>
 									</div>
 								</div>
-
-								<form  method="post" action="<?php echo URL::route('user.store');?>">
+								
+								<div class="row">
+									<div class="col s12">
+										<?php 
+											if (session('success')){
+												if (session('success')['success'] == true){
+													echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
+												} else{
+													echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
+												}
+											}
+										?>
+									</div>
+								</div>
+								
+								<form  method="post" action="<?php echo URL::route('signup');?>">
 									<div class="row">
 										<div class="col s6 input-field">
 											<input id="txtFirstName" type="text" name="firstname">
 											<label for="txtFirstName">Nome</label>
 										</div>
 
-										<div class="col s6 input-field" name="lastname">
-											<input id="txtLastName" type="text">
+										<div class="col s6 input-field">
+											<input id="txtLastName" type="text" name="lastname">
 											<label for="txtLastName">Sobrenome</label>
 										</div>
 									</div>
