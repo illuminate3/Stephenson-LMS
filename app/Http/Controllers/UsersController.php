@@ -11,25 +11,18 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
+use App\Services\UserService;
 
 
-class UsersController extends Controller
-{
+class UsersController extends Controller {
 
-    /**
-     * @var UserRepository
-     */
+    protected $service;
     protected $repository;
 
-    /**
-     * @var UserValidator
-     */
-    protected $validator;
 
-    public function __construct(UserRepository $repository, UserValidator $validator)
-    {
-        $this->repository = $repository;
-        $this->validator  = $validator;
+    public function __construct(UserRepository $repository, UserService $service){
+        $this->repository 	= $repository;
+        $this->service 		= $service;
     }
 
 
@@ -38,19 +31,13 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $users = $this->repository->all();
+    public function index() {
+         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+         $users = $this->repository->all();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $users,
-            ]);
-        }
-
-        return view('users.index', compact('users'));
+			echo view('admin/header');
+			echo view('admin.users', ['users' => $users]);
+			echo view('admin/footer');
     }
 
     /**
@@ -60,36 +47,25 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(UserCreateRequest $request)
-    {
+	
+	 public function adicionarUsuario(){
+		 echo view('admin/header')->render();
+		 echo view('admin.add_users')->render();
+		 echo view('admin/footer')->render();
+	 }
 
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $user = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'User created.',
-                'data'    => $user->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+	
+    public function store(UserCreateRequest $request){
+		 $request = $this->service->store($request->all());
+		 $usuario = $request['success'] ? $request['data'] : null;
+		 
+		 
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->route('admin.add_users'); 
     }
 
 

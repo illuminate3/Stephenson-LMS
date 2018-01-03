@@ -1,6 +1,19 @@
-<main>
-<div class="container">
-	<div class="section">
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Escola LTG - Estudar não precisa ser chato</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+		<link rel="stylesheet" href="../css/materialize.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/admin/layout.css">
+		<link rel="stylesheet" type="text/css" href="../css/admin/material-icons.css">
+	</head>
+
+	<body style="background:#ececec;">
+		<main>
+			<div class="container">
+			<div class="section">
 	<div class="row">
 		<div class="col l6 offset-l3 m8 offset-m2 s12">
 			<div class="row">
@@ -9,14 +22,12 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col s12">		
+				<div class="col s12">
+
 			<div class="card-panel">
-				<div class="row">
-					<div class="col s12">
-						<a href="<?php echo URL::to('/cadastro'); ?>">Não possui uma conta?</a>
-					</div>
-				</div>
-										<div class="col s12">
+				<form method="post" action="<?php echo URL::route('admin.login');?>">
+					<div class="row">
+						<div class="col s12">
 													<?php if (session('login_message')){
 		if (session('success')['login_message'] == false){
 			echo "<div class='error-message'>" . session('login_message')['messages'] . "</div>";
@@ -24,7 +35,7 @@
 	}
 	?>
 						</div>
-				<form method="post" action="<?php echo URL::route('login');?>">
+					</div>
 					<div class="row">
 						<div class="col s12">
 							<input type="text" placeholder="E-mail" name="login_email">
@@ -57,5 +68,10 @@
 		</div>
 	</div>
 	</div>
-</div>
-</main>
+			</div>
+		</main>
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../js/materialize.min.js"></script>
+		<script type="text/javascript" src="../js/script.js"></script>
+	</body>
+</html>

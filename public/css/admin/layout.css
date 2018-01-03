@@ -31,12 +31,30 @@ html, body {height: 100%;}
 	transition: 0.4s;
 }
 
+#side-menu li ul {background: #122027; display: none;}
+#side-menu li ul a{color: #ccc;padding-left: 40px;}
+#side-menu li ul a:hover{color: #ccc;padding-left: 40px;}
+
 #side-menu a:hover{background:#37474f; }
 
 #side-menu i.left{line-height: 50px;}
 #side-menu i.right{line-height: 50px;}
 
+#topbar {
+	width: calc(100% - 260px);
+	float: right;
+}
+
 #content {
 	width: calc(100% - 260px);
 	float: right;
 }
+
+.success-message, .error-message{
+	padding: 10px;
+	color: white;
+	border-radius: 5px;
+	width: 100%;
+}
+.success-message{background: #43a047; }
+.error-message{background: #e53935;}

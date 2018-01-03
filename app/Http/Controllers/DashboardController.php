@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
+use App\Http\Controllers\Auth;
 use Exception;
 
 class DashboardController extends Controller
@@ -18,7 +19,16 @@ class DashboardController extends Controller
 		$this->validator  = $validator;
 	}
 	
-	public function auth(Request $request){
+	public function admin_login(){
+		echo view('admin/login');
+	}
+	
+	function logout(){
+		auth()->logout();
+		return redirect()->route('dashboard.index');
+	}
+	
+	public function admin_auth(Request $request){
 		$rememberme = false;
 		if(isset($_POST['login_rememberme'])){$rememberme=true;}
 		
@@ -34,12 +44,20 @@ class DashboardController extends Controller
 				$user = $this->repository->findWhere(['email' => $request->get('login_email')])->first();
 				
 				if(!$user){
-					throw new Exception("E-mail não existente");
+					session()->flash('login_message',[
+						 'success' =>	false,
+						 'messages' =>	"Nenhuma conta associada a este e-mail"
+					 ]);
+					return redirect()->route('admin.login_form');
 				} elseif($user->password != $request->get('login_senha')){
-					throw new Exception("Senha incorreta");
+						session()->flash('login_message',[
+						 'success' =>	false,
+						 'messages' =>	"Senha incorreta para esse e-mail"
+					 ]);
+					return redirect()->route('admin.login_form');
 				} else{
 					\Auth::login($user);
-					return redirect()->route('user.dashboard');
+					return redirect()->route('dashboard.index');
 				}
 
 			}
@@ -52,5 +70,6 @@ class DashboardController extends Controller
 	public function index(){
 		echo view('admin/header');
 		echo view('admin/painel');
+		echo view('admin/footer');
 	}
 }

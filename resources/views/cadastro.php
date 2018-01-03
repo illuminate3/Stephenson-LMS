@@ -19,14 +19,14 @@
 									</div>
 								</div>
 
-								<form>
+								<form  method="post" action="<?php echo URL::route('user.store');?>">
 									<div class="row">
 										<div class="col s6 input-field">
-											<input id="txtFirstName" type="text">
+											<input id="txtFirstName" type="text" name="firstname">
 											<label for="txtFirstName">Nome</label>
 										</div>
 
-										<div class="col s6 input-field">
+										<div class="col s6 input-field" name="lastname">
 											<input id="txtLastName" type="text">
 											<label for="txtLastName">Sobrenome</label>
 										</div>
@@ -34,28 +34,28 @@
 
 									<div class="row">
 										<div class="col s12 input-field">
-											<input id="txtUser" type="text">
+											<input id="txtUser" type="text" name="user">
 											<label for="txtUser">Usuário</label>
 										</div>
 									</div>
 
 									<div class="row">
 										<div class="col s12 input-field">
-											<input id="emlEmail" type="email">
+											<input id="emlEmail" type="email" name="email">
 											<label for="emlEmail">E-mail</label>
 										</div>
 									</div>
 
 									<div class="row">
 										<div class="col s12 input-field">
-											<input id="pasPassword" type="password">
+											<input id="pasPassword" type="password" name="password_email">
 											<label for="pasPassword">Senha</label>
 										</div>
 									</div>
 
 									<div class="row">
 										<div class="col s12 input-field">
-											<input id="pasCPassword" type="password">
+											<input id="pasCPassword" type="password" name="cpassword_email">
 											<label for="pasCPassword">Confirmar Senha</label>
 										</div>
 									</div>
@@ -67,6 +67,7 @@
 											<label for="rememberme" style="margin-left:20px;">Confirmo que li e aceito os <a href="">Termos de Uso</a></label>
 										</div>
 									</div>
+									<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 								</form>
 							</div>
 						</div>

@@ -1,4 +1,4 @@
-<?php $logado = true ; ?>
+<?php $logado = false ; ?>
 <!DOCTYPE html>
 
 <html>
@@ -49,7 +49,7 @@
 						<ul id="user-menu" class="dropdown-content">
 							<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
 							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Painel</a></li>
-							<li><a href="?logout=true">Sair</a></li>
+							<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
 						</ul>
 						
 						<ul id="slide-out" class="side-nav">
