@@ -4,12 +4,12 @@
 
 <html>
 	<head>
-		<title>Escola LTG - Estudar não precisa ser chato</title>
+		<title><?php echo $title; ?></title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
-		<link rel="stylesheet" href="css/materialize.min.css">
-		<link rel="stylesheet" type="text/css" href="css/material-icons.css">
-		<link rel="stylesheet" type="text/css" href="css/layout.css">
+		<link rel="stylesheet" href="<?php echo url('css/materialize.min.css'); ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo url('css/material-icons.css'); ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo url('css/layout.css'); ?>">
 	</head>
 
 	<body>
@@ -45,29 +45,39 @@
 								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
 							<?php } ?>
 						</ul>
-						
+						<?php if (Auth::check()) {?>
 						<ul id="user-menu" class="dropdown-content">
-							<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
+							<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a></li>
+							<?php if(Auth::user()->permission == "app.admin") {?>
 							<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
+							<?php } ?>
 							<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
 						</ul>
+						<?php } ?>
 						
 						<ul id="slide-out" class="side-nav">
-							<li>
-								<div class="user-view">
-									<div class="background">
-										<img src="http://hgdecorvietnam.com/wp-content/uploads/2014/09/sdfggj.jpg">
-									</div>
-									
-									<a href="#!user"><img class="circle" src="images/depoimento/user1.png"></a>
-									<a href="<?php echo URL::to('/perfil'); ?>"><span class="white-text name">John Doe</span></a>
-									<a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-								</div>
-							</li>
+							<?php if (Auth::check()) {?>
+								<li>
+									<div class="user-view">
+										<div class="background">
+											<img src="http://hgdecorvietnam.com/wp-content/uploads/2014/09/sdfggj.jpg">
+										</div>
 
-							<li><a href="<?php echo URL::to('/perfil'); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
-							<li><a href="<?php echo URL::to('/chat'); ?>"><i class="material-icons">messages</i>Mensagens</a></li>
-							<li><a href="#?logout=true"><i class="material-icons">exit_to_app</i>Sair</a></li>
+										<a href="#!user"><img class="circle" src="images/depoimento/user1.png"></a>
+										<a href="<?php echo URL::to('/perfil'); ?>"><span class="white-text name"><?php echo Auth::user()->firstname . " " . Auth::user()->lastname;?></span></a>
+										<a href="#!email"><span class="white-text email"><?php echo Auth::user()->email ?></span></a>
+									</div>
+								</li>
+
+								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
+								<li><a href="<?php echo URL::to('/chat'); ?>"><i class="material-icons">messages</i>Mensagens</a></li>
+								<?php if(Auth::user()->permission == "app.admin") {?>
+								<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
+								<?php } ?>
+								<li><a href="#?logout=true"><i class="material-icons">exit_to_app</i>Sair</a></li>
+							<?php } else {?>
+								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>

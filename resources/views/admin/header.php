@@ -30,8 +30,8 @@ if($logado == true){
 						<a href="#"><i class="material-icons left">folder</i>Categorias</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Ver Categorias</a></li>
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Adicionar Categoria</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Categorias</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Categoria</a></li>
 						</ul>
 					</li>
 					
@@ -39,8 +39,8 @@ if($logado == true){
 						<a href="#"><i class="material-icons left">edit</i>Postagens</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Ver Postagens</a></li>
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Adicionar Postagem</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Postagens</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Postagem</a></li>
 						</ul>	
 					</li>
 					
@@ -48,8 +48,8 @@ if($logado == true){
 						<a href="#"><i class="material-icons left">video_library</i>Tutoriais</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Ver Tutoriais</a></li>
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Adicionar Tutorial</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Tutoriais</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Tutorial</a></li>
 						</ul>	
 					</li>
 					
@@ -57,8 +57,8 @@ if($logado == true){
 						<a href="#"><i class="material-icons left">grade</i>Cursos</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Ver Cursos</a></li>
-							<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Adicionar Curso</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Cursos</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Curso</a></li>
 						</ul>	
 					</li>
 					
@@ -71,7 +71,7 @@ if($logado == true){
 						</ul>	
 					</li>
 					
-					<li><a href="<?php echo URL::to('/admin/dashboard'); ?>"><i class="material-icons left">photo_library</i>Mídia</a></li>
+					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">photo_library</i>Mídia</a></li>
 				</ul>
 			</div>
 		</div>
@@ -89,13 +89,11 @@ if($logado == true){
 					
 					<ul id="user-menu" class="dropdown-content">
 						<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
-						<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Painel</a></li>
 						<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
 					</ul>
 					
 					<ul class="side-nav" id="mobile-demo">
 						<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
-						<li><a href="<?php echo URL::to('/admin/dashboard'); ?>">Painel</a></li>
 						<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
 					</ul>
 				</div>

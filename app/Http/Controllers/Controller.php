@@ -32,9 +32,8 @@ class Controller extends BaseController{
 		$this->service 	= $service;
 	}
 	public function homepage(){
-		$title = "Escola LTG - Estudarn não precisa ser chato!";
+		$title = "Escola LTG - Estudar não precisa ser chato!";
 		echo view('home', ['title' => $title]);
-		echo view('footer');
 	}
 	
 	public function criarConta(){
@@ -119,12 +118,41 @@ class Controller extends BaseController{
 		}
 	}
 	
-	public function perfil(){
-		$title = "Perfil - Escola LTG";
+	public function perfil(Request $request, $perfil){
+		$title = $perfil . " - Escola LTG";
 		echo view('header', ['title' => $title]);
-		echo view('perfil');
+		echo view('profile/perfil', ['user' => $perfil]);
 		echo view('footer');
 	}
+	
+	public function perfil_about(Request $request, $perfil){
+		$title = $perfil . " - Escola LTG";
+		echo view('header', ['title' => $title]);
+		echo view('profile/about', ['user' => $perfil]);
+		echo view('footer');
+	}
+	
+	public function perfil_followers(Request $request, $perfil){
+		$title = $perfil . " - Escola LTG";
+		echo view('header', ['title' => $title]);
+		echo view('profile/followers', ['user' => $perfil]);
+		echo view('footer');
+	}
+	
+	public function perfil_following(Request $request, $perfil){
+		$title = $perfil . " - Escola LTG";
+		echo view('header', ['title' => $title]);
+		echo view('profile/following', ['user' => $perfil]);
+		echo view('footer');
+	}
+	
+	public function perfil_settings(Request $request, $perfil){
+		$title = $perfil . " - Escola LTG";
+		echo view('header', ['title' => $title]);
+		echo view('profile/settings', ['user' => $perfil]);
+		echo view('footer');
+	}
+		
 	
 	public function chat(){
 		$title = "Chat - Escola LTG";

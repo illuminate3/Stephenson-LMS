@@ -62,14 +62,14 @@
 
 									<div class="row">
 										<div class="col s12 input-field">
-											<input id="pasPassword" type="password" name="password_email">
+											<input id="pasPassword" type="password" name="password">
 											<label for="pasPassword">Senha</label>
 										</div>
 									</div>
 
 									<div class="row">
 										<div class="col s12 input-field">
-											<input id="pasCPassword" type="password" name="cpassword_email">
+											<input id="pasCPassword" type="password" name="cpassword">
 											<label for="pasCPassword">Confirmar Senha</label>
 										</div>
 									</div>

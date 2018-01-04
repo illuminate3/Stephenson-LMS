@@ -44,29 +44,39 @@
 								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
 							<?php } ?>
 						</ul>
-						
+						<?php if (Auth::check()) {?>
 						<ul id="user-menu" class="dropdown-content">
-							<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
+							<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a></li>
+							<?php if(Auth::user()->permission == "app.admin") {?>
 							<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
+							<?php } ?>
 							<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
 						</ul>
+						<?php } ?>
 						
 						<ul id="slide-out" class="side-nav">
-							<li>
-								<div class="user-view">
-									<div class="background">
-										<img src="http://hgdecorvietnam.com/wp-content/uploads/2014/09/sdfggj.jpg">
-									</div>
-									
-									<a href="#!user"><img class="circle" src="images/depoimento/user1.png"></a>
-									<a href="<?php echo URL::to('/perfil'); ?>"><span class="white-text name">John Doe</span></a>
-									<a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-								</div>
-							</li>
+							<?php if (Auth::check()) {?>
+								<li>
+									<div class="user-view">
+										<div class="background">
+											<img src="http://hgdecorvietnam.com/wp-content/uploads/2014/09/sdfggj.jpg">
+										</div>
 
-							<li><a href="<?php echo URL::to('/perfil'); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
-							<li><a href="<?php echo URL::to('/chat'); ?>"><i class="material-icons">messages</i>Mensagens</a></li>
-							<li><a href="#?logout=true"><i class="material-icons">exit_to_app</i>Sair</a></li>
+										<a href="#!user"><img class="circle" src="images/depoimento/user1.png"></a>
+										<a href="<?php echo URL::to('/perfil'); ?>"><span class="white-text name"><?php echo Auth::user()->firstname . " " . Auth::user()->lastname;?></span></a>
+										<a href="#!email"><span class="white-text email"><?php echo Auth::user()->email ?></span></a>
+									</div>
+								</li>
+
+								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
+								<li><a href="<?php echo URL::to('/chat'); ?>"><i class="material-icons">messages</i>Mensagens</a></li>
+								<?php if(Auth::user()->permission == "app.admin") {?>
+								<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
+								<?php } ?>
+								<li><a href="#?logout=true"><i class="material-icons">exit_to_app</i>Sair</a></li>
+							<?php } else {?>
+								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>
@@ -79,7 +89,7 @@
 				</div>
 			</hgroup>
 		</header>
-		
+
 		<div class="benefits">
 			<div class="container">  
 				<div class="row">  
@@ -117,7 +127,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<main>
 			<div id="how-works" class="section">
 				<div class="container">
@@ -128,11 +138,11 @@
 						</div>
 
 						<div class="col l6 offset-l1">
-								<div id="introVid4" class="video-container video">
-									<div id="videoContainer" style="display:none">
-										<iframe width="560" height="315" src="https://www.youtube.com/embed/7CdrIgEhqPM" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-									</div>
+							<div id="introVid4" class="video-container video">
+								<div id="videoContainer" style="display:none">
+									<iframe width="560" height="315" src="https://www.youtube.com/embed/7CdrIgEhqPM" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -141,68 +151,69 @@
 			<div id="our-courses" class="section">
 				<div class="container">
 					<h2 class="section-title">Nossos Cursos</h2>
+					
 					<div class="row">
 						<div class="col l3 m6 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="https://s.w.org/images/backgrounds/wordpress-bg-medblue.png">
 								</div>
-								
+
 								<div class="card-content">
 									<span class="card-title activator grey-text text-darken-4">Criação de temas WP</span>
 								</div>
-								
+
 								<div class="card-reveal">
 									<span class="card-title grey-text text-darken-4">Criação de temas WP<i class="material-icons right">close</i></span>
 									<p>Here is some more information about this product that is only revealed once clicked on.</p>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col l3 m6 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="https://1.bp.blogspot.com/-ZI372GTpVHE/Wf4OS90qq2I/AAAAAAAAB5U/AdEyat-YsKcwlgZdzk2r0VCASGTcaNccACLcBGAs/s1600/IMG_20171104_165429.jpg">
 								</div>
-								
+
 								<div class="card-content">
 									<span class="card-title activator grey-text text-darken-4">Photoshop</span>
 								</div>
-								
+
 								<div class="card-reveal">
 									<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
 									<p>Here is some more information about this product that is only revealed once clicked on.</p>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col l3 m6 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="https://visiontrainingsystems.com/wp-content/uploads/2016/05/powerpoint-2016.png">
 								</div>
-								
+
 								<div class="card-content">
 									<span class="card-title activator grey-text text-darken-4">Power Point 2016</span>
 								</div>
-								
+
 								<div class="card-reveal">
 									<span class="card-title grey-text text-darken-4">Power Point 2016</span>
 									<p>Here is some more information about this product that is only revealed once clicked on.</p>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col l3 m6 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="https://cdn.lynda.com/course/546062/546062-636195682729017481-16x9.jpg">
 								</div>
-								
+
 								<div class="card-content">
 									<span class="card-title activator grey-text text-darken-4">Camtasia Studio 9</span>
 								</div>
-								
+
 								<div class="card-reveal">
 									<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
 									<p>Here is some more information about this product that is only revealed once clicked on.</p>
@@ -212,103 +223,101 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div id="who-use" class="section">
-				
+				<div class="container">
+					<h2 class="section-title">Quem usa, aprova!</h2>
 					
-					<div class="container">
-						<h2 class="section-title">Quem usa, aprova!</h2>
-						<ul id="depoiments">
-							<li class="depoiment row ">
-								<div class="people-info col s4">
-									<div class="row">
-										<div class="col s4">
-									<div class="people-avatar">
-										<img src="images/depoimento/user1.png" class="people-avatar-img">
-									</div>
+					<ul id="depoiments">
+						<li class="depoiment row">
+							<div class="people-info col s4">
+								<div class="row">
+									<div class="col s4">
+										<div class="people-avatar">
+											<img src="images/depoimento/user1.png" class="people-avatar-img">
+										</div>
 									</div>
 
 									<div class="col s8">
-									<div class="people-name">John Doe</div>
-									<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
-									</div>
+										<div class="people-name">John Doe</div>
+										<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
 									</div>
 								</div>
+							</div>
 
-								<div class="depoiment-text col s8">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
-								</div>
-							</li>
-							
-							<li class="depoiment row">
-								<div class="people-info col s4">
-									<div class="row">
-										<div class="col s4">
-									<div class="people-avatar">
-										<img src="images/depoimento/user1.png" class="people-avatar-img">
-									</div>
-									</div>
+							<div class="depoiment-text col s8">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
+							</div>
+						</li>
 
-									<div class="col s8">
-									<div class="people-name">Maikon</div>
-									<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
-									</div>
-									</div>
-								</div>
-
-								<div class="depoiment-text col s8">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
-								</div>
-							</li>
-							
-							<li class="depoiment row">
-								<div class="people-info col s4">
-									<div class="row">
-										<div class="col s4">
-									<div class="people-avatar">
-										<img src="images/depoimento/user1.png" class="people-avatar-img">
-									</div>
+						<li class="depoiment row">
+							<div class="people-info col s4">
+								<div class="row">
+									<div class="col s4">
+										<div class="people-avatar">
+											<img src="images/depoimento/user1.png" class="people-avatar-img">
+										</div>
 									</div>
 
 									<div class="col s8">
-									<div class="people-name">Klévisson</div>
-									<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
-									</div>
+										<div class="people-name">Maikon</div>
+										<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
 									</div>
 								</div>
+							</div>
 
-								<div class="depoiment-text col s8">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
-								</div>
-							</li>
-							
-							<li class="depoiment row">
-								<div class="people-info col s4">
-									<div class="row">
-										<div class="col s4">
-									<div class="people-avatar">
-										<img src="images/depoimento/user1.png" class="people-avatar-img">
-									</div>
+							<div class="depoiment-text col s8">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
+							</div>
+						</li>
+
+						<li class="depoiment row">
+							<div class="people-info col s4">
+								<div class="row">
+									<div class="col s4">
+										<div class="people-avatar">
+											<img src="images/depoimento/user1.png" class="people-avatar-img">
+										</div>
 									</div>
 
 									<div class="col s8">
-									<div class="people-name">Malaquias</div>
-									<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
-									</div>
+										<div class="people-name">Klévisson</div>
+										<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
 									</div>
 								</div>
+							</div>
 
-								<div class="depoiment-text col s8">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
+							<div class="depoiment-text col s8">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
+							</div>
+						</li>
+
+						<li class="depoiment row">
+							<div class="people-info col s4">
+								<div class="row">
+									<div class="col s4">
+										<div class="people-avatar">
+											<img src="images/depoimento/user1.png" class="people-avatar-img">
+										</div>
+									</div>
+
+									<div class="col s8">
+										<div class="people-name">Malaquias</div>
+										<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
+									</div>
 								</div>
-							</li>
-						</ul>
+							</div>
 
-						<div id="depoiments-slider">
-						</div>
-					</div>
+							<div class="depoiment-text col s8">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
+							</div>
+						</li>
+					</ul>
+
+					<div id="depoiments-slider"></div>
 				</div>
-			
+			</div>
+
 			<div id="statistcs">
 				<div class="container">
 					<div class="row">
@@ -320,3 +329,71 @@
 				</div>
 			</div>
 		</main>
+
+
+		<footer class="page-footer  teal darken-2">
+			<div class="container">
+				<div class="row">
+					<div class="col l5 s12">
+						<h5 class="white-text">Assinar Feed</h5>
+						<p>Ao assinar o feed, você receberá em seu e-mail todas as nossas novas aulas.</p>
+						
+						<div class="assinar-feed">
+							<form>
+								<div class="row">
+									<div class="col s9"><input type="text" placeholder="Seu e-mail"></div>
+									<div class="col s3"><button class="btn">ASSINAR</button></div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col l3 offset-l1 s12">
+						<h5 class="white-text">Link Úteis</h5>
+
+						<ul>
+							<li><a class="grey-text text-lighten-3" href="#!">Contato</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Anunciar</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Termos de Uso</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Quero Postar Aulas</a></li>
+						</ul>
+					</div>
+
+					<div class="col l3 s12">
+						<h5 class="white-text">Redes Sociais</h5>
+
+						<ul>
+							<li><a class="grey-text text-lighten-3" href="#!">YouTube</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-copyright  teal darken-3">
+				<div class="container">
+					&copy; Todos os direitos reservados a Escola LTG - 2018 | 2018 
+				</div>
+			</div>
+		</footer>
+
+		<script type="text/javascript" src="<?php echo url('js/jquery-3.2.1.min.js'); ?>"></script>
+		<script type="text/javascript" src="<?php echo url('js/materialize.min.js'); ?>"></script>
+		<script type="text/javascript" src="<?php echo url('js/script.js'); ?>"></script>
+		<script type="text/javascript" src="<?php echo url('js/cycle.js'); ?>"></script>
+		
+		<script>
+			$('#depoiments').cycle({ 
+				fx:    'scrollLeft', 
+				delay: -1000,
+				timeout: 0, 
+				pager:  '#depoiments-slider', 
+				pagerAnchorBuilder: function(idx, slide) { 
+					return '<a href="#"><div>' + jQuery(slide).children("h3").eq(0).text() + '</div></a>'; 
+				} 
+			});
+		</script>
+	</body>
+</html>

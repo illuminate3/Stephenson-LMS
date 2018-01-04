@@ -20,10 +20,16 @@ Route::get('/cadastro', ['uses' => 'Controller@cadastro']);
 Route::post('/cadastro', ['as'=>'user.cadastro','uses' => 'Controller@auth']);
 Route::get('/chat', ['uses' => 'Controller@chat']);
 Route::get('/chat', ['uses' => 'Controller@chat']);
-Route::get('/perfil', ['as' => 'perfil', 'uses' => 'Controller@perfil']);
 Route::get('/cadastro', ['as'=>'signup','uses' => 'Controller@criarConta']);
 Route::post('/cadastro', ['as'=>'signup','uses' => 'Controller@store']);
 
+/* ROTAS PARA O PERFIL */
+
+Route::get('/perfil/{profile}', ['as' => 'perfil', 'uses' => 'Controller@perfil']);
+Route::get('/perfil/{profile}/about', ['as' => 'perfil', 'uses' => 'Controller@perfil_about']);
+Route::get('/perfil/{profile}/followers', ['as' => 'perfil', 'uses' => 'Controller@perfil_followers']);
+Route::get('/perfil/{profile}/following', ['as' => 'perfil', 'uses' => 'Controller@perfil_following']);
+Route::get('/perfil/{profile}/settings', ['as' => 'perfil', 'uses' => 'Controller@perfil_settings']);
 
 /* ROTAS GERAIS PARA PAINEL DE CONTROLE */
 
