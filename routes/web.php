@@ -14,14 +14,14 @@
 /* ROTAS PARA USUÁRIO COMUM */
 
 Route::get('/', ['as' => 'home','uses' => 'Controller@homepage']);
-Route::get('/login',['as' => 'login_form','uses' => 'Controller@login']);
-Route::post('/login', ['as'=>'login','uses' => 'Controller@auth']);
-Route::get('/cadastro', ['uses' => 'Controller@cadastro']);
-Route::post('/cadastro', ['as'=>'user.cadastro','uses' => 'Controller@auth']);
+
+Route::get('/cadastro', ['as'=>'signup','uses' => 'UsersController@criarConta']);
+Route::post('/cadastro', ['as'=>'signup','uses' => 'UsersController@store']);
+
+Route::get('/login',['as' => 'login_form','uses' => 'UsersController@login']);
+Route::post('/login', ['as'=>'login','uses' => 'UsersController@auth']);
+
 Route::get('/chat', ['uses' => 'Controller@chat']);
-Route::get('/chat', ['uses' => 'Controller@chat']);
-Route::get('/cadastro', ['as'=>'signup','uses' => 'Controller@criarConta']);
-Route::post('/cadastro', ['as'=>'signup','uses' => 'Controller@store']);
 
 /* ROTAS PARA O PERFIL */
 
@@ -31,15 +31,29 @@ Route::get('/perfil/{profile}/followers', ['as' => 'perfil', 'uses' => 'Controll
 Route::get('/perfil/{profile}/following', ['as' => 'perfil', 'uses' => 'Controller@perfil_following']);
 Route::get('/perfil/{profile}/settings', ['as' => 'perfil', 'uses' => 'Controller@perfil_settings']);
 
+/* ROTAS PARA OS CURSOS */
+Route::get('/cursos', ['as'=>'courses.index','uses' => 'CoursesController@index']);
+
+/* ROTAS PARA OS TUTORIAIS */
+Route::get('/tutoriais', ['as'=>'tutorials.index','uses' => 'TutorialsController@index']);
+
 /* ROTAS GERAIS PARA PAINEL DE CONTROLE */
 
 Route::get('/admin/', ['as'=>'dashboard.index','uses' => 'DashboardController@index'], function () {})->middleware('auth');
-Route::get('/admin/login',['as' => 'admin.login_form','uses' => 'DashboardController@admin_login'], function () {})->middleware('auth');
-Route::post('/admin/login', ['as'=>'admin.login','uses' => 'DashboardController@admin_auth']);
-Route::get('/logout', ['uses' => 'Controller@logout']);
 
-/* ROTAS DOS ESPECIFICAS PAINEL DE CONTROLE */
+Route::get('/admin/login',['as' => 'admin.login_form','uses' => 'UsersController@admin_login']);
+Route::post('/admin/login', ['as'=>'admin.login','uses' => 'UsersController@admin_auth']);
+
+Route::get('/logout', ['uses' => 'UsersController@logout']);
+
+/* ROTAS PARA O CONTROLE DE USUÁRIOS */
 
 Route::get('/admin/users', ['as'=>'admin.users','uses' => 'UsersController@index'], function () {})->middleware('auth');
 Route::get('/admin/users/add', ['as'=>'admin.add_users','uses' => 'UsersController@adicionarUsuario'], function () {})->middleware('auth');
-Route::post('/admin/users/add', ['as'=>'admin.add_users','uses' => 'UsersController@store'], function () {})->middleware('auth');
+Route::post('/admin/users/add', ['as'=>'admin.add_users','uses' => 'UsersController@adminStore'], function () {})->middleware('auth');
+
+/* ROTAS PARA O CONTROLE DE TUTORIAIS */
+
+Route::get('/admin/tutorials', ['as'=>'admin.tutorials','uses' => 'TutorialsController@adminIndex'], function () {})->middleware('auth');
+Route::get('/admin/tutorials/add', ['as'=>'admin.add_tutorials','uses' => 'TutorialsController@adicionarTutorial'], function () {})->middleware('auth');
+Route::post('/admin/tutorials/add', ['as'=>'admin.add_tutorials','uses' => 'TutorialsController@store'], function () {})->middleware('auth');
