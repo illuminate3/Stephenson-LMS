@@ -5,6 +5,9 @@
 
 			<div class="col s9" id="profile-content">
 				<h2 class="profile-page-title">Feed</h2>
+				<div class="row">
+					
+				</div>
 			</div>
 		</div>
 	</div>
