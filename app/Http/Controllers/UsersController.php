@@ -3,24 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use App\Services\UserService;
+use Exception;
+use Auth;
 
 
 class UsersController extends Controller {
 
     protected $service;
     protected $repository;
+		private $validator;
 
-
-    public function __construct(UserRepository $repository, UserService $service){
+    public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
         $this->repository 	= $repository;
         $this->service 		= $service;
     }
@@ -39,6 +42,30 @@ class UsersController extends Controller {
 			echo view('admin.users', ['users' => $users]);
 			echo view('admin/footer');
     }
+	
+		public function criarConta(){
+		if(Auth::check()){
+			return redirect()->route('home');
+		} else{
+			$title = "Cadastro - Escola LTG";
+			echo view('header', ['title' => $title])->render();
+			echo view('cadastro')->render();
+			echo view('footer')->render();
+		}
+	}
+	
+    public function store(UserCreateRequest $request){
+		 $request = $this->service->store($request->all());
+		 $usuario = $request['success'] ? $request['data'] : null;
+		 
+		 
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->route('signup'); 
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -55,7 +82,7 @@ class UsersController extends Controller {
 	 }
 
 	
-    public function store(UserCreateRequest $request){
+    public function adminStore(UserCreateRequest $request){
 		 $request = $this->service->store($request->all());
 		 $usuario = $request['success'] ? $request['data'] : null;
 		 
@@ -171,4 +198,110 @@ class UsersController extends Controller {
 
         return redirect()->back()->with('message', 'User deleted.');
     }
+		public function login(){
+		if(Auth::check()){
+			return redirect()->route('home');
+		} else{
+			$title = "Login - Escola LTG";
+			echo view('header', ['title' => $title]);
+			echo view('login');
+			echo view('footer');
+		}
+	}
+	
+	function logout(){
+		auth()->logout();
+		return redirect()->route('login');
+	}
+	
+
+	public function auth(Request $request){
+		$rememberme = false;
+		if(isset($_POST['login_rememberme'])){$rememberme=true;}
+		
+		$data=[
+			'email'=> $request->get('login_email'),
+			'password'=> $request->get('login_senha')
+		];
+		
+		try{
+			
+			if(env('PASSWORD_HASH')){
+				\Auth::attempt($data,$rememberme);
+			} else{
+				$user = $this->repository->findWhere(['email' => $request->get('login_email')])->first();
+				
+				if(!$user){
+					session()->flash('login_message',[
+						 'success' =>	false,
+						 'messages' =>	"Nenhuma conta associada a este e-mail"
+					 ]);
+					return redirect()->route('login_form');
+				} elseif($user->password != $request->get('login_senha')){
+						session()->flash('login_message',[
+						 'success' =>	false,
+						 'messages' =>	"Senha incorreta para esse e-mail"
+					 ]);
+					return redirect()->route('login_form');
+				} else{
+					\Auth::login($user);
+					return redirect()->route('home');
+				}
+
+			}
+
+		} catch(Exception $e){
+			return $e->getMessage();
+		}
+	}
+	
+	public function admin_login(){
+		if(Auth::check()){
+			return redirect()->route('dashboard.index');
+		} else{
+			echo view('admin/login');	
+		}
+		
+	}
+	
+	public function admin_auth(Request $request){
+		$rememberme = false;
+		if(isset($_POST['login_rememberme'])){$rememberme=true;}
+		
+		$data=[
+			'email'=> $request->get('login_email'),
+			'password'=> $request->get('login_senha')
+		];
+		
+		try{
+			if(env('PASSWORD_HASH')){
+				\Auth::attempt($data,$rememberme);
+			} else{
+				$user = $this->repository->findWhere(['email' => $request->get('login_email')])->first();
+				
+				if(!$user){
+					session()->flash('login_message',[
+						 'success' =>	false,
+						 'messages' =>	"Nenhuma conta associada a este e-mail"
+					 ]);
+					return redirect()->route('admin.login_form');
+				} elseif($user->password != $request->get('login_senha')){
+						session()->flash('login_message',[
+						 'success' =>	false,
+						 'messages' =>	"Senha incorreta para esse e-mail"
+					 ]);
+					return redirect()->route('admin.login_form');
+				} else{
+					\Auth::login($user);
+					return redirect()->route('dashboard.index');
+				}
+
+			}
+
+		} catch(Exception $e){
+			return $e->getMessage();
+		}
+	}
+	
+	
 }

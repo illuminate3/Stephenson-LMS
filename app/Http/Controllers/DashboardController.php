@@ -8,8 +8,7 @@ use App\Validators\UserValidator;
 use Exception;
 use Auth;
 
-class DashboardController extends Controller
-{
+class DashboardController extends Controller{
 	private $repository;
 	private $validator;
 
@@ -17,54 +16,6 @@ class DashboardController extends Controller
 	{
 		$this->repository = $repository;
 		$this->validator  = $validator;
-	}
-	
-	public function admin_login(){
-		if(Auth::check()){
-			return redirect()->route('dashboard.index');
-		} else{
-			echo view('admin/login');	
-		}
-		
-	}
-	
-	public function admin_auth(Request $request){
-		$rememberme = false;
-		if(isset($_POST['login_rememberme'])){$rememberme=true;}
-		
-		$data=[
-			'email'=> $request->get('login_email'),
-			'password'=> $request->get('login_senha')
-		];
-		
-		try{
-			if(env('PASSWORD_HASH')){
-				\Auth::attempt($data,$rememberme);
-			} else{
-				$user = $this->repository->findWhere(['email' => $request->get('login_email')])->first();
-				
-				if(!$user){
-					session()->flash('login_message',[
-						 'success' =>	false,
-						 'messages' =>	"Nenhuma conta associada a este e-mail"
-					 ]);
-					return redirect()->route('admin.login_form');
-				} elseif($user->password != $request->get('login_senha')){
-						session()->flash('login_message',[
-						 'success' =>	false,
-						 'messages' =>	"Senha incorreta para esse e-mail"
-					 ]);
-					return redirect()->route('admin.login_form');
-				} else{
-					\Auth::login($user);
-					return redirect()->route('dashboard.index');
-				}
-
-			}
-
-		} catch(Exception $e){
-			return $e->getMessage();
-		}
 	}
 	
 	public function index(){
