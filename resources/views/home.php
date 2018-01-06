@@ -31,8 +31,9 @@
 						
 						<ul class="left hide-on-med-and-down">
 							<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
-							<li><a href="#">Tutoriais</a></li>
+							<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
 							<li><a href="#">Cursos</a></li>
+							<li><a href="#">Fórum</a></li>
 							<li><a href="#">Blog</a></li>
 						</ul>
 						
@@ -67,7 +68,11 @@
 										<a href="#!email"><span class="white-text email"><?php echo Auth::user()->email ?></span></a>
 									</div>
 								</li>
-
+								<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
+								<li><a href="#">Tutoriais</a></li>
+								<li><a href="#">Cursos</a></li>
+								<li><a href="#">Fórum</a></li>
+								<li><a href="#">Blog</a></li>
 								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
 								<li><a href="<?php echo URL::to('/chat'); ?>"><i class="material-icons">messages</i>Mensagens</a></li>
 								<?php if(Auth::user()->permission == "app.admin") {?>
@@ -164,7 +169,7 @@
 								</div>
 
 								<div class="card-reveal">
-									<span class="card-title grey-text text-darken-4">Criação de temas WP<i class="material-icons right">close</i></span>
+									<span class="card-title grey-text text-darken-4">Criação de temas WP</span>
 									<p>Here is some more information about this product that is only revealed once clicked on.</p>
 								</div>
 							</div>
@@ -181,7 +186,7 @@
 								</div>
 
 								<div class="card-reveal">
-									<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+									<span class="card-title grey-text text-darken-4">Photoshop</span>
 									<p>Here is some more information about this product that is only revealed once clicked on.</p>
 								</div>
 							</div>
@@ -215,7 +220,7 @@
 								</div>
 
 								<div class="card-reveal">
-									<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+									<span class="card-title grey-text text-darken-4">Camtasia Studio 9</span>
 									<p>Here is some more information about this product that is only revealed once clicked on.</p>
 								</div>
 							</div>
