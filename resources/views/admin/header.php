@@ -48,8 +48,8 @@ if($logado == true){
 						<a href="#"><i class="material-icons left">video_library</i>Tutoriais</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Tutoriais</a></li>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Tutorial</a></li>
+							<li><a href="<?php echo URL::to('/admin/tutorials'); ?>">Ver Tutoriais</a></li>
+							<li><a href="<?php echo URL::to('/admin/tutorials/add'); ?>">Adicionar Tutorial</a></li>
 						</ul>	
 					</li>
 					
@@ -59,6 +59,17 @@ if($logado == true){
 						<ul class="submenu">
 							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Cursos</a></li>
 							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Curso</a></li>
+						</ul>	
+					</li>
+					
+					<li class="dropdown-menu-item">
+						<a href="#"><i class="material-icons left">forum</i>Fórum</a>
+						
+						<ul class="submenu">
+							<li><a href="<?php echo URL::to('/admin'); ?>">Seções</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Categorias</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Tópicos</a></li>
+							<li><a href="<?php echo URL::to('/admin'); ?>">Tópicos</a></li>
 						</ul>	
 					</li>
 					
@@ -88,12 +99,12 @@ if($logado == true){
 					</ul>
 					
 					<ul id="user-menu" class="dropdown-content">
-						<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
+						<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a></li>
 						<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
 					</ul>
 					
 					<ul class="side-nav" id="mobile-demo">
-						<li><a href="<?php echo URL::to('/perfil'); ?>">Ver Perfil</a></li>
+						<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a></li>
 						<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
 					</ul>
 				</div>
