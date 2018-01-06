@@ -1,6 +1,10 @@
 <div class="container">
 	<h2>Usuários</h2>
-	
+		<?php			
+		if(count($users) < 1){
+			echo "<p>Nenhum tutorial cadastrado.</p>";
+		} else{
+	?>
 	<table class="highlight responsive-table">
 		<thead>
 			<tr>
@@ -28,7 +32,7 @@
 					<a href="#"><i class="material-icons">remove_circle_outline</i></a>
 				</td>
 			</tr>
-			<?php }?>
+			<?php }}?>
 		</tbody>
 	</table>
 </div>
