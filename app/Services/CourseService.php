@@ -5,27 +5,27 @@ use Illuminate\Database\QueryException;
 use Exception;
 use Prettus\Validator\Contracts\ValidatorInterface;	
 use Prettus\Validator\Contracts\ValidatorException;	
-use App\Repositories\TutorialRepository;
-use App\Validators\TutorialValidator;
+use App\Repositories\CourseRepository;
+use App\Validators\CourseValidator;
 use Illuminate\Support\Facades\Input;
 
-class TutorialService{
+class CourseService{
 	private $respository;
 	private $validator;
 	
-	public function __construct(TutorialRepository $repository, TutorialValidator $validator){
+	public function __construct(CourseRepository $repository, CourseValidator $validator){
 		$this->repository = $repository;
 		$this->validator = $validator;
 	}
 	
-	public function store(array $data, $thumbnail = null){
+	public function store(array $data){
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-			$tutorial = $this->repository->create($data);
+			$course = $this->repository->create($data);
 			
 			return [
 				'success'   => true,
-				'messages'  => "Tutorial criado com sucesso!",
+				'messages'  => "Curso criado com sucesso!",
 				'data'     => $tutorial
 			];
 		} catch(Exception $e){

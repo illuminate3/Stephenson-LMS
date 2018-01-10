@@ -25,16 +25,8 @@ if($logado == true){
 			<div id="side-menu">
 				<ul>
 					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">dashboard</i>Dashboard</a></li>
-					
-					<li class="dropdown-menu-item">
-						<a href="#"><i class="material-icons left">folder</i>Categorias</a>
-						
-						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Categorias</a></li>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Categoria</a></li>
-						</ul>
-					</li>
-					
+					<li><a href="<?php echo URL::to('/admin/categories'); ?>"><i class="material-icons left">folder</i>Categorias</a></li>
+
 					<li class="dropdown-menu-item">
 						<a href="#"><i class="material-icons left">edit</i>Postagens</a>
 						
@@ -57,8 +49,8 @@ if($logado == true){
 						<a href="#"><i class="material-icons left">grade</i>Cursos</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Cursos</a></li>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Curso</a></li>
+							<li><a href="<?php echo URL::to('/admin/courses'); ?>">Ver Cursos</a></li>
+							<li><a href="<?php echo URL::to('/admin/courses/add'); ?>">Adicionar Curso</a></li>
 						</ul>	
 					</li>
 					
@@ -83,6 +75,7 @@ if($logado == true){
 					</li>
 					
 					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">photo_library</i>Mídia</a></li>
+					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">settings</i>Configurações</a></li>
 				</ul>
 			</div>
 		</div>

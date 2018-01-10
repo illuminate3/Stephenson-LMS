@@ -23,4 +23,6 @@ $( document ).ready(function(){
     placeholder: 'Enter a tag',
     secondaryPlaceholder: '+Tag',
   });
+	
+	$('select').material_select();
 });

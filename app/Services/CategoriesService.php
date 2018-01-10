@@ -5,28 +5,28 @@ use Illuminate\Database\QueryException;
 use Exception;
 use Prettus\Validator\Contracts\ValidatorInterface;	
 use Prettus\Validator\Contracts\ValidatorException;	
-use App\Repositories\TutorialRepository;
-use App\Validators\TutorialValidator;
-use Illuminate\Support\Facades\Input;
+use App\Repositories\CategoriesRepository;
+use App\Validators\CategoriesValidator;
 
-class TutorialService{
+class CategoriesService{
 	private $respository;
 	private $validator;
 	
-	public function __construct(TutorialRepository $repository, TutorialValidator $validator){
+	public function __construct(CategoriesRepository $repository,CategoriesValidator $validator){
 		$this->repository = $repository;
 		$this->validator = $validator;
 	}
 	
 	public function store(array $data, $thumbnail = null){
+		//dd($data);
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-			$tutorial = $this->repository->create($data);
+			$categories = $this->repository->create($data);
 			
 			return [
 				'success'   => true,
-				'messages'  => "Tutorial criado com sucesso!",
-				'data'     => $tutorial
+				'messages'  => "Categoria criada com sucesso!",
+				'data'     => $categories
 			];
 		} catch(Exception $e){
 			return [

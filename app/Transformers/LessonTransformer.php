@@ -3,27 +3,27 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Entities\Tutorial;
+use App\Entities\Lesson;
 
 /**
- * Class TutorialTransformer
+ * Class LessonTransformer
  * @package namespace App\Transformers;
  */
-class TutorialTransformer extends TransformerAbstract
+class LessonTransformer extends TransformerAbstract
 {
 
     /**
-     * Transform the Tutorial entity
-     * @param App\Entities\Tutorial $model
+     * Transform the Lesson entity
+     * @param App\Entities\Lesson $model
      *
      * @return array
      */
-    public function transform(Tutorial $model)
+    public function transform(Lesson $model)
     {
         return [
             'id'         => (int) $model->id,
 
-            'thumbnail' => $new_image_name;
+            /* place your other model properties here */
 
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at

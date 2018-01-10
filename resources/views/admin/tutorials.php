@@ -22,15 +22,16 @@
 			<?php foreach($tutorials as $tutorial) { ?>
 			<tr>
 				<td><a href="<?php echo URL::to('/admin/tutorials/edit/'. $tutorial['id'] ); ?>"><?php echo $tutorial['title']; ?></a></td>
-				<td><?php echo $tutorial['resume']; ?></td>
-				<td><?php echo $tutorial['video_url']; ?></td>
-				<td><?php echo $tutorial['author']; ?></td>
-				<td><?php echo $tutorial['created_at']; ?></td>
+				<td><?php echo $tutorial->resume; ?></td>
+				<td><?php echo $tutorial->video_url; ?></td>
+				<td><?php echo $tutorial->author->name; ?></td>
+				<td><?php echo $tutorial->created_at; ?></td>
 				<td>
 					<a href="#"><i class="material-icons">remove_circle_outline</i></a>
 				</td>
 			</tr>
-			<?php }}?>
+			<?php }?>
 		</tbody>
 	</table>
+	<?php }?>
 </div>

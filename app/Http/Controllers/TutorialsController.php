@@ -12,6 +12,9 @@ use App\Http\Requests\TutorialUpdateRequest;
 use App\Repositories\TutorialRepository;
 use App\Validators\TutorialValidator;
 use App\Services\TutorialService;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
+use App\Repositories\CategoriesRepository;
 
 
 class TutorialsController extends Controller{
@@ -27,11 +30,12 @@ class TutorialsController extends Controller{
     protected $validator;
     protected $service;
 
-    public function __construct(TutorialRepository $repository, TutorialValidator $validator, TutorialService $service)
+    public function __construct(TutorialRepository $repository, TutorialValidator $validator, TutorialService $service, CategoriesRepository $categoriesRepository)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
         $this->service  = $service;
+		  $this->categoriesRepository  = $categoriesRepository;
     }
 
 
@@ -40,8 +44,7 @@ class TutorialsController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $tutorials = $this->repository->all();
 
@@ -54,9 +57,24 @@ class TutorialsController extends Controller{
 
 		$title = "Tutoriais - Escola LTG";
 		echo view('header', ['title' => $title]);
-		echo view('tutorials/tutorials');
+		echo view('tutorials/tutorials', ['tutorials' => $tutorials]);
 		echo view('footer');
     }
+	
+	public function single($tutorial){
+		$tutorial = $this->repository->find($tutorial);
+		$title = $tutorial['title'] ." - Escola LTG";
+		
+		$url = $tutorial['video_url'];
+		preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
+
+		$id = $matches[1];
+		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+		
+		echo view('header', ['title' => $title]);
+		echo view('tutorials/tutorial', ['tutorial' => $tutorial, 'video_embed' => $video_embed]);
+		echo view('footer');
+	}
 	
 	 public function adminIndex(){
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
@@ -76,9 +94,10 @@ class TutorialsController extends Controller{
     }
 	
 	public function adicionarTutorial(){
+		$categories_list = $this->categoriesRepository->selectBoxList();
 		$title = "Tutoriais - Escola LTG";
 		echo view('admin/header', ['title' => $title]);
-		echo view('admin/add_tutorial')->render();
+		echo view('admin/add_tutorial', ['categories' => $categories_list])->render();
 		echo view('admin/footer')->render();
 	}
 
@@ -90,12 +109,18 @@ class TutorialsController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(TutorialCreateRequest $request){
-		 
-		 $request = $this->service->store($request->all());
+		 if($request->file('thumbnail')){
+		 	$image = $request->file('thumbnail');
+		 	$extension = $image->getClientOriginalExtension();
+			$newImageName = md5(microtime()) . "." . $extension;
+			$path = $image->storeAs('thumbnails', $newImageName);
+		 } 
+
+		 $request = $this->service->store($request->all(), ['thumbnail' => 'nada']);
 		 
 		 $tutorial = $request['success'] ? $request['data'] : null;
 		 
-		 
+		  
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']

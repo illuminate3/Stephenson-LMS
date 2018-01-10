@@ -36,6 +36,7 @@ Route::get('/cursos', ['as'=>'courses.index','uses' => 'CoursesController@index'
 
 /* ROTAS PARA OS TUTORIAIS */
 Route::get('/tutoriais', ['as'=>'tutorials.index','uses' => 'TutorialsController@index']);
+Route::get('/tutorial/{video}', ['as'=>'tutorials.single','uses' => 'TutorialsController@single']);
 
 /* ROTAS GERAIS PARA PAINEL DE CONTROLE */
 
@@ -57,3 +58,14 @@ Route::post('/admin/users/add', ['as'=>'admin.add_users','uses' => 'UsersControl
 Route::get('/admin/tutorials', ['as'=>'admin.tutorials','uses' => 'TutorialsController@adminIndex'], function () {})->middleware('auth');
 Route::get('/admin/tutorials/add', ['as'=>'admin.add_tutorials','uses' => 'TutorialsController@adicionarTutorial'], function () {})->middleware('auth');
 Route::post('/admin/tutorials/add', ['as'=>'admin.add_tutorials','uses' => 'TutorialsController@store'], function () {})->middleware('auth');
+
+/* ROTAS PARA O CONTROLE DE CURSOS */
+
+Route::get('/admin/courses', ['as'=>'admin.courses','uses' => 'CoursesController@adminIndex'], function () {})->middleware('auth');
+Route::get('/admin/courses/add', ['as'=>'admin.add_courses','uses' => 'CoursesController@adicionarCurso'], function () {})->middleware('auth');
+Route::post('/admin/courses/add', ['as'=>'admin.add_courses','uses' => 'CoursesController@store'], function () {})->middleware('auth');
+
+/* ROTAS PARA O CONTROLE DE CATEGORIAS */
+
+Route::get('/admin/categories', ['as'=>'admin.categories','uses' => 'CategoriesController@adminIndex'], function () {})->middleware('auth');
+Route::post('/admin/categories', ['as'=>'admin.add_categories','uses' => 'CategoriesController@store'], function () {})->middleware('auth');

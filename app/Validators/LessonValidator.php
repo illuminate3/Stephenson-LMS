@@ -5,15 +5,14 @@ namespace App\Validators;
 use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;
 
-class TutorialValidator extends LaravelValidator
+class LessonValidator extends LaravelValidator
 {
 
     protected $rules = [
          ValidatorInterface::RULE_CREATE => [
-			  'title' => 'required', 
-			  'video_url' => 'required', 
-			  'author' => 'required',
-			  'thumbnail' => 'image|mimes:jpeg,png,jpg|max:2048'
+			  'title' => 'required'
+			  'professor' => 'required'
+			  'category' => 'required'
 		  ],
         ValidatorInterface::RULE_UPDATE => [],
     ];

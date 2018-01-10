@@ -32,7 +32,7 @@
 						<ul class="left hide-on-med-and-down">
 							<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
 							<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
-							<li><a href="#">Cursos</a></li>
+							<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
 							<li><a href="#">Fórum</a></li>
 							<li><a href="#">Blog</a></li>
 						</ul>
@@ -70,7 +70,7 @@
 								</li>
 								<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
 								<li><a href="#">Tutoriais</a></li>
-								<li><a href="#">Cursos</a></li>
+								<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
 								<li><a href="#">Fórum</a></li>
 								<li><a href="#">Blog</a></li>
 								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>

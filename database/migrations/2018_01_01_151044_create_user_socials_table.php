@@ -14,9 +14,10 @@ class CreateUserSocialsTable extends Migration
     public function up()
     {
         Schema::create('user_socials', function (Blueprint $table) {
+			  Schema::defaultStringLength(191);
             $table->increments('id');
 			  
-				$table->integer('user_id')->unsined();
+				$table->integer('user_id')->unsigned();
 				$table->string('social_network');
 				$table->string('social_id');
 				$table->string('social_email');
@@ -25,7 +26,7 @@ class CreateUserSocialsTable extends Migration
             $table->timestamps();
 			  
 			  $table->foreign('user_id')->references('id')->on('users');
-			  $table->foreign('social_email')->references('id')->on('users');
+			  $table->foreign('social_email', 'sm')->references('email')->on('users');
         });
     }
 
@@ -35,12 +36,6 @@ class CreateUserSocialsTable extends Migration
      * @return void
      */
 	public function down(){
-		
-		Schema::table('user_socials', function(Blueprint $table){
-			$table->dropForeign('user_socials_user_id_foreign');
-			$table->dropForeign('user_socials_social_email_foreign');
-		});
-		
-		Schema::dropIfExists('user_socials');
+		Schema::drop('user_socials');
 	}
 }

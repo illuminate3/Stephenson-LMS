@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTutorialsTable extends Migration
+class CreateLessonsTable extends Migration
 {
 
 	/**
@@ -13,21 +13,20 @@ class CreateTutorialsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('tutorials', function(Blueprint $table) {
+		Schema::create('lessons', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title', 100);
-            $table->text('description')->nullable();
+            $table->text('content')->nullable();
             $table->text('resume')->nullable();
-            $table->string('video_url', 100);
-            $table->integer('author');
+            $table->string('video_url');
             $table->integer('category');
+            $table->integer('course');
             $table->string('thumbnail', 60)->nullable();
             $table->rememberToken();
             $table->timestamps();
 			
-			  $table->foreign('author')->references('id')->on('users');
-			  $table->foreign('category')->references('id')->on('categories');
-			
+				$table->foreign('course')->references('id')->on('courses');
+			   $table->foreign('category')->references('id')->on('categories');
 		});
 	}
 
@@ -38,7 +37,7 @@ class CreateTutorialsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('tutorials');
+		Schema::drop('lessons');
 	}
 
 }
