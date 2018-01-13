@@ -87,6 +87,7 @@ class TutorialsController extends Controller{
             ]);
         }
 
+
 		$title = "Tutoriais - Escola LTG";
 		echo view('admin/header', ['title' => $title]);
 		echo view('admin/tutorials',['tutorials' => $tutorials]);
@@ -95,9 +96,20 @@ class TutorialsController extends Controller{
 	
 	public function adicionarTutorial(){
 		$categories_list = $this->categoriesRepository->selectBoxList();
-		$title = "Tutoriais - Escola LTG";
+		$title = "Adicionar Tutorial - Escola LTG";
 		echo view('admin/header', ['title' => $title]);
 		echo view('admin/add_tutorial', ['categories' => $categories_list])->render();
+		echo view('admin/footer')->render();
+	}
+	
+	public function editarTutorial($tutorial){
+		$categories_list = $this->categoriesRepository->selectBoxList();
+		$tutorial = $this->repository->find($tutorial);
+		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($tutorial['category']);
+
+		$title = "Editar " .$tutorial['title']." - Escola LTG";
+		echo view('admin/header', ['title' => $title]);
+		echo view('admin/edit_tutorial', ['categories' => $categories_list, 'tutorial' => $tutorial, 'atual_category' => $atual_category])->render();
 		echo view('admin/footer')->render();
 	}
 
@@ -116,7 +128,7 @@ class TutorialsController extends Controller{
 			$path = $image->storeAs('thumbnails', $newImageName);
 		 } 
 
-		 $request = $this->service->store($request->all(), ['thumbnail' => 'nada']);
+		 $request = $this->service->store($request->all());
 		 
 		 $tutorial = $request['success'] ? $request['data'] : null;
 		 

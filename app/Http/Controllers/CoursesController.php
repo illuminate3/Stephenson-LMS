@@ -11,6 +11,7 @@ use App\Http\Requests\CourseCreateRequest;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Repositories\CourseRepository;
 use App\Repositories\CategoriesRepository;
+use App\Repositories\ModuleRepository;
 use App\Validators\CourseValidator;
 use App\Services\CourseService;
 
@@ -25,12 +26,13 @@ class CoursesController extends Controller
     protected $validator;
     protected $service;
 
-    public function __construct(CourseRepository $repository, CourseValidator $validator, CourseService $service, CategoriesRepository $categoriesRepository)
+    public function __construct(CourseRepository $repository, CourseValidator $validator, CourseService $service, CategoriesRepository $categoriesRepository, ModuleRepository $moduleRepository)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
         $this->service  = $service;
         $this->categoriesRepository  = $categoriesRepository;
+        $this->moduleRepository  = $moduleRepository;
     }
 
 
@@ -80,7 +82,7 @@ class CoursesController extends Controller
 
 		$title = "Cursos - Escola LTG";
 		echo view('header', ['title' => $title]);
-		echo view('courses/courses');
+		echo view('courses/courses', ['courses' => $courses]);
 		echo view('footer');
     }
 
@@ -145,7 +147,18 @@ class CoursesController extends Controller
         return view('courses.show', compact('course'));
     }
 
-
+	public function editarCurso($course){
+		$categories_list = $this->categoriesRepository->selectBoxList();
+		$modules_list = $this->moduleRepository->selectBoxList();
+		$course = $this->repository->find($course);
+		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($course['category']);
+		
+		$title = "Editar " . $course['title']." - Escola LTG";
+		echo view('admin/header', ['title' => $title]);
+		echo view('admin/edit_course', ['course' => $course, 'categories' => $categories_list, 'modules' => $modules_list, 'atual_category' => $atual_category])->render();
+		echo view('admin/footer')->render();
+	}
+	
     /**
      * Show the form for editing the specified resource.
      *
@@ -158,7 +171,7 @@ class CoursesController extends Controller
 
         $course = $this->repository->find($id);
 
-        return view('courses.edit', compact('course'));
+        return view('admin.edit_courses', compact('course'));
     }
 
 

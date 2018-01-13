@@ -14,6 +14,11 @@ use App\Validators\UserValidator;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+	
+	public function getProfileInfo($user){
+		$id = $this->findByField('user', $user)->first();
+		return $this->find($id['attributes']['id']);
+	}
     /**
      * Specify Model class name
      *

@@ -18,6 +18,16 @@ class CategoriesRepositoryEloquent extends BaseRepository implements CategoriesR
 	public function selectBoxList($descricao = 'name', $chave = 'id'){
 		return $this->model->all();
 	}
+	
+	public function getAtualCategoryInfo($id){
+		
+		if($id == 0 || $id == null){
+			return null;
+		} else{
+			$r = $this->find($id);
+			return $r['attributes'];
+		}
+	}
     /**
      * Specify Model class name
      *

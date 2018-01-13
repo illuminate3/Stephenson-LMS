@@ -2,7 +2,7 @@
 	<h2>Usuários</h2>
 		<?php			
 		if(count($users) < 1){
-			echo "<p>Nenhum tutorial cadastrado.</p>";
+			echo "<p>Nenhum usuário cadastrado.</p>";
 		} else{
 	?>
 	<table class="highlight responsive-table">

@@ -1,5 +1,6 @@
-html, body {height: 100%;}
+html, body {height: 100%;background: #ececec}
 .container{width: 90%;}
+.full-btn{width: 100%;}
 #navbar{
 	width: 260px;
 	height: 100%;
@@ -58,3 +59,22 @@ html, body {height: 100%;}
 }
 .success-message{background: #43a047; }
 .error-message{background: #e53935;}
+
+.widget{
+	margin: 0px;
+	margin-bottom: 20px;
+	padding: 0px;
+}
+
+.widget-title {
+	font-size: 1.6em;
+	color: #444;
+	background: #00838f;
+	padding: 10px;
+	color: white;
+	margin: 0px;
+}
+
+.widget-content{
+	padding: 10px;
+}

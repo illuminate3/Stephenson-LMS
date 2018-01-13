@@ -10,7 +10,7 @@ if($logado == true){
 
 <html>
 	<head>
-		<title>Escola LTG - Estudar não precisa ser chato</title>
+		<title><?php echo $title; ?></title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
 		<link rel="stylesheet" href="<?php echo url('../css/materialize.min.css'); ?>">
@@ -31,8 +31,8 @@ if($logado == true){
 						<a href="#"><i class="material-icons left">edit</i>Postagens</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin'); ?>">Ver Postagens</a></li>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Adicionar Postagem</a></li>
+							<li><a href="<?php echo URL::to('/admin/posts'); ?>">Ver Postagens</a></li>
+							<li><a href="<?php echo URL::to('/admin/posts/add'); ?>">Adicionar Postagem</a></li>
 						</ul>	
 					</li>
 					
@@ -58,10 +58,8 @@ if($logado == true){
 						<a href="#"><i class="material-icons left">forum</i>Fórum</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin'); ?>">Seções</a></li>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Categorias</a></li>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Tópicos</a></li>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Tópicos</a></li>
+							<li><a href="<?php echo URL::to('/admin/forums'); ?>">Fóruns</a></li>
+							<li><a href="<?php echo URL::to('/admin/topics'); ?>">Tópicos</a></li>
 						</ul>	
 					</li>
 					
@@ -74,8 +72,8 @@ if($logado == true){
 						</ul>	
 					</li>
 					
-					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">photo_library</i>Mídia</a></li>
-					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">settings</i>Configurações</a></li>
+					<li><a href="<?php echo URL::to('/admin/library'); ?>"><i class="material-icons left">photo_library</i>Mídia</a></li>
+					<li><a href="<?php echo URL::to('/admin/settings'); ?>"><i class="material-icons left">settings</i>Configurações</a></li>
 				</ul>
 			</div>
 		</div>

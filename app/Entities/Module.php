@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Entities;
+
+use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
+
+class Module extends Model{
+	 protected $table = 'modules';
+    protected $fillable = ['name','course'];
+	 protected $hidden = ['remember_token'];
+
+}

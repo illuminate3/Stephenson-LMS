@@ -58,14 +58,33 @@ Route::post('/admin/users/add', ['as'=>'admin.add_users','uses' => 'UsersControl
 Route::get('/admin/tutorials', ['as'=>'admin.tutorials','uses' => 'TutorialsController@adminIndex'], function () {})->middleware('auth');
 Route::get('/admin/tutorials/add', ['as'=>'admin.add_tutorials','uses' => 'TutorialsController@adicionarTutorial'], function () {})->middleware('auth');
 Route::post('/admin/tutorials/add', ['as'=>'admin.add_tutorials','uses' => 'TutorialsController@store'], function () {})->middleware('auth');
+Route::get('/admin/tutorial/edit/{tutorial}', ['as'=>'admin.edit_tutorial','uses' => 'TutorialsController@editarTutorial'], function () {})->middleware('auth');
+Route::post('/admin/tutorial/edit/{tutorial}', ['as'=>'admin.edit_tutorial','uses' => 'TutorialsController@update'], function () {})->middleware('auth');
 
 /* ROTAS PARA O CONTROLE DE CURSOS */
 
 Route::get('/admin/courses', ['as'=>'admin.courses','uses' => 'CoursesController@adminIndex'], function () {})->middleware('auth');
 Route::get('/admin/courses/add', ['as'=>'admin.add_courses','uses' => 'CoursesController@adicionarCurso'], function () {})->middleware('auth');
 Route::post('/admin/courses/add', ['as'=>'admin.add_courses','uses' => 'CoursesController@store'], function () {})->middleware('auth');
+Route::get('/admin/course/edit/{course}', ['as'=>'admin.edit_courses','uses' => 'CoursesController@editarCurso'], function () {})->middleware('auth');
+Route::post('/admin/course/edit/{course}', ['as'=>'admin.edit_courses','uses' => 'CoursesController@update'], function () {})->middleware('auth');
+Route::post('/admin/course//{course}/module/add', ['as'=>'admin.add_module','uses' => 'ModulesController@store'], function () {})->middleware('auth');
+
+/* ROTAS PARA O CONTROLE DE POSTAGENS */
+
+Route::get('/admin/posts', ['as'=>'admin.posts','uses' => 'PostsController@adminIndex'], function () {})->middleware('auth');
+Route::get('/admin/posts/add', ['as'=>'admin.add_posts','uses' => 'PostsController@adicionarPostagem'], function () {})->middleware('auth');
+Route::post('/admin/posts/add', ['as'=>'admin.add_tutorials','uses' => 'PostsController@store'], function () {})->middleware('auth');
+Route::get('/admin/post/edit/{post}', ['as'=>'admin.edit_post','uses' => 'PostsController@editarPostagem'], function () {})->middleware('auth');
+Route::post('/admin/post/edit/{post}', ['as'=>'admin.edit_post','uses' => 'PostsController@update'], function () {})->middleware('auth');
 
 /* ROTAS PARA O CONTROLE DE CATEGORIAS */
 
 Route::get('/admin/categories', ['as'=>'admin.categories','uses' => 'CategoriesController@adminIndex'], function () {})->middleware('auth');
 Route::post('/admin/categories', ['as'=>'admin.add_categories','uses' => 'CategoriesController@store'], function () {})->middleware('auth');
+
+/* ROTAS PARA O CONTROLE DE CONFIGURAÇÕES */
+Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'DashboardController@settings'], function () {})->middleware('auth');
+
+/* ROTAS PARA O CONTROLE DE MÍDIA */
+Route::get('/admin/library', ['as'=>'admin.library','uses' => 'DashboardController@library'], function () {})->middleware('auth');

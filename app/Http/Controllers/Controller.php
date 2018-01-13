@@ -37,35 +37,45 @@ class Controller extends BaseController{
 	}
 	
 	public function perfil(Request $request, $perfil){
-		$title = $perfil . " - Escola LTG";
+		$perfil = $this->repository->getProfileInfo($perfil);
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
+		
 		echo view('header', ['title' => $title]);
 		echo view('profile/perfil', ['user' => $perfil]);
 		echo view('footer');
 	}
 	
 	public function perfil_about(Request $request, $perfil){
-		$title = $perfil . " - Escola LTG";
+		$perfil = $this->repository->getProfileInfo($perfil);
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Sobre";
+		
 		echo view('header', ['title' => $title]);
 		echo view('profile/about', ['user' => $perfil]);
 		echo view('footer');
 	}
 	
 	public function perfil_followers(Request $request, $perfil){
-		$title = $perfil . " - Escola LTG";
+		$perfil = $this->repository->getProfileInfo($perfil);
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguidores";
+		
 		echo view('header', ['title' => $title]);
 		echo view('profile/followers', ['user' => $perfil]);
 		echo view('footer');
 	}
 	
 	public function perfil_following(Request $request, $perfil){
-		$title = $perfil . " - Escola LTG";
+		$perfil = $this->repository->getProfileInfo($perfil);
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguindo";
+		
 		echo view('header', ['title' => $title]);
 		echo view('profile/following', ['user' => $perfil]);
 		echo view('footer');
 	}
 	
 	public function perfil_settings(Request $request, $perfil){
-		$title = $perfil . " - Escola LTG";
+		$perfil = $this->repository->getProfileInfo($perfil);
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Configurações";
+		
 		echo view('header', ['title' => $title]);
 		echo view('profile/settings', ['user' => $perfil]);
 		echo view('footer');

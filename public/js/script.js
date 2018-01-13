@@ -25,4 +25,9 @@ $( document ).ready(function(){
   });
 	
 	$('select').material_select();
+
+  tinymce.init({
+    selector: '.tinymce'
+  });
+
 });

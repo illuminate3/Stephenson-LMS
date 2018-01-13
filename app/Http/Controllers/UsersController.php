@@ -37,13 +37,14 @@ class UsersController extends Controller {
     public function index() {
          $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
          $users = $this->repository->all();
-
-			echo view('admin/header');
+		 	$title = "Usuários - Escola LTG";
+		 
+			echo view('admin/header',['title' => $title]);
 			echo view('admin.users', ['users' => $users]);
 			echo view('admin/footer');
     }
 	
-		public function criarConta(){
+	public function criarConta(){
 		if(Auth::check()){
 			return redirect()->route('home');
 		} else{
@@ -76,7 +77,9 @@ class UsersController extends Controller {
      */
 	
 	 public function adicionarUsuario(){
-		 echo view('admin/header')->render();
+		 $title = "Adicionar Usuário - Escola LTG";
+		 
+		 echo view('admin/header', ['title' => $title])->render();
 		 echo view('admin.add_users')->render();
 		 echo view('admin/footer')->render();
 	 }
