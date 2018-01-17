@@ -8,7 +8,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 
 class Module extends Model{
 	 protected $table = 'modules';
-    protected $fillable = ['name','course'];
+    protected $fillable = ['name','course_id'];
 	 protected $hidden = ['remember_token'];
 
 }

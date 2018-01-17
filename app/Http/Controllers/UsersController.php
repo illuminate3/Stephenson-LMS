@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -21,11 +23,12 @@ class UsersController extends Controller {
 
     protected $service;
     protected $repository;
-		private $validator;
+	 protected $validator;
 
     public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
         $this->repository 	= $repository;
         $this->service 		= $service;
+        $this->validator 		= $validator;
     }
 
 
@@ -97,6 +100,15 @@ class UsersController extends Controller {
 		 
 		 return redirect()->route('admin.add_users'); 
     }
+	
+	public function adminEditarUsuario($user){
+		$user = $this->repository->find($user);
+
+		$title = "Editar " . $user['firstname'].$user['lastname']." - Escola LTG";
+		echo view('admin/header', ['title' => $title]);
+		echo view('admin/edit_user', ['user' => $user])->render();
+		echo view('admin/footer')->render();
+	}
 
 
     /**
@@ -145,7 +157,7 @@ class UsersController extends Controller {
      *
      * @return Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function adminUpdate(UserUpdateRequest $request, $id)
     {
 
         try {

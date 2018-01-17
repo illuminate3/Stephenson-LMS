@@ -17,14 +17,15 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->text('description')->nullable();
-            $table->integer('professor');
-            $table->integer('category');
+            $table->text('resume')->nullable();
+            $table->unsignedInteger('author_id');
+            $table->unsignedInteger('category_id');
             $table->string('cover', 60)->nullable();
             $table->rememberToken();
             $table->timestamps();
 			
-				$table->foreign('professor')->references('id')->on('users');
-			   $table->foreign('category')->references('id')->on('categories');
+				$table->foreign('author_id')->references('id')->on('users');
+			   $table->foreign('category_id')->references('id')->on('categories');
 		});
 	}
 

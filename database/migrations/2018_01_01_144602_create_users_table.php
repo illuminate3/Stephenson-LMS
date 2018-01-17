@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('password', 50)->nullable();
             $table->date('birth')->nullable();
             $table->char('gender', 1)->nullable();
-				$table->string('econfirmed', 50)->default('inactive');
+				$table->string('avatar', 50);
+				$table->string('econfirmed', 10)->default('inactive');
 				$table->string('permission', 50)->default('app.user');
             $table->rememberToken();
             $table->timestamps();

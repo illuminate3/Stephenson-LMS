@@ -35,7 +35,6 @@ class ModulesController extends Controller
         $this->service  = $service;
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +53,7 @@ class ModulesController extends Controller
 			 'messages' =>	$request['messages']
 		 ]);
 		 
-		 return redirect('/admin/course/edit/'.$id); 
+		 return redirect('/admin/course/manage/'. $id ); 
     }
 
 

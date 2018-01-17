@@ -19,14 +19,14 @@ class CreateTutorialsTable extends Migration
             $table->text('description')->nullable();
             $table->text('resume')->nullable();
             $table->string('video_url', 100);
-            $table->integer('author');
-            $table->integer('category');
+            $table->unsignedInteger('author_id');
+            $table->unsignedInteger('category_id');
             $table->string('thumbnail', 60)->nullable();
             $table->rememberToken();
             $table->timestamps();
 			
-			  $table->foreign('author')->references('id')->on('users');
-			  $table->foreign('category')->references('id')->on('categories');
+			  $table->foreign('author_id')->references('id')->on('users');
+			  $table->foreign('category_id')->references('id')->on('categories');
 			
 		});
 	}

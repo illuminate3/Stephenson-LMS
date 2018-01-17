@@ -16,6 +16,7 @@
 		<div class="row" id="tutorial_content">
 			<div class="col s9">
 				<div class="card tutorial-description">
+					<h3>Descrição</h3>
 					<div>
 						<?php  
 						if($tutorial['description'] == null){

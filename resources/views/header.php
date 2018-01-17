@@ -32,14 +32,11 @@
 							<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
 							<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
 							<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-							<li><a href="#">Fórum</a></li>
-							<li><a href="#">Blog</a></li>
 						</ul>
 						
 						<ul class="right hide-on-med-and-down">
 							<?php if (Auth::check()) {?>
 								<li><a  class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
-								<li><a href="<?php echo URL::to('/chat'); ?>" ><i class="material-icons">message</i></a></li>
 							<?php } else {?>
 								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
 							<?php } ?>
@@ -68,12 +65,9 @@
 									</div>
 								</li>
 								<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
-								<li><a href="#">Tutoriais</a></li>
+								<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
 								<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-								<li><a href="#">Fórum</a></li>
-								<li><a href="#">Blog</a></li>
 								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
-								<li><a href="<?php echo URL::to('/chat'); ?>"><i class="material-icons">messages</i>Mensagens</a></li>
 								<?php if(Auth::user()->permission == "app.admin") {?>
 								<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
 								<?php } ?>

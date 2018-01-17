@@ -16,6 +16,7 @@
 			<nav id="transparent-nav">
 				<div class="container">
 					<div class="nav-wrapper">
+					<div class="nav-wrapper">
 						<a class="brand-logo dropdown-button" href="#!" data-activates="channels-menu">Escola LTG <i class="material-icons right">more_vert</i></a>
 						
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -33,14 +34,11 @@
 							<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
 							<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
 							<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-							<li><a href="#">Fórum</a></li>
-							<li><a href="#">Blog</a></li>
 						</ul>
 						
 						<ul class="right hide-on-med-and-down">
 							<?php if (Auth::check()) {?>
 								<li><a  class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
-								<li><a href="<?php echo URL::to('/chat'); ?>" ><i class="material-icons">message</i></a></li>
 							<?php } else {?>
 								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
 							<?php } ?>
@@ -69,12 +67,9 @@
 									</div>
 								</li>
 								<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
-								<li><a href="#">Tutoriais</a></li>
+								<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
 								<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-								<li><a href="#">Fórum</a></li>
-								<li><a href="#">Blog</a></li>
 								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
-								<li><a href="<?php echo URL::to('/chat'); ?>"><i class="material-icons">messages</i>Mensagens</a></li>
 								<?php if(Auth::user()->permission == "app.admin") {?>
 								<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
 								<?php } ?>
@@ -83,6 +78,7 @@
 								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
 							<?php } ?>
 						</ul>
+					</div>
 					</div>
 				</div>
 			</nav>
@@ -158,73 +154,24 @@
 					<h2 class="section-title">Nossos Cursos</h2>
 					
 					<div class="row">
-						<div class="col l3 m6 s12">
-							<div class="card">
-								<div class="card-image">
-									<img src="https://s.w.org/images/backgrounds/wordpress-bg-medblue.png">
-								</div>
+						<?php $course_limit = 0;foreach($courses as $course) { if(++$course_limit > 4) break; ?>
+							<div class="col l3 m6 s12">
+								<div class="card">
+									<div class="card-image">
+										<img src="<?php echo $course['cover'] ?>">
+									</div>
 
-								<div class="card-content">
-									<span class="card-title activator grey-text text-darken-4">Criação de temas WP</span>
-								</div>
+									<div class="card-content">
+										<span class="card-title activator grey-text text-darken-4"><?php echo $course['title'] ?></span>
+									</div>
 
-								<div class="card-reveal">
-									<span class="card-title grey-text text-darken-4">Criação de temas WP</span>
-									<p>Here is some more information about this product that is only revealed once clicked on.</p>
+									<div class="card-reveal">
+										<span class="card-title grey-text text-darken-4"><?php echo $course['title'] ?></span>
+										<p><?php echo $course['resume'] ?></p>
+									</div>
 								</div>
 							</div>
-						</div>
-
-						<div class="col l3 m6 s12">
-							<div class="card">
-								<div class="card-image">
-									<img src="https://1.bp.blogspot.com/-ZI372GTpVHE/Wf4OS90qq2I/AAAAAAAAB5U/AdEyat-YsKcwlgZdzk2r0VCASGTcaNccACLcBGAs/s1600/IMG_20171104_165429.jpg">
-								</div>
-
-								<div class="card-content">
-									<span class="card-title activator grey-text text-darken-4">Photoshop</span>
-								</div>
-
-								<div class="card-reveal">
-									<span class="card-title grey-text text-darken-4">Photoshop</span>
-									<p>Here is some more information about this product that is only revealed once clicked on.</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col l3 m6 s12">
-							<div class="card">
-								<div class="card-image">
-									<img src="https://visiontrainingsystems.com/wp-content/uploads/2016/05/powerpoint-2016.png">
-								</div>
-
-								<div class="card-content">
-									<span class="card-title activator grey-text text-darken-4">Power Point 2016</span>
-								</div>
-
-								<div class="card-reveal">
-									<span class="card-title grey-text text-darken-4">Power Point 2016</span>
-									<p>Here is some more information about this product that is only revealed once clicked on.</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col l3 m6 s12">
-							<div class="card">
-								<div class="card-image">
-									<img src="https://cdn.lynda.com/course/546062/546062-636195682729017481-16x9.jpg">
-								</div>
-
-								<div class="card-content">
-									<span class="card-title activator grey-text text-darken-4">Camtasia Studio 9</span>
-								</div>
-
-								<div class="card-reveal">
-									<span class="card-title grey-text text-darken-4">Camtasia Studio 9</span>
-									<p>Here is some more information about this product that is only revealed once clicked on.</p>
-								</div>
-							</div>
-						</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -239,19 +186,20 @@
 								<div class="row">
 									<div class="col s4">
 										<div class="people-avatar">
-											<img src="images/depoimento/user1.png" class="people-avatar-img">
+											<img src="images/depoimento/luiz_orlovas.png" class="people-avatar-img">
 										</div>
 									</div>
 
 									<div class="col s8">
-										<div class="people-name">John Doe</div>
-										<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
+										<div class="people-name">Luiz C. Orlovas</div>
+										<div class="people-city"><i class="material-icons">location_on</i> Santo André - SP</div>
 									</div>
 								</div>
 							</div>
 
 							<div class="depoiment-text col s8">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
+								<p>Quero enaltecer esse esse canal, bem como o professor Luan, que é uma grande honra ter usufruído de seus conhecimentos, pois são poucos, e falo isso por experiência de autodidata, que tem o talento de ensinar objetivamente, de maneira clara e precisa, que alcança todos os níveis de educandos. Seus tutorias são, uns dos melhores do Brasil.
+								Por mais pessoas altruístas assim, que nosso país precisa.Sejam todos bem vindos a esse canal de aprendizado!</p>
 							</div>
 						</li>
 
@@ -260,19 +208,19 @@
 								<div class="row">
 									<div class="col s4">
 										<div class="people-avatar">
-											<img src="images/depoimento/user1.png" class="people-avatar-img">
+											<img src="images/depoimento/willian.png" class="people-avatar-img">
 										</div>
 									</div>
 
 									<div class="col s8">
-										<div class="people-name">Maikon</div>
-										<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
+										<div class="people-name">Willian Fagundes</div>
+										<div class="people-city"><i class="material-icons">location_on</i> Vanini - RS</div>
 									</div>
 								</div>
 							</div>
 
 							<div class="depoiment-text col s8">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
+								<p>Tudo se iniciou no canal Tonin Tutoriais... O pouco que sei editar imagens ou videos aprendi no seu canal, além de aprender bastante sobre Facebook. Agora com o canal Escola LTG eu tenho certeza que você vai ensinar muitas pessoas, inclusive eu hehehe. Tenho muita esperança no seu canal, e o site irá ajudar muito no no aprendizado dos seus alunos! Logo você irá ter muitos inscritos e será usado como exemplo para motivar outros youtubers pequenos.</p>
 							</div>
 						</li>
 
@@ -326,10 +274,10 @@
 			<div id="statistcs">
 				<div class="container">
 					<div class="row">
-						<div class="col s3 statistc"><div class="number">0</div> vídeos produzidos</div>
-						<div class="col s3 statistc"><div class="number">0</div> cursos produzidos</div>
+						<div class="col s3 statistc"><div class="number"><?php echo count($tutorials) + count($lessons); ?></div> vídeos produzidos</div>
+						<div class="col s3 statistc"><div class="number"><?php echo count($courses); ?></div> cursos produzidos</div>
 						<div class="col s3 statistc"><div class="number">0hs</div> de aula</div>
-						<div class="col s3 statistc"><div class="number">0</div> alunos</div>
+						<div class="col s3 statistc"><div class="number"><?php echo count($users); ?></div> alunos</div>
 					</div>
 				</div>
 			</div>
@@ -368,10 +316,10 @@
 						<h5 class="white-text">Redes Sociais</h5>
 
 						<ul>
-							<li><a class="grey-text text-lighten-3" href="#!">YouTube</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
+							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.youtube.com/escolaltg/">YouTube</a></li>
+							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.facebook.com/escolaltg">Facebook</a></li>
+							<li><a target="_black" class="grey-text text-lighten-3" href="https://twitter.com/escolaltg">Twitter</a></li>
+							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.instagram.com/escolaltg/">Instagram</a></li>
 						</ul>
 					</div>
 				</div>

@@ -12,14 +12,14 @@ class Course extends Model{
 	
 	 public $timestamps = true;
 	 protected $table = 'courses';
-    protected $fillable = ['title','description','category','resume','author','thumbnail'];
+    protected $fillable = ['title','description','category_id','resume','author_id','cover'];
 	 protected $hidden = ['remember_token'];
 	
-	public function courseCategory(){
-		return $this->belongsTo(Categories::class, 'category');
+	public function category(){
+		return $this->belongsTo(Categories::class);
 	}
 	
-	public function courseAuthor(){
-		return $this->belongsTo(User::class, 'author');
+	public function author(){
+		return $this->belongsTo(User::class);
 	}
 }

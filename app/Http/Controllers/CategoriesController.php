@@ -45,6 +45,15 @@ class CategoriesController extends Controller{
 		echo view('admin/footer');
     }
 	
+	public function editarCategoria($category){
+		$categories_list= $this->repository->all();
+		$category = $this->repository->find($category);
+		$title = "Editar " .$category['name'] . " - Escola LTG";
+		echo view('admin/header', ['title' => $title]);
+		echo view('admin/edit_category',['category' => $category, 'categories_list'=> $categories_list]);
+		echo view('admin/footer');
+	}
+	
     /**
      * Store a newly created resource in storage.
      *

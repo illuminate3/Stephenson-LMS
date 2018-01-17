@@ -93,36 +93,17 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(CourseCreateRequest $request)
-    {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $course = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'Course created.',
-                'data'    => $course->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+    public function store(CourseCreateRequest $request){
+		 $request = $this->service->store($request->all()); 
+		 $course = $request['success'] ? $request['data'] : null;
+		 
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->route('admin.add_courses'); 
     }
 
 
@@ -151,13 +132,34 @@ class CoursesController extends Controller
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$modules_list = $this->moduleRepository->selectBoxList();
 		$course = $this->repository->find($course);
-		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($course['category']);
+		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($course['category_id']);
 		
 		$title = "Editar " . $course['title']." - Escola LTG";
 		echo view('admin/header', ['title' => $title]);
-		echo view('admin/edit_course', ['course' => $course, 'categories' => $categories_list, 'modules' => $modules_list, 'atual_category' => $atual_category])->render();
+		echo view('admin/edit_course', ['course' => $course, 'categories' => $categories_list, 'atual_category' => $atual_category])->render();
 		echo view('admin/footer')->render();
 	}
+	
+	public function gerenciarCurso($course){
+		$course = $this->repository->find($course);
+		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
+		$title = "Gerenciar " . $course['title']." - Escola LTG";
+		
+		echo view('admin/header', ['title' => $title]);
+		echo view('admin/manage_course', ['course' => $course,'modules' => $modules_list])->render();
+		echo view('admin/footer')->render();
+	}
+	
+	public function single($course){
+		
+		$course = $this->repository->find($course);
+		$title =  $course['title']." - Escola LTG";
+		
+		echo view('header', ['title' => $title]);
+		echo view('courses/course', ['course' => $course])->render();
+		echo view('footer')->render();
+	}
+
 	
     /**
      * Show the form for editing the specified resource.

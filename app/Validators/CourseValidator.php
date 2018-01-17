@@ -9,9 +9,10 @@ class CourseValidator extends LaravelValidator
 {
 
     protected $rules = [
-         ValidatorInterface::RULE_CREATE => [
-			  'name' => 'required',
-			  'course' => 'required'
+		  ValidatorInterface::RULE_CREATE => [
+			  'title' => 'required',
+			  'author_id' => 'required',
+			  'category_id' => 'required'
 		  ],
         ValidatorInterface::RULE_UPDATE => [],
     ];

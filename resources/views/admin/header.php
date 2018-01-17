@@ -16,6 +16,7 @@ if($logado == true){
 		<link rel="stylesheet" href="<?php echo url('../css/materialize.min.css'); ?>">
 		<link rel="stylesheet" type="text/css" href="<?php echo url('../css/admin/layout.css'); ?>">
 		<link rel="stylesheet" type="text/css" href="<?php echo url('../css/admin/material-icons.css'); ?>">
+		<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 	</head>
 
 	<body>
@@ -26,6 +27,7 @@ if($logado == true){
 				<ul>
 					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">dashboard</i>Dashboard</a></li>
 					<li><a href="<?php echo URL::to('/admin/categories'); ?>"><i class="material-icons left">folder</i>Categorias</a></li>
+					<li><a href="<?php echo URL::to('/admin/pages'); ?>"><i class="material-icons left">insert_drive_file</i>Páginas</a></li>
 
 					<li class="dropdown-menu-item">
 						<a href="#"><i class="material-icons left">edit</i>Postagens</a>

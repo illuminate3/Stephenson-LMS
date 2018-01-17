@@ -1,4 +1,1 @@
-<div class="container">
-	<h2>Mídia</h2>
-	<p>Nada aqui por enquanto.</p>
-</div>
+<iframe src="/laravel-filemanager" style="width: 100%; height: 500px; overflow: hidden; border: none;"></iframe>

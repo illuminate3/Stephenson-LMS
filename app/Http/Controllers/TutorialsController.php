@@ -105,7 +105,7 @@ class TutorialsController extends Controller{
 	public function editarTutorial($tutorial){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$tutorial = $this->repository->find($tutorial);
-		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($tutorial['category']);
+		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($tutorial['category_id']);
 
 		$title = "Editar " .$tutorial['title']." - Escola LTG";
 		echo view('admin/header', ['title' => $title]);
@@ -121,15 +121,7 @@ class TutorialsController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(TutorialCreateRequest $request){
-		 if($request->file('thumbnail')){
-		 	$image = $request->file('thumbnail');
-		 	$extension = $image->getClientOriginalExtension();
-			$newImageName = md5(microtime()) . "." . $extension;
-			$path = $image->storeAs('thumbnails', $newImageName);
-		 } 
-
-		 $request = $this->service->store($request->all());
-		 
+		 $request = $this->service->store($request->all()); 
 		 $tutorial = $request['success'] ? $request['data'] : null;
 		 
 		  

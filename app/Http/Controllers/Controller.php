@@ -17,23 +17,31 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Services\UserService;
+use App\Repositories\CourseRepository;
+use App\Repositories\TutorialRepository;
+use App\Repositories\LessonRepository;
 
 class Controller extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 	 protected $service;
     private $repository;
-	private $validator;
+	 private $validator;
 
-	
 	public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
 		$this->repository = $repository;
 		$this->validator  = $validator;
 		$this->service 	= $service;
 	}
-	public function homepage(){
+	
+	public function homepage(CourseRepository $courseRepository, TutorialRepository $tutorialRepository, LessonRepository $lessonRepository){
+		$users = $this->repository->all();
+		$courses = $courseRepository->all();
+		$tutorials = $tutorialRepository->all();
+		$lessons = $lessonRepository->all();
+		
 		$title = "Escola LTG - Estudar não precisa ser chato!";
-		echo view('home', ['title' => $title]);
+		echo view('home', ['title' => $title, 'courses' => $courses, 'users' => $users, 'lessons' => $lessons, 'tutorials' => $tutorials]);
 	}
 	
 	public function perfil(Request $request, $perfil){

@@ -62,7 +62,7 @@
 			<tr>
 				<td>#</td>
 				<td>Categoria</td>
-				<td></td>
+				<td style="width:100px;">Ações</td>
 			</tr>
 		</thead>
 		
@@ -72,8 +72,17 @@
 				<td><?php echo $category['id']; ?></td>
 				<td><?php echo $category['name']; ?></td>
 				<td>
-					<a href="#"><i class="material-icons">remove_circle_outline</i></a>
-					<a href="#"><i class="material-icons">edit</i></a>
+					<div class="action">
+						<a href="<?php echo URL::to('/admin/category/edit/'. $category['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">edit</i></button></a>
+					</div>
+					
+					<div class="action">
+						<form method="post" action="">
+							<button class="red z-depth-1 waves-effect" type="submit"><i class="material-icons">remove_circle_outline</i></button>
+							<input type="hidden" value="DELETE" name="_method">
+							<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+						</form>
+					</div>
 				</td>
 			</tr>
 			<?php }?>

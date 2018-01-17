@@ -22,14 +22,14 @@
 				</div>
 
 				<div class="col s12 input-field">
-					<textarea name="description" id="tutorial-content" class="materialize-textarea"></textarea>
+					<textarea name="description" id="tutorial-content" class="tinymce"></textarea>
 				</div>
 
 				<div class="col s12 input-field">
 					<textarea name="resume" id="tutorial-resume" class="materialize-textarea"></textarea>
 				</div>
 
-				<input type="hidden" name="author" value="<?php echo Auth::user()->id;?>">
+				<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
 			</div>
 
 			<div class="col s3">
@@ -50,7 +50,7 @@
 						<h3 class="widget-title">Categoria</h3>
 						
 						<div class="widget-content">
-							<select name="category">
+							<select name="category_id">
 								<option value="0" disabled selected>Sem categoria</option>
 								<?php foreach ($categories as $category) { ?>
 								<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
@@ -63,11 +63,9 @@
 						<h3 class="widget-title">Thumbnail</h3>
 						
 						<div class="widget-content">
-							<div class="file-field input-field">
-								<div class="btn"><span>File</span><input type="file" name="image"></div>
-								<div class="file-path-wrapper">
-									<input class="file-path validate" type="text">
-								</div>
+							<div class="file-upload">
+								<a id="lfm" data-input="thumbnail" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
+								<input id="thumbnail" type="text" name="cover">
 							</div>
 						</div>
 					</div>

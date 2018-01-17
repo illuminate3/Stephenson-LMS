@@ -18,7 +18,7 @@ class TutorialService{
 		$this->validator = $validator;
 	}
 	
-	public function store(array $data, $thumbnail = null){
+	public function store(array $data){
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 			$tutorial = $this->repository->create($data);

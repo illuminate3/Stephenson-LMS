@@ -26,7 +26,7 @@ class CourseService{
 			return [
 				'success'   => true,
 				'messages'  => "Curso criado com sucesso!",
-				'data'     => $tutorial
+				'data'     => $course
 			];
 		} catch(Exception $e){
 			return [

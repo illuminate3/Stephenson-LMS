@@ -39,7 +39,7 @@
 					</textarea>
 					<label for="tutorial-resume">Resumo do Curso</label>
 				</div>
-				<input type="hidden" name="author" value="<?php echo Auth::user()->id;?>">
+				<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
 			</div>
 
 			<div class="col s3">
@@ -60,7 +60,7 @@
 						<h3 class="widget-title">Categoria</h3>
 						
 						<div class="widget-content">
-							<select name="category">
+							<select name="category_id">
 								<option value="<?php if($atual_category == NULL){echo "0";} else{echo $atual_category['id'];}?>" disabled selected><?php if($atual_category == NULL){echo "Sem Categoria";} else{echo $atual_category['name'];}?></option>
 								
 								<?php foreach ($categories as $category) { ?>
@@ -74,11 +74,9 @@
 						<h3 class="widget-title">Thumbnail</h3>
 						
 						<div class="widget-content">
-							<div class="file-field input-field">
-								<div class="btn"><span>File</span><input type="file" name="image"></div>
-								<div class="file-path-wrapper">
-									<input class="file-path validate" type="text">
-								</div>
+							<div class="file-upload">
+								<a id="lfm" data-input="thumbnail" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
+								<input id="thumbnail" type="text" name="thumbnail" value="<?php echo $tutorial['thumbnail']?>">
 							</div>
 						</div>
 					</div>

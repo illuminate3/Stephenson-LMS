@@ -3,12 +3,17 @@
 		<div class="section">
 			<div id="page-title"><h2>Tutoriais</h2></div>
 			
+			<?php if(count($tutorials) > 0) { ?>
 			<div class="row">
 				<?php foreach($tutorials as $tutorial) {?>
 					<div class="col s12 m6 l3">
 						<div class="card">
 							<div class="card-image">
-								<img src="https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg">					
+								<?php if($tutorial['thumbnail'] == NULL){?>
+									<img src="images/thumbnail-default.jpg">
+								<?php } else {?>
+									<img src="<?php echo $tutorial['thumbnail'] ?>">
+								<?php }?>
 								<a class="btn-floating halfway-fab waves-effect waves-light teal"><i class="material-icons">watch_later</i></a>
 							</div>
 							<div class="card-content">
@@ -20,6 +25,9 @@
 					</div>   
 				<?php } ?>
 			</div>
+			<?php } else {?>
+				<p>Nenhum tutorial cadastrado.</p>
+			<?php }?>
 		</div>
 	</div>
 </main>

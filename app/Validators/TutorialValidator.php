@@ -12,8 +12,7 @@ class TutorialValidator extends LaravelValidator
          ValidatorInterface::RULE_CREATE => [
 			  'title' => 'required', 
 			  'video_url' => 'required', 
-			  'author' => 'required',
-			  'thumbnail' => 'image|mimes:jpeg,png,jpg|max:2048'
+			  'author_id' => 'required',
 		  ],
         ValidatorInterface::RULE_UPDATE => [],
     ];
