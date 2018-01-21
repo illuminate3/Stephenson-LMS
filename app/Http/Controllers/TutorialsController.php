@@ -15,6 +15,7 @@ use App\Services\TutorialService;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoriesRepository;
+use App\Repositories\CommentRepository;
 
 
 class TutorialsController extends Controller{
@@ -30,12 +31,13 @@ class TutorialsController extends Controller{
     protected $validator;
     protected $service;
 
-    public function __construct(TutorialRepository $repository, TutorialValidator $validator, TutorialService $service, CategoriesRepository $categoriesRepository)
+    public function __construct(TutorialRepository $repository, TutorialValidator $validator, TutorialService $service, CategoriesRepository $categoriesRepository, CommentRepository $commentsRepository)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
         $this->service  = $service;
 		  $this->categoriesRepository  = $categoriesRepository;
+		  $this->commentsRepository  = $commentsRepository;
     }
 
 
@@ -45,18 +47,12 @@ class TutorialsController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $tutorials = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $tutorials,
-            ]);
-        }
-
+		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+		$tutorials = $this->repository->all();
+		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$title = "Tutoriais - Escola LTG";
-		echo view('header', ['title' => $title]);
+		 
+		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('tutorials/tutorials', ['tutorials' => $tutorials]);
 		echo view('footer');
     }
@@ -64,6 +60,8 @@ class TutorialsController extends Controller{
 	public function single($tutorial){
 		$tutorial = $this->repository->find($tutorial);
 		$title = $tutorial['title'] ." - Escola LTG";
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$comments = $this->commentsRepository->getComments($tutorial->id,'tutorial');
 		
 		$url = $tutorial['video_url'];
 		preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
@@ -71,8 +69,8 @@ class TutorialsController extends Controller{
 		$id = $matches[1];
 		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 		
-		echo view('header', ['title' => $title]);
-		echo view('tutorials/tutorial', ['tutorial' => $tutorial, 'video_embed' => $video_embed]);
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('tutorials/tutorial', ['tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
 		echo view('footer');
 	}
 	

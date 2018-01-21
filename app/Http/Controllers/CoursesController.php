@@ -67,21 +67,13 @@ class CoursesController extends Controller
 		echo view('admin/footer')->render();
 	}
 	
-    public function index()
-    {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $courses = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $courses,
-            ]);
-        }
-
+    public function index(){
+      $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+      $courses = $this->repository->all();
+		$categories = $this->categoriesRepository->getPrimaryCategories();
 
 		$title = "Cursos - Escola LTG";
-		echo view('header', ['title' => $title]);
+		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('courses/courses', ['courses' => $courses]);
 		echo view('footer');
     }
@@ -142,21 +134,21 @@ class CoursesController extends Controller
 	
 	public function gerenciarCurso($course){
 		$course = $this->repository->find($course);
-		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
 		$title = "Gerenciar " . $course['title']." - Escola LTG";
 		
 		echo view('admin/header', ['title' => $title]);
-		echo view('admin/manage_course', ['course' => $course,'modules' => $modules_list])->render();
+		echo view('admin/manage_course', ['course' => $course])->render();
 		echo view('admin/footer')->render();
 	}
 	
 	public function single($course){
-		
 		$course = $this->repository->find($course);
+		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
+		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$title =  $course['title']." - Escola LTG";
 		
-		echo view('header', ['title' => $title]);
-		echo view('courses/course', ['course' => $course])->render();
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('courses/course', ['course' => $course, 'modules' => $modules_list])->render();
 		echo view('footer')->render();
 	}
 

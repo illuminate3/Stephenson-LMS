@@ -20,12 +20,9 @@
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 						
 						<ul id="channels-menu" class="dropdown-content">
-							<li><a href="#">Áudio</a></li>
-							<li><a href="#">Escritório</a></li>
-							<li><a href="#">Imagem</a></li>
-							<li><a href="#">Marketing</a></li>
-							<li><a href="#">Programação</a></li>
-							<li><a href="#">Vídeo</a></li>
+							<?php foreach($categories as $category){ 
+								echo '<li><a href="/categories/' . $category->id . '">' . $category->name . '</a></li>';
+							} ?>
 						</ul>
 						
 						<ul class="left hide-on-med-and-down">

@@ -3,7 +3,8 @@
 	
 	<ul class="collapsible white" data-collapsible="accordion">
 		<?php 
-			if(count($modules) > 0){
+			if(count($course->getModules) > 0){
+				$modules = $course->getModules;
 				foreach ($modules as $module) { 
 		?>
 		
@@ -11,7 +12,24 @@
 			<div class="collapsible-header"><?php echo $module['name']; ?></div>
 			<div class="collapsible-body">
 				<ul class="collection with-header">
-					<li class="collection-item"><div><button type="submit" class="btn">Adicionar Aula</button></div></li>
+					<?php 
+						if(count($module->getLessons) > 0){
+							$lessons = $module->getLessons;
+							foreach ($lessons as $lesson) { 
+					?>
+					<li class="collection-item">
+						<div>
+							<a href="<?php echo URL::route('admin.edit_lesson',['course' => $course->id, 'module' => $module->id, 'lesson' => $lesson->id]);?>"><?php echo $lesson->title; ?></a>
+						</div>
+					</li>
+					<?php }} else{?>
+						Nenhuma aula cadastrada nesse módulo.
+					<?php }?>
+					<li class="collection-item">
+						<div>
+							<a href="<?php echo URL::route('admin.add_lesson',['course' => $course['id'], 'module' => $module['id']]);?>"><button type="submit" class="btn">Adicionar Aula</button></a>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</li>

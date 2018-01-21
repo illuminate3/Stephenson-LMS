@@ -10,7 +10,10 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\LessonCreateRequest;
 use App\Http\Requests\LessonUpdateRequest;
 use App\Repositories\LessonRepository;
+use App\Repositories\CourseRepository;
+use App\Repositories\ModuleRepository;
 use App\Validators\LessonValidator;
+use App\Services\LessonService;
 
 
 class LessonsController extends Controller
@@ -26,10 +29,14 @@ class LessonsController extends Controller
      */
     protected $validator;
 
-    public function __construct(LessonRepository $repository, LessonValidator $validator)
+    public function __construct(LessonRepository $repository, LessonValidator $validator, LessonService $service,CourseRepository $courseRepository, ModuleRepository $moduleRepository)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
+        $this->service  = $service;
+		 
+        $this->course_repository  = $courseRepository;
+        $this->module_repository  = $moduleRepository;
     }
 
 
@@ -52,6 +59,16 @@ class LessonsController extends Controller
 
         return view('lessons.index', compact('lessons'));
     }
+	
+	public function adicionarAula($course, $module){
+		$title = "Adicionar Aula - Escola LTG";
+		$atual_course = $this->course_repository->find($course);
+		$atual_module = $this->module_repository->find($module);
+		
+		echo view('admin/header', ['title' => $title]);
+		echo view('admin/add_lesson', ['course' => $atual_course, 'module' => $atual_module]);
+		echo view('admin/footer');
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -62,34 +79,16 @@ class LessonsController extends Controller
      */
     public function store(LessonCreateRequest $request)
     {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $lesson = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'Lesson created.',
-                'data'    => $lesson->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+		 $request = $this->service->store($request->all()); 
+		 $lesson = $request['success'] ? $request['data'] : null;
+		 
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
 
 

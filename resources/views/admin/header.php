@@ -1,11 +1,3 @@
-<?php 
-$logado = false ; 
-
-if($logado == true){
-	echo redirect()->route('dashboard.login');
-}
-?>
-
 <!DOCTYPE html>
 
 <html>
@@ -27,7 +19,15 @@ if($logado == true){
 				<ul>
 					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">dashboard</i>Dashboard</a></li>
 					<li><a href="<?php echo URL::to('/admin/categories'); ?>"><i class="material-icons left">folder</i>Categorias</a></li>
-					<li><a href="<?php echo URL::to('/admin/pages'); ?>"><i class="material-icons left">insert_drive_file</i>Páginas</a></li>
+					
+					<li class="dropdown-menu-item">
+						<a href="#"><i class="material-icons left">insert_drive_file</i>Páginas</a>
+						
+						<ul class="submenu">
+							<li><a href="<?php echo URL::to('/admin/pages'); ?>">Ver Páginas</a></li>
+							<li><a href="<?php echo URL::to('/admin/pages/add'); ?>">Adicionar Páginas</a></li>
+						</ul>	
+					</li>
 
 					<li class="dropdown-menu-item">
 						<a href="#"><i class="material-icons left">edit</i>Postagens</a>

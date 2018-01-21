@@ -11,14 +11,43 @@ html, body {height: 100%;background: #ececec}
 }
 
 #logo{
-	width: 100%;
+	width: 260px;
 	height: 64px;
 	line-height: 64px;
 	color: white;
 	overflow: hidden;
 	font-size: 2em;
 	text-align: center;
-	border-bottom: 1px solid #37474f  
+	border-bottom: 1px solid #37474f;
+	position: fixed;
+}
+
+#side-menu {
+	width: 260px;
+	height: calc(100% - 64px);
+	padding:15px 0px;
+	overflow: scroll;
+	overflow-x: hidden;
+	position: fixed;
+	top: 64px;
+	left: 0;
+}
+
+#side-menu::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: rgba(0,0,0,.3);
+}
+
+#side-menu::-webkit-scrollbar{
+	width: 10px;
+	border-radius: 10px;
+}
+
+#side-menu::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: rgba(0,0,0,.3);
 }
 
 #side-menu li{display: block;list-style: none;}

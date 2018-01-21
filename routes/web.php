@@ -25,11 +25,11 @@ Route::get('/chat', ['uses' => 'Controller@chat']);
 
 /* ROTAS PARA O PERFIL */
 
-Route::get('/perfil/{profile}', ['as' => 'perfil', 'uses' => 'Controller@perfil']);
-Route::get('/perfil/{profile}/about', ['as' => 'perfil', 'uses' => 'Controller@perfil_about']);
-Route::get('/perfil/{profile}/followers', ['as' => 'perfil', 'uses' => 'Controller@perfil_followers']);
-Route::get('/perfil/{profile}/following', ['as' => 'perfil', 'uses' => 'Controller@perfil_following']);
-Route::get('/perfil/{profile}/settings', ['as' => 'perfil', 'uses' => 'Controller@perfil_settings']);
+Route::get('/perfil/{profile}', ['as' => 'profile.profile', 'uses' => 'Controller@perfil']);
+Route::get('/perfil/{profile}/about', ['as' => 'profile.about', 'uses' => 'Controller@perfil_about']);
+Route::get('/perfil/{profile}/followers', ['as' => 'profile.followers', 'uses' => 'Controller@perfil_followers']);
+Route::get('/perfil/{profile}/following', ['as' => 'profile.following', 'uses' => 'Controller@perfil_following']);
+Route::get('/perfil/{profile}/settings', ['as' => 'profile.settings', 'uses' => 'Controller@perfil_settings']);
 
 /* ROTAS PARA OS CURSOS */
 Route::get('/cursos', ['as'=>'courses.index','uses' => 'CoursesController@index']);
@@ -77,6 +77,20 @@ Route::delete('/admin/course/delete/{course}', ['as'=>'admin.delete_course','use
 Route::get('/admin/course/manage/{course}', ['as'=>'admin.manage_course','uses' => 'CoursesController@gerenciarCurso'], function () {})->middleware('auth');
 Route::post('/admin/course/manage/{course}/module/add', ['as'=>'admin.add_module','uses' => 'ModulesController@store'], function () {})->middleware('auth');
 
+/* ROTAS PARA O CONTROLE DE AULAS */
+Route::get('/admin/course/manage/{course}/module/{module}/lesson/add', ['as'=>'admin.add_lesson','uses' => 'LessonsController@adicionarAula'], function () {})->middleware('auth');
+Route::post('/admin/course/manage/{course}/module/{module}/lesson/add', ['as'=>'admin.add_lesson','uses' => 'LessonsController@store'], function () {})->middleware('auth');
+Route::get('/admin/course/manage/{course}/module/{module}/lesson/edit/{lesson}', ['as'=>'admin.edit_lesson','uses' => 'LessonsController@editarAula'], function () {})->middleware('auth');
+Route::post('/admin/course/manage/{course}/module/{module}/lesson/edit/{lesson}', ['as'=>'admin.edit_lesson','uses' => 'LessonsController@update'], function () {})->middleware('auth');
+
+/* ROTAS PARA O CONTROLE DE PAGINAS */
+Route::get('/admin/pages', ['as'=>'admin.page','uses' => 'PagesController@adminIndex'], function () {})->middleware('auth');
+Route::get('/admin/pages/add', ['as'=>'admin.add_page','uses' => 'PagesController@adicionarPagina'], function () {})->middleware('auth');
+Route::post('/admin/pages/add', ['as'=>'admin.add_page','uses' => 'PagesController@store'], function () {})->middleware('auth');
+Route::get('/admin/page/edit/{page}', ['as'=>'admin.edit_page','uses' => 'PagesController@editarPagina'], function () {})->middleware('auth');
+Route::post('/admin/page/edit/{page}', ['as'=>'admin.edit_page','uses' => 'PagesController@update'], function () {})->middleware('auth');
+Route::delete('/admin/page/delete/{page}', ['as'=>'admin.delete_page','uses' => 'PagesController@destroy'], function () {})->middleware('auth');
+
 /* ROTAS PARA O CONTROLE DE POSTAGENS */
 
 Route::get('/admin/posts', ['as'=>'admin.posts','uses' => 'PostsController@adminIndex'], function () {})->middleware('auth');
@@ -97,9 +111,7 @@ Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'DashboardContro
 
 /* ROTAS PARA O CONTROLE DE MÍDIA */
 Route::get('/admin/library', ['as'=>'admin.library','uses' => 'DashboardController@library'], function () {})->middleware('auth');
+Route::get('/{page}', ['as' => 'page','uses' => 'PagesController@index']);
 
-	
-	 Route::get('/laravel-filemanager/library', [
-        'uses' => 'LfmController@library',
-        'as' => 'library',
-    ]);
+Route::post('/comment', ['as'=>'comment','uses' => 'CommentsController@store'], function () {})->middleware('auth');
+

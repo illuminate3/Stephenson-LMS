@@ -7,10 +7,12 @@
 		<div id="profile-name"><?php echo $user['firstname'] . " " . $user['lastname']; ?></div>
 	</div>
 	<div class="collection" id="profile-links">
-		<a href="<?php echo URL::to('/perfil/' . $user['user'] .'/'); ?>" class="collection-item">Feed</a>
-		<a href="<?php echo URL::to('/perfil/' . $user['user'] .'/about'); ?>" class="collection-item">Sobre</a>
-		<a href="<?php echo URL::to('/perfil/' . $user['user'] .'/following'); ?>" class="collection-item">Seguindo</a>
-		<a href="<?php echo URL::to('/perfil/' . $user['user'] .'/followers'); ?>" class="collection-item">Seguidores</a>
-		<a href="<?php echo URL::to('/perfil/' . $user['user'] .'/settings'); ?>" class="collection-item">Configurações</a>
+		<a href="<?php echo URL::route('profile.profile', ['profile' => $user->user]); ?>" class="collection-item">Feed</a>
+		<a href="<?php echo URL::route('profile.about', ['profile' => $user->user]); ?>" class="collection-item">Sobre</a>
+		<a href="<?php echo URL::route('profile.following', ['profile' => $user->user]);  ?>" class="collection-item">Seguindo</a>
+		<a href="<?php echo URL::route('profile.followers', ['profile' => $user->user]);  ?>" class="collection-item">Seguidores</a>
+		<?php if($isLoggedProfile){?>
+		<a href="<?php echo URL::route('profile.settings', ['profile' => $user->user]);  ?>" class="collection-item">Configurações</a>
+		<?php } ?>
 	</div>
 </div>

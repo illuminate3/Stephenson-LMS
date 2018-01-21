@@ -12,7 +12,7 @@ class Tutorial extends Model implements Transformable{
 	
 	 public $timestamps = true;
 	 protected $table = 'tutorials';
-    protected $fillable = ['title','description','video_url','category_id','resume','author_id','thumbnail'];
+    protected $fillable = ['title','description','video_url','time','category_id','resume','author_id','thumbnail'];
 	 protected $hidden = ['password', 'remember_token'];
 	
 	public function category(){

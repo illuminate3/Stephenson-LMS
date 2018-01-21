@@ -20,18 +20,21 @@ use App\Services\UserService;
 use App\Repositories\CourseRepository;
 use App\Repositories\TutorialRepository;
 use App\Repositories\LessonRepository;
+use App\Repositories\CategoriesRepository;
 
 class Controller extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 	 protected $service;
     private $repository;
+    private $categories_repository;
 	 private $validator;
 
-	public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
+	public function __construct(UserRepository $repository, UserValidator $validator, UserService $service, CategoriesRepository $categories_repository){
 		$this->repository = $repository;
 		$this->validator  = $validator;
 		$this->service 	= $service;
+		$this->categoriesRepository 	= $categories_repository;
 	}
 	
 	public function homepage(CourseRepository $courseRepository, TutorialRepository $tutorialRepository, LessonRepository $lessonRepository){
@@ -39,60 +42,99 @@ class Controller extends BaseController{
 		$courses = $courseRepository->all();
 		$tutorials = $tutorialRepository->all();
 		$lessons = $lessonRepository->all();
+		$categories = $this->categoriesRepository->getPrimaryCategories();
 		
 		$title = "Escola LTG - Estudar não precisa ser chato!";
-		echo view('home', ['title' => $title, 'courses' => $courses, 'users' => $users, 'lessons' => $lessons, 'tutorials' => $tutorials]);
+		echo view('home', ['title' => $title, 'courses' => $courses, 'users' => $users, 'lessons' => $lessons, 'tutorials' => $tutorials, 'categories' => $categories]);
 	}
 	
 	public function perfil(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		
+		
+		if($perfil->id == Auth::user()->id){
+			$isLoggedProfile = true;
+		} else{
+			$isLoggedProfile = false;
+		}
+		
 		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
 		
-		echo view('header', ['title' => $title]);
-		echo view('profile/perfil', ['user' => $perfil]);
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('profile/perfil', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');
 	}
 	
 	public function perfil_about(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Sobre";
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Sobre";		
 		
-		echo view('header', ['title' => $title]);
-		echo view('profile/about', ['user' => $perfil]);
+		if($perfil->id == Auth::user()->id){
+			$isLoggedProfile = true;
+		} else{
+			$isLoggedProfile = false;
+		}
+		
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('profile/about', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');
 	}
 	
 	public function perfil_followers(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguidores";
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguidores";		
 		
-		echo view('header', ['title' => $title]);
-		echo view('profile/followers', ['user' => $perfil]);
+		if($perfil->id == Auth::user()->id){
+			$isLoggedProfile = true;
+		} else{
+			$isLoggedProfile = false;
+		}
+		
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('profile/followers', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');
 	}
 	
 	public function perfil_following(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguindo";
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguindo";		
 		
-		echo view('header', ['title' => $title]);
-		echo view('profile/following', ['user' => $perfil]);
+		if($perfil->id == Auth::user()->id){
+			$isLoggedProfile = true;
+		} else{
+			$isLoggedProfile = false;
+		}
+		
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('profile/following', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');
 	}
 	
 	public function perfil_settings(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Configurações";
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Configurações";		
 		
-		echo view('header', ['title' => $title]);
-		echo view('profile/settings', ['user' => $perfil]);
+		if($perfil->id == Auth::user()->id){
+			$isLoggedProfile = true;
+		} else{
+			$isLoggedProfile = false;
+		}
+		
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('profile/settings', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');
 	}
 		
 	
 	public function chat(){
 		$title = "Chat - Escola LTG";
-		echo view('header', ['title' => $title]);
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('chat');
 	}
 }

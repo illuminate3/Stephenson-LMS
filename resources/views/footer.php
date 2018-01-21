@@ -19,23 +19,23 @@
 					
 					<div class="col l3 offset-l1 s12">
 						<h5 class="white-text">Link Úteis</h5>
-						
+
 						<ul>
-							<li><a class="grey-text text-lighten-3" href="#!">Contato</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Anunciar</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Termos de Uso</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Quero Postar Aulas</a></li>
+							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/contato'); ?>">Contato</a></li>
+							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/anunciar'); ?>">Anunciar</a></li>
+							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/termos-de-uso'); ?>">Termos de Uso</a></li>
+							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/quero-postar-aulas'); ?>">Quero Postar Aulas</a></li>
 						</ul>
 					</div>
-					
+
 					<div class="col l3 s12">
 						<h5 class="white-text">Redes Sociais</h5>
-						
+
 						<ul>
-							<li><a class="grey-text text-lighten-3" href="#!">YouTube</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
+							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.youtube.com/escolaltg/">YouTube</a></li>
+							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.facebook.com/escolaltg">Facebook</a></li>
+							<li><a target="_black" class="grey-text text-lighten-3" href="https://twitter.com/escolaltg">Twitter</a></li>
+							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.instagram.com/escolaltg/">Instagram</a></li>
 						</ul>
 					</div>
 				</div>

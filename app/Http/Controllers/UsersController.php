@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
+use App\Repositories\CategoriesRepository;
 use App\Validators\UserValidator;
 use App\Services\UserService;
 use Exception;
@@ -24,11 +25,12 @@ class UsersController extends Controller {
     protected $service;
     protected $repository;
 	 protected $validator;
+	 protected $categories_repository;
 
     public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
         $this->repository 	= $repository;
         $this->service 		= $service;
-        $this->validator 		= $validator;
+        $this->validator 	= $validator;
     }
 
 
@@ -47,12 +49,15 @@ class UsersController extends Controller {
 			echo view('admin/footer');
     }
 	
-	public function criarConta(){
+	public function criarConta(CategoriesRepository $categories_repository){
 		if(Auth::check()){
 			return redirect()->route('home');
 		} else{
+			$this->categoriesRepository 	= $categories_repository;
+			$categories = $this->categoriesRepository->getPrimaryCategories();
+			
 			$title = "Cadastro - Escola LTG";
-			echo view('header', ['title' => $title])->render();
+			echo view('header', ['title' => $title,'categories' => $categories])->render();
 			echo view('cadastro')->render();
 			echo view('footer')->render();
 		}
@@ -121,13 +126,6 @@ class UsersController extends Controller {
     public function show($id)
     {
         $user = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $user,
-            ]);
-        }
 
         return view('users.show', compact('user'));
     }
@@ -213,12 +211,14 @@ class UsersController extends Controller {
 
         return redirect()->back()->with('message', 'User deleted.');
     }
-		public function login(){
+		public function login(CategoriesRepository $categories_repository){
 		if(Auth::check()){
 			return redirect()->route('home');
 		} else{
+			$this->categoriesRepository 	= $categories_repository;
+		   $categories = $this->categoriesRepository->getPrimaryCategories();
 			$title = "Login - Escola LTG";
-			echo view('header', ['title' => $title]);
+			echo view('header', ['title' => $title, 'categories' => $categories]);
 			echo view('login');
 			echo view('footer');
 		}

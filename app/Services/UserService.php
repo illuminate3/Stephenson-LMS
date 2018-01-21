@@ -18,7 +18,7 @@ class UserService{
 		$this->validator = $validator;
 	}
 	
-	public function store($data){
+	public function store(array $data){
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 			$usuario = $this->repository->create($data);

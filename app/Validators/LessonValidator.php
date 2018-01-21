@@ -10,8 +10,10 @@ class LessonValidator extends LaravelValidator
 
     protected $rules = [
          ValidatorInterface::RULE_CREATE => [
-			  'name' => 'required',
-			  'course' => 'required'
+			  'title' => 'required',
+			  'video_url' => 'required',
+			  'course_id' => 'required',
+			  'module_id' => 'required',
 		  ],
         ValidatorInterface::RULE_UPDATE => [],
     ];

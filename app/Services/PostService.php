@@ -17,7 +17,7 @@ class PostService{
 		$this->validator = $validator;
 	}
 	
-	public function store(array $data, $thumbnail = null){
+	public function store(array $data){
 		//dd($data);
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);

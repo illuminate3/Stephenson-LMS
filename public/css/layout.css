@@ -48,7 +48,7 @@ nav .brand-logo {float: left;position: relative;}
 
 #tutorial-page-title h2{
 	color: white;
-	padding: 30px 0px;
+	padding: 30px 0px 15px 0px;
 	font-size: 2.4em;
 	text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
@@ -70,3 +70,37 @@ nav .brand-logo {float: left;position: relative;}
 	padding: 20px;
 	text-align: justify;
 }
+
+#course-single{
+	margin-top: 20px;
+}
+
+#course-cover{
+	width: 100%;
+}
+
+#course-cover img{
+	width: 100%;
+}
+
+#tutorial-info {
+	display: block;
+}
+
+#tutorial-info .info{
+	display: inline-block;
+	line-height: 50px;
+	padding: 0px 10px;
+	color: white;
+	font-size: 17px;
+	margin-bottom: 15px;
+}
+
+#tutorial-info .info:first-child{padding-left: 0px;}
+#tutorial-info .info i{line-height: 50px;float: left;margin-right: 10px;}
+
+.comment{margin: 20px 0px}
+.comment-author .comment-author-avatar{float: left;height: 50px; width: 50px;  border-radius: 100%; overflow: hidden;}
+.comment-author .comment-author-avatar img{height: 50px; width: 50px;}
+.comment-author .comment-author-name{float: left;line-height: 50px;padding: 0px 10px;font-size: 17px;}
+.comment-content.col{padding: 10px 0px 10px 70px;}

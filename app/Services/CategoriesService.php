@@ -17,8 +17,7 @@ class CategoriesService{
 		$this->validator = $validator;
 	}
 	
-	public function store(array $data, $thumbnail = null){
-		//dd($data);
+	public function store(array $data){
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 			$categories = $this->repository->create($data);

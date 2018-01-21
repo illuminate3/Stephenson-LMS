@@ -7,6 +7,9 @@ use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use Exception;
 use Auth;
+use App\Repositories\CourseRepository;
+use App\Repositories\TutorialRepository;
+use App\Repositories\PageRepository;
 
 class DashboardController extends Controller{
 	private $repository;
@@ -18,10 +21,15 @@ class DashboardController extends Controller{
 		$this->validator  = $validator;
 	}
 	
-	public function index(){
+	public function index(CourseRepository $courseRepository, TutorialRepository $tutorialRepository, PageRepository $pageRepository){
+		$users = $this->repository->all();
+		$courses = $courseRepository->all();
+		$tutorials = $tutorialRepository->all();
+		$pages = $pageRepository->all();
+
 		$title = "Dashboard - Escola LTG";
 		echo view('admin/header', ['title' => $title]);
-		echo view('admin/painel');
+		echo view('admin/painel', ['courses' => $courses, 'users' => $users, 'pages' => $pages, 'tutorials' => $tutorials]);
 		echo view('admin/footer');
 	}
 	

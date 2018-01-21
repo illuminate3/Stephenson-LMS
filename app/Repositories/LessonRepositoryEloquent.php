@@ -24,6 +24,7 @@ class LessonRepositoryEloquent extends BaseRepository implements LessonRepositor
         return Lesson::class;
     }
 
+
     /**
     * Specify Validator class name
     *

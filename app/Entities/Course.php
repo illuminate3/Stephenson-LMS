@@ -22,4 +22,8 @@ class Course extends Model{
 	public function author(){
 		return $this->belongsTo(User::class);
 	}
+	
+	public function getModules(){
+		return $this->hasMany(Module::class);
+	}
 }

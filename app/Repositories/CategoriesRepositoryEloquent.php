@@ -19,6 +19,10 @@ class CategoriesRepositoryEloquent extends BaseRepository implements CategoriesR
 		return $this->model->all();
 	}
 	
+	public function getPrimaryCategories(){
+		return  $this->findByField('level', 0);
+	}
+	
 	public function getAtualCategoryInfo($id){
 		
 		if($id == 0 || $id == null){

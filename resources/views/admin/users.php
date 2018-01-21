@@ -14,7 +14,7 @@
 				<td>Nascimento</td>
 				<td>Gênero</td>
 				<td>Permissão</td>
-				<td></td>
+				<td style="width:100px;">Ações</td>
 			</tr>
 		</thead>
 		
@@ -28,12 +28,16 @@
 				<td><?php echo $user['gender']; ?></td>
 				<td><?php echo $user['permission']; ?></td>
 				<td>
-					<a href="<?php echo URL::to('/admin/user/edit/'. $user['id'] ); ?>"><i class="material-icons">mode_edit</i></a>
+					<div class="action">
+						<a href="<?php echo URL::to('/admin/user/edit/'. $user['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">edit</i></button></a>
+					</div>
+					<div class="action">
 					<form method="post" action="<?php echo URL::route('admin.delete_user', ['id' =>  $user['id']]);?>">
-						<button type="submit"><i class="material-icons">remove_circle_outline</i></button>
+						<button type="submit" class="z-depth-1 waves-effect red"><i class="material-icons">remove_circle_outline</i></button>
 						<input type="hidden" value="DELETE" name="_method">
 						<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 					</form>
+					</div>
 				</td>
 			</tr>
 			<?php }}?>

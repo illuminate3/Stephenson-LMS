@@ -22,12 +22,9 @@
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 						
 						<ul id="channels-menu" class="dropdown-content">
-							<li><a href="#">Áudio</a></li>
-							<li><a href="#">Escritório</a></li>
-							<li><a href="#">Imagem</a></li>
-							<li><a href="#">Marketing</a></li>
-							<li><a href="#">Programação</a></li>
-							<li><a href="#">Vídeo</a></li>
+							<?php foreach($categories as $category){ 
+								echo '<li><a href="/categories/' . $category->id . '">' . $category->name . '</a></li>';
+							} ?>
 						</ul>
 						
 						<ul class="left hide-on-med-and-down">
@@ -305,10 +302,10 @@
 						<h5 class="white-text">Link Úteis</h5>
 
 						<ul>
-							<li><a class="grey-text text-lighten-3" href="#!">Contato</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Anunciar</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Termos de Uso</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Quero Postar Aulas</a></li>
+							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/contato'); ?>">Contato</a></li>
+							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/anunciar'); ?>">Anunciar</a></li>
+							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/termos-de-uso'); ?>">Termos de Uso</a></li>
+							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/quero-postar-aulas'); ?>">Quero Postar Aulas</a></li>
 						</ul>
 					</div>
 
