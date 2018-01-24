@@ -14,7 +14,7 @@
 			?>
 		</div>
 	</div>
-	<form  method="post" action="<?php echo URL::route('admin.add_users');?>">
+	<form  method="post" action="<?php echo URL::route('users.store');?>">
 		
 		<div class="row">
 			<div class="col s6 input-field">

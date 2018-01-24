@@ -3,7 +3,7 @@
 	
 	<?php			
 		if(count($tutorials) < 1){
-			echo "<p>Nenhum tutorial cadastrado. <a href='". URL::to('/admin/tutorials/add') . "'>Criar um tutorial</a></p>";
+			echo "<p>Nenhum tutorial cadastrado. <a href='". URL::route('tutorials.create') . "'>Criar um tutorial</a></p>";
 		} else{
 	?>
 	<table class="highlight responsive-table">
@@ -20,7 +20,7 @@
 		<tbody>
 			<?php foreach($tutorials as $tutorial) { ?>
 			<tr>
-				<td><a href="<?php echo URL::to('/admin/tutorial/edit/'. $tutorial['id'] ); ?>"><?php echo $tutorial['title']; ?></a></td>
+				<td><a href="<?php echo URL::route('tutorials.edit', ['tutorial_id' =>  $tutorial['id']]);?>"><?php echo $tutorial['title']; ?></a></td>
 				<td><?php echo $tutorial->video_url; ?></td>
 				<td><?php echo $tutorial->author->firstname . " " . $tutorial->author->lastname; ?></td>
 				<td><?php echo $tutorial->created_at; ?></td>
@@ -30,7 +30,7 @@
 					</div>
 					
 					<div class="action">
-						<form method="post" action="<?php echo URL::route('admin.delete_tutorial', ['id' =>  $tutorial['id']]);?>">
+						<form method="post" action="<?php echo URL::route('tutorials.destroy', ['id' =>  $tutorial['id']]);?>">
 							<button class="z-depth-1 waves-effect red" type="submit"><i class="material-icons">remove_circle_outline</i></button>
 							<input type="hidden" value="DELETE" name="_method">
 							<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

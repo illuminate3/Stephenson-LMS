@@ -14,7 +14,7 @@
 			?>
 		</div>
 	</div>
-	<form  method="post" action="<?php echo URL::route('admin.edit_user', ['id' => $user['id']]);?>">
+	<form  method="post" action="<?php echo URL::route('users.update', ['user_id' => $user['id']]);?>">
 		
 		<div class="row">
 			<div class="col s6 input-field">
@@ -53,6 +53,7 @@
 				<button type="submit" class="btn">EDITAR</button>
 			</div>
 		</div>
+		<input type="hidden" value="PUT" name="_method">
 		<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 	</form>
 </div>

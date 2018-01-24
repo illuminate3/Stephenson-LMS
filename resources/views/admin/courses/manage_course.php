@@ -9,7 +9,15 @@
 		?>
 		
 		<li>
-			<div class="collapsible-header"><?php echo $module['name']; ?></div>
+			<div class="collapsible-header"><?php echo $module['name']; ?> 
+			<div class="action" class="right" >
+				<form method="post"action="<?php echo URL::route('admin.delete_module', ['id' =>  $module['id']]);?>">
+					<button type="submit" class="red z-depth-1 waves-effect"><i class="material-icons">remove_circle_outline</i></button>
+					<input type="hidden" value="DELETE" name="_method">
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+				</form>
+			</div>
+			</div>
 			<div class="collapsible-body">
 				<ul class="collection with-header">
 					<?php 

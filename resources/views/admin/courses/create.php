@@ -2,7 +2,7 @@
 	<h2>Adicionar Curso</h2>
 
 	<div class="row">
-		<form method="post" action="<?php echo URL::route('admin.add_courses');?>" enctype="multipart/form-data">
+		<form method="post" action="<?php echo URL::route('courses.store');?>" enctype="multipart/form-data">
 			<div class="col s9">
 				<div class="col s12">
 					<?php 

@@ -11,7 +11,7 @@
 		}
 	?>
 
-	<form method="post" action="<?php echo URL::route('admin.edit_category', ['id' => $category['id']]);?>">
+	<form method="post" action="<?php echo URL::route('categories.update', ['id' => $category['id']]);?>">
 		<div class="row">
 			<div class="col s12 input-field">
 				<input id="txtCategorieName" type="text" name="name" value="<?php echo $category['name'];?>">
@@ -44,5 +44,6 @@
 			</div>
 		</div>
 		<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+		<input type="hidden" value="PUT" name="_method">
 	</form>
 </div>

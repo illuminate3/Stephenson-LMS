@@ -3,7 +3,7 @@
 	<div class="divider"></div>
 	
 	<div class="row">
-		<form method="post" action="<?php echo URL::route('admin.edit_courses', ['id' =>  $course['id']]);?>" enctype="multipart/form-data">
+		<form method="post" action="<?php echo URL::route('courses.update', ['course_id' =>  $course['id']]);?>" enctype="multipart/form-data">
 			<div class="col s9">
 				
 				<div class="col s12">
@@ -80,6 +80,7 @@
 				</div>	
 			</div>
 			
+			<input type="hidden" value="PUT" name="_method">
 			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 		</form>
 	</div>

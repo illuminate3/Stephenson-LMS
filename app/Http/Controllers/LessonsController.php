@@ -69,6 +69,18 @@ class LessonsController extends Controller
 		echo view('admin/add_lesson', ['course' => $atual_course, 'module' => $atual_module]);
 		echo view('admin/footer');
 	}
+	
+	public function editarAula($course, $module, $lesson){
+		$course = $this->course_repository->find($course);
+		$module = $this->module_repository->find($module);
+		$lesson = $this->repository->find($lesson);
+		
+		$title = "Editar " . $lesson->title ." - Escola LTG";
+		
+		echo view('admin/header', ['title' => $title]);
+		echo view('admin/edit_lesson', ['course' => $course, 'module' => $module, 'lesson' => $lesson]);
+		echo view('admin/footer');
+	}
 
     /**
      * Store a newly created resource in storage.

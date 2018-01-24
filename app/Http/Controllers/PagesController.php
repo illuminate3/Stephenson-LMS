@@ -35,7 +35,7 @@ class PagesController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-	
+	/*
 	 public function index($page, CategoriesRepository $categories_repository) {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $page = $this->repository->findByField('slug', $page)->first();
@@ -46,31 +46,31 @@ class PagesController extends Controller{
 			echo view('page', ['page' => $page]);
 			echo view('footer');
     }
+	*/
 	
-    public function adminIndex()
-    {
+    public function index(){
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $pages = $this->repository->all();
 
 			$title = "Páginas - Escola LTG";
-			echo view('admin/header', ['title' => $title]);
-			echo view('admin/pages', ['pages' => $pages]);
-			echo view('admin/footer');
+			echo view('admin.header', ['title' => $title]);
+			echo view('admin.pages.index', ['pages' => $pages]);
+			echo view('admin.footer');
     }
 	
-	public function adicionarPagina(){
+	public function create(){
 		$title = "Adicionar Página - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/add_page');
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.pages.create');
+		echo view('admin.footer');
 	}
 
-	public function editarPagina($page){
+	public function edit($page){
 		$page = $this->repository->find($page);
 		$title = "Editar Página - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/edit_page',['page' => $page]);
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.pages.edit',['page' => $page]);
+		echo view('admin.footer');
 	}
     /**
      * Store a newly created resource in storage.
@@ -111,22 +111,6 @@ class PagesController extends Controller{
         }
 
         return view('pages.show', compact('page'));
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $page = $this->repository->find($id);
-
-        return view('pages.edit', compact('page'));
     }
 
 

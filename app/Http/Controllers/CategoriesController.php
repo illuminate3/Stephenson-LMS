@@ -28,30 +28,23 @@ class CategoriesController extends Controller{
 		 
     }
 
-	 public function adminIndex(){
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $categories = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $categories,
-            ]);
-        }
+	 public function index(){
+		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+		$categories = $this->repository->all();
 
 		$title = "Categorias - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/categories',['categories' => $categories]);
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.categories.index',['categories' => $categories]);
+		echo view('admin.footer');
     }
 	
-	public function editarCategoria($category){
+	public function edit($category){
 		$categories_list= $this->repository->all();
 		$category = $this->repository->find($category);
 		$title = "Editar " .$category['name'] . " - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/edit_category',['category' => $category, 'categories_list'=> $categories_list]);
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.categories.edit',['category' => $category, 'categories_list'=> $categories_list]);
+		echo view('admin.footer');
 	}
 	
     /**
@@ -72,7 +65,7 @@ class CategoriesController extends Controller{
 			 'messages' =>	$request['messages']
 		 ]);
 		 
-		 return redirect()->route('admin.categories'); 
+		 return redirect()->back(); 
     }
 
     /**
@@ -80,6 +73,7 @@ class CategoriesController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
+	/*
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
@@ -93,46 +87,7 @@ class CategoriesController extends Controller{
         }
 
         return view('categories.index', compact('categories'));
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $category = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $category,
-            ]);
-        }
-
-        return view('categories.show', compact('category'));
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $category = $this->repository->find($id);
-
-        return view('categories.edit', compact('category'));
-    }
-
+    }*/
 
     /**
      * Update the specified resource in storage.

@@ -2,7 +2,7 @@
 	<h2>Adicionar Tutorial</h2>
 
 	<div class="row">
-		<form method="post" action="<?php echo URL::route('admin.add_tutorials');?>" enctype="multipart/form-data">
+		<form method="post" action="<?php echo URL::route('tutorials.store');?>" enctype="multipart/form-data">
 			<div class="col s9">
 				<div class="row">
 				<div class="col s12">

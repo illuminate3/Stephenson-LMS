@@ -41,33 +41,27 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	public function adminIndex(){
+	public function index(){
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $courses = $this->repository->all();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $courses,
-            ]);
-        }
 	
 		$title = "Cursos - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/courses',['courses' => $courses]);
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.courses.index',['courses' => $courses]);
+		echo view('admin.footer');
     }
 	
-	public function adicionarCurso(){
+	public function create(){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		
 		$title = "Adicionar Curso - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/add_course', ['categories'=> $categories_list])->render();
-		echo view('admin/footer')->render();
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.courses.create', ['categories'=> $categories_list])->render();
+		echo view('admin.footer')->render();
 	}
-	
-    public function index(){
+
+    public function archive(){
       $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
       $courses = $this->repository->all();
 		$categories = $this->categoriesRepository->getPrimaryCategories();
@@ -95,7 +89,7 @@ class CoursesController extends Controller
 			 'messages' =>	$request['messages']
 		 ]);
 		 
-		 return redirect()->route('admin.add_courses'); 
+		 return redirect()->back(); 
     }
 
 
@@ -120,16 +114,16 @@ class CoursesController extends Controller
         return view('courses.show', compact('course'));
     }
 
-	public function editarCurso($course){
+	public function edit($course){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$modules_list = $this->moduleRepository->selectBoxList();
 		$course = $this->repository->find($course);
 		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($course['category_id']);
 		
 		$title = "Editar " . $course['title']." - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/edit_course', ['course' => $course, 'categories' => $categories_list, 'atual_category' => $atual_category])->render();
-		echo view('admin/footer')->render();
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.courses.edit', ['course' => $course, 'categories' => $categories_list, 'atual_category' => $atual_category])->render();
+		echo view('admin.footer')->render();
 	}
 	
 	public function gerenciarCurso($course){
@@ -151,23 +145,6 @@ class CoursesController extends Controller
 		echo view('courses/course', ['course' => $course, 'modules' => $modules_list])->render();
 		echo view('footer')->render();
 	}
-
-	
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $course = $this->repository->find($id);
-
-        return view('admin.edit_courses', compact('course'));
-    }
-
 
     /**
      * Update the specified resource in storage.

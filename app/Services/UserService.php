@@ -31,7 +31,7 @@ class UserService{
 		} catch(Exception $e){
 			return [
 				'success' => false,
-				'messages' => $e->getMessageBag(),
+				'messages' => $e->getMessage(),
 			];
 		}
 	}

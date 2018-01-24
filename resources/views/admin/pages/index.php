@@ -18,7 +18,7 @@
 		<tbody>
 			<?php foreach($pages as $page) { ?>
 			<tr>
-				<td><a href="<?php echo URL::to('/admin/page/edit/'. $page->id ); ?>"><?php echo $page->title; ?></a></td>
+				<td><a href="<?php echo URL::route('pages.edit', ['page_id' =>  $page->id]);?>"><?php echo $page->title; ?></a></td>
 				<td><?php echo $page->slug; ?></td>
 				<td>
 					<div class="action">
@@ -26,7 +26,7 @@
 					</div>
 					
 					<div class="action">
-						<form method="post" action="<?php echo URL::route('admin.delete_page', ['id' =>  $page->id]);?>">
+						<form method="post" action="<?php echo URL::route('pages.destroy', ['id' =>  $page->id]);?>">
 							<button class="z-depth-1 waves-effect red" type="submit"><i class="material-icons">remove_circle_outline</i></button>
 							<input type="hidden" value="DELETE" name="_method">
 							<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

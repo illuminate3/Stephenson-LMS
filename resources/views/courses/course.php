@@ -39,7 +39,7 @@
 									?>
 									<li class="collection-item">
 										<div>
-											<a href="<?php echo URL::route('admin.edit_lesson',['course' => $course->id, 'module' => $module->id, 'lesson' => $lesson->id]);?>"><?php echo $lesson->title; ?></a>
+											<a href=""><?php echo $lesson->title; ?></a>
 										</div>
 									</li>
 									<?php }} else{?>

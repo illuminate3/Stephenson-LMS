@@ -17,15 +17,15 @@
 			
 			<div id="side-menu">
 				<ul>
-					<li><a href="<?php echo URL::to('/admin'); ?>"><i class="material-icons left">dashboard</i>Dashboard</a></li>
-					<li><a href="<?php echo URL::to('/admin/categories'); ?>"><i class="material-icons left">folder</i>Categorias</a></li>
+					<li><a href="<?php echo route('dashboard.index'); ?>"><i class="material-icons left">dashboard</i>Dashboard</a></li>
+					<li><a href="<?php echo route('categories.index'); ?>"><i class="material-icons left">folder</i>Categorias</a></li>
 					
 					<li class="dropdown-menu-item">
 						<a href="#"><i class="material-icons left">insert_drive_file</i>Páginas</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/pages'); ?>">Ver Páginas</a></li>
-							<li><a href="<?php echo URL::to('/admin/pages/add'); ?>">Adicionar Páginas</a></li>
+							<li><a href="<?php echo route('pages.index'); ?>">Ver Páginas</a></li>
+							<li><a href="<?php echo route('pages.create'); ?>">Adicionar Páginas</a></li>
 						</ul>	
 					</li>
 
@@ -33,8 +33,8 @@
 						<a href="#"><i class="material-icons left">edit</i>Postagens</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/posts'); ?>">Ver Postagens</a></li>
-							<li><a href="<?php echo URL::to('/admin/posts/add'); ?>">Adicionar Postagem</a></li>
+							<li><a href="<?php echo route('posts.index'); ?>">Ver Postagens</a></li>
+							<li><a href="<?php echo route('posts.create'); ?>">Adicionar Postagem</a></li>
 						</ul>	
 					</li>
 					
@@ -42,8 +42,8 @@
 						<a href="#"><i class="material-icons left">video_library</i>Tutoriais</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/tutorials'); ?>">Ver Tutoriais</a></li>
-							<li><a href="<?php echo URL::to('/admin/tutorials/add'); ?>">Adicionar Tutorial</a></li>
+							<li><a href="<?php echo route('tutorials.index'); ?>">Ver Tutoriais</a></li>
+							<li><a href="<?php echo route('tutorials.create'); ?>">Adicionar Tutorial</a></li>
 						</ul>	
 					</li>
 					
@@ -51,26 +51,28 @@
 						<a href="#"><i class="material-icons left">grade</i>Cursos</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/courses'); ?>">Ver Cursos</a></li>
-							<li><a href="<?php echo URL::to('/admin/courses/add'); ?>">Adicionar Curso</a></li>
+							<li><a href="<?php echo route('courses.index'); ?>">Ver Cursos</a></li>
+							<li><a href="<?php echo route('courses.create'); ?>">Adicionar Curso</a></li>
 						</ul>	
 					</li>
 					
+					<!--
 					<li class="dropdown-menu-item">
 						<a href="#"><i class="material-icons left">forum</i>Fórum</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/forums'); ?>">Fóruns</a></li>
-							<li><a href="<?php echo URL::to('/admin/topics'); ?>">Tópicos</a></li>
+							<li><a href="#">Fóruns</a></li>
+							<li><a href="#">Tópicos</a></li>
 						</ul>	
 					</li>
+					-->
 					
 					<li class="dropdown-menu-item">
 						<a href="#"><i class="material-icons left">group</i>Usuários</a>
 						
 						<ul class="submenu">
-							<li><a href="<?php echo URL::to('/admin/users'); ?>">Ver Usuários</a></li>
-							<li><a href="<?php echo URL::to('/admin/users/add'); ?>">Adicionar Usuário</a></li>
+							<li><a href="<?php echo route('users.index'); ?>">Ver Usuários</a></li>
+							<li><a href="<?php echo route('users.create'); ?>">Adicionar Usuário</a></li>
 						</ul>	
 					</li>
 					

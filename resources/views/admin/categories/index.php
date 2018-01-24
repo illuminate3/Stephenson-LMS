@@ -14,7 +14,7 @@
 				}
 			?>
 			
-			<form method="post" action="<?php echo URL::route('admin.add_categories');?>">
+			<form method="post" action="<?php echo URL::route('categories.store');?>">
 				<div class="row">
 					<div class="col s12 input-field">
 						<input id="txtCategorieName" type="text" name="name">
@@ -73,11 +73,11 @@
 				<td><?php echo $category['name']; ?></td>
 				<td>
 					<div class="action">
-						<a href="<?php echo URL::to('/admin/category/edit/'. $category['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">edit</i></button></a>
+						<a href="<?php echo URL::route('categories.edit', ['categories_id' => $category->id]);?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">edit</i></button></a>
 					</div>
 					
 					<div class="action">
-						<form method="post" action="">
+						<form method="post" action="<?php echo URL::route('categories.destroy',['categories_id' => $category->id]);?>">
 							<button class="red z-depth-1 waves-effect" type="submit"><i class="material-icons">remove_circle_outline</i></button>
 							<input type="hidden" value="DELETE" name="_method">
 							<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

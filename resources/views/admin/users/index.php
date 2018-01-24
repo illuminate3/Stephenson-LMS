@@ -29,10 +29,10 @@
 				<td><?php echo $user['permission']; ?></td>
 				<td>
 					<div class="action">
-						<a href="<?php echo URL::to('/admin/user/edit/'. $user['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">edit</i></button></a>
+						<a href="<?php echo URL::route('users.edit', ['user_id' =>  $user['id']]);?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">edit</i></button></a>
 					</div>
 					<div class="action">
-					<form method="post" action="<?php echo URL::route('admin.delete_user', ['id' =>  $user['id']]);?>">
+					<form method="post" action="<?php echo URL::route('users.destroy', ['id' =>  $user['id']]);?>">
 						<button type="submit" class="z-depth-1 waves-effect red"><i class="material-icons">remove_circle_outline</i></button>
 						<input type="hidden" value="DELETE" name="_method">
 						<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

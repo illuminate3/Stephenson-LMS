@@ -34,38 +34,31 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminIndex(){
+    public function index(){
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $posts = $this->repository->all();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $posts,
-            ]);
-        }
-		 
 		$title = "Postagens - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/posts',['posts' => $posts]);
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.posts.index',['posts' => $posts]);
+		echo view('admin.footer');
     }
 	
-	public function adicionarPostagem(){
+	public function create(){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$title = "Adicionar Postagem - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/add_post', ['categories' => $categories_list])->render();
-		echo view('admin/footer')->render();
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.posts.create', ['categories' => $categories_list])->render();
+		echo view('admin.footer')->render();
 	}
 	
-	public function editarPostagem($post){
+	public function edit($post){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$tutorial = $this->repository->find($tutorial);
 		$title = "Editar ".$tutorial['title']." - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/edit_post', ['categories' => $categories_list, 'tutorial' => $tutorial])->render();
-		echo view('admin/footer')->render();
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.posts.edit', ['categories' => $categories_list, 'tutorial' => $tutorial])->render();
+		echo view('admin.footer')->render();
 	}
 
 
@@ -129,23 +122,6 @@ class PostsController extends Controller
 
         return view('posts.show', compact('post'));
     }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $post = $this->repository->find($id);
-
-        return view('posts.edit', compact('post'));
-    }
-
 
     /**
      * Update the specified resource in storage.

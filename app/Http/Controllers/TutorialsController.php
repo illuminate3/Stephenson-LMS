@@ -46,7 +46,8 @@ class TutorialsController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+	
+    public function archive(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$tutorials = $this->repository->all();
 		$categories = $this->categoriesRepository->getPrimaryCategories();
@@ -74,41 +75,33 @@ class TutorialsController extends Controller{
 		echo view('footer');
 	}
 	
-	 public function adminIndex(){
+	 public function index(){
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $tutorials = $this->repository->all();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $tutorials,
-            ]);
-        }
-
-
 		$title = "Tutoriais - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/tutorials',['tutorials' => $tutorials]);
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.tutorials.index',['tutorials' => $tutorials]);
+		echo view('admin.footer');
     }
 	
-	public function adicionarTutorial(){
+	public function create(){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$title = "Adicionar Tutorial - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/add_tutorial', ['categories' => $categories_list])->render();
-		echo view('admin/footer')->render();
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.tutorials.create', ['categories' => $categories_list])->render();
+		echo view('admin.footer')->render();
 	}
 	
-	public function editarTutorial($tutorial){
+	public function edit($tutorial){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$tutorial = $this->repository->find($tutorial);
 		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($tutorial['category_id']);
 
 		$title = "Editar " .$tutorial['title']." - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/edit_tutorial', ['categories' => $categories_list, 'tutorial' => $tutorial, 'atual_category' => $atual_category])->render();
-		echo view('admin/footer')->render();
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.tutorials.edit', ['categories' => $categories_list, 'tutorial' => $tutorial, 'atual_category' => $atual_category])->render();
+		echo view('admin.footer')->render();
 	}
 
     /**
@@ -152,23 +145,6 @@ class TutorialsController extends Controller{
 
         return view('tutorials.show', compact('tutorial'));
     }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $tutorial = $this->repository->find($id);
-
-        return view('tutorials.edit', compact('tutorial'));
-    }
-
 
     /**
      * Update the specified resource in storage.

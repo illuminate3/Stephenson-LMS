@@ -64,12 +64,4 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest(route('login'));
     }
-	
-	public function render($request, Exception $e){
-    if($e instanceof NotFoundHttpException)
-    {
-        return response()->view('missing', [], 404);
-    }
-    return parent::render($request, $e);
-	}
 }
