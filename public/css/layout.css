@@ -104,3 +104,14 @@ nav .brand-logo {float: left;position: relative;}
 .comment-author .comment-author-avatar img{height: 50px; width: 50px;}
 .comment-author .comment-author-name{float: left;line-height: 50px;padding: 0px 10px;font-size: 17px;}
 .comment-content.col{padding: 10px 0px 10px 70px;}
+
+.no-module{padding: 15px;}
+.module{width: 100%;display: block;}
+.module-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
+.module-name{float: left;cursor: pointer;height: 60px;display: block;}
+.module-body{display: none;	border-bottom: 1px solid #ccc;}
+.lessons-list{padding: 15px;}
+.no-lesson{padding: 15px;}
+.lesson{line-height: 50px;border-bottom: 1px solid #ccc;}
+.lesson:last-child{border-bottom:none;}
+.lesson a{color: #26a69a;}

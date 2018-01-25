@@ -9,7 +9,10 @@ class PageValidator extends LaravelValidator
 {
 
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
+         ValidatorInterface::RULE_CREATE => [
+			  'title' => 'required',
+			  'slug' => 'required',
+		  ],
         ValidatorInterface::RULE_UPDATE => [],
     ];
 }

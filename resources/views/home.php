@@ -226,19 +226,19 @@
 								<div class="row">
 									<div class="col s4">
 										<div class="people-avatar">
-											<img src="images/depoimento/user1.png" class="people-avatar-img">
+											<img src="images/depoimento/lazaro.jpg" class="people-avatar-img">
 										</div>
 									</div>
 
 									<div class="col s8">
-										<div class="people-name">Klévisson</div>
-										<div class="people-city"><i class="material-icons">location_on</i> Unkown City</div>
+										<div class="people-name">Luiz Lázaro</div>
+										<div class="people-city"><i class="material-icons">location_on</i> Brasília - DF</div>
 									</div>
 								</div>
 							</div>
 
 							<div class="depoiment-text col s8">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pretium consequat nunc vel laoreet. Quisque egestas eleifend tortor at ornare. Praesent nec semper risus. Vestibulum pharetra sagittis leo in rhoncus. Nullam consectetur dui mauris. Aliquam non semper enim. In hac habitasse platea dictumst. eu egestas.</p>
+								<p>Aulas incríveis, com grandíssima qualidade e conteúdo inigualável! Mais que um projeto, a escola LTG é um movimento que promove em nós uma incessante onda de vontade pela busca de mais conhecimento. Muito obrigado!</p>
 							</div>
 						</li>
 

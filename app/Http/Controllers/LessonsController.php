@@ -39,47 +39,26 @@ class LessonsController extends Controller
         $this->module_repository  = $moduleRepository;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $lessons = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $lessons,
-            ]);
-        }
-
-        return view('lessons.index', compact('lessons'));
-    }
-	
-	public function adicionarAula($course, $module){
+	public function create($course, $module){
 		$title = "Adicionar Aula - Escola LTG";
 		$atual_course = $this->course_repository->find($course);
 		$atual_module = $this->module_repository->find($module);
 		
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/add_lesson', ['course' => $atual_course, 'module' => $atual_module]);
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.lessons.create', ['course' => $atual_course, 'module' => $atual_module]);
+		echo view('admin.footer');
 	}
 	
-	public function editarAula($course, $module, $lesson){
+	public function edit($course, $module, $lesson){
 		$course = $this->course_repository->find($course);
 		$module = $this->module_repository->find($module);
 		$lesson = $this->repository->find($lesson);
 		
 		$title = "Editar " . $lesson->title ." - Escola LTG";
 		
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/edit_lesson', ['course' => $course, 'module' => $module, 'lesson' => $lesson]);
-		echo view('admin/footer');
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.lessons.edit', ['course' => $course, 'module' => $module, 'lesson' => $lesson]);
+		echo view('admin.footer');
 	}
 
     /**
@@ -105,44 +84,6 @@ class LessonsController extends Controller
 
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $lesson = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $lesson,
-            ]);
-        }
-
-        return view('lessons.show', compact('lesson'));
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $lesson = $this->repository->find($id);
-
-        return view('lessons.edit', compact('lesson'));
-    }
-
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  LessonUpdateRequest $request
@@ -150,14 +91,14 @@ class LessonsController extends Controller
      *
      * @return Response
      */
-    public function update(LessonUpdateRequest $request, $id)
+    public function update(LessonUpdateRequest $request, $course_id, $module_id, $lesson_id)
     {
 
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $lesson = $this->repository->update($request->all(), $id);
+            $lesson = $this->repository->update($request->all(), $lesson_id);
 
             $response = [
                 'message' => 'Lesson updated.',
@@ -192,9 +133,9 @@ class LessonsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($course_id, $module_id, $lesson_id)
     {
-        $deleted = $this->repository->delete($id);
+        $deleted = $this->repository->delete($lesson_id);
 
         if (request()->wantsJson()) {
 

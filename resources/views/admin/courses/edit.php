@@ -1,7 +1,16 @@
 <div class="container">
-	<h2>Editar <?php echo $course['title']?></h2>
-	<div class="divider"></div>
 	
+	<nav class="z-depth-0 transparent breadcrumbs">
+		<div class="nav-wrapper">
+			<div class="col s12">
+				<a href="<?php echo URL::route('courses.index') ?>" class="breadcrumb">Cursos</a>
+				<a href="#" class="breadcrumb">Criar Curso</a>
+			</div>
+		</div>
+	</nav>
+	
+	<h2>Editar <?php echo $course['title']?></h2>
+
 	<div class="row">
 		<form method="post" action="<?php echo URL::route('courses.update', ['course_id' =>  $course['id']]);?>" enctype="multipart/form-data">
 			<div class="col s9">

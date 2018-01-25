@@ -1,4 +1,14 @@
 <div class="container">
+	
+	<nav class="z-depth-0 transparent breadcrumbs">
+		<div class="nav-wrapper">
+			<div class="col s12">
+				<a href="<?php echo URL::route('users.index') ?>" class="breadcrumb">Usuários</a>
+				<a href="#" class="breadcrumb">Editar Usuário</a>
+			</div>
+		</div>
+	</nav>
+	
 	<h2>Editar <?php echo $user['firstname'] . " " . $user['lastname'];?></h2>
 
 	<div class="row">

@@ -1,4 +1,14 @@
 <div class="container">
+	
+	<nav class="z-depth-0 transparent breadcrumbs">
+		<div class="nav-wrapper">
+			<div class="col s12">
+				<a href="<?php echo URL::route('courses.index') ?>" class="breadcrumb">Cursos</a>
+				<a href="#" class="breadcrumb">Criar Curso</a>
+			</div>
+		</div>
+	</nav>
+	
 	<h2>Adicionar Curso</h2>
 
 	<div class="row">

@@ -1,11 +1,22 @@
 <div class="container">
+	
+	<nav class="z-depth-0 transparent breadcrumbs">
+		<div class="nav-wrapper">
+			<div class="col s12">
+				<a href="<?php echo URL::route('courses.index') ?>" class="breadcrumb">Cursos</a>
+				<a href="<?php echo URL::route('courses.manage', ['module' => $course->id]) ?>" class="breadcrumb">Gerenciar Curso</a>
+				<a href="#" class="breadcrumb">Criar Lição</a>
+			</div>
+		</div>
+	</nav>
+	
 	<h2>Criar Aula</h2>
 	
 	<h4>Curso: <?php echo $course['title']; ?></h4>
 	<h4>Modulo: <?php echo $module['name']; ?></h4>
 	
 	<div class="row">
-		<form method="post" action="<?php echo URL::route('admin.add_lesson',['course' => $course['id'], 'module' => $module['id']]);?>" enctype="multipart/form-data">
+		<form method="post" action="<?php echo URL::route('course.module.lesson.store',['course' => $course->id, 'module' => $module->id]);?>" enctype="multipart/form-data">
 			<div class="col s9">
 				<div class="row">
 				<div class="col s12">
@@ -23,31 +34,31 @@
 				
 				<div class="row">
 					<div class="col s12 input-field">
-						<input type="text" name="title" id="tutorial-title">
-						<label for="tutorial-title">Titulo</label>
+						<input type="text" name="title" id="lesson-title">
+						<label for="lesson-title">Titulo</label>
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col s10 input-field">
-						<input type="text" name="video_url" id="tutorial-url">
-						<label for="tutorial-url">Url do Vídeo</label>
+						<input type="text" name="video_url" id="lesson-url">
+						<label for="lesson-url">Url do Vídeo</label>
 					</div>
 					<div class="col s2 input-field">
-						<input type="time" name="time" id="tutorial-time">
+						<input type="time" name="time" id="lesson-time">
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col s12 input-field">
-						<textarea name="description" id="tutorial-content" class="tinymce"></textarea>
+						<textarea name="description" id="lesson-content" class="tinymce"></textarea>
 					</div>
 				</div>
 				
 				<div class="row">
-					<div class="col s12 input-field">
-						<textarea name="resume" id="tutorial-resume" class="materialize-textarea"></textarea>
-						<label for="tutorial-resume">Resumo</label>
+					<div class="col s12 input-field">lesson
+						<textarea name="resume" id="lesson-resume" class="materialize-textarea"></textarea>
+						<label for="lesson-resume">Resumo</label>
 					</div>
 				</div>
 				

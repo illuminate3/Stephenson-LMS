@@ -126,13 +126,13 @@ class CoursesController extends Controller
 		echo view('admin.footer')->render();
 	}
 	
-	public function gerenciarCurso($course){
+	public function manage($course){
 		$course = $this->repository->find($course);
 		$title = "Gerenciar " . $course['title']." - Escola LTG";
 		
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/manage_course', ['course' => $course])->render();
-		echo view('admin/footer')->render();
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.courses.manage', ['course' => $course])->render();
+		echo view('admin.footer')->render();
 	}
 	
 	public function single($course){

@@ -20,39 +20,45 @@
 				
 				<div id="course-modules">
 					<h3>Conteúdos</h3>
+					
+					<?php if(count($course->getModules) > 0){?>
 
-					<ul class="collapsible white" data-collapsible="accordion">
-						<?php 
-							if(count($course->getModules) > 0){
-								$modules = $course->getModules;
-								foreach ($modules as $module) { 
-						?>
+					<div id="modules-list" class="card">
+						<?php $modules = $course->getModules; foreach ($modules as $module) {  ?>
 
-						<li>
-							<div class="collapsible-header"><?php echo $module['name']; ?></div>
-							<div class="collapsible-body">
-								<ul class="collection with-header">
-									<?php 
-										if(count($module->getLessons) > 0){
-											$lessons = $module->getLessons;
-											foreach ($lessons as $lesson) { 
-									?>
-									<li class="collection-item">
-										<div>
-											<a href=""><?php echo $lesson->title; ?></a>
+							<div class="module">
+								<div class="module-header">
+									<div class="module-name">
+										<?php echo $module['name']; ?>
+									</div> 
+								</div>
+
+								<div class="module-body">
+									<?php if(count($module->getLessons) > 0){ ?>
+
+										<div class="lessons-list">
+											<?php $lessons = $module->getLessons; foreach ($lessons as $lesson) { ?>
+												<div class="lesson">
+													<a href="#"><?php echo $lesson->title; ?></a>
+												</div>
+											<?php }?>
 										</div>
-									</li>
-									<?php }} else{?>
-										Nenhuma aula cadastrada nesse módulo.
-									<?php }?>
-								</ul>
-							</div>
-						</li>
 
-						<?php } } else{ ?>
-							<li style="padding:20px;">Nenhum módulo criado para este curso.</li>
-						<?php }?>
-					</ul>
+									<?php } else{ ?>
+
+										<div class="no-lesson">Nenhuma aula cadastrada nesse módulo.</div>
+
+									<?php }?>
+								</div>
+							</div>
+
+						<?php } ?>
+					</div>
+					<?php } else { ?>
+
+					<div class="no-module card">Nenhum módulo criado. Quem sabe mais tarde...</div>
+
+					<?php }?>
 				</div>
 			</div>
 		</div>

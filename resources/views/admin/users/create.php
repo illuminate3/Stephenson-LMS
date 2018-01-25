@@ -1,5 +1,15 @@
 <div class="container">
-	<h2>Adicionar Usuário</h2>
+		
+	<nav class="z-depth-0 transparent breadcrumbs">
+		<div class="nav-wrapper">
+			<div class="col s12">
+				<a href="<?php echo URL::route('users.index') ?>" class="breadcrumb">Usuários</a>
+				<a href="#" class="breadcrumb">Criar Usuário</a>
+			</div>
+		</div>
+	</nav>
+	
+	<h2>Criar Usuário</h2>
 
 	<div class="row">
 		<div class="col s12">

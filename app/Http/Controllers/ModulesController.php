@@ -53,47 +53,8 @@ class ModulesController extends Controller
 			 'messages' =>	$request['messages']
 		 ]);
 		 
-		 return redirect('/admin/course/manage/'. $id ); 
+		 return redirect()->back();
     }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $module = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $module,
-            ]);
-        }
-
-        return view('modules.show', compact('module'));
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $module = $this->repository->find($id);
-
-        return view('modules.edit', compact('module'));
-    }
-
 
     /**
      * Update the specified resource in storage.
@@ -145,7 +106,7 @@ class ModulesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($course_id, $id)
     {
         $deleted = $this->repository->delete($id);
 

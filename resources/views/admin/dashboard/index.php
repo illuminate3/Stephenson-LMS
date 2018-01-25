@@ -1,32 +1,32 @@
 <div class="container">
-	<h2>Dashboard</h2>
-	
-	<h3>Estatísticas</h3>
+	<h2><?php echo __('messages.dashboard'); ?></h2>
+
+	<h3><?php echo __('messages.statistcs'); ?></h3>
 	<div class="row">
-		<div class="col s3">
+		<div class="col l3 m6 s12">
 			<div class="card card-panel">
-				<span class="card-title">Usuários</span>
+				<span class="card-title"><?php echo __('messages.users'); ?></span>
 				<p><?php echo count($users); ?></p>
 			</div>
 		</div>
 		
-		<div class="col s3">
+		<div class="col l3 m6 s12">
 			<div class="card card-panel">
-				<span class="card-title">Tutoriais</span>
+				<span class="card-title"><?php echo __('messages.tutorials'); ?></span>
 				<p><?php echo count($tutorials); ?></p>
 			</div>
 		</div>
 		
-		<div class="col s3">
+		<div class="col l3 m6 s12">
 			<div class="card card-panel">
-				<span class="card-title">Cursos</span>
+				<span class="card-title"><?php echo __('messages.courses'); ?></span>
 				<p><?php echo count($courses); ?></p>
 			</div>
 		</div>
 		
-		<div class="col s3">
+		<div class="col l3 m6 s12">
 			<div class="card card-panel">
-				<span class="card-title">Páginas</span>
+				<span class="card-title"><?php echo __('messages.pages'); ?></span>
 				<p><?php echo count($pages); ?></p>
 			</div>
 		</div>

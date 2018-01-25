@@ -29,14 +29,7 @@ class PagesController extends Controller{
         $this->service  = $service;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-	/*
-	 public function index($page, CategoriesRepository $categories_repository) {
+	 public function single ($page, CategoriesRepository $categories_repository) {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $page = $this->repository->findByField('slug', $page)->first();
 		 $this->categoriesRepository 	= $categories_repository;
@@ -46,7 +39,6 @@ class PagesController extends Controller{
 			echo view('page', ['page' => $page]);
 			echo view('footer');
     }
-	*/
 	
     public function index(){
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));

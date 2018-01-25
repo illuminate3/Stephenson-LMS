@@ -1,4 +1,14 @@
-<div class="container">
+<div class="container">	
+	
+	<nav class="z-depth-0 transparent breadcrumbs">
+		<div class="nav-wrapper">
+			<div class="col s12">
+				<a href="<?php echo URL::route('tutorials.index') ?>" class="breadcrumb">Tutoriais</a>
+				<a href="#" class="breadcrumb">Editar Tutorial</a>
+			</div>
+		</div>
+	</nav>
+	
 	<h2>Editar <?php echo $tutorial['title']?></h2>
 
 	<div class="row">

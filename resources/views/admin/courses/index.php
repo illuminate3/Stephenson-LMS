@@ -1,5 +1,5 @@
 <div class="container">
-	<h2>Cursos</h2>
+	<h2><?php echo __('messages.courses'); ?></h2>
 	
 	<?php			
 		if(count($courses) < 1){
@@ -9,11 +9,11 @@
 	<table class="highlight responsive-table">
 		<thead>
 			<tr>
-				<td>Titulo</td>
-				<td>Resumo</td>
+				<td><?php echo __('messages.title'); ?></td>
+				<td><?php echo __('messages.resume'); ?></td>
 				<td>Autor</td>
 				<td>Criação</td>
-				<td style="width:150px">Ações</td>
+				<td style="width:150px"><?php echo __('messages.actions'); ?></td>
 			</tr>
 		</thead>
 		
@@ -30,7 +30,7 @@
 					</div>
 					
 					<div class="action">
-						<a href="<?php echo URL::to('/admin/course/manage/'. $course['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">settings</i></button></a>
+						<a href="<?php echo URL::route('courses.manage', ['course_id' =>  $course['id']]);?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">settings</i></button></a>
 					</div>
 					
 					<div class="action">

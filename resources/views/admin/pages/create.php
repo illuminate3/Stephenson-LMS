@@ -1,7 +1,17 @@
 <div class="container">
+	
+	<nav class="z-depth-0 transparent breadcrumbs">
+		<div class="nav-wrapper">
+			<div class="col s12">
+				<a href="<?php echo URL::route('pages.index') ?>" class="breadcrumb">Páginas</a>
+				<a href="#" class="breadcrumb">Criar Página</a>
+			</div>
+		</div>
+	</nav>
+	
 	<h2>Adicionar Página</h2>
 	
-		<div class="row">
+	<div class="row">
 		<form method="post" action="<?php echo URL::route('pages.store');?>" enctype="multipart/form-data">
 			<div class="col s9">
 				<div class="row">

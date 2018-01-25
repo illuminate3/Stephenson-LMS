@@ -1,4 +1,14 @@
 <div class="container">
+	
+	<nav class="z-depth-0 transparent breadcrumbs">
+		<div class="nav-wrapper">
+			<div class="col s12">
+				<a href="<?php echo URL::route('pages.index') ?>" class="breadcrumb">Páginas</a>
+				<a href="#" class="breadcrumb">Editar Página</a>
+			</div>
+		</div>
+	</nav>
+	
 	<h2>Editar página "<?php echo $page->title; ?>"</h2>
 	
 		<div class="row">

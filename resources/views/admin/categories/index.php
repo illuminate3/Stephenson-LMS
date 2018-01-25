@@ -1,8 +1,8 @@
 <div class="container">
-	<h2>Categorias</h2>
+	<h2><?php echo __('messages.categories'); ?></h2>
 	<div class="row">
 		<div class="col s5">
-			<h4>Adicionar Categorias</h4>
+			<h4><?php echo __('messages.create_category'); ?></h4>
 			
 			<?php 
 				if (session('success')){
@@ -18,12 +18,12 @@
 				<div class="row">
 					<div class="col s12 input-field">
 						<input id="txtCategorieName" type="text" name="name">
-						<label for="txtCategorieName">Nome</label>
+						<label for="txtCategorieName"><?php echo __('messages.name'); ?></label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
-						<label for="clrCategorieColor">Cor</label>
+						<label for="clrCategorieColor"><?php echo __('messages.color'); ?></label>
 						<input id="clrCategorieColor" type="color" name="color">
 					</div>
 				</div>
@@ -31,19 +31,19 @@
 					
 				<div class="input-field col s12">
 					<select name="level">
-						<option value="0" disabled selected>Primária</option>
+						<option value="0" disabled selected><?php echo __('messages.primary'); ?></option>
 						<?php foreach($categories as $category) { ?>
 						<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
 						<?php }?>
 					</select>
 					
-					<label>Hierarquia</label>
+					<label><?php echo __('messages.hierarchy'); ?></label>
 				</div>
 					
 				</div>
 				<div class="row">
 					<div class="col s12">
-						<button type="submit" class="btn">Criar Categoria</button>
+						<button type="submit" class="btn"><?php echo __('messages.create_category'); ?></button>
 					</div>
 				</div>
 				<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -51,7 +51,7 @@
 		</div>
 		
 		<div class="col s6 offset-s1">
-		<h4>Ver Categorias</h4>
+		<h4><?php echo __('messages.view_category'); ?></h4>
 		<?php			
 		if(count($categories) < 1){
 			echo "<p>Nenhuma catagoria cadastrada.</p>";
@@ -61,8 +61,8 @@
 		<thead>
 			<tr>
 				<td>#</td>
-				<td>Categoria</td>
-				<td style="width:100px;">Ações</td>
+				<td><?php echo __('messages.category'); ?></td>
+				<td style="width:100px;"><?php echo __('messages.actions'); ?></td>
 			</tr>
 		</thead>
 		

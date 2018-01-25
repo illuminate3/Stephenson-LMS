@@ -22,6 +22,7 @@ use App\Repositories\TutorialRepository;
 use App\Repositories\LessonRepository;
 use App\Repositories\CategoriesRepository;
 
+
 class Controller extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 

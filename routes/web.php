@@ -49,7 +49,7 @@ Route::post('/comment', ['as'=>'comment','uses' => 'CommentsController@store'], 
 /*  ROTAS GERAIS PARA PAINEL DE CONTROLE  */
 /******************************************/
 
-Route::get('/admin/', ['as'=>'dashboard.index','uses' => 'DashboardController@index'], function () {})->middleware('auth');
+Route::get('/admin/', ['as'=>'dashboard.index','uses' => 'DashboardController@index']);
 Route::get('/admin/login',['as' => 'admin.login_form','uses' => 'UsersController@login']);
 Route::post('/admin/login', ['as'=>'admin.login','uses' => 'UsersController@auth']);
 Route::get('/logout', ['uses' => 'UsersController@logout']);
@@ -62,6 +62,7 @@ Route::resource('admin/tutorials', 'TutorialsController');
 
 /* ROTAS PARA O CONTROLE DE CURSOS */
 Route::resource('admin/courses', 'CoursesController');
+Route::get('/admin/courses/{course}/manage', ['as'=>'courses.manage','uses' => 'CoursesController@manage']);
 
 /* ROTAS PARA O CONTROLE DE MÓDULOS */
 Route::resource('admin/course.module', 'ModulesController');
@@ -71,6 +72,7 @@ Route::resource('admin/course.module.lesson', 'LessonsController');
 
 /* ROTAS PARA O CONTROLE DE PAGINAS */
 Route::resource('admin/pages', 'PagesController');
+Route::get('/{page}', ['as'=>'pages.single','uses' => 'PagesController@single']);
 
 /* ROTAS PARA O CONTROLE DE POSTAGENS */
 Route::resource('admin/posts', 'PostsController');
