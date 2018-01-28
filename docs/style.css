@@ -1,0 +1,81 @@
+html, body {height: 100%;background: #ececec}
+.container{width: 90%;}
+.full-btn{width: 100%;}
+#navbar{
+	width: 260px;
+	height: 100%;
+	background: #263238 ;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#logo{
+	width: 260px;
+	height: 64px;
+	line-height: 64px;
+	color: white;
+	overflow: hidden;
+	font-size: 2em;
+	text-align: center;
+	border-bottom: 1px solid #37474f;
+	position: fixed;
+}
+
+#side-menu {
+	width: 260px;
+	height: calc(100% - 64px);
+	padding:15px 0px;
+	overflow: scroll;
+	overflow-x: hidden;
+	position: fixed;
+	top: 64px;
+	left: 0;
+}
+
+#side-menu::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: rgba(0,0,0,.3);
+}
+
+#side-menu::-webkit-scrollbar{
+	width: 10px;
+	border-radius: 10px;
+}
+
+#side-menu::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: rgba(0,0,0,.3);
+}
+
+#side-menu li{display: block;list-style: none;}
+#side-menu a{
+	display: block;
+	padding: 0px 15px;
+	line-height: 50px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: 300;
+	transition: 0.4s;
+}
+
+#side-menu li ul {background: #122027; display: none;}
+#side-menu li ul a{color: #ccc;padding-left: 40px;}
+#side-menu li ul a:hover{color: #ccc;padding-left: 40px;}
+
+#side-menu a:hover{background:#37474f; }
+
+#side-menu i.left{line-height: 50px;}
+#side-menu i.right{line-height: 50px;}
+
+#topbar {
+	width: calc(100% - 260px);
+	float: right;
+}
+
+#content {
+	width: calc(100% - 260px);
+	float: right;
+}
