@@ -1,6 +1,20 @@
 <div class="container">
+	
 	<h2><?php echo __('messages.courses'); ?></h2>
 	
+	<div class="row">
+		<div class="col s12">
+			<?php 
+			if (session('success')){
+				if (session('success')['success'] == true){
+					echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
+				} else{
+					echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
+				}
+			}
+			?>
+		</div>
+	</div>
 	<?php			
 		if(count($courses) < 1){
 			echo "<p>Nenhum curso cadastrado. <a href='". URL::route('courses.create') . "'>Criar um curso.</a></p>";

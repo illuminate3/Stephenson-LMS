@@ -36,6 +36,40 @@ class CourseService{
 		}
 	}
 	
-	public function update(){}
-	public function delete(){}
+	public function update($data, $course_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$course = $this->repository->update($data, $course_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Curso editado com sucesso!",
+				'data'     => $course
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+		
+	}
+	
+	public function delete($course_id){
+		try{
+
+			$course = $this->repository->delete($course_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Curso removido com sucesso!",
+				'data'     => $course
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

@@ -83,6 +83,9 @@ return [
 	
 	'actions' 			=> 'Ações',
 	'edit' 				=> 'Editar',
-	'update' 			=> 'Atualizar'
+	'update' 			=> 'Atualizar',
+	
+		/* SETTINGS */
+	'site_name' => 'Site Name'
 	
 ];

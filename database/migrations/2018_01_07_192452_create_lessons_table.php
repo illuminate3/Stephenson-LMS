@@ -19,12 +19,15 @@ class CreateLessonsTable extends Migration
             $table->text('content')->nullable();
             $table->text('resume')->nullable();
             $table->string('video_url');
+            $table->time('time');
             $table->unsignedInteger('course_id');
+            $table->unsignedInteger('module_id');
             $table->string('thumbnail', 60)->nullable();
             $table->rememberToken();
             $table->timestamps();
 			
 				$table->foreign('course_id')->references('id')->on('courses');
+				$table->foreign('module_id')->references('id')->on('modules');
 		});
 	}
 

@@ -1,6 +1,20 @@
 <div class="container">
 	<h2>Tutoriais</h2>
 	
+	<div class="row">
+		<div class="col s12">
+			<?php 
+				if (session('success')){
+					if (session('success')['success'] == true){
+						echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
+					} else{
+						echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
+					}
+				}
+			?>
+		</div>
+	</div>
+	
 	<?php			
 		if(count($tutorials) < 1){
 			echo "<p>Nenhum tutorial cadastrado. <a href='". URL::route('tutorials.create') . "'>Criar um tutorial</a></p>";

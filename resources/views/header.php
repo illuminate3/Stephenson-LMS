@@ -29,6 +29,7 @@
 							<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
 							<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
 							<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
+							<li><a href="<?php echo URL::to('/blog'); ?>">Blog</a></li>
 						</ul>
 						
 						<ul class="right hide-on-med-and-down">
@@ -64,6 +65,7 @@
 								<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
 								<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
 								<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
+								<li><a href="<?php echo URL::to('/blog'); ?>">Blog</a></li>
 								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
 								<?php if(Auth::user()->permission == "app.admin") {?>
 								<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>

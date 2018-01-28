@@ -10,6 +10,20 @@
 
 	<h2>Gerenciar <?php echo $course['title'];?></h2>
 	
+	<div class="row">
+		<div class="col s12">
+			<?php 
+			if (session('success')){
+				if (session('success')['success'] == true){
+					echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
+				} else{
+					echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
+				}
+			}
+			?>
+		</div>
+	</div>
+	
 	<?php if(count($course->getModules) > 0){?>
 
 	<div id="modules-list" class="card">

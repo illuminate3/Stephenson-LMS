@@ -1,17 +1,19 @@
 <div class="container">
 	<h2>Configurações</h2>
 	<form>
+		<?php foreach($settings as $setting){?>
 		<div class="row">
 			<div class="col s12 input-field">
-				<input type="text" name="title" id="site-title">
-				<label for="site-title">Titulo do site</label>
+				<input type="text" name="<?php echo $setting->setting_name; ?>" id="<?php echo $setting->setting_name; ?>">
+				<label for="<?php echo $setting->setting_name; ?>"><?php echo __("messages." . $setting->setting_name); ?></label>
 			</div>
+		<?php } ?>
 			
-			<div class="col s12 input-field">
-				<input type="text" name="tagline" id="site-tagline">
-				<label for="site-tagline">Slogan do site</label>
-			</div>
+		<div class="col s12 input-field">
+			<button class="btn">Atualizar</button>
+		</div>
 			
+			<!--
 			<div class="col s12 input-field">
 				<input type="text" name="footer_credits" id="site-footer-credits">
 				<label for="site-footer-credits">Créditos no Rodapé</label>
@@ -25,6 +27,6 @@
 			<div class="col s12 input-field">
 				<button class="btn">Atualizar</button>
 			</div>
-		</div>
+		</div>-->
 	</form>
 </div>

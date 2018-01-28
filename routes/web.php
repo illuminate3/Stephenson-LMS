@@ -41,8 +41,12 @@ Route::get('/curso/{curso}', ['as'=>'courses.single','uses' => 'CoursesControlle
 Route::get('/tutoriais', ['as'=>'tutorials.archive','uses' => 'TutorialsController@archive']);
 Route::get('/tutorial/{video}', ['as'=>'tutorials.single','uses' => 'TutorialsController@single']);
 
+/* ROTAS PARA AS POSTAGENS */
+Route::get('/blog', ['as'=>'posts.archive','uses' => 'PostsController@archive']);
+Route::get('/blog/post/{post}', ['as'=>'posts.single','uses' => 'PostsController@single']);
+
 /* ROTAS PARA OS COMENTÁRIOS */
-Route::post('/comment', ['as'=>'comment','uses' => 'CommentsController@store'], function () {})->middleware('auth');
+Route::resource('/comment', 'CommentsController');
 
 
 /******************************************/
@@ -81,10 +85,10 @@ Route::resource('admin/posts', 'PostsController');
 Route::resource('admin/categories', 'CategoriesController');
 
 /* ROTAS PARA O CONTROLE DE CONFIGURAÇÕES */
-Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'DashboardController@settings'], function () {})->middleware('auth');
+Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'SettingsController@settings']);
 
 /* ROTAS PARA O CONTROLE DE MÍDIA */
-Route::get('/admin/library', ['as'=>'admin.library','uses' => 'DashboardController@library'], function () {})->middleware('auth');
+Route::get('/admin/library', ['as'=>'admin.library','uses' => 'DashboardController@library']);
 
 
 

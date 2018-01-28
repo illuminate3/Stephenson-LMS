@@ -17,6 +17,7 @@ class DashboardController extends Controller{
 
 	public function __construct(UserRepository $repository, UserValidator $validator)
 	{
+		$this->middleware('auth:api');
 		$this->repository = $repository;
 		$this->validator  = $validator;
 	}
@@ -31,13 +32,6 @@ class DashboardController extends Controller{
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.dashboard.index', ['courses' => $courses, 'users' => $users, 'pages' => $pages, 'tutorials' => $tutorials]);
 		echo view('admin.footer');
-	}
-	
-	public function settings(){
-		$title = "Configurações Gerais - Escola LTG";
-		echo view('admin/header', ['title' => $title]);
-		echo view('admin/settings.index');
-		echo view('admin/footer');
 	}
 	
 	public function library(){

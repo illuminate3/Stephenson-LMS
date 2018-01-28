@@ -35,6 +35,40 @@ class LessonService{
 		}
 	}
 	
-	public function update(){}
-	public function delete(){}
+	public function update($data, $lesson_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$lesson = $this->repository->update($data, $lesson_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Lição editada com sucesso!",
+				'data'     => $lesson
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+		
+	}
+	
+	public function delete($lesson_id){
+		try{
+
+			$lesson = $this->repository->delete($lesson_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Lição removida com sucesso!",
+				'data'     => $lesson
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

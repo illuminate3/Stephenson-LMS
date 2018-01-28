@@ -91,40 +91,25 @@ class LessonsController extends Controller
      *
      * @return Response
      */
-    public function update(LessonUpdateRequest $request, $course_id, $module_id, $lesson_id)
-    {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $lesson = $this->repository->update($request->all(), $lesson_id);
-
-            $response = [
-                'message' => 'Lesson updated.',
-                'data'    => $lesson->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  PageUpdateRequest $request
+     * @param  string            $id
+     *
+     * @return Response
+     */
+    public function update(Request $request, $course_id, $module_id, $lesson_id){
+		 $request = $this->service->update($request->all(), $lesson_id); 
+		 $lesson = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -133,18 +118,15 @@ class LessonsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($course_id, $module_id, $lesson_id)
-    {
-        $deleted = $this->repository->delete($lesson_id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Lesson deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Lesson deleted.');
+    public function destroy($course_id, $module_id, $lesson_id){
+       $request= $this->service->delete($lesson_id);
+		 $lesson = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
 }

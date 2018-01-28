@@ -13,6 +13,7 @@ use App\Repositories\PostRepository;
 use App\Validators\PostValidator;
 use App\Services\PostService;
 use App\Repositories\CategoriesRepository;
+use App\Repositories\CommentRepository;
 
 class PostsController extends Controller
 {
@@ -21,11 +22,12 @@ class PostsController extends Controller
     protected $validator;
     protected $service;
 
-    public function __construct(PostRepository $repository, PostValidator $validator, PostService $service, CategoriesRepository $categoriesRepository) {
+    public function __construct(PostRepository $repository, PostValidator $validator, PostService $service, CategoriesRepository $categoriesRepository,CommentRepository $commentsRepository) {
         $this->repository = $repository;
         $this->validator  = $validator;
         $this->service  = $service;
 		  $this->categoriesRepository  = $categoriesRepository;
+		  $this->commentsRepository  = $commentsRepository;
     }
 
 
@@ -34,6 +36,29 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+	
+	 public function archive(){
+		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+		$posts = $this->repository->all();
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$title = "Blog - Escola LTG";
+		 
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('blog.blog', ['posts' => $posts]);
+		echo view('footer');
+    }
+	
+	public function single($post){
+		$post = $this->repository->find($post);
+		$title = $post['title'] ." - Escola LTG";
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$comments = $this->commentsRepository->getComments($post->id,'post');
+
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('blog.post', ['post' => $post, 'comments' => $comments]);
+		echo view('footer');
+	}
+	
     public function index(){
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $posts = $this->repository->all();
@@ -54,117 +79,48 @@ class PostsController extends Controller
 	
 	public function edit($post){
 		$categories_list = $this->categoriesRepository->selectBoxList();
-		$tutorial = $this->repository->find($tutorial);
-		$title = "Editar ".$tutorial['title']." - Escola LTG";
+		$post = $this->repository->find($post);
+		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($post['category_id']);
+		
+		$title = "Editar ".$post['title']." - Escola LTG";
 		echo view('admin.header', ['title' => $title]);
-		echo view('admin.posts.edit', ['categories' => $categories_list, 'tutorial' => $tutorial])->render();
+		echo view('admin.posts.edit', ['categories' => $categories_list, 'post' => $post, 'atual_category' => $atual_category])->render();
 		echo view('admin.footer')->render();
 	}
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  PostCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PostCreateRequest $request)
-    {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $post = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'Post created.',
-                'data'    => $post->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $post = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $post,
-            ]);
-        }
-
-        return view('posts.show', compact('post'));
+    public function store(PostCreateRequest $request){
+		 $request = $this->service->store($request->all()); 
+		 $post = $request['success'] ? $request['data'] : null;
+		 
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  PostUpdateRequest $request
+     * @param  PageUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      */
-    public function update(PostUpdateRequest $request, $id)
-    {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $post = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Post updated.',
-                'data'    => $post->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+    public function update(Request $request, $id){
+		 $request = $this->service->update($request->all(), $id); 
+		 $post = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -173,18 +129,15 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $deleted = $this->repository->delete($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Post deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Post deleted.');
+    public function destroy($id){
+       $request= $this->service->delete($id);
+		 $post = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
 }

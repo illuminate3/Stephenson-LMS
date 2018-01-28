@@ -35,6 +35,40 @@ class ModuleService{
 		}
 	}
 	
-	public function update(){}
-	public function delete(){}
+	public function update($data, $module_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$module = $this->repository->update($data, $module_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Módulo editado com sucesso!",
+				'data'     => $module
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+		
+	}
+	
+	public function delete($module_id){
+		try{
+
+			$module = $this->repository->delete($module_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Módulo removido com sucesso!",
+				'data'     => $module
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

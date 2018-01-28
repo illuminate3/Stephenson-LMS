@@ -5,28 +5,27 @@ use Illuminate\Database\QueryException;
 use Exception;
 use Prettus\Validator\Contracts\ValidatorInterface;	
 use Prettus\Validator\Contracts\ValidatorException;	
-use App\Repositories\CategoriesRepository;
-use App\Validators\CategoriesValidator;
+use App\Repositories\PostRepository;
+use App\Validators\PostValidator;
 
 class PostService{
 	private $respository;
 	private $validator;
 	
-	public function __construct(CategoriesRepository $repository,CategoriesValidator $validator){
+	public function __construct(PostRepository $repository,PostValidator $validator){
 		$this->repository = $repository;
 		$this->validator = $validator;
 	}
 	
 	public function store(array $data){
-		//dd($data);
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-			$categories = $this->repository->create($data);
+			$post = $this->repository->create($data);
 			
 			return [
 				'success'   => true,
-				'messages'  => "Categoria criada com sucesso!",
-				'data'     => $categories
+				'messages'  => "Postagem criada com sucesso!",
+				'data'     => $post
 			];
 		} catch(Exception $e){
 			return [
@@ -36,6 +35,40 @@ class PostService{
 		}
 	}
 	
-	public function update(){}
-	public function delete(){}
+	public function update($data, $post_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$post = $this->repository->update($data, $post_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Postagem editada com sucesso!",
+				'data'     => $post
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessageBag(),
+			];
+		}
+		
+	}
+	
+	public function delete($post_id){
+		try{
+
+			$post = $this->repository->delete($post_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Postagem removida com sucesso!",
+				'data'     => $post
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

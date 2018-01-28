@@ -36,6 +36,40 @@ class TutorialService{
 		}
 	}
 	
-	public function update(){}
-	public function delete(){}
+	public function update($data, $tutorial_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$tutorial = $this->repository->update($data, $tutorial_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Tutorial editado com sucesso!",
+				'data'     => $tutorial
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+		
+	}
+	
+	public function delete($tutorial_id){
+		try{
+
+			$tutorial = $this->repository->delete($tutorial_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Tutorial removido com sucesso!",
+				'data'     => $tutorial
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

@@ -1,10 +1,26 @@
 <div class="container">
 	<h2>Usuários</h2>
-		<?php			
+		
+	<div class="row">
+		<div class="col s12">
+			<?php 
+				if (session('success')){
+					if (session('success')['success'] == true){
+						echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
+					} else{
+						echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
+					}
+				}
+			?>
+		</div>
+	</div>
+	
+	<?php			
 		if(count($users) < 1){
 			echo "<p>Nenhum usuário cadastrado.</p>";
-		} else{
+		} else {
 	?>
+	
 	<table class="highlight responsive-table">
 		<thead>
 			<tr>

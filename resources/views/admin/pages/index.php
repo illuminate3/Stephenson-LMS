@@ -1,6 +1,21 @@
 <div class="container">
 	<h2>Páginas</h2>
-		<?php			
+	
+	<div class="row">
+		<div class="col s12">
+			<?php 
+			if (session('success')){
+				if (session('success')['success'] == true){
+					echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
+				} else{
+					echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
+				}
+			}
+			?>
+		</div>
+	</div>
+	
+	<?php			
 		if(count($pages) < 1){
 			echo "<p>Nenhuma página cadastrada. <a href='". URL::to('/admin/pages/add') . "'>Criar uma página</a></p>";
 		} else{

@@ -55,49 +55,26 @@ class ModulesController extends Controller
 		 
 		 return redirect()->back();
     }
-
+	
     /**
      * Update the specified resource in storage.
      *
-     * @param  ModuleUpdateRequest $request
+     * @param  PageUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      */
-    public function update(ModuleUpdateRequest $request, $id)
-    {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $module = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Module updated.',
-                'data'    => $module->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+    public function update(Request $request, $course_id, $module_id){
+		 $request = $this->service->update($request->all(), $module_id); 
+		 $module = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -106,18 +83,15 @@ class ModulesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($course_id, $id)
-    {
-        $deleted = $this->repository->delete($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Module deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Module deleted.');
+    public function destroy($course_id, $module_id){
+       $request= $this->service->delete($module_id);
+		 $module = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
 }

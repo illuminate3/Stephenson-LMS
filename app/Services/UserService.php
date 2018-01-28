@@ -35,7 +35,40 @@ class UserService{
 			];
 		}
 	}
+	public function update($data, $user_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$user = $this->repository->update($data, $user_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Usuário editado com sucesso!",
+				'data'     => $user
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+		
+	}
 	
-	public function update(){}
-	public function delete(){}
+	public function delete($user_id){
+		try{
+
+			$user = $this->repository->delete($user_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Usuário removido com sucesso!",
+				'data'     => $user
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

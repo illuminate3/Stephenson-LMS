@@ -2,16 +2,23 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s3">
+			<div class="card" id="course-sidebar">
 				<div id="course-cover">
 					<img src="<?php echo $course->cover;?>">
 				</div>
-				<button class="btn">Entrar no Curso</button>
+				<div class="container">
+				<button class="btn-large">Entrar no Curso</button>
+				</div>
+			</div>
 			</div>
 			
 			<div class="col s9">
-				<div id="page-title"><h2><?php echo $course->title;?></h2></div>
+				<h2 class="course-title"><?php echo $course->title;?></h2>
+				
 				<div id="course-info">
-					<div class="info"><?php echo $course->author->firstname . " " . $course->author->lastname;;?></div>
+					<div class="info"><i class="material-icons">person</i><?php echo $course->author->firstname . " " . $course->author->lastname;?></div>
+					<div class="info"><?php echo count($course->getModules)?> módulos</div>
+					<div class="info"><i class="material-icons">video_library</i><?php echo count($course->getLessons)?> aulas</div>
 				</div>
 				
 				<div id="course-description">
@@ -39,7 +46,7 @@
 										<div class="lessons-list">
 											<?php $lessons = $module->getLessons; foreach ($lessons as $lesson) { ?>
 												<div class="lesson">
-													<a href="#"><?php echo $lesson->title; ?></a>
+													<?php echo $lesson->title; ?> - <span class="lesson-time"><?php echo $lesson->time; ?></span>
 												</div>
 											<?php }?>
 										</div>

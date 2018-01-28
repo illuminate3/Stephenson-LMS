@@ -26,4 +26,8 @@ class Course extends Model{
 	public function getModules(){
 		return $this->hasMany(Module::class);
 	}
+	
+	public function getLessons(){
+		return $this->hasMany(Lesson::class);
+	}
 }

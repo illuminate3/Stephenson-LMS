@@ -154,40 +154,17 @@ class CoursesController extends Controller
      *
      * @return Response
      */
-    public function update(CourseUpdateRequest $request, $id)
-    {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $course = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Course updated.',
-                'data'    => $course->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+    public function update(Request $request, $id){
+		 $request = $this->service->update($request->all(), $id); 
+		 $course = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -196,18 +173,15 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $deleted = $this->repository->delete($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Course deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Course deleted.');
+    public function destroy($id){
+       $request = $this->service->delete($id);
+		 $course = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
     }
 }

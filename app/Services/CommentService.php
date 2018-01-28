@@ -24,7 +24,7 @@ class CommentService{
 			
 			return [
 				'success'   => true,
-				'messages'  => "Categoria criada com sucesso!",
+				'messages'  => "Comentário realizado com sucesso!",
 				'data'     => $comment
 			];
 		} catch(Exception $e){
@@ -35,6 +35,40 @@ class CommentService{
 		}
 	}
 	
-	public function update(){}
-	public function delete(){}
+	public function update($data, $comment_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$post = $this->repository->update($data, $comment_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Comentário alterado com sucesso!",
+				'data'     => $post
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+		
+	}
+	
+	public function delete($comment_id){
+		try{
+
+			$post = $this->repository->delete($comment_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "O comentário foi removido",
+				'data'     => $post
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

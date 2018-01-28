@@ -4,56 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c922e4e02e84c2211857d72c850b8935",
+    "content-hash": "f29e15177452d0abeb468646f00ec273",
     "packages": [
-        {
-            "name": "dereuromark/media-embed",
-            "version": "0.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dereuromark/MediaEmbed.git",
-                "reference": "710e109d698dfe5ee7a3f6658960417dcea37a82"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/MediaEmbed/zipball/710e109d698dfe5ee7a3f6658960417dcea37a82",
-                "reference": "710e109d698dfe5ee7a3f6658960417dcea37a82",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "fig-r/psr2r-sniffer": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Scherer",
-                    "homepage": "http://www.dereuromark.de",
-                    "role": "Author"
-                }
-            ],
-            "description": "A PHP library to deal with all those media services around, parsing their URLs and embedding their audio/video content in websites.",
-            "keywords": [
-                "audio",
-                "embed",
-                "iframe",
-                "media",
-                "php",
-                "video"
-            ],
-            "time": "2017-11-04T02:47:44+00:00"
-        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

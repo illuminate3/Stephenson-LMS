@@ -35,6 +35,40 @@ class CategoriesService{
 		}
 	}
 	
-	public function update(){}
-	public function delete(){}
+	public function update($data, $category_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$category = $this->repository->update($data, $category_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Categoria editada com sucesso!",
+				'data'     => $category
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+		
+	}
+	
+	public function delete($category_id){
+		try{
+
+			$category = $this->repository->delete($category_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Categoria removida com sucesso!",
+				'data'     => $category
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

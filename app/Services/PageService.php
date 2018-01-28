@@ -36,6 +36,40 @@ class PageService{
 		}
 	}
 	
-	public function update(){}
-	public function delete(){}
+	public function update($data, $page_id){
+		try{
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$page = $this->repository->update($data, $page_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Página editada com sucesso!",
+				'data'     => $page
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+		
+	}
+	
+	public function delete($page_id){
+		try{
+
+			$page = $this->repository->delete($page_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Página removida com sucesso!",
+				'data'     => $page
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }

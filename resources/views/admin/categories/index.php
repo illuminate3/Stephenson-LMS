@@ -1,19 +1,20 @@
 <div class="container">
 	<h2><?php echo __('messages.categories'); ?></h2>
+	
+	<?php 
+		if (session('success')){
+			if (session('success')['success'] == true){
+				echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
+			} else{
+				echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
+			}
+		}
+	?>
+	
 	<div class="row">
 		<div class="col s5">
 			<h4><?php echo __('messages.create_category'); ?></h4>
-			
-			<?php 
-				if (session('success')){
-					if (session('success')['success'] == true){
-						echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
-					} else{
-						echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
-					}
-				}
-			?>
-			
+
 			<form method="post" action="<?php echo URL::route('categories.store');?>">
 				<div class="row">
 					<div class="col s12 input-field">

@@ -1,8 +1,7 @@
 <main>
+	<div id="page-title"><div class="container"><h2>Tutoriais</h2></div></div>
 	<div class="container">
 		<div class="section">
-			<div id="page-title"><h2>Tutoriais</h2></div>
-			
 			<?php if(count($tutorials) > 0) { ?>
 			<div class="row">
 				<?php foreach($tutorials as $tutorial) {?>
