@@ -41,7 +41,7 @@
 				<td><?php echo $post->created_at; ?></td>
 				<td>
 					<div class="action">
-						<a target="_blank" href="<?php echo URL::to('/post/'. $post['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">visibility</i></button></a>
+						<a target="_blank" href="<?php echo URL::to('/blog/post/'. $post['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">visibility</i></button></a>
 					</div>
 					
 					<div class="action">

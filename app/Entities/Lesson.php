@@ -11,7 +11,7 @@ class Lesson extends Model{
 
 	public $timestamps = true;
 	protected $table = 'lessons';
-	protected $fillable = ['title','content','resume','video_url','course_id','module_id'];
+	protected $fillable = ['title','content','resume','video_url','course_id','module_id','time'];
 	protected $hidden = ['remember_token'];
 
 	public function course(){
