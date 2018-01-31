@@ -20,20 +20,20 @@
 				<form method="post" action="<?php echo URL::route('categories.store');?>">
 					<div class="row">
 						<div class="col s12 input-field">
-							<input id="txtCategorieName" type="text" name="name">
-							<label for="txtCategorieName"><?php echo __('messages.name'); ?></label>
+							<input id="txtCategoryName" type="text" name="name">
+							<label for="txtCategoryName"><?php echo __('messages.name'); ?></label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col s12 input-field">
-							<input id="txtCategorieSlug" type="text" name="name">
-							<label for="txtCategorieSlug"><?php echo __('messages.slug'); ?></label>
+							<input id="txtCategorySlug" type="text" name="slug">
+							<label for="txtCategorySlug"><?php echo __('messages.slug'); ?></label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col s12">
-							<label for="clrCategorieColor"><?php echo __('messages.color'); ?></label>
-							<input id="clrCategorieColor" type="color" name="color">
+							<label for="clrCategoryColor"><?php echo __('messages.color'); ?></label>
+							<input id="clrCategoryColor" type="color" name="color">
 						</div>
 					</div>
 					<div class="row">

@@ -24,14 +24,21 @@
 	<form method="post" action="<?php echo URL::route('categories.update', ['id' => $category['id']]);?>">
 		<div class="row">
 			<div class="col s12 input-field">
-				<input id="txtCategorieName" type="text" name="name" value="<?php echo $category['name'];?>">
-				<label for="txtCategorieName"><?php echo __('messages.name'); ?></label>
+				<input id="txtCategoryName" type="text" name="name" value="<?php echo $category['name'];?>">
+				<label for="txtCategoryName"><?php echo __('messages.name'); ?></label>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col s12 input-field">
+				<input id="txtCategorySlug" type="text" name="slug" value="<?php echo $category['slug'];?>">
+				<label for="txtCategorySlug"><?php echo __('messages.slug'); ?></label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<label for="clrCategorieColor"><?php echo __('messages.color'); ?></label>
-				<input id="clrCategorieColor" type="color" name="color" value="<?php echo $category['color'];?>">
+				<label for="clrCategoryColor"><?php echo __('messages.color'); ?></label>
+				<input id="clrCategoryColor" type="color" name="color" value="<?php echo $category['color'];?>">
 			</div>
 		</div>
 		<div class="row">

@@ -85,6 +85,8 @@ return [
 	'email' 				=> 'E-mail',
 	'permission' 		=> 'Permissão',
 	'complet_name' 	=> 'Nome Completo',
+	'tags' 				=> 'Marcadores',
+	'thumbnail' 		=> 'Miniatura',
 	
 	/* SETTINGS */	
 	

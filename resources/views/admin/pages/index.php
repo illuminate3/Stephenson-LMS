@@ -31,7 +31,7 @@
 			<div class="col s12">
 				<?php			
 					if(count($pages) < 1){
-						if($loop = "trash"){
+						if($loop == "trash"){
 							echo "Nenhuma página encontrada na lixeira.";
 						} else{
 							echo "Nenhuma página cadastrada. <a href='". URL::route('pages.create') . "'>Criar uma página</a>";
@@ -71,7 +71,7 @@
 							</div>
 							<?php } else {?>
 							<div class="action">
-								<a href="<?php echo URL::to('/page/'. $page['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">visibility</i></button></a>
+								<a href="<?php echo URL::to('/'. $page['slug'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">visibility</i></button></a>
 							</div>
 
 							<div class="action">

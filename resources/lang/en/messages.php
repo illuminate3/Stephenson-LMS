@@ -6,86 +6,92 @@ return [
 	 /* MENU */
 	
     'dashboard' 		=> 'Dashboard',
-    'categories' 		=> 'Categories',
+    'categories' 		=> 'Categorias',
 	
-    'pages' 			=> 'Pages',
-    'view_pages' 		=> 'View Pages',
-    'create_page' 	=> 'Create Page',
+    'pages' 			=> 'Páginas',
+    'view_pages' 		=> 'Ver Páginas',
+    'create_page' 	=> 'Criar Página',
 	
-    'posts' 			=> 'Posts',
-    'view_posts' 		=> 'View Posts',
-    'create_post' 	=> 'Create Post',
+    'posts' 			=> 'Postagens',
+    'view_posts' 		=> 'Ver Postagens',
+    'create_post' 	=> 'Criar Postagem',
 	
-    'tutorials' 		=> 'Tutorials',
-    'view_tutorials' => 'View Tutorials',
-    'create_tutorial'=> 'Create Tutorial',
+    'tutorials' 		=> 'Tutoriais',
+    'view_tutorials' => 'Ver Tutoriais',
+    'create_tutorial'=> 'Criar Tutorial',
 	
-    'courses' 			=> 'Courses',
-    'view_courses' 	=> 'View Courses',
-    'create_course' 	=> 'Create Course',
+    'courses' 			=> 'Cursos',
+    'view_courses' 	=> 'Ver Cursos',
+    'create_course' 	=> 'Criar Curso',
 	
-    'users' 			=> 'Users',
-    'view_users' 		=> 'View Users',
-    'create_user' 	=> 'Create User',
+    'users' 			=> 'Usuários',
+    'view_users' 		=> 'Ver Usuários',
+    'create_user' 	=> 'Criar Usuário',
 	
-    'library' 			=> 'Library',
-    'settings' 		=> 'Settings',
+    'library' 			=> 'Mídia',
+    'settings' 		=> 'Configurações',
 	
-	 'visit_site' 		=> 'Visit Site',
-	 'view_profile' 	=> 'View Profile',
-	 'logout' 			=> 'Logout',
+	 'visit_site' 		=> 'Visitar Site',
+	 'view_profile' 	=> 'Ver Perfil',
+	 'logout' 			=> 'Sair',
 	
 	/* DASHBOARD */
 	
-	'statistcs' 		=> 'Statistcs',
+	'statistcs' 		=> 'Estatísticas',
 	
 	/* CATEGORIES  */
 	
-	'category' 			=> 'Category',
-	'create_category' => 'Create Category',
-	'edit_category' 	=> 'Edit Category',
-	'view_category' 	=> 'View Category',
-	'hierarchy' 		=> 'Hierarchy',
-	'primary' 			=> 'Primary',
+	'category' 			=> 'Categoria',
+	'create_category' => 'Criar Categoria',
+	'edit_category' 	=> 'Editar Categoria',
+	'view_category' 	=> 'Ver Categoria',
+	'hierarchy' 		=> 'Hierarquia',
+	'primary' 			=> 'Primária',
 
 	
 	/* PAGES */
 	
-	'page' 			=> 'Page',
+	'page' 			=> 'Página',
 	
 	/* POSTS */
 	
-	'post' 			=> 'Post',
+	'post' 			=> 'Postagem',
 	
 	/* COURSES */
 	
-	'course' 			=> 'Course',
+	'course' 		=> 'Curso',
 	
 	/* USERS */	
 	
-	'user' 			=> 'Users',
-	
-	/* SETTINGS */	
-	
-	'site_title' 			=> 'Site Title',
-	'site_slogan' 			=> 'Site Tagline',
-	'footer_credits' 		=> 'Credits in Footer',
-	'site_email' 			=> 'Site Email',
+	'user' 			=> 'Usuário',
 	
 	/* FORMS */
 	
-	'name' 				=> 'Name',
-	'title' 				=> 'Title',
-	'color' 				=> 'Color',
-	'resume' 			=> 'Resume',
+	'name' 				=> 'Nome',
+	'title' 				=> 'Título',
+	'color' 				=> 'Cor',
+	'resume' 			=> 'Resumo',
+	'slug' 				=> 'Slug',
 	
 	/* GENERAL */
 	
-	'actions' 			=> 'Actions',
-	'edit' 				=> 'Edit',
-	'update' 			=> 'Update',
+	'actions' 			=> 'Ações',
+	'edit' 				=> 'Editar',
+	'update' 			=> 'Atualizar',
+	'create' 			=> 'Criar',
+	'date' 				=> 'Data',
+	'author' 			=> 'Autor',
+	'url' 				=> 'URL',
+	'email' 				=> 'E-mail',
+	'permission' 		=> 'Permissão',
+	'complet_name' 	=> 'Nome Completo',
+	'tags' 				=> 'Marcadores',
+	'thumbnail' 		=> 'Miniatura',
 	
-	/* SETTINGS */
-	'site_name' => 'Site Name'
+	/* SETTINGS */	
 	
+	'site_name' 			=> 'Título do Site',
+	'site_slogan' 			=> 'Slogan do Site',
+	'footer_credits' 		=> 'Créditos no Rodapé',
+	'site_email' 			=> 'E-mail do Site',
 ];

@@ -19,8 +19,8 @@ class CreateCommentsTable extends Migration
 				$table->integer('post_id');
 				$table->string('post_type', 20);
 				$table->text('content');
-				$table->integer('parent');
-				$table->integer('approved');
+				$table->integer('parent')->nullable();
+				$table->integer('approved')->nullable();
             $table->rememberToken();
             $table->timestamps();
 			

@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->string('color', 7)->nullable();
+            $table->string('slug', 50);
             $table->integer('level')->default('0');
             $table->rememberToken();
             $table->timestamps();

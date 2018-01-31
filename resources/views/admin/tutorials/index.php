@@ -29,7 +29,7 @@
 			<div class="col s12">
 				<?php			
 					if(count($tutorials) < 1){
-						if($loop = "trash"){
+						if($loop == "trash"){
 							echo "Nenhum tutorial encontrado na lixeira.";
 						} else{
 							echo "Nenhum tutorial cadastrado. <a href='". URL::route('tutorials.create') . "'>Criar um tutorial</a>";

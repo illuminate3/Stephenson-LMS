@@ -12,6 +12,6 @@ class Categories extends Model {
 	
 	 public $timestamps = true;
 	 protected $table = 'categories';
-    protected $fillable = ['name','color','level'];
+    protected $fillable = ['name','slug','color','level'];
 	 protected $hidden = ['remember_token'];
 }
