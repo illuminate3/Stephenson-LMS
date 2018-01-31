@@ -1,6 +1,6 @@
 <div class="container">
 	
-	<h2><?php echo __('messages.courses'); ?></h2>
+	<div class="page-title"><h2><?php echo __('messages.courses'); ?></h2><a href="<?php echo URL::route('courses.create'); ?>"><button class="btn"><i class="material-icons left">add</i><?php echo __('messages.create'); ?></button></a></div>
 	
 	<div class="row">
 		<div class="col s12">
@@ -17,16 +17,27 @@
 	</div>
 	<?php			
 		if(count($courses) < 1){
-			echo "<p>Nenhum curso cadastrado. <a href='". URL::route('courses.create') . "'>Criar um curso.</a></p>";
+			echo "<p>Nenhum curso cadastrado. <a href='". URL::route('courses.create') . "'>" .  __('messages.create_course') . "</a></p>";
 		} else{
-	?>
+	?>	<div class="card">
+	<div class="row">
+		<div class="col s12">
+			<ul class="tabs" style="border-bottom:1px solid #ececec">
+				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('courses.index') ?>">Todas</a></li>
+				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('courses.trash') ?>">Lixeira</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="row list-itens">
+		<div class="col s12">
 	<table class="highlight responsive-table">
 		<thead>
 			<tr>
+				<td style="width:40px;"><input type="checkbox" id="check_all" class="filled-in"/><label for="check_all"></label></td>
 				<td><?php echo __('messages.title'); ?></td>
-				<td><?php echo __('messages.resume'); ?></td>
-				<td>Autor</td>
-				<td>Criação</td>
+				<td><?php echo __('messages.author'); ?></td>
+				<td><?php echo __('messages.date'); ?></td>
 				<td style="width:150px"><?php echo __('messages.actions'); ?></td>
 			</tr>
 		</thead>
@@ -34,8 +45,8 @@
 		<tbody>
 			<?php foreach($courses as $course) { ?>
 			<tr>
+				<td><input type="checkbox" class="filled-in item-checkbox" id="test<?php echo $course->id; ?>"/><label for="test<?php echo $course->id; ?>"></label></td>
 				<td><a href="<?php echo URL::route('courses.edit', ['course_id' =>  $course['id']]);?>"><?php echo $course->title; ?></a></td>
-				<td><?php echo $course->resume; ?></td>
 				<td><?php echo $course->author->firstname . " " . $course->author->lastname; ?></td>
 				<td><?php echo $course->created_at; ?></td>
 				<td>
@@ -56,7 +67,11 @@
 					</div>
 				</td>
 			</tr>
-			<?php }}?>
+			<?php }?>
 		</tbody>
 	</table>
+	</div>
+	</div>
+	</div>
+	<?php }?>
 </div>

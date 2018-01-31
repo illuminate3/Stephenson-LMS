@@ -1,7 +1,7 @@
 <div class="container">
-	<h2><?php echo __('messages.dashboard'); ?></h2>
+	<div class="page-title"><h2><?php echo __('messages.dashboard'); ?></h2></div>
 
-	<h3><?php echo __('messages.statistcs'); ?></h3>
+	<h5><?php echo __('messages.statistcs'); ?></h5>
 	<div class="row">
 		<div class="col l3 m6 s12">
 			<div class="card card-panel">

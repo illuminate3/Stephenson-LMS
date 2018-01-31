@@ -20,6 +20,14 @@ $( document ).ready(function(){
 		}
 	});
 	
+	$('#check_all').click(function(){
+		if($('#check_all').is(':checked')){
+			$('.item-checkbox').prop('checked', true);
+		} else{
+			$('.item-checkbox').prop('checked', false);
+		}
+	});
+	
 	$('.edit-button').click(function(){
 		$(this).parent().find('.module-name').hide();
 		$(this).parent().find('.module-edit').show();

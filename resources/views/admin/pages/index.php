@@ -1,5 +1,5 @@
 <div class="container">
-	<h2>Páginas</h2>
+		<div class="page-title"><h2><?php echo __('messages.pages'); ?></h2><a href="<?php echo URL::route('pages.create'); ?>"><button class="btn"><i class="material-icons left">add</i><?php echo __('messages.create'); ?></button></a></div>
 	
 	<div class="row">
 		<div class="col s12">
@@ -20,19 +20,32 @@
 			echo "<p>Nenhuma página cadastrada. <a href='". URL::to('/admin/pages/add') . "'>Criar uma página</a></p>";
 		} else{
 	?>
+		<div class="card">
+	<div class="row">
+		<div class="col s12">
+			<ul class="tabs" style="border-bottom:1px solid #ececec">
+				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('pages.index') ?>">Todas</a></li>
+				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('pages.trash') ?>">Lixeira</a></li>
+			</ul>
+		</div>
+	</div>
 	
+	<div class="row list-itens">
+		<div class="col s12">
 	<table class="highlight responsive-table">
 		<thead>
 			<tr>
-				<td>Titulo</td>
-				<td>Slug</td>
-				<td style="width:100px">Ações</td>
+				<td style="width:40px;"><input type="checkbox" id="check_all" class="filled-in"/><label for="check_all"></label></td>
+				<td><?php echo __('messages.title'); ?></td>
+				<td><?php echo __('messages.slug'); ?></td>
+				<td style="width:100px"><?php echo __('messages.actions'); ?></td>
 			</tr>
 		</thead>
 		
 		<tbody>
 			<?php foreach($pages as $page) { ?>
 			<tr>
+				<td><input type="checkbox" class="filled-in item-checkbox" id="test<?php echo $page->id; ?>"/><label for="test<?php echo $page->id; ?>"></label></td>
 				<td><a href="<?php echo URL::route('pages.edit', ['page_id' =>  $page->id]);?>"><?php echo $page->title; ?></a></td>
 				<td><?php echo $page->slug; ?></td>
 				<td>
@@ -52,6 +65,8 @@
 			<?php }?>
 		</tbody>
 	</table>
-	
-	<?php	} ?>
+	</div>
+	</div>
+	</div>
+	<?php }?>
 </div>

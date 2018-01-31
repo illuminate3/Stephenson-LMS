@@ -1,5 +1,5 @@
 <div class="container">
-	<h2>Tutoriais</h2>
+	<div class="page-title"><h2><?php echo __('messages.tutorials'); ?></h2><a href="<?php echo URL::route('tutorials.create'); ?>"><button class="btn"><i class="material-icons left">add</i><?php echo __('messages.create'); ?></button></a></div>
 	
 	<div class="row">
 		<div class="col s12">
@@ -17,23 +17,38 @@
 	
 	<?php			
 		if(count($tutorials) < 1){
-			echo "<p>Nenhum tutorial cadastrado. <a href='". URL::route('tutorials.create') . "'>Criar um tutorial</a></p>";
+			echo "<div class='card'>Nenhum tutorial cadastrado. <a href='". URL::route('tutorials.create') . "'>Criar um tutorial</a></div>";
 		} else{
 	?>
+	
+	<div class="card">
+	<div class="row">
+		<div class="col s12">
+			<ul class="tabs" style="border-bottom:1px solid #ececec">
+				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('tutorials.index') ?>">Todas</a></li>
+				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('tutorials.trash') ?>">Lixeira</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="row list-itens">
+		<div class="col s12">
 	<table class="highlight responsive-table">
 		<thead>
 			<tr>
-				<td>Titulo</td>
-				<td>Url</td>
-				<td>Autor</td>
-				<td>Criação</td>
-				<td style="width:100px">Ações</td>
+				<td style="width:40px;"><input type="checkbox" id="check_all" class="filled-in"/><label for="check_all"></label></td>
+				<td><?php echo __('messages.title'); ?></td>
+				<td><?php echo __('messages.url'); ?></td>
+				<td><?php echo __('messages.author'); ?></td>
+				<td><?php echo __('messages.date'); ?></td>
+				<td style="width:100px"><?php echo __('messages.actions'); ?></td>
 			</tr>
 		</thead>
 		
 		<tbody>
 			<?php foreach($tutorials as $tutorial) { ?>
 			<tr>
+				<td><input type="checkbox" class="filled-in item-checkbox" id="test<?php echo $tutorial->id; ?>"/><label for="test<?php echo $tutorial->id; ?>"></label></td>
 				<td><a href="<?php echo URL::route('tutorials.edit', ['tutorial_id' =>  $tutorial['id']]);?>"><?php echo $tutorial['title']; ?></a></td>
 				<td><?php echo $tutorial->video_url; ?></td>
 				<td><?php echo $tutorial->author->firstname . " " . $tutorial->author->lastname; ?></td>
@@ -55,5 +70,8 @@
 			<?php }?>
 		</tbody>
 	</table>
+	</div>
+	</div>
+	</div>
 	<?php }?>
 </div>

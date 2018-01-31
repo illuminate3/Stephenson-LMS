@@ -60,12 +60,16 @@ Route::get('/logout', ['uses' => 'UsersController@logout']);
 
 /* ROTAS PARA O CONTROLE DE USUÁRIOS */
 Route::resource('admin/users', 'UsersController');
+Route::get('/admin/users/trash', ['as'=>'users.trash','uses' => 'UsersController@trash']);
 
 /* ROTAS PARA O CONTROLE DE TUTORIAIS */
+Route::get('/admin/tutorials/trash', ['as'=>'tutorials.trash','uses' => 'TutorialsController@trash']);
 Route::resource('admin/tutorials', 'TutorialsController');
+
 
 /* ROTAS PARA O CONTROLE DE CURSOS */
 Route::resource('admin/courses', 'CoursesController');
+Route::get('/admin/courses/trash', ['as'=>'courses.trash','uses' => 'CoursesController@trash']);
 Route::get('/admin/courses/{course}/manage', ['as'=>'courses.manage','uses' => 'CoursesController@manage']);
 
 /* ROTAS PARA O CONTROLE DE MÓDULOS */
@@ -76,16 +80,18 @@ Route::resource('admin/course.module.lesson', 'LessonsController');
 
 /* ROTAS PARA O CONTROLE DE PAGINAS */
 Route::resource('admin/pages', 'PagesController');
+Route::get('/admin/pages/trash', ['as'=>'pages.trash','uses' => 'PagesController@trash']);
 Route::get('/{page}', ['as'=>'pages.single','uses' => 'PagesController@single']);
 
 /* ROTAS PARA O CONTROLE DE POSTAGENS */
 Route::resource('admin/posts', 'PostsController');
+Route::get('/admin/posts/trash', ['as'=>'posts.trash','uses' => 'PostsController@trash']);
 
 /* ROTAS PARA O CONTROLE DE CATEGORIAS */
 Route::resource('admin/categories', 'CategoriesController');
 
 /* ROTAS PARA O CONTROLE DE CONFIGURAÇÕES */
-Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'SettingsController@settings']);
+Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'SettingsController@index']);
 
 /* ROTAS PARA O CONTROLE DE MÍDIA */
 Route::get('/admin/library', ['as'=>'admin.library','uses' => 'DashboardController@library']);

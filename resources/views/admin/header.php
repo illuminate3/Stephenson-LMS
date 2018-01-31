@@ -13,7 +13,10 @@
 
 	<body>
 		<div id="navbar">
-			<div id="logo">Escola LTG</div>
+			<div id="navbar-header">
+				<a href="#" class="button-expand"><i class="material-icons">toc</i></a>
+				<div id="logo">Escola LTG</div>
+			</div>
 			
 			<div id="side-menu">
 				<ul>

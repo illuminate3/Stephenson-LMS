@@ -1,5 +1,5 @@
 <div class="container">
-	<h2>Configurações</h2>
+	<div class="page-title"><h2><?php echo __('messages.settings'); ?></h2></div>
 	<form>
 		<?php foreach($settings as $setting){?>
 		<div class="row">

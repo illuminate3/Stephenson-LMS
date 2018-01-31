@@ -3,13 +3,13 @@
 	<nav class="z-depth-0 transparent breadcrumbs">
 		<div class="nav-wrapper">
 			<div class="col s12">
-				<a href="<?php echo URL::route('courses.index') ?>" class="breadcrumb">Cursos</a>
-				<a href="#" class="breadcrumb">Criar Curso</a>
+				<a href="<?php echo URL::route('courses.index') ?>" class="breadcrumb"><?php echo __('messages.courses'); ?></a>
+				<a href="#" class="breadcrumb"><?php echo __('messages.create_course'); ?></a>
 			</div>
 		</div>
 	</nav>
 	
-	<h2>Adicionar Curso</h2>
+	<h2><?php echo __('messages.create_course'); ?></h2>
 
 	<div class="row">
 		<form method="post" action="<?php echo URL::route('courses.store');?>" enctype="multipart/form-data">
@@ -27,16 +27,17 @@
 				</div>
 				
 				<div class="col s12 input-field">
-					<input type="text" name="title" id="tutorial-title">
-					<label for="tutorial-title">Titulo</label>
+					<input type="text" name="title" id="course-title">
+					<label for="course-title"><?php echo __('messages.title'); ?></label>
 				</div>
 
 				<div class="col s12 input-field">
-					<textarea name="description" id="tutorial-content" class="tinymce"></textarea>
+					<textarea name="description" id="course-content" class="tinymce"></textarea>
 				</div>
 
 				<div class="col s12 input-field">
-					<textarea name="resume" id="tutorial-resume" class="materialize-textarea"></textarea>
+					<textarea name="resume" id="course-resume" class="materialize-textarea"></textarea>
+					<label for="course-resume"><?php echo __('messages.resume'); ?></label>
 				</div>
 
 				<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
@@ -44,12 +45,12 @@
 
 			<div class="col s3">
 				<div class="row">
-					<button type="submit" class="btn-large full-btn cyan darken-2">Adicionar</button>
+					<button type="submit" class="btn-large full-btn cyan darken-2"><?php echo __('messages.create'); ?></button>
 				</div>
 				
 				<div class="row">
 					<div class="widget card">
-						<h3 class="widget-title">Tags</h3>
+						<h3 class="widget-title"><?php echo __('messages.tags'); ?></h3>
 						
 						<div class="widget-content">
 							<div class="chips chips-placeholder"></div>
@@ -57,11 +58,11 @@
 					</div>
 					
 					<div class="widget card">
-						<h3 class="widget-title">Categoria</h3>
+						<h3 class="widget-title"><?php echo __('messages.category'); ?></h3>
 						
 						<div class="widget-content">
 							<select name="category_id">
-								<option value="0" disabled selected>Sem categoria</option>
+								<option value="0" disabled selected><?php echo __('messages.uncategorized'); ?></option>
 								<?php foreach ($categories as $category) { ?>
 								<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
 								<?php } ?>
@@ -70,7 +71,7 @@
 					</div>
 					
 					<div class="widget card">
-						<h3 class="widget-title">Thumbnail</h3>
+						<h3 class="widget-title"><?php echo __('messages.thumbnail'); ?></h3>
 						
 						<div class="widget-content">
 							<div class="file-upload">

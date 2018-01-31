@@ -65,27 +65,31 @@ return [
 	
 	'user' 			=> 'Usuário',
 	
-	/* SETTINGS */	
-	
-	'site_title' 			=> 'Título do Site',
-	'site_slogan' 			=> 'Slogan do Site',
-	'footer_credits' 		=> 'Créditos no Rodapé',
-	'site_email' 			=> 'E-mail do Site',
-	
 	/* FORMS */
 	
 	'name' 				=> 'Nome',
 	'title' 				=> 'Título',
 	'color' 				=> 'Cor',
 	'resume' 			=> 'Resumo',
+	'slug' 				=> 'Slug',
 	
 	/* GENERAL */
 	
 	'actions' 			=> 'Ações',
 	'edit' 				=> 'Editar',
 	'update' 			=> 'Atualizar',
+	'create' 			=> 'Criar',
+	'date' 				=> 'Data',
+	'author' 			=> 'Autor',
+	'url' 				=> 'URL',
+	'email' 				=> 'E-mail',
+	'permission' 		=> 'Permissão',
+	'complet_name' 	=> 'Nome Completo',
 	
-		/* SETTINGS */
-	'site_name' => 'Site Name'
+	/* SETTINGS */	
 	
+	'site_name' 			=> 'Título do Site',
+	'site_slogan' 			=> 'Slogan do Site',
+	'footer_credits' 		=> 'Créditos no Rodapé',
+	'site_email' 			=> 'E-mail do Site',
 ];

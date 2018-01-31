@@ -3,13 +3,13 @@
 	<nav class="z-depth-0 transparent breadcrumbs">
 		<div class="nav-wrapper">
 			<div class="col s12">
-				<a href="<?php echo URL::route('courses.index') ?>" class="breadcrumb">Cursos</a>
-				<a href="#" class="breadcrumb">Criar Curso</a>
+				<a href="<?php echo URL::route('courses.index') ?>" class="breadcrumb"><?php echo __('messages.courses'); ?></a>
+				<a href="#" class="breadcrumb"><?php echo __('messages.edit_course'); ?></a>
 			</div>
 		</div>
 	</nav>
 	
-	<h2>Editar <?php echo $course['title']?></h2>
+	<h2><?php echo __('messages.edit'); ?> <?php echo $course['title']?></h2>
 
 	<div class="row">
 		<form method="post" action="<?php echo URL::route('courses.update', ['course_id' =>  $course['id']]);?>" enctype="multipart/form-data">
@@ -42,7 +42,7 @@
 					<textarea name="resume" id="course-resume" class="materialize-textarea" >
 					<?php echo $course['resume']?>
 					</textarea>
-					<label for="course-resume">Resumo do Curso</label>
+					<label for="course-resume"><?php echo __('messages.resume'); ?></label>
 				</div>
 
 				<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
@@ -50,12 +50,12 @@
 
 			<div class="col s3">
 				<div class="row">
-					<button type="submit" class="btn-large full-btn cyan darken-2">Editar</button>
+					<button type="submit" class="btn-large full-btn cyan darken-2"><?php echo __('messages.edit'); ?></button>
 				</div>
 				
 				<div class="row">
 					<div class="widget card">
-						<h3 class="widget-title">Tags</h3>
+						<h3 class="widget-title"><?php echo __('messages.tags'); ?></h3>
 						
 						<div class="widget-content">
 							<div class="chips chips-placeholder"></div>
@@ -63,7 +63,7 @@
 					</div>
 					
 					<div class="widget card">
-						<h3 class="widget-title">Categoria</h3>
+						<h3 class="widget-title"><?php echo __('messages.category'); ?></h3>
 						
 						<div class="widget-content">
 							<select name="category_id">
@@ -77,7 +77,7 @@
 					</div>
 					
 					<div class="widget card">
-						<h3 class="widget-title">Thumbnail</h3>
+						<h3 class="widget-title"><?php echo __('messages.thumbnail'); ?></h3>
 						
 						<div class="widget-content">
 							<div class="file-upload">
