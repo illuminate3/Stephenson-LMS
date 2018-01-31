@@ -14,6 +14,18 @@ use App\Validators\PageValidator;
  */
 class PageRepositoryEloquent extends BaseRepository implements PageRepository
 {
+	
+	public function getTrashed(){
+		return $this->model->onlyTrashed()->get();
+	}
+	
+	public function restore($id){
+		$this->model->withTrashed()->find($id)->restore();
+	}
+	
+	public function deleteFromBD($id){
+		$this->model->withTrashed()->find($id)->forceDelete();
+	}
     /**
      * Specify Model class name
      *

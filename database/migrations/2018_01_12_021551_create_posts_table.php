@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
 
             $table->timestamps();
 				$table->rememberToken();
+				$table->softDeletes();
 			
 				$table->foreign('author_id')->references('id')->on('users');
 				$table->foreign('category_id')->references('id')->on('categories');

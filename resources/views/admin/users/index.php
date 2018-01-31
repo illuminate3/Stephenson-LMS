@@ -20,16 +20,7 @@
 			echo "<p>Nenhum usuário cadastrado.</p>";
 		} else {
 	?>
-		<div class="card">
-	<div class="row">
-		<div class="col s12">
-			<ul class="tabs" style="border-bottom:1px solid #ececec">
-				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('users.index') ?>">Todas</a></li>
-				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('users.trash') ?>">Lixeira</a></li>
-			</ul>
-		</div>
-	</div>
-	
+	<div class="card">
 	<div class="row list-itens">
 		<div class="col s12">
 	<table class="highlight responsive-table">

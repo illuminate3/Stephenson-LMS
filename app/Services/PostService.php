@@ -61,7 +61,43 @@ class PostService{
 			
 			return [
 				'success'   => true,
-				'messages'  => "Postagem removida com sucesso!",
+				'messages'  => "Postagem movida para a lixeira com sucesso!",
+				'data'     => $post
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
+	
+	public function restore($post_id){
+		try{
+
+			$post = $this->repository->restore($post_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Postagem restaurada com sucesso!",
+				'data'     => $post
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
+	
+	public function deleteFromBD($post_id){
+		try{
+
+			$post = $this->repository->deleteFromBD($post_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Postagem excluída com sucesso!",
 				'data'     => $post
 			];
 		} catch(Exception $e){

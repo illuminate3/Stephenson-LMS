@@ -62,7 +62,43 @@ class PageService{
 			
 			return [
 				'success'   => true,
-				'messages'  => "Página removida com sucesso!",
+				'messages'  => "Página movida para a lixeira com sucesso!",
+				'data'     => $page
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
+	
+		public function restore($page_id){
+		try{
+
+			$page = $this->repository->restore($page_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Página restaurada com sucesso!",
+				'data'     => $page
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
+	
+	public function deleteFromBD($page_id){
+		try{
+
+			$page = $this->repository->deleteFromBD($page_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Página excluída com sucesso!",
 				'data'     => $page
 			];
 		} catch(Exception $e){

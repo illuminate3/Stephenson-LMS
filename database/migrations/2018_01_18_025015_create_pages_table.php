@@ -19,8 +19,10 @@ class CreatePagesTable extends Migration
             $table->string('slug', 100);
             $table->text('content');
             $table->unsignedInteger('author_id');
-
             $table->timestamps();
+				$table->rememberToken();
+				$table->softDeletes();
+			
 				$table->foreign('author_id')->references('id')->on('users');
 			});
 	}

@@ -5,11 +5,13 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model implements Transformable
 {
     use TransformableTrait;
-
+ 	 use SoftDeletes;
+	
     protected $fillable = ['title', 'content', 'resume', 'category_id', 'thumbnail', 'author_id'];
 	
 	public function category(){

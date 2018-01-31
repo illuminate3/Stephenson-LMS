@@ -76,12 +76,20 @@ class TutorialsController extends Controller{
 	}
 	
 	 public function index(){
-	  $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-	  $tutorials = $this->repository->all();
-
+	   $tutorials = $this->repository->all();
+		$loop = "all";
 		$title = "Tutoriais - Escola LTG";
 		echo view('admin.header', ['title' => $title]);
-		echo view('admin.tutorials.index',['tutorials' => $tutorials]);
+		echo view('admin.tutorials.index',['tutorials' => $tutorials, 'loop' => $loop]);
+		echo view('admin.footer');
+    }
+	
+	public function trash(){
+	   $tutorials = $this->repository->getTrashed();
+		$loop = "trash";
+		$title = "Tutoriais - Escola LTG";
+		echo view('admin.header', ['title' => $title]);
+		echo view('admin.tutorials.index',['tutorials' => $tutorials, 'loop' => $loop]);
 		echo view('admin.footer');
     }
 	
@@ -153,6 +161,30 @@ class TutorialsController extends Controller{
      */
     public function destroy($id){
        $request= $this->service->delete($id);
+		 $tutorial = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
+    }
+	
+	 public function restore($id){
+       $request = $this->service->restore($id);
+		 $tutorial = $request['success'] ? $request['data'] : null;
+		  
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
+    }
+	
+	 public function deleteFromBD($id){
+       $request = $this->service->deleteFromBD($id);
 		 $tutorial = $request['success'] ? $request['data'] : null;
 		  
 		 session()->flash('success',[

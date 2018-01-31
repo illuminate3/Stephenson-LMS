@@ -25,6 +25,7 @@ class CreateTutorialsTable extends Migration
             $table->string('thumbnail', 60)->nullable();
             $table->rememberToken();
             $table->timestamps();
+				$table->softDeletes();
 			
 			  $table->foreign('author_id')->references('id')->on('users');
 			  $table->foreign('category_id')->references('id')->on('categories');

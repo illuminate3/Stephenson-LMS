@@ -19,15 +19,8 @@
 		if(count($courses) < 1){
 			echo "<p>Nenhum curso cadastrado. <a href='". URL::route('courses.create') . "'>" .  __('messages.create_course') . "</a></p>";
 		} else{
-	?>	<div class="card">
-	<div class="row">
-		<div class="col s12">
-			<ul class="tabs" style="border-bottom:1px solid #ececec">
-				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('courses.index') ?>">Todas</a></li>
-				<li class="tab col s2"><a target="_self" href="<?php echo URL::route('courses.trash') ?>">Lixeira</a></li>
-			</ul>
-		</div>
-	</div>
+	?>	
+	<div class="card">
 	
 	<div class="row list-itens">
 		<div class="col s12">

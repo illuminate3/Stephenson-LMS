@@ -62,7 +62,44 @@ class TutorialService{
 			
 			return [
 				'success'   => true,
-				'messages'  => "Tutorial removido com sucesso!",
+				'messages'  => "Tutorial movido para lixeira com sucesso!",
+				'data'     => $tutorial
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
+	
+		
+	public function restore($tutorial_id){
+		try{
+
+			$tutorial = $this->repository->restore($tutorial_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Tutorial restaurado com sucesso!",
+				'data'     => $tutorial
+			];
+		} catch(Exception $e){
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
+	
+	public function deleteFromBD($tutorial_id){
+		try{
+
+			$tutorial = $this->repository->deleteFromBD($tutorial_id);
+			
+			return [
+				'success'   => true,
+				'messages'  => "Tutorial excluído com sucesso!",
 				'data'     => $tutorial
 			];
 		} catch(Exception $e){

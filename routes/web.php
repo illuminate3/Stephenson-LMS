@@ -59,36 +59,43 @@ Route::post('/admin/login', ['as'=>'admin.login','uses' => 'UsersController@auth
 Route::get('/logout', ['uses' => 'UsersController@logout']);
 
 /* ROTAS PARA O CONTROLE DE USUÁRIOS */
-Route::resource('admin/users', 'UsersController');
 Route::get('/admin/users/trash', ['as'=>'users.trash','uses' => 'UsersController@trash']);
+Route::resource('admin/users', 'UsersController');
 
 /* ROTAS PARA O CONTROLE DE TUTORIAIS */
+Route::post('/admin/tutorial/delete/{tutorial}', ['as'=>'tutorials.deletefrombd','uses' => 'TutorialsController@deleteFromBD']);
+Route::post('/admin/tutorial/restore/{tutorial}', ['as'=>'tutorials.restore','uses' => 'TutorialsController@restore']);
 Route::get('/admin/tutorials/trash', ['as'=>'tutorials.trash','uses' => 'TutorialsController@trash']);
-Route::resource('admin/tutorials', 'TutorialsController');
+
+Route::resource('admin/tutorials', 'TutorialsController', ['except' => ['show']]);
 
 
 /* ROTAS PARA O CONTROLE DE CURSOS */
-Route::resource('admin/courses', 'CoursesController');
 Route::get('/admin/courses/trash', ['as'=>'courses.trash','uses' => 'CoursesController@trash']);
-Route::get('/admin/courses/{course}/manage', ['as'=>'courses.manage','uses' => 'CoursesController@manage']);
+Route::get('/admin/courses/{course}/manage', ['as'=>'courses.manage','uses' => 'CoursesController@manage', ['except' => ['show']]]);
+Route::resource('admin/courses', 'CoursesController');
 
 /* ROTAS PARA O CONTROLE DE MÓDULOS */
-Route::resource('admin/course.module', 'ModulesController');
+Route::resource('admin/course.module', 'ModulesController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE AULAS */
-Route::resource('admin/course.module.lesson', 'LessonsController');
+Route::resource('admin/course.module.lesson', 'LessonsController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE PAGINAS */
-Route::resource('admin/pages', 'PagesController');
+Route::post('/admin/pages/delete/{page}', ['as'=>'pages.deletefrombd','uses' => 'PagesController@deleteFromBD']);
+Route::post('/admin/pages/restore/{page}', ['as'=>'pages.restore','uses' => 'PagesController@restore']);
 Route::get('/admin/pages/trash', ['as'=>'pages.trash','uses' => 'PagesController@trash']);
 Route::get('/{page}', ['as'=>'pages.single','uses' => 'PagesController@single']);
+Route::resource('admin/pages', 'PagesController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE POSTAGENS */
-Route::resource('admin/posts', 'PostsController');
+Route::post('/admin/posts/delete/{post}', ['as'=>'posts.deletefrombd','uses' => 'PostsController@deleteFromBD']);
+Route::post('/admin/posts/restore/{post}', ['as'=>'posts.restore','uses' => 'PostsController@restore']);
 Route::get('/admin/posts/trash', ['as'=>'posts.trash','uses' => 'PostsController@trash']);
+Route::resource('admin/posts', 'PostsController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE CATEGORIAS */
-Route::resource('admin/categories', 'CategoriesController');
+Route::resource('admin/categories', 'CategoriesController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE CONFIGURAÇÕES */
 Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'SettingsController@index']);
