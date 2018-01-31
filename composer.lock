@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f29e15177452d0abeb468646f00ec273",
+    "content-hash": "7448a75ba5287864c14ac4faeae626dc",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -647,46 +647,6 @@
                 "storage"
             ],
             "time": "2017-08-06T17:41:04+00:00"
-        },
-        {
-            "name": "merujan99/laravel-video-embed",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Merujan99/laravel-video-embed.git",
-                "reference": "b8bf2cc7539382e4b880f2a365c21fd0e8365760"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Merujan99/laravel-video-embed/zipball/b8bf2cc7539382e4b880f2a365c21fd0e8365760",
-                "reference": "b8bf2cc7539382e4b880f2a365c21fd0e8365760",
-                "shasum": ""
-            },
-            "require": {
-                "dereuromark/media-embed": "^0.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Merujan99\\LaravelVideoEmbed\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Meruzhan Hovhannisyan",
-                    "email": "merujan99@gmail.com"
-                }
-            ],
-            "description": "Laravel Package for dereuromark/MediaEmbed With Thumbnail",
-            "keywords": [
-                "laravel",
-                "package development"
-            ],
-            "time": "2017-04-07T18:44:57+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2254,6 +2214,100 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "alaouy/youtube",
+            "version": "v1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alaouy/Youtube.git",
+                "reference": "3066277809045fb41d88ea652cad1686e82747fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alaouy/Youtube/zipball/3066277809045fb41d88ea652cad1686e82747fd",
+                "reference": "3066277809045fb41d88ea652cad1686e82747fd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Alaouy\\Youtube\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mustapha Alaouy",
+                    "email": "alaouym@gmail.com"
+                }
+            ],
+            "description": "Laravel PHP Facade/Wrapper for the Youtube Data API v3",
+            "keywords": [
+                "alaouy",
+                "api",
+                "laravel",
+                "video",
+                "youtube"
+            ],
+            "time": "2017-07-14T12:08:48+00:00"
+        },
+        {
+            "name": "dereuromark/media-embed",
+            "version": "0.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/MediaEmbed.git",
+                "reference": "710e109d698dfe5ee7a3f6658960417dcea37a82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/MediaEmbed/zipball/710e109d698dfe5ee7a3f6658960417dcea37a82",
+                "reference": "710e109d698dfe5ee7a3f6658960417dcea37a82",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Author"
+                }
+            ],
+            "description": "A PHP library to deal with all those media services around, parsing their URLs and embedding their audio/video content in websites.",
+            "keywords": [
+                "audio",
+                "embed",
+                "iframe",
+                "media",
+                "php",
+                "video"
+            ],
+            "time": "2017-11-04T02:47:44+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
@@ -3841,9 +3895,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "merujan99/laravel-video-embed": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
