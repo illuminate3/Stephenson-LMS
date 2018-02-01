@@ -36,6 +36,7 @@ Route::get('/perfil/{profile}/settings', ['as' => 'profile.settings', 'uses' => 
 /* ROTAS PARA OS CURSOS */
 Route::get('/cursos', ['as'=>'courses.archive','uses' => 'CoursesController@archive']);
 Route::get('/curso/{curso}', ['as'=>'courses.single','uses' => 'CoursesController@single']);
+Route::post('/curso/', ['as'=>'courses.enter_course','uses' => 'CoursesController@enterCourse']);
 
 /* ROTAS PARA OS TUTORIAIS */
 Route::get('/tutoriais', ['as'=>'tutorials.archive','uses' => 'TutorialsController@archive']);
@@ -102,6 +103,9 @@ Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'SettingsControl
 
 /* ROTAS PARA O CONTROLE DE MÍDIA */
 Route::get('/admin/library', ['as'=>'admin.library','uses' => 'DashboardController@library']);
+
+/* ROTAS PARA CATEGORIAS */
+Route::get('/categoria/{categoria}', ['as'=>'user.category','uses' => 'Controller@category']);
 
 
 

@@ -66,7 +66,7 @@
 
 			<?php			
 			if(count($categories) < 1){
-				echo "<p>Nenhuma catagoria cadastrada.</p>";
+				echo __('messages.no_category_created');
 			} else{
 			?>
 				<table class="highlight responsive-table">

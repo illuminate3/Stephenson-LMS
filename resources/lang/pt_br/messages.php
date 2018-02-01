@@ -41,12 +41,13 @@ return [
 	
 	/* CATEGORIES  */
 	
-	'category' 			=> 'Categoria',
-	'create_category' => 'Criar Categoria',
-	'edit_category' 	=> 'Editar Categoria',
-	'view_category' 	=> 'Ver Categoria',
-	'hierarchy' 		=> 'Hierarquia',
-	'primary' 			=> 'Primária',
+	'category' 					=> 'Categoria',
+	'create_category' 		=> 'Criar Categoria',
+	'edit_category' 			=> 'Editar Categoria',
+	'view_category' 			=> 'Ver Categoria',
+	'no_category_created' 	=> "Nenhuma categoria criada",
+	'hierarchy' 				=> 'Hierarquia',
+	'primary' 					=> 'Primária',
 
 	
 	/* PAGES */
@@ -59,7 +60,9 @@ return [
 	
 	/* COURSES */
 	
-	'course' 		=> 'Curso',
+	'course' 					=> 'Curso',
+	'edit_course' 					=> 'Editar Curso',
+	'no_course_created' 		=> "Nenhum curso criado",
 	
 	/* USERS */	
 	
@@ -87,6 +90,7 @@ return [
 	'complet_name' 	=> 'Nome Completo',
 	'tags' 				=> 'Marcadores',
 	'thumbnail' 		=> 'Miniatura',
+	'uncategorized' 	=> 'Sem Categoria',
 	
 	/* SETTINGS */	
 	

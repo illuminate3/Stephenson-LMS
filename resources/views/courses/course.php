@@ -7,7 +7,10 @@
 					<img src="<?php echo $course->cover;?>">
 				</div>
 				<div class="container">
-				<button class="btn-large">Entrar no Curso</button>
+				<form method="post" action="<?php echo URL::route('courses.enter_course', ['course_id' => $course->id, 'user_id' => Auth::user()->id]);?>">
+					<button class="btn-large" type="submit">Entrar no Curso</button>
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+				</form>
 				</div>
 			</div>
 			</div>

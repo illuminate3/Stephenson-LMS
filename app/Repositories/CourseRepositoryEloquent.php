@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\CourseRepository;
 use App\Entities\Course;
 use App\Validators\CourseValidator;
+use App\Entities\CourseMeta;
 
 /**
  * Class CourseRepositoryEloquent
@@ -14,6 +15,15 @@ use App\Validators\CourseValidator;
  */
 class CourseRepositoryEloquent extends BaseRepository implements CourseRepository
 {
+	
+	public function enter_course($course, $user){
+		  $course_meta = new CourseMeta;
+        $course_meta->user_id = $user;
+        $course_meta->course_id = $course;
+        if($course_meta->save()){
+			  return redirect()->back();
+		  }
+	}
     /**
      * Specify Model class name
      *

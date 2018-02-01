@@ -138,4 +138,13 @@ class Controller extends BaseController{
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('chat');
 	}
+	
+	public function category($category){
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$title = $category . " - Escola LTG";	
+		
+		echo view('header', ['title' => $title]);
+		echo view('categories.category');
+		echo view('footer');
+	}
 }

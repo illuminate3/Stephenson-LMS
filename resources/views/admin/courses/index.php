@@ -17,54 +17,36 @@
 	</div>
 	<?php			
 		if(count($courses) < 1){
-			echo "<p>Nenhum curso cadastrado. <a href='". URL::route('courses.create') . "'>" .  __('messages.create_course') . "</a></p>";
+			echo "<p>" . __('messages.no_course_created') . ". <a href='". URL::route('courses.create') . "'>" .  __('messages.create_course') . "</a></p>";
 		} else{
 	?>	
-	<div class="card">
-	
-	<div class="row list-itens">
-		<div class="col s12">
-	<table class="highlight responsive-table">
-		<thead>
-			<tr>
-				<td style="width:40px;"><input type="checkbox" id="check_all" class="filled-in"/><label for="check_all"></label></td>
-				<td><?php echo __('messages.title'); ?></td>
-				<td><?php echo __('messages.author'); ?></td>
-				<td><?php echo __('messages.date'); ?></td>
-				<td style="width:150px"><?php echo __('messages.actions'); ?></td>
-			</tr>
-		</thead>
-		
-		<tbody>
-			<?php foreach($courses as $course) { ?>
-			<tr>
-				<td><input type="checkbox" class="filled-in item-checkbox" id="test<?php echo $course->id; ?>"/><label for="test<?php echo $course->id; ?>"></label></td>
-				<td><a href="<?php echo URL::route('courses.edit', ['course_id' =>  $course['id']]);?>"><?php echo $course->title; ?></a></td>
-				<td><?php echo $course->author->firstname . " " . $course->author->lastname; ?></td>
-				<td><?php echo $course->created_at; ?></td>
-				<td>
-					<div class="action">
-						<a target="_blank" href="<?php echo URL::to('/curso/'. $course['id'] ); ?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">visibility</i></button></a>
+	<div class="row">
+		<?php foreach($courses as $course) { ?>
+			<div class="col s6">
+				<div class="card">
+					<div class="card-image">
+						<img src="<?php echo $course->cover; ?>">
 					</div>
 					
-					<div class="action">
-						<a href="<?php echo URL::route('courses.manage', ['course_id' =>  $course['id']]);?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">settings</i></button></a>
+					<div class="card-content">
+						<span class="card-title"><a href="<?php echo URL::route('courses.edit', ['course_id' =>  $course['id']]);?>"><?php echo $course->title; ?></a></span>
+						<div id="course-info">
+							<div class="info"><i class="material-icons">person</i><?php echo count($course->getStudents);?> aluno</div>
+							<div class="info"><?php echo count($course->getModules)?> módulos</div>
+							<div class="info"><i class="material-icons">video_library</i><?php echo count($course->getLessons)?> aulas</div>
+						</div>
+						<p>I am a very simple card. I am good at containing small bits of information.
+						I am convenient because I require little markup to use effectively.</p>
 					</div>
 					
-					<div class="action">
-						<form method="post" action="<?php echo URL::route('courses.destroy', ['id' =>  $course['id']]);?>">
-							<button type="submit" class="red z-depth-1 waves-effect"><i class="material-icons">remove_circle_outline</i></button>
-							<input type="hidden" value="DELETE" name="_method">
-							<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-						</form>
+					<div class="card-action">
+						<a href="<?php echo URL::route('courses.edit', ['course_id' =>  $course['id']]);?>">Editar</a>
+						<a href="<?php echo URL::route('courses.manage', ['course_id' =>  $course['id']]);?>">Gerenciar</a>
+						<a href="<?php echo URL::to('/curso/' . $course['id']);?>">Ver</a>
 					</div>
-				</td>
-			</tr>
-			<?php }?>
-		</tbody>
-	</table>
-	</div>
-	</div>
+				</div>
+			</div>
+		<?php }?>
 	</div>
 	<?php }?>
 </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\CourseCreateRequest;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Repositories\CourseRepository;
@@ -14,7 +15,7 @@ use App\Repositories\CategoriesRepository;
 use App\Repositories\ModuleRepository;
 use App\Validators\CourseValidator;
 use App\Services\CourseService;
-
+use Auth;
 
 class CoursesController extends Controller
 {
@@ -92,28 +93,6 @@ class CoursesController extends Controller
 		 return redirect()->back(); 
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $course = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $course,
-            ]);
-        }
-
-        return view('courses.show', compact('course'));
-    }
-
 	public function edit($course){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$modules_list = $this->moduleRepository->selectBoxList();
@@ -139,6 +118,7 @@ class CoursesController extends Controller
 		$course = $this->repository->find($course);
 		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
 		$categories = $this->categoriesRepository->getPrimaryCategories();
+		// $user_joined = $this->repository->findWhere(['course_id'=> $course->id, 'user_id' => Auth::user()->id]);
 		$title =  $course['title']." - Escola LTG";
 		
 		echo view('header', ['title' => $title, 'categories' => $categories]);
@@ -184,4 +164,10 @@ class CoursesController extends Controller
 		 
 		 return redirect()->back(); 
     }
+	
+	public function enterCourse(Request $request){
+		$course = $request->query->get('course_id');
+		$user = $request->query->get('user_id');
+		return  $this->repository->enter_course($course, $user);
+	}
 }

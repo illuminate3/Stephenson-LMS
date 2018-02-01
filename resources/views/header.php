@@ -21,7 +21,7 @@
 						
 						<ul id="channels-menu" class="dropdown-content">
 							<?php foreach($categories as $category){ 
-								echo '<li><a href="/categories/' . $category->id . '">' . $category->name . '</a></li>';
+								echo '<li><a href="' . URL::route('user.category', ['slug' => $category->slug]) . '">' . $category->name . '</a></li>';
 							} ?>
 						</ul>
 						

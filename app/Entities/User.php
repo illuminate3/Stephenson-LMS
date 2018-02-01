@@ -14,7 +14,10 @@ class User extends Authenticatable{
 	 protected $table = 'users';
     protected $fillable = ['firstname', 'lastname', 'user','email','password','birth','gender'];
     protected $hidden = ['password', 'remember_token'];
-
+	
+	public function getCourses(){
+		return $this->hasMany(CoursesMeta::class);
+	}
 
 	public function getBirthAttribute(){
 		$birth = explode('-',$this->attributes['birth']);

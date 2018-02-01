@@ -30,4 +30,8 @@ class Course extends Model{
 	public function getLessons(){
 		return $this->hasMany(Lesson::class);
 	}
+	
+	public function getStudents(){
+		return $this->hasMany(CoursesMeta::class);
+	}
 }
