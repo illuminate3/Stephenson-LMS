@@ -18,6 +18,7 @@ class Course extends Model{
 	public function category(){
 		return $this->belongsTo(Categories::class);
 	}
+
 	
 	public function author(){
 		return $this->belongsTo(User::class);

@@ -17,6 +17,7 @@ class CreateCoursesMetaTable extends Migration
 			$table->increments('id');
 			$table->unsignedInteger('course_id');
 			$table->unsignedInteger('user_id');
+			$table->integer('type');
 			$table->timestamps();
 
 			$table->foreign('course_id')->references('id')->on('courses');

@@ -7,10 +7,17 @@
 					<img src="<?php echo $course->cover;?>">
 				</div>
 				<div class="container">
-				<form method="post" action="<?php echo URL::route('courses.enter_course', ['course_id' => $course->id, 'user_id' => Auth::user()->id]);?>">
+				<?php if(count($user_joined) == 0){ ?>
+				<form method="post" action="<?php echo URL::route('courses.enter_course', ['course_id' => $course->id, 'user_id' => Auth::user()->id, 'type' => 2]);?>">
 					<button class="btn-large" type="submit">Entrar no Curso</button>
 					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 				</form>
+				<?php } else { ?>
+				<form method="post" action="<?php echo URL::route('courses.leave_course', ['course_id' => $user_joined->id]);?>">
+					<button class="btn-large" type="submit">Sair do Curso</button>
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+				</form>
+				<?php } ?>
 				</div>
 			</div>
 			</div>

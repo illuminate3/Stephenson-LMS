@@ -118,11 +118,10 @@ class CoursesController extends Controller
 		$course = $this->repository->find($course);
 		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
 		$categories = $this->categoriesRepository->getPrimaryCategories();
-		// $user_joined = $this->repository->findWhere(['course_id'=> $course->id, 'user_id' => Auth::user()->id]);
+		$user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
 		$title =  $course['title']." - Escola LTG";
-		
 		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('courses/course', ['course' => $course, 'modules' => $modules_list])->render();
+		echo view('courses/course', ['course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();
 		echo view('footer')->render();
 	}
 
@@ -165,9 +164,15 @@ class CoursesController extends Controller
 		 return redirect()->back(); 
     }
 	
-	public function enterCourse(Request $request){
+	public function enterOrFavoriteCourse(Request $request){
 		$course = $request->query->get('course_id');
 		$user = $request->query->get('user_id');
-		return  $this->repository->enter_course($course, $user);
+		$type = $request->query->get('type');
+		return  $this->repository->enter_or_favorite_course($course, $user, $type);
+	}
+	
+	public function leaveCourse(Request $request){
+		$course = $request->query->get('course_id');
+		return  $this->repository->leave_course($course);
 	}
 }

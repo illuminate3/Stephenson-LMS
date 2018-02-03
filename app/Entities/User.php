@@ -12,11 +12,17 @@ class User extends Authenticatable{
 	
 	 public $timestamps = true;
 	 protected $table = 'users';
-    protected $fillable = ['firstname', 'lastname', 'user','email','password','birth','gender'];
-    protected $hidden = ['password', 'remember_token'];
+    protected $fillable = ['firstname', 'lastname', 'user','email','password','birth','gender','password'];
+    protected $hidden = ['remember_token'];
 	
 	public function getCourses(){
-		return $this->hasMany(CoursesMeta::class);
+		$instance = $this->hasMany(CoursesMeta::class)->where('type','=', 2);
+    	return $instance;
+	}
+	
+	public function getFavoriteCourses(){
+		$instance = $this->hasMany(CoursesMeta::class)->where('type','=', 1);
+    	return $instance;
 	}
 
 	public function getBirthAttribute(){

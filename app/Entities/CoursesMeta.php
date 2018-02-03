@@ -11,5 +11,8 @@ class CoursesMeta extends Model implements Transformable{
 
     protected $table = 'courses_meta';
     protected $fillable = ['user_id', 'course_id'];
-
+	
+	public function course(){
+		return $this->belongsTo(Course::class);
+	}
 }

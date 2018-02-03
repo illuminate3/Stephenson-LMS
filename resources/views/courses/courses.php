@@ -15,7 +15,11 @@
 									<?php } else {?>
 										<img src="<?php echo $course['cover'] ?>">
 									<?php }?>
-									<a class="btn-floating halfway-fab waves-effect waves-light teal"><i class="material-icons">watch_later</i></a>
+
+									<!--<form method="post" action=""> -->
+										<button class="btn-floating halfway-fab waves-effect waves-light grey" type="submit"><i class="material-icons">watch_later</i></button>
+										<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+									<!--</form>-->
 								</div>
 								
 								<div class="card-content">

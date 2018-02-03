@@ -42,6 +42,7 @@
 						<?php if (Auth::check()) {?>
 						<ul id="user-menu" class="dropdown-content">
 							<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a></li>
+							<li><a href="<?php echo URL::to('/meus-cursos'); ?>">Meus Cursos</a></li>
 							<?php if(Auth::user()->permission == "app.admin") {?>
 							<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
 							<?php } ?>

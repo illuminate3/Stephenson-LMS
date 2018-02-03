@@ -130,6 +130,31 @@ class Controller extends BaseController{
 		echo view('profile/settings', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');
 	}
+	
+		
+	public function userCourses(){
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$user = $this->repository->find(Auth::user()->id);
+		$courses = $user->getCourses;
+		$loop = 'studying';
+		
+		$title = "Meus Cursos - Escola LTG";
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('courses.user_courses',['courses' => $courses, 'loop' => $loop])->render();
+		echo view('footer')->render();	
+	}
+	
+	public function userFavoriteCourses(){
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$user = $this->repository->find(Auth::user()->id);
+		$courses = $user->getFavoriteCourses;
+		$loop = 'favorites';
+		
+		$title = "Cursos Favoritos - Escola LTG";
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		echo view('courses.user_courses',['courses' => $courses, 'loop' => $loop])->render();
+		echo view('footer')->render();	
+	}
 		
 	
 	public function chat(){
