@@ -137,6 +137,8 @@ html, body {height: 100%;background: #ececec}
 
 .no-module{padding: 15px;}
 .module{width: 100%;display: block;margin: 10px 0px;background: white;}
+.drag-module{float: left;width: 40px;height: 60px;background: #ddd;text-align: center;margin-right: 15px;cursor:move}
+.drag-module i{line-height: 60px;}
 .module-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
 .module-name{float: left;cursor: pointer;height: 60px;display: block;}
 .module-edit{float: left;height: 60px;display: none;}

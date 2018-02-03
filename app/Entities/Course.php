@@ -25,7 +25,7 @@ class Course extends Model{
 	}
 	
 	public function getModules(){
-		return $this->hasMany(Module::class);
+		return $this->hasMany(Module::class)->orderBy('position', 'asc');
 	}
 	
 	public function getLessons(){

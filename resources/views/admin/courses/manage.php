@@ -29,8 +29,9 @@
 	<div id="modules-list">
 		<?php $modules = $course->getModules; foreach ($modules as $module) {  ?>
 		
-			<div class="module">
+			<div class="module" id="module-<?php echo $module['position']; ?>">
 				<div class="module-header z-depth-1">
+					<div class="drag-module"><i class="material-icons">drag_handle</i></div>
 					<div class="module-name">
 						<?php echo $module['name']; ?>
 					</div> 
