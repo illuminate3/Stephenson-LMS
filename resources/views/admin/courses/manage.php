@@ -1,15 +1,15 @@
-<div class="container">
-	<nav class="z-depth-0 transparent breadcrumbs">
-		<div class="nav-wrapper">
-			<div class="col s12">
-				<a href="<?php echo URL::route('courses.index') ?>" class="breadcrumb">Cursos</a>
-				<a href="#" class="breadcrumb">Gerenciar Curso</a>
-			</div>
-		</div>
-	</nav>
+<div id="course-header">
+	<div class="container">
+		<h2>Gerenciar <?php echo $course['title'];?></h2>	
+		      <ul class="tabs">
+        <li class="tab col s3"><a href="<?php echo URL::route('courses.edit', ["course" => $course->id]) ?>" target="_self">Editar</a></li>
+        <li class="tab col s3"><a href="<?php echo URL::route('courses.manage', ["course" => $course->id]) ?>" target="_self" class="active">Gerenciar</a></li>
+        <li class="tab col s3"><a href="<?php echo URL::route('courses.statistics', ["course" => $course->id]) ?>" target="_self">Estatísticas</a></li>
+      </ul>
+	</div>
+</div>
 
-	<h2>Gerenciar <?php echo $course['title'];?></h2>
-	
+<div class="container">
 	<div class="row">
 		<div class="col s12">
 			<?php 
@@ -26,11 +26,11 @@
 	
 	<?php if(count($course->getModules) > 0){?>
 
-	<div id="modules-list" class="card">
+	<div id="modules-list">
 		<?php $modules = $course->getModules; foreach ($modules as $module) {  ?>
 		
 			<div class="module">
-				<div class="module-header">
+				<div class="module-header z-depth-1">
 					<div class="module-name">
 						<?php echo $module['name']; ?>
 					</div> 

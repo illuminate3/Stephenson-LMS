@@ -136,7 +136,7 @@ html, body {height: 100%;background: #ececec}
 .breadcrumb:before{color: #ccc }
 
 .no-module{padding: 15px;}
-.module{width: 100%;display: block;}
+.module{width: 100%;display: block;margin: 10px 0px;background: white;}
 .module-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
 .module-name{float: left;cursor: pointer;height: 60px;display: block;}
 .module-edit{float: left;height: 60px;display: none;}
@@ -170,3 +170,6 @@ html, body {height: 100%;background: #ececec}
 
 #course-info .info:first-child{padding-left: 0px;}
 #course-info .info i{line-height: 50px;float: left;margin-right: 10px;}
+
+#course-header{background: #00bfa5;}
+#course-header h2{margin: 0px;padding: 25px 0px;color: white}

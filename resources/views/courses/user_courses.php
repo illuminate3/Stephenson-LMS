@@ -35,12 +35,12 @@
 						<?php } ?>
 					</div>
 				<?php } else {
-				if($loop == "studying"){{
-					echo "<p>Você não está cursando nenhum curso atualmente.</p>";
-				} else{
-					echo "<p>Você não favoritou nenhum curso.</p>";
-				}
-				<?php }  ?>
+					if($loop == "studying"){
+						echo "<p>Você não está cursando nenhum curso atualmente.</p>";
+					} else{
+						echo "<p>Você não favoritou nenhum curso.</p>";
+					}
+				}  ?>
 		</div>
 	</div>
 </main>

@@ -1,18 +1,28 @@
-<div class="col s3">
-	<div id="profile-cover">
+<div id="profile-cover">
+	<div class="container">
 		<div id="profile-picture">
 			<img src="<?php echo url('images/depoimento/user1.png');?>">
 		</div>
 
 		<div id="profile-name"><?php echo $user['firstname'] . " " . $user['lastname']; ?></div>
-	</div>
-	<div class="collection" id="profile-links">
-		<a href="<?php echo URL::route('profile.profile', ['profile' => $user->user]); ?>" class="collection-item">Feed</a>
-		<a href="<?php echo URL::route('profile.about', ['profile' => $user->user]); ?>" class="collection-item">Sobre</a>
-		<a href="<?php echo URL::route('profile.following', ['profile' => $user->user]);  ?>" class="collection-item">Seguindo</a>
-		<a href="<?php echo URL::route('profile.followers', ['profile' => $user->user]);  ?>" class="collection-item">Seguidores</a>
-		<?php if($isLoggedProfile){?>
-		<a href="<?php echo URL::route('profile.settings', ['profile' => $user->user]);  ?>" class="collection-item">Configurações</a>
-		<?php } ?>
+		
+		<div id="profile-buttons">
+			<button class="btn"><i class="material-icons left">rss_feed</i>Seguir</button>
+			<button class="btn"><i class="material-icons left">message</i>Mensagem</button>
+		</div>
 	</div>
 </div>
+
+<div class="container">
+	<div class="row">
+		<div class="col s3">
+			<ul class="collection">
+				<li class="collection-item"><a href="<?php echo URL::route('profile.profile', ['profile' => $user->user]); ?>">Feed</a></li>
+				<li class="collection-item"><a href="<?php echo URL::route('profile.about', ['profile' => $user->user]); ?>">Sobre</a></li>
+				<li class="collection-item"><a href="<?php echo URL::route('profile.following', ['profile' => $user->user]);  ?>">Seguindo</a></li>
+				<li class="collection-item"><a href="<?php echo URL::route('profile.followers', ['profile' => $user->user]);  ?>">Seguidores</a></li>
+			<?php if($isLoggedProfile){?>
+				<li class="collection-item"><a href="<?php echo URL::route('profile.settings', ['profile' => $user->user]);  ?>" >Configurações</a></li>
+			<?php } ?>
+			</ul>
+

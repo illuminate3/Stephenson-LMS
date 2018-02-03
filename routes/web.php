@@ -78,6 +78,7 @@ Route::resource('admin/tutorials', 'TutorialsController', ['except' => ['show']]
 /* ROTAS PARA O CONTROLE DE CURSOS */
 Route::get('/admin/courses/trash', ['as'=>'courses.trash','uses' => 'CoursesController@trash']);
 Route::get('/admin/courses/{course}/manage', ['as'=>'courses.manage','uses' => 'CoursesController@manage', ['except' => ['show']]]);
+Route::get('/admin/courses/{course}/statistics', ['as'=>'courses.statistics','uses' => 'CoursesController@manage', ['except' => ['show']]]);
 Route::resource('admin/courses', 'CoursesController');
 
 /* ROTAS PARA O CONTROLE DE MÓDULOS */
