@@ -1916,6 +1916,7 @@ class ComposerStaticInit4adb8bc5d63b536b01b23123c553bd18
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'LessonMeta' => __DIR__ . '/../..' . '/database/migrations/2018_02_03_225956_LessonMeta.php',
         'MediaEmbed\\MediaEmbed' => __DIR__ . '/..' . '/dereuromark/media-embed/src/MediaEmbed/MediaEmbed.php',
         'MediaEmbed\\Object\\MediaObject' => __DIR__ . '/..' . '/dereuromark/media-embed/src/MediaEmbed/Object/MediaObject.php',
         'MediaEmbed\\Object\\ObjectInterface' => __DIR__ . '/..' . '/dereuromark/media-embed/src/MediaEmbed/Object/ObjectInterface.php',

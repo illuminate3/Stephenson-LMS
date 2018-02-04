@@ -36,6 +36,7 @@ Route::get('/perfil/{profile}/settings', ['as' => 'profile.settings', 'uses' => 
 /* ROTAS PARA OS CURSOS */
 Route::get('/cursos', ['as'=>'courses.archive','uses' => 'CoursesController@archive']);
 Route::get('/curso/{curso}', ['as'=>'courses.single','uses' => 'CoursesController@single']);
+Route::get('/curso/{curso}/{page}', ['as'=>'courses.single_content','uses' => 'CoursesController@singlePage']);
 Route::get('/meus-cursos', ['as'=>'courses.user_courses','uses' => 'Controller@userCourses']);
 Route::get('/meus-cursos/favoritos', ['as'=>'courses.user_favorite_courses','uses' => 'Controller@userFavoriteCourses']);
 Route::post('/curso/enter', ['as'=>'courses.enter_course','uses' => 'CoursesController@enterOrFavoriteCourse']);

@@ -47,6 +47,8 @@
 						</form>
 					</div>
 					
+					<div class="action">
+					</div>
 					<div class="action edit-button">
 						<button type="submit" class="teal z-depth-1 waves-effect"><i class="material-icons">edit</i></button>
 					</div>

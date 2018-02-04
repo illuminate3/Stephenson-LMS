@@ -163,13 +163,12 @@ nav .brand-logo {float: left;position: relative;}
 
 
 #course-info .info{
-	display: inline-block;
+	display:block;
 	line-height: 50px;
-	padding: 0px 10px;
 	color: #333;
 	font-size: 17px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ececec
 }
 
-#course-info .info:first-child{padding-left: 0px;}
 #course-info .info i{line-height: 50px;float: left;margin-right: 10px;}
