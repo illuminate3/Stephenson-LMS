@@ -1,0 +1,37 @@
+*{box-sizing: border-box}
+html,body{height: 100%;}
+.container{
+	width: 90%;
+}
+#lesson-left-bar{
+	float: left;
+	width: 300px;
+	height: 100%;
+}
+
+#lesson-video{
+	float: left;
+	width: calc(100% - 300px);
+	background: #222;
+	color: white;
+	height: 100%;
+}
+
+
+.header-bar{padding: 0px 5%;background: #ececec;height: 70px;line-height: 70px;}
+.header-bar button{float:right;height: 40px;line-height: 40px;border: none;background: transparent;margin: 15px 0px;}
+.header-bar button i{line-height: 40px;}
+.header-bar h4{margin: 0px;text-transform: uppercase;font-size: 1.3em;line-height: 70px;float: left;}
+
+.no-module{padding: 15px;}
+.module{width: 100%;display: block;}
+.module-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
+.module-name{float: left;cursor: pointer;height: 60px;display: block;}
+.module-name i{float: left;margin-right: 10px; line-height: 60px;}
+.module-body{display: none;border-bottom: 1px solid #ccc;}
+.lessons-list{padding: 15px;}
+.no-lesson{padding: 15px 10px;}
+.lesson{line-height: 50px;border-bottom: 1px solid #ccc;padding: 0px 20px;}
+.lesson i{line-height: 50px;float: left;margin-right: 10px;}
+.lesson:last-child{border-bottom:none;}
+.lesson a{color: #26a69a;}

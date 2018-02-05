@@ -48,8 +48,8 @@ class LessonsController extends Controller
 		$id = $matches[1];
 		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 		
-		echo view('courses.lessons.header_lesson', ['title' => $lesson->title]);
-		echo view('courses.lessons.single', ['course' => $course, 'lesson' => $lesson, 'video' => $video_embed]);
+		echo view('courses.lessons.header_lesson', ['title' => $lesson->title, 'course' => $course, ]);
+		echo view('courses.lessons.single', ['lesson' => $lesson, 'video' => $video_embed]);
 		echo view('courses.lessons.footer_lesson');
 	}
 	
