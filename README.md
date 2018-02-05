@@ -1,6 +1,7 @@
 ## Bem vindo ao projeto Escola LTG EAD
+Projeto de plataforma EAD desenvolvido utilizando PHP + Laravel 5.5
 
-# Instalação em localhost
+### Instalação em localhost
 
 OBS: É necessário ter composer instalado em seu computador. Baixe [aqui](https://getcomposer.org/)
 
@@ -16,6 +17,6 @@ $ php artisan migrate
 ```
 $ php artisan serve
 ```
-Esse comando irá iniciar o servidor, caso ocorra tudo bem acesse localhost:800 e o projeto estará funcionando.
+Esse comando irá iniciar o servidor, caso ocorra tudo bem, acesse localhost:800 e o projeto estará funcionando.
 
-[![TUTORIAL EM VÍDEO](http://img.youtube.com/vi/n1hsaOmuB_0/0.jpg)](http://www.youtube.com/watch?v=n1hsaOmuB_0)
+[TUTORIAL EM VÍDEO](http://www.youtube.com/watch?v=n1hsaOmuB_0)
