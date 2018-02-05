@@ -36,11 +36,15 @@ Route::get('/perfil/{profile}/settings', ['as' => 'profile.settings', 'uses' => 
 /* ROTAS PARA OS CURSOS */
 Route::get('/cursos', ['as'=>'courses.archive','uses' => 'CoursesController@archive']);
 Route::get('/curso/{curso}', ['as'=>'courses.single','uses' => 'CoursesController@single']);
+Route::get('/curso/{curso}/{page}', ['as'=>'courses.single_content','uses' => 'CoursesController@singlePage']);
 Route::get('/meus-cursos', ['as'=>'courses.user_courses','uses' => 'Controller@userCourses']);
 Route::get('/meus-cursos/favoritos', ['as'=>'courses.user_favorite_courses','uses' => 'Controller@userFavoriteCourses']);
 Route::post('/curso/enter', ['as'=>'courses.enter_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
 Route::post('/curso/favorite', ['as'=>'courses.favorite_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
 Route::post('/curso/leave', ['as'=>'courses.leave_course','uses' => 'CoursesController@leaveCourse']);
+
+
+Route::get('/curso/{curso}/learn/{lesson}', ['as'=>'lesson.view_lesson','uses' => 'LessonsController@single']);
 
 /* ROTAS PARA OS TUTORIAIS */
 Route::get('/tutoriais', ['as'=>'tutorials.archive','uses' => 'TutorialsController@archive']);
@@ -82,6 +86,7 @@ Route::get('/admin/courses/{course}/statistics', ['as'=>'courses.statistics','us
 Route::resource('admin/courses', 'CoursesController');
 
 /* ROTAS PARA O CONTROLE DE MÓDULOS */
+Route::post('/admin/course/module/reorder', ['as'=>'module.reorder','uses' => 'ModulesController@reorder']);
 Route::resource('admin/course.module', 'ModulesController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE AULAS */

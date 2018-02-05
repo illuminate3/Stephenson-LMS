@@ -1,3 +1,5 @@
+<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
+
 <div id="course-header">
 	<div class="container">
 		<h2>Gerenciar <?php echo $course['title'];?></h2>	
@@ -29,7 +31,7 @@
 	<div id="modules-list">
 		<?php $modules = $course->getModules; foreach ($modules as $module) {  ?>
 		
-			<div class="module" id="module-<?php echo $module['position']; ?>">
+			<div class="module" id="<?php echo $module['id']; ?>">
 				<div class="module-header z-depth-1">
 					<div class="drag-module"><i class="material-icons">drag_handle</i></div>
 					<div class="module-name">
@@ -62,7 +64,7 @@
 									<a href="<?php echo URL::route('course.module.lesson.edit',['course_id' => $course->id, 'module_id' => $module->id, 'lesson_id' => $lesson->id]);?>"><?php echo $lesson->title; ?></a>
 									
 									<div class="action">
-										<form method="post"action="<?php echo URL::route('course.module.lesson.destroy', ['course_id' => $course->id, 'module_id' =>  $module->id, 'lesson_id' => $lesson -> id]);?>">
+										<form method="post" action="<?php echo URL::route('course.module.lesson.destroy', ['course_id' => $course->id, 'module_id' =>  $module->id, 'lesson_id' => $lesson -> id]);?>">
 											<button type="submit" class="red z-depth-1 waves-effect"><i class="material-icons">remove_circle_outline</i></button>
 											<input type="hidden" value="DELETE" name="_method">
 											<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

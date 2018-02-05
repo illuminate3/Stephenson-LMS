@@ -33,6 +33,6 @@ class Course extends Model{
 	}
 	
 	public function getStudents(){
-		return $this->hasMany(CoursesMeta::class);
+		return $this->hasMany(CoursesMeta::class)->where('type', '=', 2);
 	}
 }

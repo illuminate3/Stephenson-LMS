@@ -118,10 +118,55 @@ class CoursesController extends Controller
 		$course = $this->repository->find($course);
 		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
 		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
 		$title =  $course['title']." - Escola LTG";
+		
 		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('courses/course', ['course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();
+		
+		if(Auth::user()){
+			$user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
+			if($user_joined){
+				echo view('courses/course_panel_header', ['course' => $course, 'user_joined' => $user_joined, 'page' => "single"])->render();
+				echo view('courses/course_panel', ['course' => $course, 'user_joined' => $user_joined])->render();
+				echo view('courses/course_panel_footer');
+			} else{
+				echo view('courses/course', ['course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();	
+			}
+		} else{
+			echo view('courses/course', ['course' => $course, 'modules' => $modules_list])->render();
+		}
+
+		echo view('footer')->render();
+	}
+	
+	public function singlePage($course, $page){
+		$course = $this->repository->find($course);
+		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
+		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
+		$title =  $course['title']." | Conteúdo - Escola LTG";
+		
+		echo view('header', ['title' => $title, 'categories' => $categories]);
+		
+		if($user_joined){
+			echo view('courses/course_panel_header', ['course' => $course, 'user_joined' => $user_joined, 'page' => $page])->render();
+			
+			if($page == "content"){ 
+				echo view('courses/course_panel_content', ['course' => $course, 'user_joined' => $user_joined])->render();
+			}
+			
+			if($page == "notices"){ 
+				echo view('courses/course_panel_content', ['course' => $course, 'user_joined' => $user_joined])->render();
+			}
+			
+			if($page == "rating"){ 
+				echo view('courses/course_panel_content', ['course' => $course, 'user_joined' => $user_joined])->render();
+			}
+			
+			echo view('courses/course_panel_footer');
+		} else{
+			echo view('courses/course', ['course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();	
+		}
+
 		echo view('footer')->render();
 	}
 

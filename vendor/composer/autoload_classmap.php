@@ -1595,6 +1595,7 @@ return array(
     'League\\Flysystem\\Util\\ContentListingFormatter' => $vendorDir . '/league/flysystem/src/Util/ContentListingFormatter.php',
     'League\\Flysystem\\Util\\MimeType' => $vendorDir . '/league/flysystem/src/Util/MimeType.php',
     'League\\Flysystem\\Util\\StreamHasher' => $vendorDir . '/league/flysystem/src/Util/StreamHasher.php',
+    'LessonMeta' => $baseDir . '/database/migrations/2018_02_03_225956_LessonMeta.php',
     'MediaEmbed\\MediaEmbed' => $vendorDir . '/dereuromark/media-embed/src/MediaEmbed/MediaEmbed.php',
     'MediaEmbed\\Object\\MediaObject' => $vendorDir . '/dereuromark/media-embed/src/MediaEmbed/Object/MediaObject.php',
     'MediaEmbed\\Object\\ObjectInterface' => $vendorDir . '/dereuromark/media-embed/src/MediaEmbed/Object/ObjectInterface.php',

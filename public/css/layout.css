@@ -117,10 +117,12 @@ nav .brand-logo {float: left;position: relative;}
 .module{width: 100%;display: block;}
 .module-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
 .module-name{float: left;cursor: pointer;height: 60px;display: block;}
-.module-body{display: none;	border-bottom: 1px solid #ccc;}
+.module-name i{float: left;margin-right: 10px; line-height: 60px;}
+.module-body{display: none;border-bottom: 1px solid #ccc;}
 .lessons-list{padding: 15px;}
-.no-lesson{padding: 15px;}
-.lesson{line-height: 50px;border-bottom: 1px solid #ccc;}
+.no-lesson{padding: 15px 10px;}
+.lesson{line-height: 50px;border-bottom: 1px solid #ccc;padding: 0px 20px;}
+.lesson i{line-height: 50px;float: left;margin-right: 10px;}
 .lesson:last-child{border-bottom:none;}
 .lesson a{color: #26a69a;}
 
@@ -163,13 +165,12 @@ nav .brand-logo {float: left;position: relative;}
 
 
 #course-info .info{
-	display: inline-block;
+	display:block;
 	line-height: 50px;
-	padding: 0px 10px;
 	color: #333;
 	font-size: 17px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ececec
 }
 
-#course-info .info:first-child{padding-left: 0px;}
 #course-info .info i{line-height: 50px;float: left;margin-right: 10px;}
