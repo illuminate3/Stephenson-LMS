@@ -12,7 +12,8 @@ use App\Http\Requests\ModuleUpdateRequest;
 use App\Repositories\ModuleRepository;
 use App\Validators\ModuleValidator;
 use App\Services\ModuleService;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class ModulesController extends Controller
 {
@@ -55,6 +56,16 @@ class ModulesController extends Controller
 		 
 		 return redirect()->back();
     }
+	
+	public function reorder(){
+		$rm = DB::table('modules')->orderBy('position', 'asc');
+		$module_id = Input::get('moduleId');
+		$module_index = Input::get('moduleIndex');
+		
+		foreach ($rm as $m){
+			return DB::table('modules')->where('id', '=', $module_id)->update(array('position' => $module_index));
+		}
+	}
 	
     /**
      * Update the specified resource in storage.

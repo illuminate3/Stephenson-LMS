@@ -7,10 +7,24 @@
 		<script>$('#lfm').filemanager('file');</script>
 		<script type="text/javascript" src="<?php echo url('../js/script.js'); ?>"></script>
  <script>
-  $( function() {
-    $( "#modules-list" ).sortable();
-    $( "#modules-list" ).disableSelection();
-  } );
+    $( "#modules-list" ).sortable({
+		 update: function(){
+			$.map($(this).find('.module'),function(el){
+				var moduleId = el.id;
+				var moduleIndex = $(el).index();
+				
+				$.ajax({
+					url: '/admin/course/module/reorder',
+					type: 'POST',
+					dataType: 'json',
+					data: {moduleId: moduleId, moduleIndex: moduleIndex},
+				   headers: {
+					 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				  }
+				})
+			});
+		 }
+	 });
   </script>
 	</body>
 </html>

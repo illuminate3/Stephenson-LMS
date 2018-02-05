@@ -7,7 +7,7 @@
 							<div class="module">
 								<div class="module-header">
 									<div class="module-name">
-										<?php echo $module['name']; ?>
+										<i class="material-icons">folder</i><?php echo $module['name']; ?>
 									</div> 
 								</div>
 
@@ -17,7 +17,7 @@
 										<div class="lessons-list">
 											<?php $lessons = $module->getLessons; foreach ($lessons as $lesson) { ?>
 												<div class="lesson">
-													<?php echo $lesson->title; ?> - <span class="lesson-time"><?php echo $lesson->time; ?></span>
+													<i class="material-icons">play_circle_outline</i><a href="<?php echo URL::route('lesson.view_lesson', ['course_id' => $course->id, 'lesson' => $lesson->id]);?>"><?php echo $lesson->title; ?></a> - <span class="lesson-time"><?php echo $lesson->time; ?></span>
 												</div>
 											<?php }?>
 										</div>

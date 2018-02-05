@@ -39,6 +39,20 @@ class LessonsController extends Controller
         $this->module_repository  = $moduleRepository;
     }
 
+	public function single($course_id, $lesson_id){
+		$course = $this->course_repository->find($course_id);
+		$lesson = $this->repository->find($lesson_id);
+		$url = $lesson->video_url;
+		preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
+
+		$id = $matches[1];
+		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+		
+		echo view('courses.lessons.header_lesson', ['title' => $lesson->title]);
+		echo view('courses.lessons.single', ['course' => $course, 'lesson' => $lesson, 'video' => $video_embed]);
+		echo view('courses.lessons.footer_lesson');
+	}
+	
 	public function create($course, $module){
 		$title = "Adicionar Aula - Escola LTG";
 		$atual_course = $this->course_repository->find($course);
