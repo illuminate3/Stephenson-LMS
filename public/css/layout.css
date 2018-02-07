@@ -19,6 +19,7 @@ nav .brand-logo {float: left;position: relative;}
 }
 
 #profile-picture img{height: 180px;}
+
 #profile-picture{
 	width:  180px;
 	height: 180px;
@@ -27,6 +28,26 @@ nav .brand-logo {float: left;position: relative;}
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
 	margin: auto;
 }
+
+#change-photo{
+	position: absolute;
+	width:  180px;
+	height: 180px;
+	border-radius: 100%;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	color: white;
+	transition: 0.4s;
+	opacity: 0;
+}
+
+#change-photo:hover{opacity: 1;}
+
+#change-photo i{
+	line-height: 180px;
+	font-size: 50px;
+}
+
 
 #profile-name{
 	color: white;

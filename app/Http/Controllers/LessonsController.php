@@ -63,6 +63,10 @@ class LessonsController extends Controller
 		echo view('admin.footer');
 	}
 	
+	public function load_form($lesson, $form){
+		echo view('admin.lessons.forms.'. $form);
+	}
+	
 	public function edit($course, $module, $lesson){
 		$course = $this->course_repository->find($course);
 		$module = $this->module_repository->find($module);

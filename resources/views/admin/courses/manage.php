@@ -1,4 +1,7 @@
+
 <meta name="csrf-token" content="<?php echo csrf_token(); ?>">
+
+<div id="form-modal" class="modal"></div>
 
 <div id="course-header">
 	<div class="container">
@@ -70,6 +73,12 @@
 											<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 										</form>
 									</div>
+		
+										<div class="action"><a href="#form-modal" class="modal-trigger" id="add_note"><button class="blue"><i class="material-icons">note_add</i></button></a></div>
+										<div class="action"><a href="#form-modal" class="modal-trigger" id="add_poll"><button class="blue"><i class="material-icons">question_answer</i></button></a></div>
+										<div class="action"><a href="#form-modal" class="modal-trigger" id="add_image"><button class="blue"><i class="material-icons">photo</i></button></a></div>
+										<div class="action"><a href="#form-modal" class="modal-trigger" id="add_video"><button class="blue"><i class="material-icons">play_arrow</i></button></a></div>
+
 								</div>
 							<?php }?>
 						</div>

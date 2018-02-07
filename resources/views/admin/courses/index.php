@@ -23,7 +23,7 @@
 	<div class="row">
 		<?php foreach($courses as $course) { ?>
 			<div class="col s6">
-				<div class="card">
+				<div class="card ">
 					<div class="card-image">
 						<img src="<?php echo $course->cover; ?>">
 					</div>
@@ -32,7 +32,7 @@
 						<span class="card-title"><a href="<?php echo URL::route('courses.edit', ['course_id' =>  $course['id']]);?>"><?php echo $course->title; ?></a></span>
 						<div id="course-info">
 							<div class="info"><i class="material-icons">person</i><?php echo count($course->getStudents);?> aluno</div>
-							<div class="info"><?php echo count($course->getModules)?> módulos</div>
+							<div class="info"><i class="material-icons">folder</i><?php echo count($course->getModules)?> módulos</div>
 							<div class="info"><i class="material-icons">video_library</i><?php echo count($course->getLessons)?> aulas</div>
 						</div>
 						<p>I am a very simple card. I am good at containing small bits of information.

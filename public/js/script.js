@@ -1,6 +1,7 @@
-$( document ).ready(function(){
+$(document).ready(function(){
 	$(".button-collapse").sideNav();
 	$('.dropdown-button').dropdown({ belowOrigin: true, alignment: 'right' });
+	$('.modal').modal();
 	
 	$('.dropdown-menu-item').click(function(){
 		if($(this).find('ul').is(':visible')){
@@ -32,25 +33,15 @@ $( document ).ready(function(){
 		$(this).parent().find('.module-name').hide();
 		$(this).parent().find('.module-edit').show();
 	});
-	
-	  $('.chips-initial').material_chip({
-    data: [{
-      tag: 'Apple',
-    }, {
-      tag: 'Microsoft',
-    }, {
-      tag: 'Google',
-    }],
-  });
-	  $('.chips-placeholder').material_chip({
-    placeholder: 'Enter a tag',
+
+	$('.chips-placeholder').material_chip({
+    placeholder: 'Digite uma Tag',
     secondaryPlaceholder: '+Tag',
   });
 	
 	$('select').material_select();
 
-  tinymce.init({
-    selector: '.tinymce'
-  });
-
+  tinymce.init({selector: '.tinymce'});
+	
+   
 });
