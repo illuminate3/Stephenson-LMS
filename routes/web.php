@@ -90,7 +90,9 @@ Route::post('/admin/course/module/reorder', ['as'=>'module.reorder','uses' => 'M
 Route::resource('admin/course.module', 'ModulesController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE AULAS */
+Route::post('/admin/course/module/lesson/reorder', ['as'=>'lesson.reorder','uses' => 'LessonsController@reorder']);
 Route::get('/admin/lesson/{lesson}/form/{form}', ['as'=>'lesson.load_form','uses' => 'LessonsController@load_form']);
+Route::post('/admin/lesson/{lesson}/material/create/{material}', ['as'=>'lesson.create_material','uses' => 'LessonsController@createMaterial']);
 Route::resource('admin/course.module.lesson', 'LessonsController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE PAGINAS */

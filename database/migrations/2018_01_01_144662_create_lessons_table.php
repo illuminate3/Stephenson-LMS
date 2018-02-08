@@ -23,6 +23,7 @@ class CreateLessonsTable extends Migration
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('module_id');
             $table->string('thumbnail', 60)->nullable();
+            $table->integer('position')->nullable();
             $table->rememberToken();
             $table->timestamps();
 			

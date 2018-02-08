@@ -17,6 +17,7 @@ class LessonMeta extends Migration
 			$table->increments('id');
 			$table->unsignedInteger('lesson_id');
 		 	$table->integer('type');
+		 	$table->string('title');
 			$table->text('content');
 			$table->timestamps();
 

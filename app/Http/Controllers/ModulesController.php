@@ -58,7 +58,7 @@ class ModulesController extends Controller
     }
 	
 	public function reorder(){
-		$rm = DB::table('modules')->orderBy('position', 'asc');
+		$rm = DB::table('modules');
 		$module_id = Input::get('moduleId');
 		$module_index = Input::get('moduleIndex');
 		

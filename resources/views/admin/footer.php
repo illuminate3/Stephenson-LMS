@@ -2,13 +2,13 @@
 		<script type="text/javascript" src="<?php echo url('../js/jquery-3.2.1.min.js'); ?>"></script>
 		<script type="text/javascript" src="<?php echo url('../js/jquery-ui.min.js'); ?>"></script>
 		<script type="text/javascript" src="<?php echo url('../js/materialize.min.js'); ?>"></script>
-		<script type="text/javascript" src="<?php echo url('../js/tinymce/tinymce.min.js'); ?>"></script>
+		<script type="text/javascript" src="<?php echo url('../js/admin/tinymce/tinymce.min.js'); ?>"></script>
 		<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 		<script>$('#lfm').filemanager('file');</script>
-		<script type="text/javascript" src="<?php echo url('../js/script.js'); ?>"></script>
-		<script type="text/javascript" src="<?php echo url('../js/ajax.js'); ?>"></script>
+		<script type="text/javascript" src="<?php echo url('../js/admin/script.js'); ?>"></script>
 		<script>
 			 $( "#modules-list" ).sortable({
+				 handle: '.drag-module',
 				 update: function(){
 					$.map($(this).find('.module'),function(el){
 						var moduleId = el.id;
@@ -26,13 +26,33 @@
 					});
 				 }
 			 });
+			
+			$( ".lessons-list" ).sortable({
+				handle: '.drag-lesson', 
+					update: function(){
+					$.map($(this).find('.lesson'),function(el){
+						var lessonId = el.id;
+						var lessonIndex = $(el).index();
+
+						$.ajax({
+							url: '/admin/course/module/lesson/reorder',
+							type: 'POST',
+							dataType: 'json',
+							data: {lessonId: lessonId, lessonIndex: lessonIndex},
+							headers: {
+							 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						  }
+						})
+					});
+				 }
+			});
 
 			$('.modal').modal({
-				ready: function(trigger) { // Callback for Modal open. Modal and trigger parameters available.
+				ready: function(trigger, model) { // Callback for Modal open. Modal and trigger parameters available.
 					var id = trigger["0"].M_Modal.openingTrigger["0"].id;
-
+					var lesson = model["0"].parentNode.parentNode.parentNode.id;
 					$.ajax({
-						url:'<?php echo URL::to('/admin/lesson/1/form/'); ?>/' + id,
+						url:'<?php echo URL::to('/admin/lesson'); ?>/' + lesson + '/form/' + id,
 						headers: {
 							 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 						},
@@ -42,6 +62,7 @@
 						$('#form-modal').html($data);    
 						}
 					});
+
 				},
 				complete: function() { $('#form-modal').empty(); } // Callback for Modal close
 				}

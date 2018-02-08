@@ -136,26 +136,28 @@ html, body {height: 100%;background: #ececec}
 .breadcrumb:before{color: #ccc }
 
 .no-module{padding: 15px;}
-.module{width: 100%;display: block;margin: 10px 0px;background: white;}
-.drag-module{float: left;width: 40px;height: 60px;background: #ddd;text-align: center;margin-right: 15px;cursor:move}
-.drag-module i{line-height: 60px;}
-.module-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
-.module-name{float: left;cursor: pointer;height: 60px;display: block;}
+.module, .lesson{width: 100%;display: block;margin: 10px 0px;background: white;}
+.drag-module, .drag-lesson{float: left;width: 40px;height: 60px;background: #ddd;text-align: center;margin-right: 15px;cursor:move}
+.drag-module i, .drag-lesson i{line-height: 60px;}
+.module-header, .lesson-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
+.module-name, .lesson-name{float: left;cursor: pointer;height: 60px;display: block;}
 .module-edit{float: left;height: 60px;display: none;}
 .module-edit input{height: 60px;}
 .module-header .action, .lesson .action{float: right;padding: 5px 0px; margin-left: 10px; margin-right: 0px;}
-.module-body{display: none;	border-bottom: 1px solid #ccc;}
+.module-body{display: none;}
 .lessons-list{padding: 15px;}
 .no-lesson{padding: 15px;}
 .create-lesson{width: 100%;height: 60px;padding: 10px 15px;background:#ddd;}
 .create-lesson button{height: 40px;}
-.lesson{line-height: 50px;border-bottom: 1px solid #ccc;}
-.lesson a{color: #26a69a;}
-.lesson:last-child{border-bottom:none;}
 #create-module{height: 60px;padding: 10px 15px;}
 #create-module input{float: left;width: calc(100% - 170px);height: 40px;}
 #create-module button{float: right;width: 150px;height: 40px;}
 .list-itens{padding: 10px;}
+
+.lesson-header{}
+.lesson-body{display: none;padding: 15px;background: #ececec;color: #333}
+.material{line-height: 50px;padding: 0px 10px;}
+.material i{line-height: 50px;float: left;}
 
 .page-title {height: 50px;margin-top: 30px;margin-bottom: 30px;}
 .page-title h2{float: left;font-size: 50px;line-height: 50px;margin: 0px;font-weight: lighter;}

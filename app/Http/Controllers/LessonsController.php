@@ -14,7 +14,8 @@ use App\Repositories\CourseRepository;
 use App\Repositories\ModuleRepository;
 use App\Validators\LessonValidator;
 use App\Services\LessonService;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class LessonsController extends Controller
 {
@@ -38,6 +39,16 @@ class LessonsController extends Controller
         $this->course_repository  = $courseRepository;
         $this->module_repository  = $moduleRepository;
     }
+	
+	public function reorder(){
+		$rs = DB::table('modules');
+		$lesson_id = Input::get('lessonId');
+		$lesson_index = Input::get('lessonIndex');
+		
+		foreach ($rs as $s){
+			return DB::table('lessons')->where('id', '=', $lesson_id)->update(array('position' => $lesson_index));
+		}
+	}
 
 	public function single($course_id, $lesson_id){
 		$course = $this->course_repository->find($course_id);
@@ -64,7 +75,19 @@ class LessonsController extends Controller
 	}
 	
 	public function load_form($lesson, $form){
-		echo view('admin.lessons.forms.'. $form);
+		echo view('admin.lessons.forms.'. $form, ['lesson' => $lesson, 'material' => $form]);
+	}
+	
+	public function createMaterial(LessonCreateRequest $request, $lesson, $material){
+		$lesson = $lesson;
+		$material = $material;
+		$title= $request->title;
+		$content = $request->content;
+		
+		if($create = $this->repository->create_material($lesson, $material, $title, $content)){
+			return redirect()->back();
+		}
+		
 	}
 	
 	public function edit($course, $module, $lesson){

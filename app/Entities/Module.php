@@ -12,6 +12,6 @@ class Module extends Model{
 	 protected $hidden = ['remember_token'];
 	
 	 public function getLessons(){
-		 return $this->hasMany(Lesson::class);
+		 return $this->hasMany(Lesson::class)->orderBy('position', 'asc');
 	 }
 }

@@ -5,10 +5,10 @@
 		<title><?php echo $title; ?></title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+		<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 		<link rel="stylesheet" href="<?php echo url('../css/materialize.min.css'); ?>">
 		<link rel="stylesheet" type="text/css" href="<?php echo url('../css/admin/layout.css'); ?>">
 		<link rel="stylesheet" type="text/css" href="<?php echo url('../css/admin/material-icons.css'); ?>">
-		<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 	</head>
 
 	<body>
@@ -92,7 +92,7 @@
 					<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
 					<ul class="right hide-on-med-and-down">
-						<li><a  class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
+						<li><a class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
 						<li><a href="<?php echo URL::to('/'); ?>"><?php echo __('messages.visit_site'); ?></a></li>
 					</ul>
 					
