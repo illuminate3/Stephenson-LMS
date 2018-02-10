@@ -15,7 +15,7 @@ use App\Services\CategoriesService;
 
 
 
-class CategoriesController extends Controller{
+class CategoriesController{
     protected $repository;
     protected $validator;
     protected $service;
@@ -106,4 +106,12 @@ class CategoriesController extends Controller{
 		 
 		 return redirect()->back(); 
     }
+	
+	public function category($category){
+		$title = $category . " - Escola LTG";	
+		
+		echo view('header', ['title' => $title]);
+		echo view('categories.category');
+		echo view('footer');
+	}
 }

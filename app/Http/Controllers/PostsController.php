@@ -15,7 +15,7 @@ use App\Services\PostService;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\CommentRepository;
 
-class PostsController extends Controller
+class PostsController
 {
 
     protected $repository;

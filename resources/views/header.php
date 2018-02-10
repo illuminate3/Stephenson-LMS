@@ -16,15 +16,8 @@
 				<div class="container">
 					<div class="nav-wrapper">
 						<a class="brand-logo dropdown-button" href="#!" data-activates="channels-menu">Escola LTG <i class="material-icons right">more_vert</i></a>
-						
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-						
-						<ul id="channels-menu" class="dropdown-content">
-							<?php foreach($categories as $category){ 
-								echo '<li><a href="' . URL::route('user.category', ['slug' => $category->slug]) . '">' . $category->name . '</a></li>';
-							} ?>
-						</ul>
-						
+
 						<ul class="left hide-on-med-and-down">
 							<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
 							<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
@@ -34,7 +27,8 @@
 						
 						<ul class="right hide-on-med-and-down">
 							<?php if (Auth::check()) {?>
-								<li><a  class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
+								<li><a href="<?php echo URL::route('chat');?>"><i class="material-icons">chat</i></a></li>
+								<li><a class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
 							<?php } else {?>
 								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
 							<?php } ?>

@@ -13,14 +13,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
-use App\Repositories\CategoriesRepository;
 use App\Validators\UserValidator;
 use App\Services\UserService;
 use Exception;
 use Auth;
 
 
-class UsersController extends Controller {
+class UsersController{
 
     protected $service;
     protected $repository;
@@ -127,143 +126,4 @@ class UsersController extends Controller {
 		 
 		 return redirect()->back(); 
     }
-	
-	function logout(){
-		auth()->logout();
-		return redirect()->route('login');
-	}
-
-	
-	public function login(){
-		if(Auth::check()){
-			return redirect()->route('dashboard.index');
-		} else{
-			echo view('admin/login');	
-		}
-		
-	}
-	
-	public function auth(Request $request){
-		$rememberme = false;
-		if(isset($_POST['login_rememberme'])){$rememberme=true;}
-		
-		$data=[
-			'email'=> $request->get('login_email'),
-			'password'=> $request->get('login_senha')
-		];
-		
-		try{
-			if(env('PASSWORD_HASH')){
-				\Auth::attempt($data,$rememberme);
-			} else{
-				$user = $this->repository->findWhere(['email' => $request->get('login_email')])->first();
-				
-				if(!$user){
-					session()->flash('login_message',[
-						 'success' =>	false,
-						 'messages' =>	"Nenhuma conta associada a este e-mail"
-					 ]);
-					return redirect()->route('admin.login_form');
-				} elseif($user->password != $request->get('login_senha')){
-						session()->flash('login_message',[
-						 'success' =>	false,
-						 'messages' =>	"Senha incorreta para esse e-mail"
-					 ]);
-					return redirect()->route('admin.login_form');
-				} else{
-					\Auth::login($user);
-					return redirect()->route('dashboard.index');
-				}
-
-			}
-
-		} catch(Exception $e){
-			return $e->getMessage();
-		}
-	}
-	
-	
-		
-	public function userLogin(CategoriesRepository $categories_repository){
-		if(Auth::check()){
-			return redirect()->route('home');
-		} else{
-			$this->categoriesRepository 	= $categories_repository;
-		   $categories = $this->categoriesRepository->getPrimaryCategories();
-			$title = "Login - Escola LTG";
-			echo view('header', ['title' => $title, 'categories' => $categories]);
-			echo view('login');
-			echo view('footer');
-		}
-	}
-	
-	public function userAuth(Request $request){
-		$rememberme = false;
-		if(isset($_POST['login_rememberme'])){$rememberme=true;}
-		
-		$data=[
-			'email'=> $request->get('login_email'),
-			'password'=> $request->get('login_senha')
-		];
-		
-		try{
-			
-			if(env('PASSWORD_HASH')){
-				\Auth::attempt($data,$rememberme);
-			} else{
-				$user = $this->repository->findWhere(['email' => $request->get('login_email')])->first();
-				
-				if(!$user){
-					session()->flash('login_message',[
-						 'success' =>	false,
-						 'messages' =>	"Nenhuma conta associada a este e-mail"
-					 ]);
-					return redirect()->route('login_form');
-				} elseif($user->password != $request->get('login_senha')){
-						session()->flash('login_message',[
-						 'success' =>	false,
-						 'messages' =>	"Senha incorreta para esse e-mail"
-					 ]);
-					return redirect()->back();
-				} else{
-					\Auth::login($user);
-					return redirect()->route('home');
-				}
-
-			}
-
-		} catch(Exception $e){
-			return $e->getMessage();
-		}
-	}
-	
-		
-    public function userStore(UserCreateRequest $request){
-		 $request = $this->service->store($request->all());
-		 $usuario = $request['success'] ? $request['data'] : null;
-		 
-		 
-		 session()->flash('success',[
-			 'success' =>	$request['success'],
-			 'messages' =>	$request['messages']
-		 ]);
-		 
-		 return redirect()->back(); 
-    }
-	 
-	 	
-	public function userCreate(CategoriesRepository $categories_repository){
-		if(Auth::check()){
-			return redirect()->route('home');
-		} else{
-			$this->categoriesRepository 	= $categories_repository;
-			$categories = $this->categoriesRepository->getPrimaryCategories();
-			
-			$title = "Cadastro - Escola LTG";
-			echo view('header', ['title' => $title,'categories' => $categories])->render();
-			echo view('cadastro')->render();
-			echo view('footer')->render();
-		}
-	}
-
 }

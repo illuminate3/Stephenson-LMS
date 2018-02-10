@@ -18,7 +18,7 @@ use App\Repositories\CategoriesRepository;
 use App\Repositories\CommentRepository;
 
 
-class TutorialsController extends Controller{
+class TutorialsController{
 
     /**
      * @var TutorialRepository

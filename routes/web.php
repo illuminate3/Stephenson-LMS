@@ -17,21 +17,21 @@
 
 Route::get('/', ['as' => 'home','uses' => 'Controller@homepage']);
 
-Route::get('/cadastro', ['as'=>'signup','uses' => 'UsersController@userCreate']);
-Route::post('/cadastro', ['as'=>'signup','uses' => 'UsersController@userStore']);
+Route::get('/register', ['as'=>'register','uses' => 'Controller@register']);
+Route::post('/register', ['as'=>'register','uses' => 'Controller@store']);
+Route::get('/login',['as' => 'login_form','uses' => 'Controller@login']);
+Route::post('/login', ['as'=>'login','uses' => 'Controller@auth']);
+Route::get('/logout', ['uses' => 'Controller@logout']);
 
-Route::get('/login',['as' => 'login_form','uses' => 'UsersController@userLogin']);
-Route::post('/login', ['as'=>'login','uses' => 'UsersController@userAuth']);
-
-Route::get('/chat', ['uses' => 'Controller@chat']);
+Route::get('/chat', ['as' => 'chat', 'uses' => 'MessagesController@index']);
 
 /* ROTAS PARA O PERFIL */
 
-Route::get('/perfil/{profile}', ['as' => 'profile.profile', 'uses' => 'Controller@perfil']);
-Route::get('/perfil/{profile}/about', ['as' => 'profile.about', 'uses' => 'Controller@perfil_about']);
-Route::get('/perfil/{profile}/followers', ['as' => 'profile.followers', 'uses' => 'Controller@perfil_followers']);
-Route::get('/perfil/{profile}/following', ['as' => 'profile.following', 'uses' => 'Controller@perfil_following']);
-Route::get('/perfil/{profile}/settings', ['as' => 'profile.settings', 'uses' => 'Controller@perfil_settings']);
+Route::get('/perfil/{profile}', ['as' => 'profile.profile', 'uses' => 'ProfilesController@perfil']);
+Route::get('/perfil/{profile}/about', ['as' => 'profile.about', 'uses' => 'ProfilesController@perfil_about']);
+Route::get('/perfil/{profile}/followers', ['as' => 'profile.followers', 'uses' => 'ProfilesController@perfil_followers']);
+Route::get('/perfil/{profile}/following', ['as' => 'profile.following', 'uses' => 'ProfilesController@perfil_following']);
+Route::get('/perfil/{profile}/settings', ['as' => 'profile.settings', 'uses' => 'ProfilesController@perfil_settings']);
 
 /* ROTAS PARA OS CURSOS */
 Route::get('/cursos', ['as'=>'courses.archive','uses' => 'CoursesController@archive']);
@@ -63,9 +63,6 @@ Route::resource('/comment', 'CommentsController');
 /******************************************/
 
 Route::get('/admin/', ['as'=>'dashboard.index','uses' => 'DashboardController@index']);
-Route::get('/admin/login',['as' => 'admin.login_form','uses' => 'UsersController@login']);
-Route::post('/admin/login', ['as'=>'admin.login','uses' => 'UsersController@auth']);
-Route::get('/logout', ['uses' => 'UsersController@logout']);
 
 /* ROTAS PARA O CONTROLE DE USUÁRIOS */
 Route::get('/admin/users/trash', ['as'=>'users.trash','uses' => 'UsersController@trash']);

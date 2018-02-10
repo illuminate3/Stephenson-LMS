@@ -36,6 +36,7 @@
 						
 						<ul class="right hide-on-med-and-down">
 							<?php if (Auth::check()) {?>
+								<li><a href="<?php echo URL::route('chat');?>"><i class="material-icons">chat</i></a></li>
 								<li><a  class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
 							<?php } else {?>
 								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>

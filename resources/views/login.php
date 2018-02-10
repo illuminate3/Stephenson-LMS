@@ -1,3 +1,4 @@
+<?php echo view('header', ['title' => "Login - Escola LTG"]); ?>
 <main>
 	<div class="container">
 		<div class="section">
@@ -61,3 +62,4 @@
 		</div>
 	</div>
 </main>
+<?php echo view('footer'); ?>

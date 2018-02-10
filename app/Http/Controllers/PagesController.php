@@ -14,7 +14,7 @@ use App\Validators\PageValidator;
 use App\Services\PageService;
 use App\Repositories\CategoriesRepository;
 
-class PagesController extends Controller{
+class PagesController{
 
     protected $repository;
     protected $validator;

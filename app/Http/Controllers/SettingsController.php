@@ -11,7 +11,7 @@ use App\Repositories\SettingRepository;
 use App\Validators\SettingValidator;
 use App\Services\SettingService;
 
-class SettingsController extends Controller{
+class SettingsController{
 
     protected $repository;
     protected $validator;

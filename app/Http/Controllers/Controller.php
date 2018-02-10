@@ -38,6 +38,83 @@ class Controller extends BaseController{
 		$this->categoriesRepository 	= $categories_repository;
 	}
 	
+	
+	function logout(){
+		auth()->logout();
+		return redirect()->route('login');
+	}
+
+	
+	public function login(){
+		if(Auth::check()){
+			return redirect()->route('dashboard.index');
+		} else{
+			echo view('login');	
+		}
+		
+	}
+	
+	public function auth(Request $request){
+		$rememberme = false;
+		if(isset($_POST['login_rememberme'])){$rememberme=true;}
+		
+		$data=[
+			'email'=> $request->get('login_email'),
+			'password'=> $request->get('login_senha')
+		];
+		
+		try{
+			if(env('PASSWORD_HASH')){
+				\Auth::attempt($data,$rememberme);
+			} else{
+				$user = $this->repository->findWhere(['email' => $request->get('login_email')])->first();
+				
+				if(!$user){
+					session()->flash('login_message',[
+						 'success' =>	false,
+						 'messages' =>	"Nenhuma conta associada a este e-mail"
+					 ]);
+					return redirect()->route('admin.login_form');
+				} elseif($user->password != $request->get('login_senha')){
+						session()->flash('login_message',[
+						 'success' =>	false,
+						 'messages' =>	"Senha incorreta para esse e-mail"
+					 ]);
+					return redirect()->route('admin.login_form');
+				} else{
+					\Auth::login($user);
+					return redirect()->route('dashboard.index');
+				}
+
+			}
+
+		} catch(Exception $e){
+			return $e->getMessage();
+		}
+	}
+
+	 
+	 	
+	public function register(CategoriesRepository $categories_repository){
+		if(Auth::check()){
+			return redirect()->route('home');
+		} else{
+			return view('register')->render();
+		}
+	}
+	    public function store(UserCreateRequest $request){
+		 $request = $this->service->store($request->all());
+		 $usuario = $request['success'] ? $request['data'] : null;
+		 
+		 
+		 session()->flash('success',[
+			 'success' =>	$request['success'],
+			 'messages' =>	$request['messages']
+		 ]);
+		 
+		 return redirect()->back(); 
+    }
+	
 	public function homepage(CourseRepository $courseRepository, TutorialRepository $tutorialRepository, LessonRepository $lessonRepository){
 		$users = $this->repository->all();
 		$courses = $courseRepository->all();
@@ -47,88 +124,6 @@ class Controller extends BaseController{
 		
 		$title = "Escola LTG - Estudar não precisa ser chato!";
 		echo view('home', ['title' => $title, 'courses' => $courses, 'users' => $users, 'lessons' => $lessons, 'tutorials' => $tutorials, 'categories' => $categories]);
-	}
-	
-	public function perfil(Request $request, $perfil){
-		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/perfil', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
-	}
-	
-	public function perfil_about(Request $request, $perfil){
-		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Sobre";		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/about', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
-	}
-	
-	public function perfil_followers(Request $request, $perfil){
-		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguidores";		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/followers', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
-	}
-	
-	public function perfil_following(Request $request, $perfil){
-		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguindo";		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/following', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
-	}
-	
-	public function perfil_settings(Request $request, $perfil){
-		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Configurações";		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/settings', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
 	}
 	
 		
@@ -154,22 +149,5 @@ class Controller extends BaseController{
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('courses.user_courses',['courses' => $courses, 'loop' => $loop])->render();
 		echo view('footer')->render();	
-	}
-		
-	
-	public function chat(){
-		$title = "Chat - Escola LTG";
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('chat');
-	}
-	
-	public function category($category){
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $category . " - Escola LTG";	
-		
-		echo view('header', ['title' => $title]);
-		echo view('categories.category');
-		echo view('footer');
 	}
 }

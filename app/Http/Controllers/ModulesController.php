@@ -15,7 +15,7 @@ use App\Services\ModuleService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
-class ModulesController extends Controller
+class ModulesController
 {
 
     /**

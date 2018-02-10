@@ -1,4 +1,4 @@
-
+<?php echo view('header', ['title' => "Cadastro - Escola LTG"]); ?>
 <main>
 	<div class="container">
 		<div class="section">
@@ -33,7 +33,7 @@
 									</div>
 								</div>
 								
-								<form  method="post" action="<?php echo URL::route('signup');?>">
+								<form  method="post" action="<?php echo URL::route('register');?>">
 									<div class="row">
 										<div class="col s6 input-field">
 											<input id="txtFirstName" type="text" name="firstname">
@@ -91,3 +91,4 @@
 		</div>
 	</div>
 </main>
+<?php echo view('footer'); ?>

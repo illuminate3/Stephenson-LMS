@@ -17,7 +17,7 @@ use App\Validators\CourseValidator;
 use App\Services\CourseService;
 use Auth;
 
-class CoursesController extends Controller
+class CoursesController
 {
 
     /**
