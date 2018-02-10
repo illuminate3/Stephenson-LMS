@@ -122,7 +122,7 @@ class Controller extends BaseController{
 		$lessons = $lessonRepository->all();
 		$categories = $this->categoriesRepository->getPrimaryCategories();
 		
-		$title = "Escola LTG - Estudar não precisa ser chato!";
+		$title = "Stephenson - Estudar não precisa ser chato!";
 		echo view('home', ['title' => $title, 'courses' => $courses, 'users' => $users, 'lessons' => $lessons, 'tutorials' => $tutorials, 'categories' => $categories]);
 	}
 	
@@ -133,7 +133,7 @@ class Controller extends BaseController{
 		$courses = $user->getCourses;
 		$loop = 'studying';
 		
-		$title = "Meus Cursos - Escola LTG";
+		$title = "Meus Cursos - Stephenson";
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('courses.user_courses',['courses' => $courses, 'loop' => $loop])->render();
 		echo view('footer')->render();	
@@ -145,7 +145,7 @@ class Controller extends BaseController{
 		$courses = $user->getFavoriteCourses;
 		$loop = 'favorites';
 		
-		$title = "Cursos Favoritos - Escola LTG";
+		$title = "Cursos Favoritos - Stephenson";
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('courses.user_courses',['courses' => $courses, 'loop' => $loop])->render();
 		echo view('footer')->render();	

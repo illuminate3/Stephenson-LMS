@@ -50,18 +50,13 @@ class TutorialsController{
     public function archive(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$tutorials = $this->repository->all();
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = "Tutoriais - Escola LTG";
-		 
-		echo view('header', ['title' => $title, 'categories' => $categories]);
+
 		echo view('tutorials/tutorials', ['tutorials' => $tutorials]);
-		echo view('footer');
     }
 	
 	public function single($tutorial){
 		$tutorial = $this->repository->find($tutorial);
-		$title = $tutorial['title'] ." - Escola LTG";
-		$categories = $this->categoriesRepository->getPrimaryCategories();
+		$title = $tutorial['title'] ." - Stephenson";
 		$comments = $this->commentsRepository->getComments($tutorial->id,'tutorial');
 		
 		$url = $tutorial['video_url'];
@@ -70,15 +65,13 @@ class TutorialsController{
 		$id = $matches[1];
 		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('tutorials/tutorial', ['tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
-		echo view('footer');
+		echo view('tutorials/tutorial', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
 	}
 	
 	 public function index(){
 	   $tutorials = $this->repository->all();
 		$loop = "all";
-		$title = "Tutoriais - Escola LTG";
+		$title = "Tutoriais - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.tutorials.index',['tutorials' => $tutorials, 'loop' => $loop]);
 		echo view('admin.footer');
@@ -87,7 +80,7 @@ class TutorialsController{
 	public function trash(){
 	   $tutorials = $this->repository->getTrashed();
 		$loop = "trash";
-		$title = "Tutoriais - Escola LTG";
+		$title = "Tutoriais - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.tutorials.index',['tutorials' => $tutorials, 'loop' => $loop]);
 		echo view('admin.footer');
@@ -95,7 +88,7 @@ class TutorialsController{
 	
 	public function create(){
 		$categories_list = $this->categoriesRepository->selectBoxList();
-		$title = "Adicionar Tutorial - Escola LTG";
+		$title = "Adicionar Tutorial - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.tutorials.create', ['categories' => $categories_list])->render();
 		echo view('admin.footer')->render();
@@ -106,7 +99,7 @@ class TutorialsController{
 		$tutorial = $this->repository->find($tutorial);
 		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($tutorial['category_id']);
 
-		$title = "Editar " .$tutorial['title']." - Escola LTG";
+		$title = "Editar " .$tutorial['title']." - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.tutorials.edit', ['categories' => $categories_list, 'tutorial' => $tutorial, 'atual_category' => $atual_category])->render();
 		echo view('admin.footer')->render();

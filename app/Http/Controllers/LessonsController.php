@@ -17,7 +17,7 @@ use App\Services\LessonService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
-class LessonsController extends Controller
+class LessonsController
 {
 
     /**
@@ -57,7 +57,7 @@ class LessonsController extends Controller
 		preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
 
 		$id = $matches[1];
-		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '?rel=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 		
 		echo view('courses.lessons.header_lesson', ['title' => $lesson->title, 'course' => $course, ]);
 		echo view('courses.lessons.single', ['lesson' => $lesson, 'video' => $video_embed]);
@@ -65,7 +65,7 @@ class LessonsController extends Controller
 	}
 	
 	public function create($course, $module){
-		$title = "Adicionar Aula - Escola LTG";
+		$title = "Adicionar Aula - Stephenson";
 		$atual_course = $this->course_repository->find($course);
 		$atual_module = $this->module_repository->find($module);
 		
@@ -95,7 +95,7 @@ class LessonsController extends Controller
 		$module = $this->module_repository->find($module);
 		$lesson = $this->repository->find($lesson);
 		
-		$title = "Editar " . $lesson->title ." - Escola LTG";
+		$title = "Editar " . $lesson->title ." - Stephenson";
 		
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.lessons.edit', ['course' => $course, 'module' => $module, 'lesson' => $lesson]);

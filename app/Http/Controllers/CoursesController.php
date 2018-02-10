@@ -47,7 +47,7 @@ class CoursesController
         $courses = $this->repository->all();
 
 	
-		$title = "Cursos - Escola LTG";
+		$title = "Cursos - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.courses.index',['courses' => $courses]);
 		echo view('admin.footer');
@@ -56,7 +56,7 @@ class CoursesController
 	public function create(){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		
-		$title = "Adicionar Curso - Escola LTG";
+		$title = "Adicionar Curso - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.courses.create', ['categories'=> $categories_list])->render();
 		echo view('admin.footer')->render();
@@ -67,7 +67,7 @@ class CoursesController
       $courses = $this->repository->all();
 		$categories = $this->categoriesRepository->getPrimaryCategories();
 
-		$title = "Cursos - Escola LTG";
+		$title = "Cursos - Stephenson";
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('courses/courses', ['courses' => $courses]);
 		echo view('footer');
@@ -99,7 +99,7 @@ class CoursesController
 		$course = $this->repository->find($course);
 		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($course['category_id']);
 		
-		$title = "Editar " . $course['title']." - Escola LTG";
+		$title = "Editar " . $course['title']." - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.courses.edit', ['course' => $course, 'categories' => $categories_list, 'atual_category' => $atual_category])->render();
 		echo view('admin.footer')->render();
@@ -107,7 +107,7 @@ class CoursesController
 	
 	public function manage($course){
 		$course = $this->repository->find($course);
-		$title = "Gerenciar " . $course['title']." - Escola LTG";
+		$title = "Gerenciar " . $course['title']." - Stephenson";
 		
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.courses.manage', ['course' => $course])->render();
@@ -118,7 +118,7 @@ class CoursesController
 		$course = $this->repository->find($course);
 		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
 		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title =  $course['title']." - Escola LTG";
+		$title =  $course['title']." - Stephenson";
 		
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		
@@ -143,7 +143,7 @@ class CoursesController
 		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
 		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
-		$title =  $course['title']." | Conteúdo - Escola LTG";
+		$title =  $course['title']." | Conteúdo - Stephenson";
 		
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		

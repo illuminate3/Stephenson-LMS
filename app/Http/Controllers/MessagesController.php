@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 class MessagesController {
 	public function index(){
-		$title = "Chat - Escola LTG";
+		$title = "Chat - Stephenson";
 		echo view('header', ['title' => $title]);
 		echo view('messages.index');
 	}

@@ -41,7 +41,7 @@ class PostsController
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$posts = $this->repository->all();
 		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = "Blog - Escola LTG";
+		$title = "Blog - Stephenson";
 		 
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('blog.blog', ['posts' => $posts]);
@@ -50,7 +50,7 @@ class PostsController
 	
 	public function single($post){
 		$post = $this->repository->find($post);
-		$title = $post['title'] ." - Escola LTG";
+		$title = $post['title'] ." - Stephenson";
 		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$comments = $this->commentsRepository->getComments($post->id,'post');
 
@@ -64,7 +64,7 @@ class PostsController
       $posts = $this->repository->all();
 		$loop = "all";
 		 
-		$title = "Postagens - Escola LTG";
+		$title = "Postagens - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.posts.index',['posts' => $posts, 'loop' => $loop]);
 		echo view('admin.footer');
@@ -75,7 +75,7 @@ class PostsController
       $posts = $this->repository->getTrashed();
 		$loop = "trash";
 		 
-		$title = "Postagens - Escola LTG";
+		$title = "Postagens - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.posts.index',['posts' => $posts, 'loop' => $loop]);
 		echo view('admin.footer');
@@ -83,7 +83,7 @@ class PostsController
 	
 	public function create(){
 		$categories_list = $this->categoriesRepository->selectBoxList();
-		$title = "Adicionar Postagem - Escola LTG";
+		$title = "Adicionar Postagem - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.posts.create', ['categories' => $categories_list])->render();
 		echo view('admin.footer')->render();
@@ -94,7 +94,7 @@ class PostsController
 		$post = $this->repository->find($post);
 		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($post['category_id']);
 		
-		$title = "Editar ".$post['title']." - Escola LTG";
+		$title = "Editar ".$post['title']." - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.posts.edit', ['categories' => $categories_list, 'post' => $post, 'atual_category' => $atual_category])->render();
 		echo view('admin.footer')->render();

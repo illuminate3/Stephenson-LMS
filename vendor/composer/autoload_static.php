@@ -85,6 +85,8 @@ class ComposerStaticInit4adb8bc5d63b536b01b23123c553bd18
         array (
             'Intervention\\Image\\' => 19,
             'Illuminate\\' => 11,
+            'Igaster\\LaravelTheme\\Tests\\' => 27,
+            'Igaster\\LaravelTheme\\' => 21,
         ),
         'G' => 
         array (
@@ -242,6 +244,14 @@ class ComposerStaticInit4adb8bc5d63b536b01b23123c553bd18
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Igaster\\LaravelTheme\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/igaster/laravel-theme/tests',
+        ),
+        'Igaster\\LaravelTheme\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/igaster/laravel-theme/src',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -336,6 +346,7 @@ class ComposerStaticInit4adb8bc5d63b536b01b23123c553bd18
         'App\\Entities\\Course' => __DIR__ . '/../..' . '/app/Entities/Course.php',
         'App\\Entities\\CoursesMeta' => __DIR__ . '/../..' . '/app/Entities/CoursesMeta.php',
         'App\\Entities\\Lesson' => __DIR__ . '/../..' . '/app/Entities/Lesson.php',
+        'App\\Entities\\LessonsMeta' => __DIR__ . '/../..' . '/app/Entities/LessonsMeta.php',
         'App\\Entities\\Module' => __DIR__ . '/../..' . '/app/Entities/Module.php',
         'App\\Entities\\Page' => __DIR__ . '/../..' . '/app/Entities/Page.php',
         'App\\Entities\\Post' => __DIR__ . '/../..' . '/app/Entities/Post.php',
@@ -344,19 +355,17 @@ class ComposerStaticInit4adb8bc5d63b536b01b23123c553bd18
         'App\\Entities\\User' => __DIR__ . '/../..' . '/app/Entities/User.php',
         'App\\Entities\\UserSocial' => __DIR__ . '/../..' . '/app/Entities/UserSocial.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
-        'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
-        'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
-        'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoriesController.php',
         'App\\Http\\Controllers\\CommentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentsController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CoursesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CoursesController.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\LessonsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LessonsController.php',
+        'App\\Http\\Controllers\\MessagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/MessagesController.php',
         'App\\Http\\Controllers\\ModulesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ModulesController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\PostsController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostsController.php',
+        'App\\Http\\Controllers\\ProfilesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfilesController.php',
         'App\\Http\\Controllers\\SettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/SettingsController.php',
         'App\\Http\\Controllers\\TutorialsController' => __DIR__ . '/../..' . '/app/Http/Controllers/TutorialsController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
@@ -1031,6 +1040,23 @@ class ComposerStaticInit4adb8bc5d63b536b01b23123c553bd18
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Igaster\\LaravelTheme\\Commands\\baseCommand' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Commands/baseCommand.php',
+        'Igaster\\LaravelTheme\\Commands\\createPackage' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Commands/createPackage.php',
+        'Igaster\\LaravelTheme\\Commands\\createTheme' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Commands/createTheme.php',
+        'Igaster\\LaravelTheme\\Commands\\installPackage' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Commands/installPackage.php',
+        'Igaster\\LaravelTheme\\Commands\\listThemes' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Commands/listThemes.php',
+        'Igaster\\LaravelTheme\\Commands\\refreshCache' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Commands/refreshCache.php',
+        'Igaster\\LaravelTheme\\Commands\\removeTheme' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Commands/removeTheme.php',
+        'Igaster\\LaravelTheme\\Exceptions\\themeAlreadyExists' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Exceptions/themeAlreadyExists.php',
+        'Igaster\\LaravelTheme\\Exceptions\\themeException' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Exceptions/themeException.php',
+        'Igaster\\LaravelTheme\\Exceptions\\themeNotFound' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Exceptions/themeNotFound.php',
+        'Igaster\\LaravelTheme\\Facades\\Theme' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Facades/Theme.php',
+        'Igaster\\LaravelTheme\\Middleware\\setTheme' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Middleware/setTheme.php',
+        'Igaster\\LaravelTheme\\Theme' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Theme.php',
+        'Igaster\\LaravelTheme\\Themes' => __DIR__ . '/..' . '/igaster/laravel-theme/src/Themes.php',
+        'Igaster\\LaravelTheme\\themeManifest' => __DIR__ . '/..' . '/igaster/laravel-theme/src/themeManifest.php',
+        'Igaster\\LaravelTheme\\themeServiceProvider' => __DIR__ . '/..' . '/igaster/laravel-theme/src/themeServiceProvider.php',
+        'Igaster\\LaravelTheme\\themeViewFinder' => __DIR__ . '/..' . '/igaster/laravel-theme/src/themeViewFinder.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
         'Illuminate\\Auth\\Access\\HandlesAuthorization' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',

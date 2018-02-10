@@ -11,7 +11,7 @@ use App\Repositories\CourseRepository;
 use App\Repositories\TutorialRepository;
 use App\Repositories\PageRepository;
 
-class DashboardController extends Controller{
+class DashboardController{
 	private $repository;
 	private $validator;
 
@@ -27,14 +27,14 @@ class DashboardController extends Controller{
 		$tutorials = $tutorialRepository->all();
 		$pages = $pageRepository->all();
 
-		$title = "Dashboard - Escola LTG";
+		$title = "Dashboard - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.dashboard.index', ['courses' => $courses, 'users' => $users, 'pages' => $pages, 'tutorials' => $tutorials]);
 		echo view('admin.footer');
 	}
 	
 	public function library(){
-		$title = "Mídia - Escola LTG";
+		$title = "Mídia - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.library.index');
 		echo view('admin.footer');

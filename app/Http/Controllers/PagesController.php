@@ -34,7 +34,7 @@ class PagesController{
         $page = $this->repository->findByField('slug', $page)->first();
 		 $this->categoriesRepository 	= $categories_repository;
 		 $categories = $this->categoriesRepository->getPrimaryCategories();
-			$title = $page['title'] . " - Escola LTG";
+			$title = $page['title'] . " - Stephenson";
 			echo view('header', ['title' => $title,'categories' => $categories]);
 			echo view('page', ['page' => $page]);
 			echo view('footer');
@@ -45,7 +45,7 @@ class PagesController{
         $pages = $this->repository->all();
 		 $loop = "all";
 		 
-			$title = "Páginas - Escola LTG";
+			$title = "Páginas - Stephenson";
 			echo view('admin.header', ['title' => $title]);
 			echo view('admin.pages.index', ['pages' => $pages, 'loop' => $loop]);
 			echo view('admin.footer');
@@ -56,14 +56,14 @@ class PagesController{
 			$pages = $this->repository->getTrashed();
 			$loop = "trash";
 
-			$title = "Páginas - Escola LTG";
+			$title = "Páginas - Stephenson";
 			echo view('admin.header', ['title' => $title]);
 			echo view('admin.pages.index', ['pages' => $pages, 'loop' => $loop]);
 			echo view('admin.footer');
     }
 	
 	public function create(){
-		$title = "Adicionar Página - Escola LTG";
+		$title = "Adicionar Página - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.pages.create');
 		echo view('admin.footer');
@@ -71,7 +71,7 @@ class PagesController{
 
 	public function edit($page){
 		$page = $this->repository->find($page);
-		$title = "Editar Página - Escola LTG";
+		$title = "Editar Página - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.pages.edit',['page' => $page]);
 		echo view('admin.footer');

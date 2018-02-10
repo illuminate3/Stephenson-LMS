@@ -1,197 +1,179 @@
-body {display: flex;min-height: 100vh;flex-direction: column;background: #ececec;}
-main {flex: 1 0 auto;} 
+html, body {height: 100%;background: #ececec}
 .container{width: 90%;}
-header{height: 64px;width: 100%}
-nav .brand-logo {float: left;position: relative;}
-.assinar-feed input[type=text], .assinar-feed .btn{height:36px;margin-top: 10px;}
-.success-message{background: #43a047; }
-.error-message{background: #e53935;}
-.no-margin{margin: 0px 0px 0px 0px;}
-
-#profile-cover{
-	width: 100%;
-	height: 350px;
-	background: url('https://www.future-processing.pl/blog/wp-content/uploads/2015/04/blog_node.jpg');
-	background-size: cover;
-	background-position: center;
-	margin-top: 0px;
-	padding: 30px 0px;
+.full-btn{width: 100%;}
+#navbar{
+	width: 260px;
+	height: 100%;
+	background: #263238 ;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
-#profile-picture img{height: 180px;}
+#navbar-header{
+	position: fixed;
+	width: 260px;
+	height: 64px;
+	border-bottom: 1px solid #37474f;
+	padding: 0px 15px;
+}
 
-#profile-picture{
-	width:  180px;
-	height: 180px;
-	border-radius: 100%;
+.button-expand{float: left;padding: 0px 10px; height: 64px;color: white;margin-right: 10px}
+.button-expand:hover{background: rgba(0,0,0,0.2);}
+.button-expand i{line-height: 64px;}
+
+#logo{
+	line-height: 64px;
+	color: white;
 	overflow: hidden;
-	box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
-	margin: auto;
-}
-
-#change-photo{
-	position: absolute;
-	width:  180px;
-	height: 180px;
-	border-radius: 100%;
-	background: rgba(0,0,0,0.6);
-	text-align: center;
-	color: white;
-	transition: 0.4s;
-	opacity: 0;
-}
-
-#change-photo:hover{opacity: 1;}
-
-#change-photo i{
-	line-height: 180px;
-	font-size: 50px;
-}
-
-
-#profile-name{
-	color: white;
-	text-align: center;
-	text-shadow:2px 2px 3px rgba(0,0,0,1);
-	font-size: 1.9em;
-	padding-top: 10px;
-}
-
-#profile-buttons{
-	text-align: center;
-	padding: 20px 0px;
-}
-
-#profile-buttons button{background: white;color: #333;}
-
-#profile-nav{background: white;}
-#profile-nav a{color: #333;}
-
-#profile-content{
-	margin-top: 20px;
-	padding: 0px 10px;
+	font-size: 1.8em;
 	float: left;
 }
 
-.profile-page-title{font-size: 2.1em;border-bottom: 1px solid #ccc;margin: 0px;padding: 15px 0px;}
-
-#tutorial-page-title h2{
-	color: white;
-	padding: 30px 0px 15px 0px;
-	font-size: 2.4em;
-	text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+#side-menu {
+	width: 260px;
+	height: calc(100% - 64px);
+	padding:15px 0px;
+	overflow: scroll;
+	overflow-x: hidden;
+	position: fixed;
+	top: 64px;
+	left: 0;
 }
 
-#tutorial{
-	width: 100%;
-	background: #222;
-	margin: 0px;
-	height: 30%;
+#side-menu::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: rgba(0,0,0,.3);
 }
 
-.video-tutorial{box-shadow: 0px 0px 20px rgba(0,0,0,0.5);}
-
-#tutorial_content{
-	margin-top: 30px;
+#side-menu::-webkit-scrollbar{
+	width: 10px;
+	border-radius: 10px;
 }
 
-.tutorial-description{
-	padding: 20px;
-	text-align: justify;
+#side-menu::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: rgba(0,0,0,.3);
 }
 
-#course-single{
-	margin-top: 20px;
-}
-
-#course-cover{
-	width: 100%;
-}
-
-#course-cover img{
-	width: 100%;
-}
-
-#tutorial-info {
+#side-menu li{display: block;list-style: none;}
+#side-menu a{
 	display: block;
+	padding: 0px 15px;
+	line-height: 50px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: 300;
+	transition: 0.4s;
 }
 
-#tutorial-info .info{
+#side-menu li ul {background: #122027; display: none;}
+#side-menu li ul a{color: #ccc;padding-left: 40px;}
+#side-menu li ul a:hover{color: #ccc;padding-left: 40px;}
+
+#side-menu a:hover{background:#37474f; }
+
+#side-menu i.left{line-height: 50px;}
+#side-menu i.right{line-height: 50px;}
+
+#topbar {
+	width: calc(100% - 260px);
+	float: right;
+}
+
+#content {
+	width: calc(100% - 260px);
+	float: right;
+}
+
+.success-message, .error-message{
+	padding: 10px;
+	color: white;
+	border-radius: 5px;
+	width: 100%;
+}
+.success-message{background: #43a047; }
+.error-message{background: #e53935;}
+
+.widget{
+	margin: 0px;
+	margin-bottom: 20px;
+	padding: 0px;
+}
+
+.widget-title {
+	font-size: 1.6em;
+	color: #444;
+	background: #00838f;
+	padding: 10px;
+	color: white;
+	margin: 0px;
+}
+
+.widget-content{
+	padding: 10px;
+}
+
+.action{float: left;margin-right: 10px;}
+.action:last-child{margin-right: 0px;}
+
+.action button{
+	border: none;
+	color: white;
+	display: block;
+	height: 40px;
+	width: 40px;
+	border-radius: 5px;
+	transition: 0.4s;
+	line-height: 40px;
+}
+
+.action button i{line-height: 40px;}
+.breadcrumb{color: #009688  }
+.breadcrumb:last-child{color: #4db6ac }
+.breadcrumb:before{color: #ccc }
+
+.no-module{padding: 15px;}
+.module, .lesson{width: 100%;display: block;margin: 10px 0px;background: white;}
+.drag-module, .drag-lesson{float: left;width: 40px;height: 60px;background: #ddd;text-align: center;margin-right: 15px;cursor:move}
+.drag-module i, .drag-lesson i{line-height: 60px;}
+.module-header, .lesson-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
+.module-name, .lesson-name{float: left;cursor: pointer;height: 60px;display: block;}
+.module-edit{float: left;height: 60px;display: none;}
+.module-edit input{height: 60px;}
+.module-header .action, .lesson .action{float: right;padding: 5px 0px; margin-left: 10px; margin-right: 0px;}
+.module-body{display: none;}
+.lessons-list{padding: 15px;}
+.no-lesson{padding: 15px;}
+.create-lesson{width: 100%;height: 60px;padding: 10px 15px;background:#ddd;}
+.create-lesson button{height: 40px;}
+#create-module{height: 60px;padding: 10px 15px;}
+#create-module input{float: left;width: calc(100% - 170px);height: 40px;}
+#create-module button{float: right;width: 150px;height: 40px;}
+.list-itens{padding: 10px;}
+
+.lesson-header{}
+.lesson-body{display: none;padding: 15px;background: #ececec;color: #333}
+.material{line-height: 50px;padding: 0px 10px;}
+.material i{line-height: 50px;float: left;}
+
+.page-title {height: 50px;margin-top: 30px;margin-bottom: 30px;}
+.page-title h2{float: left;font-size: 50px;line-height: 50px;margin: 0px;font-weight: lighter;}
+.page-title button{float: left;height: 40px;line-height: 40px;margin: 5px 15px;}
+
+#course-info .info{
 	display: inline-block;
 	line-height: 50px;
 	padding: 0px 10px;
-	color: white;
+	color: #333;
 	font-size: 17px;
 	margin-bottom: 15px;
 }
 
-#tutorial-info .info:first-child{padding-left: 0px;}
-#tutorial-info .info i{line-height: 50px;float: left;margin-right: 10px;}
-
-.comment{margin: 20px 0px}
-.comment-author .comment-author-avatar{float: left;height: 50px; width: 50px;  border-radius: 100%; overflow: hidden;}
-.comment-author .comment-author-avatar img{height: 50px; width: 50px;}
-.comment-author .comment-author-name{float: left;line-height: 50px;padding: 0px 10px;font-size: 17px;}
-.comment-content.col{padding: 10px 0px 10px 70px;}
-
-.no-module{padding: 15px;}
-.module{width: 100%;display: block;}
-.module-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
-.module-name{float: left;cursor: pointer;height: 60px;display: block;}
-.module-name i{float: left;margin-right: 10px; line-height: 60px;}
-.module-body{display: none;border-bottom: 1px solid #ccc;}
-.lessons-list{padding: 15px;}
-.no-lesson{padding: 15px 10px;}
-.lesson{line-height: 50px;border-bottom: 1px solid #ccc;padding: 0px 20px;}
-.lesson i{line-height: 50px;float: left;margin-right: 10px;}
-.lesson:last-child{border-bottom:none;}
-.lesson a{color: #26a69a;}
-
-#page-title{
-	width: 100%;
-	height: 100px;
-	background: #1bbda9;
-}
-
-#page-title h2{margin: 0px;line-height: 100px;color: white;font-weight: lighter;}
-
-.comment-message{
-	text-align: center;
-    color: #999;
-    padding: 15px 0px;
-}
-.comment-actions{
-	height: 50px;
-	line-height: 50px;
-	float: right;
-}
-
-.comment-action{display: block;float: left;height: 50px;width: 25px;padding: 10px 0px;margin-left: 0px 10px;}
-.comment-action button {	
-	width: 25px;
-	height: 30px;
-	overflow: hidden;
-	background: transparent;
-	color: #ccc;
-	padding: 0px;
-	border: none;
-}
-
-.comment-action button:hover{color: #333;}
-
-#course-sidebar button{
-	width: 100%;
-	margin: 20px 0px;
-}
-
-
-#course-info .info{
-	display:block;
-	line-height: 50px;
-	color: #333;
-	font-size: 17px;
-	margin-bottom: 10px;
-	border-bottom: 1px solid #ececec
-}
-
+#course-info .info:first-child{padding-left: 0px;}
 #course-info .info i{line-height: 50px;float: left;margin-right: 10px;}
+
+#course-header{background: #00bfa5;}
+#course-header h2{margin: 0px;padding: 25px 0px;color: white}

@@ -20,7 +20,7 @@ use Exception;
 use Auth;
 
 
-class ProfilesController extends Controller {
+class ProfilesController{
 
     protected $service;
     protected $repository;
@@ -33,19 +33,20 @@ class ProfilesController extends Controller {
         $this->validator 	= $validator;
         $this->categoriesRepository 	= $categories;
     }
-public function perfil(Request $request, $perfil){
+	
+	public function perfil(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
 		$categories = $this->categoriesRepository->getPrimaryCategories();
-		
-		
+
+
 		if($perfil->id == Auth::user()->id){
 			$isLoggedProfile = true;
 		} else{
 			$isLoggedProfile = false;
 		}
-		
+
 		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
-		
+
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('profile/perfil', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');

@@ -30,7 +30,7 @@ class SettingsController{
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $settings = $this->repository->all();
 
-			$title = "Páginas - Escola LTG";
+			$title = "Páginas - Stephenson";
 			echo view('admin.header', ['title' => $title]);
 			echo view('admin.settings.index', ['settings' => $settings]);
 			echo view('admin.footer');

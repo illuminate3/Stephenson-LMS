@@ -32,7 +32,7 @@ class CategoriesController{
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$categories = $this->repository->all();
 
-		$title = "Categorias - Escola LTG";
+		$title = "Categorias - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.categories.index',['categories' => $categories]);
 		echo view('admin.footer');
@@ -41,7 +41,7 @@ class CategoriesController{
 	public function edit($category){
 		$categories_list= $this->repository->all();
 		$category = $this->repository->find($category);
-		$title = "Editar " .$category['name'] . " - Escola LTG";
+		$title = "Editar " .$category['name'] . " - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.categories.edit',['category' => $category, 'categories_list'=> $categories_list]);
 		echo view('admin.footer');
@@ -108,7 +108,7 @@ class CategoriesController{
     }
 	
 	public function category($category){
-		$title = $category . " - Escola LTG";	
+		$title = $category . " - Stephenson";	
 		
 		echo view('header', ['title' => $title]);
 		echo view('categories.category');

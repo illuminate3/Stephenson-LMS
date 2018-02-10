@@ -14,7 +14,7 @@ use App\Validators\CommentValidator;
 use App\Services\CommentService;
 
 
-class CommentsController extends Controller{
+class CommentsController{
 	
     protected $repository;
     protected $validator;

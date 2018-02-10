@@ -6,9 +6,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
 		<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
-		<link rel="stylesheet" href="<?php echo url('../css/materialize.min.css'); ?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo url('../css/admin/layout.css'); ?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo url('../css/admin/material-icons.css'); ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo url('css/material-icons.css'); ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo url('css/materialize.min.css'); ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo url('css/layout.css'); ?>">
 	</head>
 
 	<body>

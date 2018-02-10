@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'EscolaLTG'),
+    'name' => env('APP_NAME', 'Stepherson'),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,7 +165,7 @@ return [
 		  Prettus\Repository\Providers\RepositoryServiceProvider::class,
 		  Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-		 
+		  Igaster\LaravelTheme\themeServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -231,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 		  'Image' => Intervention\Image\Facades\Image::class,
+		  'Theme' => Igaster\LaravelTheme\Facades\Theme::class,
 
     ],
 

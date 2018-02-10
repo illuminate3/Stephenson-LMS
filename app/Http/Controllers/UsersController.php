@@ -41,7 +41,7 @@ class UsersController{
     public function index() {
          $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
          $users = $this->repository->all();
-		 	$title = "Usuários - Escola LTG";
+		 	$title = "Usuários - Stephenson";
 		 
 			echo view('admin.header',['title' => $title]);
 			echo view('admin.users.index', ['users' => $users]);
@@ -58,7 +58,7 @@ class UsersController{
      */
 	
 	 public function create(){
-		 $title = "Adicionar Usuário - Escola LTG";
+		 $title = "Adicionar Usuário - Stephenson";
 		 
 		 echo view('admin.header', ['title' => $title])->render();
 		 echo view('admin.users.create')->render();
@@ -82,7 +82,7 @@ class UsersController{
 	public function edit($user){
 		$user = $this->repository->find($user);
 
-		$title = "Editar " . $user['firstname'].$user['lastname']." - Escola LTG";
+		$title = "Editar " . $user['firstname'].$user['lastname']." - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.users.edit', ['user' => $user])->render();
 		echo view('admin.footer')->render();
