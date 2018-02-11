@@ -1,32 +1,22 @@
 <div class="container">
 	<div class="page-title"><h2><?php echo __('messages.settings'); ?></h2></div>
-	<form>
-		<?php foreach($settings as $setting){?>
+	<h5>Temas</h5>
+	<form method="post" action="">
 		<div class="row">
-			<div class="col s12 input-field">
-				<input type="text" name="<?php echo $setting->setting_name; ?>" id="<?php echo $setting->setting_name; ?>">
-				<label for="<?php echo $setting->setting_name; ?>"><?php echo __("messages." . $setting->setting_name); ?></label>
+			<div class="input-field col s12">
+				<select name="theme">
+					<?php $themes = Theme::all(); foreach($themes as $theme){ ?>
+					<option value="<?php echo $theme->name ?>" <?php echo (Theme::get() == $theme->name) ? "selected" : null; ?> ><?php echo $theme->name; ?></option>
+					<?php } ?>
+				</select>
+
+				<label>Tema Atual:</label>
 			</div>
-		<?php } ?>
-			
-		<div class="col s12 input-field">
-			<button class="btn">Atualizar</button>
 		</div>
-			
-			<!--
-			<div class="col s12 input-field">
-				<input type="text" name="footer_credits" id="site-footer-credits">
-				<label for="site-footer-credits">Créditos no Rodapé</label>
-			</div>
-			
-			<div class="col s12 input-field">
-				<input type="text" name="email" id="site-email">
-				<label for="site-email">E-mail do Site</label>
-			</div>
-			
-			<div class="col s12 input-field">
-				<button class="btn">Atualizar</button>
-			</div>
-		</div>-->
+
+		<input type="submit" class="btn" value="Alterar Tema">
+		<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+
 	</form>
+
 </div>

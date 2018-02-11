@@ -74,13 +74,13 @@ class Controller extends BaseController{
 						 'success' =>	false,
 						 'messages' =>	"Nenhuma conta associada a este e-mail"
 					 ]);
-					return redirect()->route('admin.login_form');
+					return redirect()->back();
 				} elseif($user->password != $request->get('login_senha')){
 						session()->flash('login_message',[
 						 'success' =>	false,
 						 'messages' =>	"Senha incorreta para esse e-mail"
 					 ]);
-					return redirect()->route('admin.login_form');
+					return redirect()->back();
 				} else{
 					\Auth::login($user);
 					return redirect()->route('dashboard.index');

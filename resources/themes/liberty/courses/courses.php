@@ -1,39 +1,31 @@
-<main>
-	
-	<div id="page-title"><div class="container"><h2>Cursos</h2></div></div>
-	
+<?php echo view('header'); ?>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Cursos</h1>
+  </div>
+</div>
 	<div class="container">
-		<div class="section">
-				<?php if(count($courses) > 0) { ?>
+			<?php if(count($courses) > 0) { ?>
 				<div class="row">
 					<?php foreach($courses as $course) { ?>
-						<div class="col s12 m6 l3">
-							<div class="card">
-								<div class="card-image">
-									<?php if($course['cover'] == NULL){?>
-										<img src="images/thumbnail-default.jpg">
-									<?php } else {?>
-										<img src="<?php echo $course['cover'] ?>">
-									<?php }?>
-
-									<!--<form method="post" action=""> -->
-										<button class="btn-floating halfway-fab waves-effect waves-light grey" type="submit"><i class="material-icons">watch_later</i></button>
-										<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-									<!--</form>-->
-								</div>
-								
-								<div class="card-content">
-									<span class="card-title"><?php echo $course['title']; ?></span>
-									<p><?php echo $course['resume']; ?></p>
-								</div>
-								<div class="card-action"><a href="<?php echo URL::to('/curso/' . $course['id']); ?>">Ver</a></div>
+					<div class="col-3">
+						<div class="card">
+								<?php if($course['cover'] == NULL){?>
+									<img class="card-img-top" src="<?php echo theme_url("images/thumbnail-default.jpg"); ?>" alt="<?php echo $course['title']; ?>">
+								<?php } else {?>
+									<img class="card-img-top" src="<?php echo theme_url($course['cover']); ?>" alt="<?php echo $course['title']; ?>">
+								<?php }?>
+							<div class="card-body">
+							<h5 class="card-title"><?php echo $course['title']; ?></h5>
+							<p class="card-text"><?php echo $course['resume'] ?></p>
+							<a href="<?php echo URL::to('/curso/' . $course['id']); ?>" class="btn btn-primary">Ver</a>
 							</div>
-						</div>  
-					<?php } ?>
-				</div>
-				<?php } else { ?>
-					<p>Nenhum curso cadastrado.</p>
-				<?php }  ?>
-		</div>
+						</div>
+					</div>   
+				<?php } ?>
+			</div>
+			<?php } else {?>
+				<p>Nenhum curso cadastrado.</p>
+			<?php }?>
 	</div>
-</main>
+<?php echo view('footer'); ?>

@@ -1,65 +1,35 @@
 <?php echo view('header', ['title' => "Login - Stephenson"]); ?>
-<main>
-	<div class="container">
-		<div class="section">
-			<div class="row">
-				<div class="col l6 offset-l3 m8 offset-m2 s12">
-					<div class="row">
-						<div class="col s12">
-							<h2><i class="material-icons medium left">lock</i>Login</h2>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col s12">
-							<div class="card-panel">
-								<form method="post" action="<?php echo URL::route('login');?>">
-									<div class="row">
-										<div class="col s12">
-											<?php 
-												if (session('login_message')){
-													if (session('success')['login_message'] == false){
-														echo "<div class='error-message'>" . session('login_message')['messages'] . "</div>";
-													}
-												}
-											?>
-										</div>
-									</div>
-									
-									<div class="row">
-										<div class="col s12">
-											<input type="text" placeholder="E-mail" name="login_email">
-										</div>
-									</div>
 
-									<div class="row">
-										<div class="col s12">
-											<input type="password" placeholder="Senha" name="login_senha">
-										</div>
-									</div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Entrar</h1>
+  </div>
+</div>
 
-									<div class="row">
-										<div class="col s12">
-											<button type="submit" class="btn">ENTRAR</button>
-											<input type="checkbox" class="filled-in" id="rememberme" name="login_rememberme" value="1" />
-											<label for="rememberme" style="margin-left:20px;">Lembrar de Mim</label>
-										</div>
-									</div>
+<div class="container">
+	<?php 
+		if (session('login_message')){
+			if (session('success')['login_message'] == false){
+				echo '<div class="alert alert-danger" role="alert">' . session('login_message')['messages'] . '</div>';
+			}
+		}
+	?>
+<form method="post" action="<?php echo URL::route('login');?>">
+  <div class="form-group">
+    <label for="input-email">E-mail</label>
+    <input name="login_email" type="email" class="form-control" id="input-email" placeholder="E-mail">
+  </div>
+  <div class="form-group">
+    <label for="input-password">Senha</label>
+    <input name="login_senha" type="password" class="form-control" id="input-password" placeholder="Senha">
+  </div>
+  <div class="form-check">
+    <input name="login_rememberme" type="checkbox" class="form-check-input" id="input-rememberme">
+    <label class="form-check-label" for="input-rememberme">Matenha-me Conectado</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Entrar</button>
+	<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+</form>
+</div>
 
-									<div class="row">
-										<div class="col s12">
-											<a href="#">Esqueceu a senha?</a>
-										</div>
-									</div>
-									
-									<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</main>
 <?php echo view('footer'); ?>

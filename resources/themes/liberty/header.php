@@ -1,78 +1,57 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
-	<head>
-		<title><?php echo $title; ?></title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
-		<link rel="stylesheet" href="<?php echo theme_url('css/materialize.min.css')?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo theme_url('css/material-icons.css')?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo theme_url('css/layout.css')?>">
-	</head>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
 
-	<body>
-		<header class="navbar-fixed">
-			<nav class=" teal darken-3">
-				<div class="container">
-					<div class="nav-wrapper">
-						<a class="brand-logo dropdown-button" href="#!" data-activates="channels-menu">Escola LTG <i class="material-icons right">more_vert</i></a>
-						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+		<a class="navbar-brand" href="#"><?php echo config('app.name'); ?></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-						<ul class="left hide-on-med-and-down">
-							<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
-							<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
-							<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-							<li><a href="<?php echo URL::to('/blog'); ?>">Blog</a></li>
-						</ul>
-						
-						<ul class="right hide-on-med-and-down">
-							<?php if (Auth::check()) {?>
-								<li><a href="<?php echo URL::route('chat');?>"><i class="material-icons">chat</i></a></li>
-								<li><a class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
-							<?php } else {?>
-								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
-							<?php } ?>
-						</ul>
-						<?php if (Auth::check()) {?>
-						<ul id="user-menu" class="dropdown-content">
-							<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a></li>
-							<li><a href="<?php echo URL::to('/meus-cursos'); ?>">Meus Cursos</a></li>
-							<?php if(Auth::user()->permission == "app.admin") {?>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
-							<?php } ?>
-							<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
-						</ul>
-						<?php } ?>
-						
-						<ul id="slide-out" class="side-nav">
-							<?php if (Auth::check()) {?>
-								<li>
-									<div class="user-view">
-										<div class="background">
-											<img src="http://hgdecorvietnam.com/wp-content/uploads/2014/09/sdfggj.jpg">
-										</div>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/'); ?>">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/blog'); ?>">Blog</a></li>
+			</ul>
+			
+			<form class="form-inline mr-auto">
+				<input class="form-control mr-sm-2" type="search" placeholder="Busque por tutoriais, postagens e cursos" aria-label="Search">
+			</form>
+			
+			<ul class="navbar-nav my-2 my-lg-0">
+				<?php if (Auth::check()) {?>
+			<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?php echo Auth::user()->firstname; ?>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a>
+          <a class="dropdown-item" href="<?php echo URL::to('/meus-cursos'); ?>">Meus Cursos</a>
+			 <?php if(Auth::user()->permission == "app.admin") {?>
+          <a class="dropdown-item" href="<?php echo URL::to('/admin'); ?>">Painel</a>
+			 <?php } ?>
+			 <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<?php echo URL::to('/logout'); ?>">Sair</a>
+        </div>	
+      	</li>
+				<?php } else {?>
+								<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/register'); ?>">Cadastro</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/login'); ?>">Login</a></li>
+				<?php } ?>
 
-										<a href="#!user"><img class="circle" src="images/depoimento/user1.png"></a>
-										<a href="<?php echo URL::to('/perfil'); ?>"><span class="white-text name"><?php echo Auth::user()->firstname . " " . Auth::user()->lastname;?></span></a>
-										<a href="#!email"><span class="white-text email"><?php echo Auth::user()->email ?></span></a>
-									</div>
-								</li>
-								<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
-								<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
-								<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-								<li><a href="<?php echo URL::to('/blog'); ?>">Blog</a></li>
-								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
-								<?php if(Auth::user()->permission == "app.admin") {?>
-								<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
-								<?php } ?>
-								<li><a href="#?logout=true"><i class="material-icons">exit_to_app</i>Sair</a></li>
-							<?php } else {?>
-								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
-							<?php } ?>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</header>
-		
-		
+			</ul>
+			
+
+		</div>
+		</div>
+	</nav>

@@ -29,7 +29,7 @@ return [
 	|--------------------------------------------------------------------------
 	*/
 
-	'default' => 'liberty',
+	'default' => 'Material',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ return [
 	*/
 
 	'themes' => [
-		'liberty',
+
 
 		// Add your themes here. These settings will overide theme.json settings defined for each theme
 

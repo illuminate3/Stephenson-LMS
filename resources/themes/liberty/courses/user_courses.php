@@ -1,37 +1,38 @@
 <main>
-	<div id="page-title"><div class="container"><h2>Meus Cursos</h2></div></div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Meus Cursos</h1>
+  </div>
+</div>
 	
 	<div class="container">
-		<div class="section">
-			<div class="row">
-				<div class="col s12">
-					<ul class="tabs">
-						<li class="tab col s3"><a href="<?php echo URL::route('courses.user_courses'); ?>" target="_self" <?php if($loop == "studying"){echo "class='active'";} ?>>Cursando</a></li>
-						<li class="tab col s3"><a href="<?php echo URL::route('courses.user_favorite_courses'); ?>" target="_self" <?php if($loop == "favorites"){echo "class='active'";} ?>>Favoritos</a></li>
-					</ul>
-				</div>
-			</div>
-
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link <?php echo ($loop == "studying") ? "active" : null;?>" href="<?php echo URL::route('courses.user_courses'); ?>">Cursando</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link <?php echo ($loop == "favorites") ? "active" : null;?>" href="<?php echo URL::route('courses.user_favorite_courses'); ?>">Favoritos</a>
+			</li>
+		</ul>
+<br>
 				<?php if(count($courses) > 0) { ?>
 					<div class="row">
 						<?php foreach($courses as $course) { ?>
-							<div class="col s12 m6 l3">
-								<div class="card medium">
-									<div class="card-image">
+							<div class="col-3">
+								<div class="card">
 										<?php if($course->course->cover == NULL){?>
-											<img src="images/thumbnail-default.jpg">
+											<img class="card-img-top" src="<?php echo theme_url("images/thumbnail-default.jpg"); ?>" alt="<?php echo $course['title']; ?>">
 										<?php } else {?>
-											<img src="<?php echo $course->course->cover ?>">
+											<img class="card-img-top" src="<?php echo theme_url($course->course->cover); ?>" alt="<?php echo $course['title']; ?>">
 										<?php }?>
+									<div class="card-body">
+									<h5 class="card-title"><?php echo $course->course->title; ?></h5>
+									<p class="card-text"><?php echo $course->course->resume; ?></p>
+									<a href="<?php echo URL::to('/curso/' . $course->course->id); ?>" class="btn btn-primary">Ver</a>
 									</div>
-
-									<div class="card-content">
-										<span class="card-title"><?php echo $course->course->title; ?></span>
-										<p><?php echo $course->course->resume; ?></p>
-									</div>
-									<div class="card-action"><a href="<?php echo URL::to('/curso/' . $course->course->id); ?>">Ver</a></div>
 								</div>
-							</div>  
+							</div>
 						<?php } ?>
 					</div>
 				<?php } else {

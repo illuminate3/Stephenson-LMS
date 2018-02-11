@@ -1,4 +1,4 @@
-## Bem vindo ao projeto Escola LTG EAD
+## Bem vindo ao projeto Stephenson LMS
 Projeto de plataforma EAD desenvolvido utilizando PHP + Laravel 5.5
 
 ### Instalação em localhost

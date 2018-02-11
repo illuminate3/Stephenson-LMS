@@ -2,7 +2,7 @@ body {display: flex;min-height: 100vh;flex-direction: column;background: #ececec
 main {flex: 1 0 auto;} 
 .container{width: 90%;}
 header{height: 64px;width: 100%}
-nav .brand-logo {float: left;position: relative;}
+nav .brand-logo {float: left;position: relative;margin-right: 15px;}
 .assinar-feed input[type=text], .assinar-feed .btn{height:36px;margin-top: 10px;}
 .success-message{background: #43a047; }
 .error-message{background: #e53935;}
