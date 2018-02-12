@@ -47,11 +47,11 @@ class TutorialsController{
      * @return \Illuminate\Http\Response
      */
 	
-    public function archive(){
+    public function all(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$tutorials = $this->repository->all();
 
-		echo view('tutorials/tutorials', ['tutorials' => $tutorials]);
+		echo view('tutorials.all', ['tutorials' => $tutorials]);
     }
 	
 	public function single($tutorial){
@@ -65,7 +65,7 @@ class TutorialsController{
 		$id = $matches[1];
 		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 		
-		echo view('tutorials/tutorial', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
+		echo view('tutorials.single', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
 	}
 	
 	 public function index(){

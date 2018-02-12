@@ -1,10 +1,15 @@
-#home-header{
+#welcome-text{
 	height: 400px;
 	box-sizing: border-box;
 	background: #00796b; /* Old browsers */
 	background: -moz-linear-gradient(-45deg, #00796b 0%, #009688 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(-45deg, #00796b 0%,#009688 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(135deg, #00796b 0%,#009688 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	text-align: center;
+	color: white;
+	height: 334px;
+	box-sizing: border-box;
+	padding-top: 70px;
 }
 
 #transparent-nav{
@@ -16,14 +21,6 @@
 nav .brand-logo{
 	font-weight: bold;
 	font-size: 1.7em;
-}
-
-#welcome-text{
-	text-align: center;
-	color: white;
-	height: 334px;
-	box-sizing: border-box;
-	margin: 100px 0px;
 }
 
 #welcome-text h2{font-weight: bold;font-size: 2.1em;}

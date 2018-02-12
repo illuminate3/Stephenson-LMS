@@ -62,11 +62,29 @@ class CoursesController
 		echo view('admin.footer')->render();
 	}
 
-    public function archive(){
+    public function all(){
       $courses = $this->repository->all();
 
-		echo view('courses/courses', ['courses' => $courses]);
+		echo view('courses.all', ['courses' => $courses]);
     }
+	
+	public function single($course){
+		$course = $this->repository->find($course);
+		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
+		$title =  $course['title']." - Stephenson";
+		
+		if(Auth::user()){
+			$user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
+			if($user_joined){
+				echo view('courses/course_panel', ['page' => "index",'title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();
+			} else{
+				echo view('courses.single', ['title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();	
+			}
+		} else{
+			echo view('courses.single', ['title' => $title, 'course' => $course, 'modules' => $modules_list])->render();
+		}
+
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -109,23 +127,6 @@ class CoursesController
 		echo view('admin.footer')->render();
 	}
 	
-	public function single($course){
-		$course = $this->repository->find($course);
-		$modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
-		$title =  $course['title']." - Stephenson";
-		
-		if(Auth::user()){
-			$user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
-			if($user_joined){
-				echo view('courses/course_panel', ['page' => "index",'title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();
-			} else{
-				echo view('courses/course', ['title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();	
-			}
-		} else{
-			echo view('courses/course', ['course' => $course, 'modules' => $modules_list])->render();
-		}
-
-	}
 	
 	public function singlePage($course, $page){
 		$course = $this->repository->find($course);

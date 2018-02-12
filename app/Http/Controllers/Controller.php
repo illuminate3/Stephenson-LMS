@@ -122,7 +122,7 @@ class Controller extends BaseController{
 		$lessons = $lessonRepository->all();
 		$categories = $this->categoriesRepository->getPrimaryCategories();
 		
-		$title = "Stephenson - Estudar não precisa ser chato!";
+		$title = "Stephenson - Plataforma EAD Open Source";
 		echo view('home', ['title' => $title, 'courses' => $courses, 'users' => $users, 'lessons' => $lessons, 'tutorials' => $tutorials, 'categories' => $categories]);
 	}
 	

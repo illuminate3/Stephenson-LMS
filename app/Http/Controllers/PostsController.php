@@ -37,26 +37,20 @@ class PostsController
      * @return \Illuminate\Http\Response
      */
 	
-	 public function archive(){
+	 public function all(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$posts = $this->repository->all();
-		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$title = "Blog - Stephenson";
 		 
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('blog.blog', ['posts' => $posts]);
-		echo view('footer');
+		echo view('posts.all', ['posts' => $posts, 'title' => $title]);
     }
 	
 	public function single($post){
 		$post = $this->repository->find($post);
 		$title = $post['title'] ." - Stephenson";
-		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$comments = $this->commentsRepository->getComments($post->id,'post');
 
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('blog.post', ['post' => $post, 'comments' => $comments]);
-		echo view('footer');
+		echo view('posts.single', ['post' => $post, 'comments' => $comments, 'title' => $title]);
 	}
 	
     public function index(){

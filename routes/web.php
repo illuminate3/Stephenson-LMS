@@ -19,40 +19,39 @@ Route::get('/', ['as' => 'home','uses' => 'Controller@homepage']);
 
 Route::get('/register', ['as'=>'register','uses' => 'Controller@register']);
 Route::post('/register', ['as'=>'register','uses' => 'Controller@store']);
-Route::get('/login',['as' => 'login_form','uses' => 'Controller@login']);
+Route::get('/login',['as' => 'login','uses' => 'Controller@login']);
 Route::post('/login', ['as'=>'login','uses' => 'Controller@auth']);
-Route::get('/logout', ['uses' => 'Controller@logout']);
+Route::get('/logout', ['as'=>'logout', 'uses' => 'Controller@logout']);
 
 Route::get('/chat', ['as' => 'chat', 'uses' => 'MessagesController@index']);
 
 /* ROTAS PARA O PERFIL */
 
-Route::get('/perfil/{profile}', ['as' => 'profile.profile', 'uses' => 'ProfilesController@perfil']);
-Route::get('/perfil/{profile}/about', ['as' => 'profile.about', 'uses' => 'ProfilesController@perfil_about']);
-Route::get('/perfil/{profile}/followers', ['as' => 'profile.followers', 'uses' => 'ProfilesController@perfil_followers']);
-Route::get('/perfil/{profile}/following', ['as' => 'profile.following', 'uses' => 'ProfilesController@perfil_following']);
-Route::get('/perfil/{profile}/settings', ['as' => 'profile.settings', 'uses' => 'ProfilesController@perfil_settings']);
+Route::get('/profile/{profile}', ['as' => 'profile.profile', 'uses' => 'ProfilesController@perfil']);
+Route::get('/profile/{profile}/about', ['as' => 'profile.about', 'uses' => 'ProfilesController@perfil_about']);
+Route::get('/profile/{profile}/followers', ['as' => 'profile.followers', 'uses' => 'ProfilesController@perfil_followers']);
+Route::get('/profile/{profile}/following', ['as' => 'profile.following', 'uses' => 'ProfilesController@perfil_following']);
 
 /* ROTAS PARA OS CURSOS */
-Route::get('/cursos', ['as'=>'courses.archive','uses' => 'CoursesController@archive']);
-Route::get('/curso/{curso}', ['as'=>'courses.single','uses' => 'CoursesController@single']);
-Route::get('/curso/{curso}/{page}', ['as'=>'courses.single_content','uses' => 'CoursesController@singlePage']);
-Route::get('/meus-cursos', ['as'=>'courses.user_courses','uses' => 'Controller@userCourses']);
-Route::get('/meus-cursos/favoritos', ['as'=>'courses.user_favorite_courses','uses' => 'Controller@userFavoriteCourses']);
-Route::post('/curso/enter', ['as'=>'courses.enter_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
-Route::post('/curso/favorite', ['as'=>'courses.favorite_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
-Route::post('/curso/leave', ['as'=>'courses.leave_course','uses' => 'CoursesController@leaveCourse']);
+Route::get('/courses', ['as'=>'courses.all','uses' => 'CoursesController@all']);
+Route::get('/course/{course}', ['as'=>'courses.single','uses' => 'CoursesController@single']);
+Route::get('/course/{course}/{page}', ['as'=>'courses.single_content','uses' => 'CoursesController@singlePage']);
+Route::get('/my-courses', ['as'=>'courses.user_courses','uses' => 'Controller@userCourses']);
+Route::get('/my-courses/favorites', ['as'=>'courses.user_favorite_courses','uses' => 'Controller@userFavoriteCourses']);
+Route::post('/course/enter', ['as'=>'courses.enter_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
+Route::post('/course/favorite', ['as'=>'courses.favorite_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
+Route::post('/course/leave', ['as'=>'courses.leave_course','uses' => 'CoursesController@leaveCourse']);
 
 
 Route::get('/curso/{curso}/learn/{lesson}', ['as'=>'lesson.view_lesson','uses' => 'LessonsController@single']);
 
 /* ROTAS PARA OS TUTORIAIS */
-Route::get('/tutoriais', ['as'=>'tutorials.archive','uses' => 'TutorialsController@archive']);
-Route::get('/tutorial/{video}', ['as'=>'tutorials.single','uses' => 'TutorialsController@single']);
+Route::get('/tutorials', ['as'=>'tutorials.all','uses' => 'TutorialsController@all']);
+Route::get('/tutorial/{tutorial}', ['as'=>'tutorials.single','uses' => 'TutorialsController@single']);
 
 /* ROTAS PARA AS POSTAGENS */
-Route::get('/blog', ['as'=>'posts.archive','uses' => 'PostsController@archive']);
-Route::get('/blog/post/{post}', ['as'=>'posts.single','uses' => 'PostsController@single']);
+Route::get('/posts', ['as'=>'posts.all','uses' => 'PostsController@all']);
+Route::get('/posts/{post}', ['as'=>'posts.single','uses' => 'PostsController@single']);
 
 /* ROTAS PARA OS COMENTÁRIOS */
 Route::resource('/comment', 'CommentsController');

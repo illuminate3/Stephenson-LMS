@@ -1,89 +1,10 @@
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<title><?php echo $title; ?></title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
-		<link rel="stylesheet" href="<?php echo theme_url('css/materialize.min.css')?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo theme_url('css/material-icons.css')?>">
-		<?php echo Theme::css('css/layout.css'); ?>
-		<link rel="stylesheet" type="text/css" href="<?php echo theme_url('css/home.css')?>">
-	</head>
-
-	<body>
-		<header id="home-header">
-			<nav id="transparent-nav">
-				<div class="container">
-					<div class="nav-wrapper">
-					<div class="nav-wrapper">
-						<a class="brand-logo dropdown-button" href="#!"><?php echo config('app.name'); ?></a>
-						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-						
-						<ul class="left hide-on-med-and-down">
-							<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
-							<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
-							<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-							<li><a href="<?php echo URL::to('/blog'); ?>">Blog</a></li>
-						</ul>
-						
-						<ul class="right hide-on-med-and-down">
-							<?php if (Auth::check()) {?>
-								<li><a href="<?php echo URL::route('chat');?>"><i class="material-icons">chat</i></a></li>
-								<li><a  class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
-							<?php } else {?>
-								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
-							<?php } ?>
-						</ul>
-						<?php if (Auth::check()) {?>
-						<ul id="user-menu" class="dropdown-content">
-							<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a></li>
-							<li><a href="<?php echo URL::to('/meus-cursos'); ?>">Meus Cursos</a></li>
-							<?php if(Auth::user()->permission == "app.admin") {?>
-							<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
-							<?php } ?>
-							<li><a href="<?php echo URL::to('/logout'); ?>">Sair</a></li>
-						</ul>
-						<?php } ?>
-						
-						<ul id="slide-out" class="side-nav">
-							<?php if (Auth::check()) {?>
-								<li>
-									<div class="user-view">
-										<div class="background">
-											<img src="http://hgdecorvietnam.com/wp-content/uploads/2014/09/sdfggj.jpg">
-										</div>
-
-										<a href="#!user"><img class="circle" src="images/depoimento/user1.png"></a>
-										<a href="<?php echo URL::to('/perfil'); ?>"><span class="white-text name"><?php echo Auth::user()->firstname . " " . Auth::user()->lastname;?></span></a>
-										<a href="#!email"><span class="white-text email"><?php echo Auth::user()->email ?></span></a>
-									</div>
-								</li>
-								<li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
-								<li><a href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
-								<li><a href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-								<li><a href="<?php echo URL::to('/blog'); ?>">Blog</a></li>
-								<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><i class="material-icons">person</i>Ver Perfil</a></li>
-								<?php if(Auth::user()->permission == "app.admin") {?>
-								<li><a href="<?php echo URL::to('/admin'); ?>">Painel</a></li>
-								<?php } ?>
-								<li><a href="#?logout=true"><i class="material-icons">exit_to_app</i>Sair</a></li>
-							<?php } else {?>
-								<li><a class="waves-effect waves-light btn" href="<?php echo URL::to('/login'); ?>"><i class="material-icons left">person</i>ENTRAR</a></li>
-							<?php } ?>
-						</ul>
-					</div>
-					</div>
-				</div>
-			</nav>
-
+<?php echo view('header', ['title' => $title, 'css' => ['home']]); ?>
 			<hgroup id="welcome-text">
 				<div class="container">
 					<h2>Estudar não precisa ser chato</h2>
 					<h3>Estude de maneira descomplicada e interativa</h3>
 				</div>
 			</hgroup>
-		</header>
 
 		<div class="benefits">
 			<div class="container">  
@@ -277,70 +198,6 @@
 			</div>
 		</main>
 
+<script type="text/javascript" src="<?php echo theme_url('js/cycle.js'); ?>"></script>
 
-		<footer class="page-footer  teal darken-2">
-			<div class="container">
-				<div class="row">
-					<div class="col l5 s12">
-						<h5 class="white-text">Assinar Feed</h5>
-						<p>Ao assinar o feed, você receberá em seu e-mail todas as nossas novas aulas.</p>
-						
-						<div class="assinar-feed">
-							<form>
-								<div class="row">
-									<div class="col s9"><input type="text" placeholder="Seu e-mail"></div>
-									<div class="col s3"><button class="btn">ASSINAR</button></div>
-								</div>
-							</form>
-						</div>
-					</div>
-
-					<div class="col l3 offset-l1 s12">
-						<h5 class="white-text">Link Úteis</h5>
-
-						<ul>
-							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/contato'); ?>">Contato</a></li>
-							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/anunciar'); ?>">Anunciar</a></li>
-							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/termos-de-uso'); ?>">Termos de Uso</a></li>
-							<li><a class="grey-text text-lighten-3" href="<?php echo URL::to('/quero-postar-aulas'); ?>">Quero Postar Aulas</a></li>
-						</ul>
-					</div>
-
-					<div class="col l3 s12">
-						<h5 class="white-text">Redes Sociais</h5>
-
-						<ul>
-							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.youtube.com/escolaltg/">YouTube</a></li>
-							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.facebook.com/escolaltg">Facebook</a></li>
-							<li><a target="_black" class="grey-text text-lighten-3" href="https://twitter.com/escolaltg">Twitter</a></li>
-							<li><a target="_black" class="grey-text text-lighten-3" href="https://www.instagram.com/escolaltg/">Instagram</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div class="footer-copyright  teal darken-3">
-				<div class="container">
-					&copy; Todos os direitos reservados a Escola LTG - 2018 | 2018 
-				</div>
-			</div>
-		</footer>
-
-		<script type="text/javascript" src="<?php echo theme_url('js/jquery-3.2.1.min.js'); ?>"></script>
-		<script type="text/javascript" src="<?php echo theme_url('js/materialize.min.js'); ?>"></script>
-		<script type="text/javascript" src="<?php echo theme_url('js/script.js'); ?>"></script>
-		<script type="text/javascript" src="<?php echo theme_url('js/cycle.js'); ?>"></script>
-		
-		<script>
-			$('#depoiments').cycle({ 
-				fx:    'scrollLeft', 
-				delay: -1000,
-				timeout: 0, 
-				pager:  '#depoiments-slider', 
-				pagerAnchorBuilder: function(idx, slide) { 
-					return '<a href="#"><div>' + jQuery(slide).children("h3").eq(0).text() + '</div></a>'; 
-				} 
-			});
-		</script>
-	</body>
-</html>
+<?php echo view('footer', ['js' => ['cycle', 'home']]);?>

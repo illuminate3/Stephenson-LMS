@@ -26,7 +26,7 @@
 									<span class="card-title"><?php echo $course['title']; ?></span>
 									<p><?php echo $course['resume']; ?></p>
 								</div>
-								<div class="card-action"><a href="<?php echo URL::to('/curso/' . $course['id']); ?>">Ver</a></div>
+								<div class="card-action"><a href="<?php echo URL::route('courses.single', ['course' => $course->id]);?>">Ver</a></div>
 							</div>
 						</div>  
 					<?php } ?>

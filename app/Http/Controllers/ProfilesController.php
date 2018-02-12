@@ -48,7 +48,7 @@ class ProfilesController{
 		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
 
 		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/perfil', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
+		echo view('profile.profile', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');
 	}
 	
@@ -97,22 +97,6 @@ class ProfilesController{
 		
 		echo view('header', ['title' => $title, 'categories' => $categories]);
 		echo view('profile/following', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
-	}
-	
-	public function perfil_settings(Request $request, $perfil){
-		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Configurações";		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/settings', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 		echo view('footer');
 	}
 	

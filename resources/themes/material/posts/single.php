@@ -1,3 +1,4 @@
+<?php echo view('header', ['title' => $title]); ?>
 <main>
 	<div class="container">
 		<div class="row">
@@ -78,3 +79,5 @@
 		</div>
 	</div>
 </main>
+
+<?php echo view('footer'); ?>

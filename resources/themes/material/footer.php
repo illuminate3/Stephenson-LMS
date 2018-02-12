@@ -1,4 +1,3 @@
-
 <footer class="page-footer  teal darken-2">
 			<div class="container">
 				<div class="row">
@@ -51,5 +50,6 @@
 		<script type="text/javascript" src="<?php echo theme_url('js/jquery-3.2.1.min.js'); ?>"></script>
 		<script type="text/javascript" src="<?php echo theme_url('js/materialize.min.js'); ?>"></script>
 		<script type="text/javascript" src="<?php echo theme_url('js/script.js'); ?>"></script>
+		<?php if(isset($js)){foreach($js as $file){echo Theme::js('js/' . $file . ".js"); }} ?>
 	</body>
 </html>
