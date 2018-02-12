@@ -59,9 +59,7 @@ class LessonsController
 		$id = $matches[1];
 		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '?rel=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 		
-		echo view('courses.lessons.header_lesson', ['title' => $lesson->title, 'course' => $course, ]);
-		echo view('courses.lessons.single', ['lesson' => $lesson, 'video' => $video_embed]);
-		echo view('courses.lessons.footer_lesson');
+		echo view('courses.lessons.single', ['title' => $lesson->title, 'course' => $course, 'lesson' => $lesson, 'video' => $video_embed]);
 	}
 	
 	public function create($course, $module){

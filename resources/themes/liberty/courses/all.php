@@ -18,7 +18,7 @@
 							<div class="card-body">
 							<h5 class="card-title"><?php echo $course['title']; ?></h5>
 							<p class="card-text"><?php echo $course['resume'] ?></p>
-							<a href="<?php echo URL::to('/curso/' . $course['id']); ?>" class="btn btn-primary">Ver</a>
+							<a href="<?php echo URL::route('courses.single', ['course' => $course->id]);?>" class="btn btn-primary">Ver</a>
 							</div>
 						</div>
 					</div>   

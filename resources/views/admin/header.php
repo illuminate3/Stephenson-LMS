@@ -69,6 +69,7 @@
 						</ul>	
 					</li>
 					-->
+					<li><a href="<?php echo route('categories.index'); ?>"><i class="material-icons left">brush</i>Aparência</a></li>
 					
 					<li class="dropdown-menu-item">
 						<a href="#"><i class="material-icons left">group</i><?php echo __('messages.users'); ?></a>

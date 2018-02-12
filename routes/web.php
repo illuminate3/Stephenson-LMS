@@ -117,4 +117,7 @@ Route::get('/admin/library', ['as'=>'admin.library','uses' => 'DashboardControll
 Route::get('/categoria/{categoria}', ['as'=>'user.category','uses' => 'Controller@category']);
 
 
+Route::get('/admin/style', ['as'=>'style.index','uses' => 'TutorialsController@trash']);
+
+
 

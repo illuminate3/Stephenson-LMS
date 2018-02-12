@@ -18,10 +18,10 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/'); ?>">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/tutoriais'); ?>">Tutoriais</a></li>
-				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/cursos'); ?>">Cursos</a></li>
-				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/blog'); ?>">Blog</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::route('home');?>">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::route('tutorials.all');?>">Tutoriais</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::route('courses.all');?>">Cursos</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::route('posts.all');?>">Blog</a></li>
 			</ul>
 			
 			<form class="form-inline mr-auto">
@@ -35,18 +35,18 @@
           <?php echo Auth::user()->firstname; ?>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a>
-          <a class="dropdown-item" href="<?php echo URL::to('/meus-cursos'); ?>">Meus Cursos</a>
+          <a class="dropdown-item" href="<?php echo URL::route('profile.profile', ['user' =>  Auth::user()->user]);?>">Ver Perfil</a>
+          <a class="dropdown-item" href="<?php echo URL::route('courses.user_courses');?>">Meus Cursos</a>
 			 <?php if(Auth::user()->permission == "app.admin") {?>
-          <a class="dropdown-item" href="<?php echo URL::to('/admin'); ?>">Painel</a>
+          <a class="dropdown-item" href="<?php echo URL::route('dashboard.index');?>">Painel</a>
 			 <?php } ?>
 			 <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<?php echo URL::to('/logout'); ?>">Sair</a>
+          <a class="dropdown-item" href="<?php echo URL::route('logout');?>">Sair</a>
         </div>	
       	</li>
 				<?php } else {?>
 								<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/register'); ?>">Cadastro</a></li>
-				<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/login'); ?>">Login</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::route('login');?>">">Login</a></li>
 				<?php } ?>
 
 			</ul>

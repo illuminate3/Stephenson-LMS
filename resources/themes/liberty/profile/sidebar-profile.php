@@ -51,8 +51,5 @@
 				<li class="collection-item"><a href="<?php echo URL::route('profile.about', ['profile' => $user->user]); ?>">Sobre</a></li>
 				<li class="collection-item"><a href="<?php echo URL::route('profile.following', ['profile' => $user->user]);  ?>">Seguindo</a></li>
 				<li class="collection-item"><a href="<?php echo URL::route('profile.followers', ['profile' => $user->user]);  ?>">Seguidores</a></li>
-			<?php if($isLoggedProfile){?>
-				<li class="collection-item"><a href="<?php echo URL::route('profile.settings', ['profile' => $user->user]);  ?>" >Configurações</a></li>
-			<?php } ?>
 			</ul>
 
