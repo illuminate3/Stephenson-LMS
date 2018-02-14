@@ -6,108 +6,136 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
 		<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo url('css/material-icons.css'); ?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo url('css/materialize.min.css'); ?>">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="<?php echo url('css/layout.css'); ?>">
 	</head>
 
 	<body>
-		<div id="navbar">
-			<div id="navbar-header">
-				<a href="#" class="button-expand"><i class="material-icons">toc</i></a>
-				<div id="logo">Escola LTG</div>
-			</div>
-			
-			<div id="side-menu">
-				<ul>
-					<li><a href="<?php echo route('dashboard.index'); ?>"><i class="material-icons left">dashboard</i><?php echo __('messages.dashboard'); ?></a></li>
-					<li><a href="<?php echo route('categories.index'); ?>"><i class="material-icons left">folder</i><?php echo __('messages.categories'); ?></a></li>
-					
-					<li class="dropdown-menu-item">
-						<a href="#"><i class="material-icons left">insert_drive_file</i><?php echo __('messages.pages'); ?></a>
-						
-						<ul class="submenu">
-							<li><a href="<?php echo route('pages.index'); ?>"><?php echo __('messages.view_pages'); ?></a></li>
-							<li><a href="<?php echo route('pages.create'); ?>"><?php echo __('messages.create_page'); ?></a></li>
-						</ul>	
-					</li>
-
-					<li class="dropdown-menu-item">
-						<a href="#"><i class="material-icons left">edit</i><?php echo __('messages.posts'); ?></a>
-						
-						<ul class="submenu">
-							<li><a href="<?php echo route('posts.index'); ?>"><?php echo __('messages.view_posts'); ?></a></li>
-							<li><a href="<?php echo route('posts.create'); ?>"><?php echo __('messages.create_post'); ?></a></li>
-						</ul>	
-					</li>
-					
-					<li class="dropdown-menu-item">
-						<a href="#"><i class="material-icons left">video_library</i><?php echo __('messages.tutorials'); ?></a>
-						
-						<ul class="submenu">
-							<li><a href="<?php echo route('tutorials.index'); ?>"><?php echo __('messages.view_tutorials'); ?></a></li>
-							<li><a href="<?php echo route('tutorials.create'); ?>"><?php echo __('messages.create_tutorial'); ?></a></li>
-						</ul>	
-					</li>
-					
-					<li class="dropdown-menu-item">
-						<a href="#"><i class="material-icons left">grade</i><?php echo __('messages.courses'); ?></a>
-						
-						<ul class="submenu">
-							<li><a href="<?php echo route('courses.index'); ?>"><?php echo __('messages.view_courses'); ?></a></li>
-							<li><a href="<?php echo route('courses.create'); ?>"><?php echo __('messages.create_course'); ?></a></li>
-						</ul>	
-					</li>
-					
-					<!--
-					<li class="dropdown-menu-item">
-						<a href="#"><i class="material-icons left">forum</i>Fórum</a>
-						
-						<ul class="submenu">
-							<li><a href="#">Fóruns</a></li>
-							<li><a href="#">Tópicos</a></li>
-						</ul>	
-					</li>
-					-->
-					<li><a href="<?php echo route('categories.index'); ?>"><i class="material-icons left">brush</i>Aparência</a></li>
-					
-					<li class="dropdown-menu-item">
-						<a href="#"><i class="material-icons left">group</i><?php echo __('messages.users'); ?></a>
-						
-						<ul class="submenu">
-							<li><a href="<?php echo route('users.index'); ?>"><?php echo __('messages.view_users'); ?></a></li>
-							<li><a href="<?php echo route('users.create'); ?>"><?php echo __('messages.create_user'); ?></a></li>
-						</ul>	
-					</li>
-					
-					<li><a href="<?php echo URL::to('/admin/library'); ?>"><i class="material-icons left">photo_library</i><?php echo __('messages.library'); ?></a></li>
-					<li><a href="<?php echo URL::to('/admin/settings'); ?>"><i class="material-icons left">settings</i><?php echo __('messages.settings'); ?></a></li>
-				</ul>
-			</div>
-		</div>
-		
-		
-		<nav class="cyan darken-3" id="topbar">
-			<div class="container">
-				<div class="nav-wrapper">
-					<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
-					<ul class="right hide-on-med-and-down">
-						<li><a class="dropdown-button" href="#!" data-activates="user-menu" ><i class="material-icons left">person</i> <?php echo Auth::user()->firstname;?> <i class="material-icons right">more_vert</i></a></li>
-						<li><a href="<?php echo URL::to('/'); ?>"><?php echo __('messages.visit_site'); ?></a></li>
-					</ul>
-					
-					<ul id="user-menu" class="dropdown-content">
-						<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>"><?php echo __('messages.view_profile'); ?></a></li>
-						<li><a href="<?php echo URL::to('/logout'); ?>"><?php echo __('messages.logout'); ?></a></li>
-					</ul>
-					
-					<ul class="side-nav" id="mobile-demo">
-						<li><a href="<?php echo URL::to('/perfil', ['user' =>  Auth::user()->user]); ?>">Ver Perfil</a></li>
-						<li><a href="<?php echo URL::to('/logout'); ?>"><?php echo __('messages.logout'); ?></a></li>
-					</ul>
-				</div>
-			</div>
+		<div id="sidebar">
+		<div class="sidebar__inner">
+		<div id="site-logo">S</div>
+		<nav id="sidemenu">
+		  <ul class="left-navigation">
+			 <li>
+				 <a href="<?php echo URL::route('dashboard.index');?>">
+					 <i class="material-icons">dashboard</i>
+					 <span>Dashboard</span>
+				 </a>
+			  </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('categories.index');?>">
+					 <i class="material-icons">folder</i>
+					 <span>Categorias</span>
+				 </a>
+			  </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('pages.index');?>">
+					 <i class="material-icons">insert_drive_file</i>
+					 <span>Páginas</span>
+				 </a>
+			  </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('posts.index');?>">
+					 <i class="material-icons">edit</i>
+					 <span>Postagens</span>
+				 </a>
+			  </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('tutorials.index');?>">
+					 <i class="material-icons">video_library</i>
+					 <span>Tutoriais</span>
+				 </a>
+			  </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('courses.index');?>">
+					 <i class="material-icons">star</i>
+					 <span>Cursos</span>
+				 </a>
+			  </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('style.index');?>">
+				 	<i class="material-icons">brush</i>
+				 	<span>Design</span>
+				 </a>
+			 </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('library.index');?>">
+					 <i class="material-icons">library_add</i>
+					 <span>Galeria</span>
+				 </a>
+			 </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('users.index');?>">
+					 <i class="material-icons">people</i>
+					 <span>Usuários</span>
+				 </a>
+			  </li>
+			  
+			 <li>
+				 <a href="<?php echo URL::route('settings.index');?>">
+					 <i class="material-icons">settings</i>
+					 <span>Configurações</span>
+				 </a>
+			 </li>
+			  
+		  </ul>
 		</nav>
-		
+		</div>
+		</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light" id="top-menu">
+		<div class="container">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="<?php echo URL::route('home');?>">Visitar Site <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="createDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Criar
+        </a>
+        <div class="dropdown-menu" aria-labelledby="createDropdown">
+          <a class="dropdown-item" href="<?php echo URL::route('pages.create');?>">Página</a>
+          <a class="dropdown-item" href="<?php echo URL::route('posts.create');?>">Postagem</a>
+          <a class="dropdown-item" href="<?php echo URL::route('tutorials.create');?>">Tutorial</a>
+          <a class="dropdown-item" href="<?php echo URL::route('courses.create');?>">Curso</a>
+          <a class="dropdown-item" href="<?php echo URL::route('users.create');?>">Usuário</a>
+        </div>
+      </li>
+    </ul>
+	  
+    <form class="form-inline mr-auto">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+	  </form>
+	  
+	  <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?php echo Auth::user()->firstname; ?>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="<?php echo URL::route('profile.profile', ['user' => Auth::user()->user]);?>">Ver Perfil</a>
+          <a class="dropdown-item" href="<?php echo URL::route('logout');?>">Sair</a>
+        </div>
+      </li>
+    </ul>
+	  
+  </div>
+  </div>
+</nav>
 		<div id="content">

@@ -1,69 +1,71 @@
-<div class="container">
-	
-	<nav class="z-depth-0 transparent breadcrumbs">
-		<div class="nav-wrapper">
-			<div class="col s12">
-				<a href="<?php echo URL::route('users.index') ?>" class="breadcrumb">Usuários</a>
-				<a href="#" class="breadcrumb">Editar Usuário</a>
-			</div>
-		</div>
-	</nav>
-	
-	<h2>Editar <?php echo $user['firstname'] . " " . $user['lastname'];?></h2>
-
-	<div class="row">
-		<div class="col s12">
-			<?php 
-				if (session('success')){
-					if (session('success')['success'] == true){
-						echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
-					} else{
-						echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
-					}
-				}
-			?>
-		</div>
+<nav aria-label="breadcrumb" id="page-nav">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="<?php echo URL::route('users.index');?>">
+					<?php echo __('messages.users'); ?>
+				</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">
+				<?php echo __('messages.edit_user'); ?>
+			</li>
+		</ol>
 	</div>
-	<form  method="post" action="<?php echo URL::route('users.update', ['user_id' => $user['id']]);?>">
+</nav>
+
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+		<h1 class="display-4">
+			<?php echo __('messages.edit_user'); ?>
+		</h1>
+	</div>
+</div>
+
+
+<div class="container">
+	<?php 
+		if (session('success')){
+			if (session('success')['success'] == false){
+				echo '<div class="alert alert-danger" role="alert">' . session('success')['messages'] . '</div>';
+			} else {
+				echo '<div class="alert alert-success" role="alert">' . session('success')['messages'] . '</div>';
+			}
+		}
+	?>
+
+	
+	<form  method="post" action="<?php echo URL::route('users.update', ['user_id' => $user->id]);?>">
 		
-		<div class="row">
-			<div class="col s6 input-field">
-				<input id="txtFirstName" type="text" name="firstname" value="<?php echo $user['firstname'] ?>">
-				<label for="txtFirstName">Nome</label>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="txtTitle">Nome</label>
+				<input type="text" value="<?php echo $user->firstname; ?>" class="form-control" id="txtTitle" placeholder="Nome" name="firstname">
 			</div>
-
-			<div class="col s6 input-field">
-				<input id="txtLastName" type="text" name="lastname" value="<?php echo $user['lastname'] ?>">
-				<label for="txtLastName">Sobrenome</label>
+			
+			<div class="form-group col-md-6">
+				<label for="txtTitle">Sobrenome</label>
+				<input type="text" value="<?php echo $user->lastname; ?>" class="form-control" id="txtTitle" placeholder="Sobrenome" name="lastname">
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col s12 input-field">
-				<input id="txtUser" type="text" name="user" value="<?php echo $user['user'] ?>">
+		<div class="form-group">
 				<label for="txtUser">Usuário</label>
-			</div>
+				<input id="txtUser" type="text" value="<?php echo $user->user; ?>"  name="user" class="form-control" placeholder="Usuário">
+				
 		</div>
 
-		<div class="row">
-			<div class="col s12 input-field">
-				<input id="emlEmail" type="email" name="email" value="<?php echo $user['email'] ?>">
+		<div class="form-group">
 				<label for="emlEmail">E-mail</label>
-			</div>
+				<input id="emlEmail" type="email" value="<?php echo $user->email; ?>" name="email" class="form-control" placeholder="E-mail">
 		</div>
 
-		<div class="row">
-			<div class="col s12 input-field">
-				<input id="pasPassword" type="password" name="password" value="<?php echo $user['password'] ?>">
+		<div class="form-group">
 				<label for="pasPassword">Senha</label>
-			</div>
+				<input id="pasPassword" type="password" value="<?php echo $user->password; ?>" name="password" class="form-control" placeholder="Senha">
 		</div>
-		<div class="row">
-			<div class="col s12">
-				<button type="submit" class="btn">EDITAR</button>
-			</div>
-		</div>
-		<input type="hidden" value="PUT" name="_method">
-		<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+		
+		<button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Editar</button>
+			<input type="hidden" value="PUT" name="_method">
+			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 	</form>
 </div>

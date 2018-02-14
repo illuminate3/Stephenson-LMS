@@ -45,8 +45,8 @@
         </div>	
       	</li>
 				<?php } else {?>
-								<li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/register'); ?>">Cadastro</a></li>
-				<li class="nav-item"><a class="nav-link" href="<?php echo URL::route('login');?>">">Login</a></li>
+								<li class="nav-item"><a class="nav-link" href="<?php echo URL::route('register');?>">Cadastro</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?php echo URL::route('login');?>">Login</a></li>
 				<?php } ?>
 
 			</ul>

@@ -1,108 +1,95 @@
-<div class="container">	
-	
-	<nav class="z-depth-0 transparent breadcrumbs">
-		<div class="nav-wrapper">
-			<div class="col s12">
-				<a href="<?php echo URL::route('posts.index') ?>" class="breadcrumb">Postagens</a>
-				<a href="#" class="breadcrumb">Criar Postagem</a>
-			</div>
-		</div>
-	</nav>
-	
-	<h2>Adicionar Postagem</h2>
+<nav aria-label="breadcrumb" id="page-nav">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="<?php echo URL::route('posts.index');?>">
+					<?php echo __('messages.posts'); ?>
+				</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">
+				<?php echo __('messages.create_post'); ?>
+			</li>
+		</ol>
+	</div>
+</nav>
 
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+		<h1 class="display-4">
+			<?php echo __('messages.create_post'); ?>
+		</h1>
+	</div>
+</div>
+
+
+<div class="container">
+	
+	<?php 
+		if (session('success')){
+			if (session('success')['success'] == false){
+				echo '<div class="alert alert-danger" role="alert">' . session('success')['messages'] . '</div>';
+			} else {
+				echo '<div class="alert alert-success" role="alert">' . session('success')['messages'] . '</div>';
+			}
+		}
+	?>
+	
 	<div class="row">
-		<form method="post" action="<?php echo URL::route('posts.store');?>" enctype="multipart/form-data">
-			<div class="col s9">
-					<div class="row">
-					<div class="col s12">
-						<?php 
-							if (session('success')){
-								if (session('success')['success'] == true){
-									echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
-								} else{
-									echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
-								}
-							}
-						?>
-					</div>
-				</div>
+		<form class="col-12" method="post" action="<?php echo URL::route('posts.store');?>" enctype="multipart/form-data">
+			<div class="row">
+			<div class="col-9">
 				
-				<div class="row">
-					<div class="col s12 input-field">
-						<input type="text" name="title" id="post-title">
-						<label for="post-title">Titulo</label>
+					<div class="form-group">
+						<label for="txtTitle">Título</label>
+						<input type="text" class="form-control" id="txtTitle" placeholder="Título" name="title">
 					</div>
-				</div>
 
-				<div class="row">
-					<div class="col s12 input-field">
-						<textarea name="content" id="post-content" class="tinymce"></textarea>
+					<div class="form-group">
+						<textarea type="text" class="form-control tinymce" rows="8" id="txtContent" placeholder="Conteúdo" name="content"></textarea>
 					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col s12 input-field">
-						<textarea name="resume" id="post-resume" class="materialize-textarea"></textarea>
-						<label for="post-resume">Resumo</label>
+
+					<div class="form-group">
+						<label for="txtTitle">Resumo</label>
+						<textarea type="text" class="form-control" id="txtTitle" placeholder="Resumo" name="resume"></textarea>
 					</div>
-				</div>
 				
 				<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
 			</div>
 			
-			<div class="col s3">
-				<div class="row">
-					<div class="col s12">
-						<button type="submit" class="btn-large full-btn cyan darken-2">Adicionar</button>
+				<div class="col-3">
+
+					<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Adicionar</button>
+
+					<div class="card mt-3">
+					  <h5 class="card-header">Tags</h5>
+					  <div class="card-body">
+						  Nada por aqui
+					  </div>
+					</div>
+					
+					<div class="card mt-3">
+					  <h5 class="card-header">Categoria</h5>
+					  <div class="card-body">
+							<select name="category_id">
+								<option value="0" disabled selected>Sem categoria</option>
+								<?php foreach ($categories as $category) { ?>
+								<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+								<?php } ?>
+							</select>
+					  </div>
+					</div>
+					
+					<div class="card mt-3">
+					  <h5 class="card-header">Thumbnail</h5>
+					  <div class="card-body">
+							<div class="file-upload">
+								<a id="lfm" data-input="thumbnail" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
+								<input id="thumbnail" type="text" name="thumbnail">
+							</div>
+					  </div>
 					</div>
 				</div>
-
-				<div class="row">
-					<div class="col s12">
-						<div class="widget card">
-							<h3 class="widget-title">Tags</h3>
-
-							<div class="widget-content">
-								<div class="chips chips-placeholder"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col s12">
-						<div class="widget card">
-							<h3 class="widget-title">Categoria</h3>
-
-							<div class="widget-content">
-								<select name="category_id">
-									<option value="0" disabled selected>Sem categoria</option>
-									<?php foreach ($categories as $category) { ?>
-									<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
-									<?php } ?>
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col s12">
-						<div class="widget card">
-							<h3 class="widget-title">Thumbnail</h3>
-
-							<div class="widget-content">
-								<div class="file-upload">
-									<a id="lfm" data-input="thumbnail" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
-									<input id="thumbnail" type="text" name="thumbnail">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>	
 			</div>
-			
 			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 		</form>
 	</div>

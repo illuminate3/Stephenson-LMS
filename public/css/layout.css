@@ -1,179 +1,126 @@
-html, body {height: 100%;background: #ececec}
-.container{width: 90%;}
-.full-btn{width: 100%;}
-#navbar{
-	width: 260px;
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{background: #e3e3e3;}
+
+html,body{
 	height: 100%;
-	background: #263238 ;
-	position: fixed;
-	top: 0;
-	left: 0;
 }
 
-#navbar-header{
-	position: fixed;
-	width: 260px;
-	height: 64px;
-	border-bottom: 1px solid #37474f;
-	padding: 0px 15px;
+.container{
+	max-width: 95%;
 }
 
-.button-expand{float: left;padding: 0px 10px; height: 64px;color: white;margin-right: 10px}
-.button-expand:hover{background: rgba(0,0,0,0.2);}
-.button-expand i{line-height: 64px;}
+.jumbotron {
+    padding: 1.4rem 0rem;
+}
 
-#logo{
-	line-height: 64px;
-	color: white;
+nav#top-menu{
+	background: white;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+#site-logo{
+	width: 60px;
+	height: 57px;
+	background-color: #003f9a;
 	overflow: hidden;
-	font-size: 1.8em;
+	color: white;
+	text-align: center;
+	line-height: 57px;
+	font-size: 2em;
+	text-transform: uppercase;
+}
+
+nav#sidemenu{
+  background-color: #000B1D;
+  position: absolute;
+	min-height: calc(100% - 56px);
+	z-index: 100;
+	top: 56px;
+	 will-change: min-height;
+}
+
+.sidebar__inner{
+    transform: translate(0, 0); /* For browsers don't support translate3d. */
+    transform: translate3d(0, 0, 0);
+    will-change: position, transform;
+}
+
+.left-navigation{
+  width: 60px;
+}
+
+.left-navigation a{
+  display: block;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  position: relative;
+}
+
+.left-navigation i{
+  background-color: #000B1D;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 1.3rem;
+  position: relative;
+  transition: all 300 ms ease-in-out;
+}
+
+.left-navigation span{
+  background-color: #00CD99;
+  color: white;
+  padding: 0 10px;
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  transform: translateY(-50%);
+  height: 60px;
+  line-height: 60px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
+  left: 0;
+  transition: all 300ms ease-in-out;
+  z-index: -1;
+}
+.left-navigation a:hover span{
+  opacity: 1;
+  visibility: visible;
+  left: 60px;
+}
+.left-navigation a:hover i {
+  background-color: #00CD99;
+  color: white;
+}
+
+#sidebar{
+	min-height: 100%;
+	width: 60px;
 	float: left;
 }
 
-#side-menu {
-	width: 260px;
-	height: calc(100% - 64px);
-	padding:15px 0px;
-	overflow: scroll;
-	overflow-x: hidden;
-	position: fixed;
-	top: 64px;
-	left: 0;
+#content{
+	float: left;
+	width: calc(100% - 60px);
 }
 
-#side-menu::-webkit-scrollbar-track
-{
-	border-radius: 10px;
-	background-color: rgba(0,0,0,.3);
-}
+#page-nav{background: #003f9a;}
+#page-nav .breadcrumb{background: transparent;padding: .75rem 0rem;}
+#page-nav .breadcrumb a{color: #00CD99}
+#page-nav ol{margin-bottom: 0px;}
+#page-nav .breadcrumb-item.active{color: white}
+#page-nav .breadcrumb-item+.breadcrumb-item::before {color: white}
 
-#side-menu::-webkit-scrollbar{
-	width: 10px;
-	border-radius: 10px;
-}
+.action-buttons {border-radius: 5px;overflow: hidden;padding: 0px;height: 40px}
+.action-buttons button{border-radius: 0px;line-height: 40px;padding: 0px 10px;}
+.action-buttons i{line-height: 40px;}
 
-#side-menu::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	background-color: rgba(0,0,0,.3);
-}
-
-#side-menu li{display: block;list-style: none;}
-#side-menu a{
-	display: block;
-	padding: 0px 15px;
-	line-height: 50px;
-	color: white;
-	text-transform: uppercase;
-	font-weight: 300;
-	transition: 0.4s;
-}
-
-#side-menu li ul {background: #122027; display: none;}
-#side-menu li ul a{color: #ccc;padding-left: 40px;}
-#side-menu li ul a:hover{color: #ccc;padding-left: 40px;}
-
-#side-menu a:hover{background:#37474f; }
-
-#side-menu i.left{line-height: 50px;}
-#side-menu i.right{line-height: 50px;}
-
-#topbar {
-	width: calc(100% - 260px);
+.lesson-actions .action-buttons, .module-actions .action-buttons{
 	float: right;
 }
-
-#content {
-	width: calc(100% - 260px);
-	float: right;
-}
-
-.success-message, .error-message{
-	padding: 10px;
-	color: white;
-	border-radius: 5px;
-	width: 100%;
-}
-.success-message{background: #43a047; }
-.error-message{background: #e53935;}
-
-.widget{
-	margin: 0px;
-	margin-bottom: 20px;
-	padding: 0px;
-}
-
-.widget-title {
-	font-size: 1.6em;
-	color: #444;
-	background: #00838f;
-	padding: 10px;
-	color: white;
-	margin: 0px;
-}
-
-.widget-content{
-	padding: 10px;
-}
-
-.action{float: left;margin-right: 10px;}
-.action:last-child{margin-right: 0px;}
-
-.action button{
-	border: none;
-	color: white;
-	display: block;
-	height: 40px;
-	width: 40px;
-	border-radius: 5px;
-	transition: 0.4s;
-	line-height: 40px;
-}
-
-.action button i{line-height: 40px;}
-.breadcrumb{color: #009688  }
-.breadcrumb:last-child{color: #4db6ac }
-.breadcrumb:before{color: #ccc }
-
-.no-module{padding: 15px;}
-.module, .lesson{width: 100%;display: block;margin: 10px 0px;background: white;}
-.drag-module, .drag-lesson{float: left;width: 40px;height: 60px;background: #ddd;text-align: center;margin-right: 15px;cursor:move}
-.drag-module i, .drag-lesson i{line-height: 60px;}
-.module-header, .lesson-header{line-height: 60px;height: 60px;padding: 0px 15px;border-bottom: 1px solid #ccc;}
-.module-name, .lesson-name{float: left;cursor: pointer;height: 60px;display: block;}
-.module-edit{float: left;height: 60px;display: none;}
-.module-edit input{height: 60px;}
-.module-header .action, .lesson .action{float: right;padding: 5px 0px; margin-left: 10px; margin-right: 0px;}
-.module-body{display: none;}
-.lessons-list{padding: 15px;}
-.no-lesson{padding: 15px;}
-.create-lesson{width: 100%;height: 60px;padding: 10px 15px;background:#ddd;}
-.create-lesson button{height: 40px;}
-#create-module{height: 60px;padding: 10px 15px;}
-#create-module input{float: left;width: calc(100% - 170px);height: 40px;}
-#create-module button{float: right;width: 150px;height: 40px;}
-.list-itens{padding: 10px;}
-
-.lesson-header{}
-.lesson-body{display: none;padding: 15px;background: #ececec;color: #333}
-.material{line-height: 50px;padding: 0px 10px;}
-.material i{line-height: 50px;float: left;}
-
-.page-title {height: 50px;margin-top: 30px;margin-bottom: 30px;}
-.page-title h2{float: left;font-size: 50px;line-height: 50px;margin: 0px;font-weight: lighter;}
-.page-title button{float: left;height: 40px;line-height: 40px;margin: 5px 15px;}
-
-#course-info .info{
-	display: inline-block;
-	line-height: 50px;
-	padding: 0px 10px;
-	color: #333;
-	font-size: 17px;
-	margin-bottom: 15px;
-}
-
-#course-info .info:first-child{padding-left: 0px;}
-#course-info .info i{line-height: 50px;float: left;margin-right: 10px;}
-
-#course-header{background: #00bfa5;}
-#course-header h2{margin: 0px;padding: 25px 0px;color: white}

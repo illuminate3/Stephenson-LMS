@@ -108,16 +108,16 @@ Route::resource('admin/posts', 'PostsController', ['except' => ['show']]);
 Route::resource('admin/categories', 'CategoriesController', ['except' => ['show']]);
 
 /* ROTAS PARA O CONTROLE DE CONFIGURAÇÕES */
-Route::get('/admin/settings', ['as'=>'admin.settings','uses' => 'SettingsController@index']);
+Route::get('/admin/settings', ['as'=>'settings.index','uses' => 'SettingsController@index']);
 
 /* ROTAS PARA O CONTROLE DE MÍDIA */
-Route::get('/admin/library', ['as'=>'admin.library','uses' => 'DashboardController@library']);
+Route::get('/admin/library', ['as'=>'library.index','uses' => 'DashboardController@library']);
 
 /* ROTAS PARA CATEGORIAS */
 Route::get('/categoria/{categoria}', ['as'=>'user.category','uses' => 'Controller@category']);
 
 
-Route::get('/admin/style', ['as'=>'style.index','uses' => 'TutorialsController@trash']);
+Route::get('/admin/style', ['as'=>'style.index','uses' => 'StyleController@index']);
 
 
 

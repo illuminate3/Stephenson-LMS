@@ -1,62 +1,55 @@
+<nav aria-label="breadcrumb" id="page-nav">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="<?php echo URL::route('pages.index');?>"><?php echo __('messages.pages'); ?></a></li>
+			<li class="breadcrumb-item active" aria-current="page"><?php echo __('messages.create_page'); ?></li>
+		</ol>
+	</div>	
+</nav>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><?php echo __('messages.create_page'); ?></h1>
+  </div>
+</div>
+
+
 <div class="container">
-	
-	<nav class="z-depth-0 transparent breadcrumbs">
-		<div class="nav-wrapper">
-			<div class="col s12">
-				<a href="<?php echo URL::route('pages.index') ?>" class="breadcrumb">Páginas</a>
-				<a href="#" class="breadcrumb">Criar Página</a>
-			</div>
-		</div>
-	</nav>
-	
-	<h2>Adicionar Página</h2>
+	<?php 
+		if (session('success')){
+			if (session('success')['success'] == false){
+				echo '<div class="alert alert-danger" role="alert">' . session('success')['messages'] . '</div>';
+			} else {
+				echo '<div class="alert alert-success" role="alert">' . session('success')['messages'] . '</div>';
+			}
+		}
+	?>
 	
 	<div class="row">
-		<form method="post" action="<?php echo URL::route('pages.store');?>" enctype="multipart/form-data">
-			<div class="col s9">
-				<div class="row">
-				<div class="col s12">
-					<?php 
-					if (session('success')){
-					if (session('success')['success'] == true){
-					echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
-					} else{
-					echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
-					}
-					}
-					?>
-				</div>
-				</div>
+		<form method="post" class="col" action="<?php echo URL::route('pages.store');?>" enctype="multipart/form-data">
+			<div class="row">
+			<div class="col-9">
+				  <div class="form-group">
+					 <label for="txtTitle">Título</label>
+					 <input type="text" class="form-control" id="txtTitle" placeholder="Título" name="title">
+				  </div>
 				
-				<div class="row">
-					<div class="col s12 input-field">
-						<input type="text" name="title" id="page-title">
-						<label for="tutorial-title">Titulo</label>
-					</div>
-				</div>
+					<div class="form-group">
+					 <label for="txtSlug">Slug</label>
+					 <input type="text" class="form-control" id="txtSlug" placeholder="Título" name="slug">
+				  </div>
 				
-				<div class="row">
-					<div class="col s12 input-field">
-						<input type="text" name="slug" id="page-slug">
-						<label for="tutorial-slug">Slug</label>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col s12 input-field">
-						<textarea name="content" id="page-content" class="tinymce"></textarea>
-					</div>
-				</div>
+					<div class="form-group">
+					 <label for="txtContent">Conteúdo</label>
+						<textarea type="text" class="form-control tinymce"  rows="8"id="txtContent" placeholder="Conteúdo" name="content"></textarea>
+				  </div>
 				
 				<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
 			</div>
 			
-			<div class="col s3">
-				<div class="row">
-					<div class="col s12">
-						<button type="submit" class="btn-large full-btn cyan darken-2">Adicionar</button>
-					</div>
-				</div>
+			<div class="col-3">
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Adicionar</button>
+			</div>
 			</div>
 			
 			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

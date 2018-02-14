@@ -1,14 +1,17 @@
 		</div>
+
 		<script type="text/javascript" src="<?php echo url('../js/jquery-3.2.1.min.js'); ?>"></script>
 		<script type="text/javascript" src="<?php echo url('../js/jquery-ui.min.js'); ?>"></script>
-		<script type="text/javascript" src="<?php echo url('../js/materialize.min.js'); ?>"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="<?php echo url('../js/tinymce/tinymce.min.js'); ?>"></script>
 		<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 		<script>$('#lfm').filemanager('file');</script>
+		<script type="text/javascript" src="<?php echo url('../js/jquery.sticky-sidebar.min.js'); ?>"></script>
 		<script type="text/javascript" src="<?php echo url('../js/script.js'); ?>"></script>
 		<script>
 			 $( "#modules-list" ).sortable({
-				 handle: '.drag-module',
+				 // handle: '.drag-module',
 				 update: function(){
 					$.map($(this).find('.module'),function(el){
 						var moduleId = el.id;

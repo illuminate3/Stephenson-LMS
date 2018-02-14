@@ -1,106 +1,111 @@
+<nav aria-label="breadcrumb" id="page-nav">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active" aria-current="page">Categorias</li>
+		</ol>
+	</div>	
+</nav>
+
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+		<h1 class="display-4">
+			<?php echo __('messages.categories'); ?>
+		</h1>
+	</div>
+</div>
+
 <div class="container">
-	<div class="page-title"><h2><?php echo __('messages.categories'); ?></h2></div>
-	
 	<?php 
 		if (session('success')){
-			if (session('success')['success'] == true){
-				echo "<div class='success-message'>" . session('success')['messages'] . "</div>";
-			} else{
-				echo "<div class='error-message'>" . session('success')['messages'] . "</div>";
+			if (session('success')['success'] == false){
+				echo '<div class="alert alert-danger" role="alert">' . session('success')['messages'] . '</div>';
+			} else {
+				echo '<div class="alert alert-success" role="alert">' . session('success')['messages'] . '</div>';
 			}
 		}
 	?>
-	
-	
+
 	<div class="row">
-		<div class="col s5">
-			<h4><?php echo __('messages.create_category'); ?></h4>
-			
+		<div class="col-5">
 			<div class="card list-itens">
+				<div class="card-body">
+				<h5 class="card-title"><?php echo __('messages.create_category'); ?></h5>
 				<form method="post" action="<?php echo URL::route('categories.store');?>">
-					<div class="row">
-						<div class="col s12 input-field">
-							<input id="txtCategoryName" type="text" name="name">
-							<label for="txtCategoryName"><?php echo __('messages.name'); ?></label>
-						</div>
+					<div class="form-group">
+						<label for="txtName">Nome</label>
+						<input type="text" class="form-control" id="txtName" placeholder="Nome" name="name">
 					</div>
-					<div class="row">
-						<div class="col s12 input-field">
-							<input id="txtCategorySlug" type="text" name="slug">
-							<label for="txtCategorySlug"><?php echo __('messages.slug'); ?></label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col s12">
-							<label for="clrCategoryColor"><?php echo __('messages.color'); ?></label>
-							<input id="clrCategoryColor" type="color" name="color">
-						</div>
-					</div>
-					<div class="row">
-
-					<div class="input-field col s12">
-						<select name="level">
-							<option value="0" disabled selected><?php echo __('messages.primary'); ?></option>
-							<?php foreach($categories as $category) { ?>
-							<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
-							<?php }?>
-						</select>
-
-						<label><?php echo __('messages.hierarchy'); ?></label>
+					
+					<div class="form-group">
+						<label for="txtSlug">Slug</label>
+						<input type="text" class="form-control" id="txtSlug" placeholder="Slug" name="slug">
 					</div>
 
-					</div>
-					<div class="row">
-						<div class="col s12">
-							<button type="submit" class="btn"><?php echo __('messages.create_category'); ?></button>
-						</div>
-					</div>
+					  <div class="form-group">
+						 <label for="exampleFormControlSelect1">Hirarquia</label>
+						 <select class="form-control" id="exampleFormControlSelect1" name="level">
+								<option value="0" disabled selected><?php echo __('messages.primary'); ?></option>
+								<?php foreach($categories as $category) { ?>
+								<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+								<?php }?>
+						 </select>
+					  </div>
+
+					
+					<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Adicionar</button>
 					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 				</form>
 			</div>
 		</div>
-		
-		<div class="col s7">
-			<h4><?php echo __('messages.view_category'); ?></h4>
+		</div>
+
+		<div class="col-7">
 			<div class="card list-itens">
-
-			<?php			
-			if(count($categories) < 1){
-				echo __('messages.no_category_created');
-			} else{
-			?>
-				<table class="highlight responsive-table">
-					<thead>
-						<tr>
-							<td><?php echo __('messages.category'); ?></td>
-							<td>Slug</td>
-							<td style="width:100px;"><?php echo __('messages.actions'); ?></td>
-						</tr>
-					</thead>
-
-					<tbody>
-						<?php foreach($categories as $category) { ?>
+				<?php			
+					if(count($categories) < 1){
+						echo __('messages.no_category_created');
+					} else{
+				?>
+					<table class="table table-hover">
+						<thead>
 							<tr>
-								<td><?php echo $category['name']; ?></td>
-								<td><?php echo $category['slug']; ?></td>
 								<td>
-									<div class="action">
-										<a href="<?php echo URL::route('categories.edit', ['categories_id' => $category->id]);?>"><button class="z-depth-1 waves-effect teal"><i class="material-icons">edit</i></button></a>
-									</div>
+									<?php echo __('messages.category'); ?>
+								</td>
+								<td>Slug</td>
+								<td style="width:100px;">
+									<?php echo __('messages.actions'); ?>
+								</td>
+							</tr>
+						</thead>
 
-									<div class="action">
-										<form method="post" action="<?php echo URL::route('categories.destroy',['categories_id' => $category->id]);?>">
-											<button class="red z-depth-1 waves-effect" type="submit"><i class="material-icons">remove_circle_outline</i></button>
+						<tbody>
+							<?php foreach($categories as $category) { ?>
+							<tr>
+								<td>
+									<?php echo $category['name']; ?>
+								</td>
+								<td>
+									<?php echo $category['slug']; ?>
+								</td>
+								<td>
+									<div class="btn-group action-buttons" role="group">
+										<a href="<?php echo URL::route('categories.edit', ['id' =>  $category['id']]);?>">
+											<button type="button" class="btn btn-primary"><i class="material-icons">edit</i></button>
+										</a>
+										
+										<form method="post" action="<?php echo URL::route('categories.destroy', ['id' =>  $category['id']]);?>">
+											<button type="submit" type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
 											<input type="hidden" value="DELETE" name="_method">
 											<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 										</form>
 									</div>
 								</td>
 							</tr>
-						<?php }?>
-					</tbody>
-				</table>
-			<?php }?>
+							<?php }?>
+						</tbody>
+					</table>
+					<?php }?>
 			</div>
 		</div>
 	</div>
