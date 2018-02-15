@@ -15,4 +15,13 @@ class StyleController{
 		echo view('admin.style.index');
 		echo view('admin.footer');
 	}
+	
+	public function changeTheme(Request $request){
+		 $themeName = $request->theme;
+       if(\Theme::set($themeName)){
+			 return redirect()->back();
+		 } else{
+			 echo "Ocorreu um erro inesperado";
+		 }
+	}
 }

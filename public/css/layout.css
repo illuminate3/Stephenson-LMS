@@ -47,6 +47,12 @@ nav#sidemenu{
     transform: translate(0, 0); /* For browsers don't support translate3d. */
     transform: translate3d(0, 0, 0);
     will-change: position, transform;
+	z-index: 997;
+	position: absolute;
+}
+
+.inner-wrapper-sticky{
+	z-index: 999;
 }
 
 .left-navigation{
@@ -103,6 +109,7 @@ nav#sidemenu{
 	min-height: 100%;
 	width: 60px;
 	float: left;
+	z-index: 998;
 }
 
 #content{

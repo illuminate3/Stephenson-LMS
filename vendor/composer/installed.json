@@ -4021,21 +4021,21 @@
     },
     {
         "name": "igaster/laravel-theme",
-        "version": "v2.0.5",
-        "version_normalized": "2.0.5.0",
+        "version": "v2.0.6",
+        "version_normalized": "2.0.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/igaster/laravel-theme.git",
-            "reference": "3db2869e85b4ed2d1f1fc89503e0a8487be42ff6"
+            "reference": "d3835fd99418848ba130e3f7a73d3f78ab636471"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/igaster/laravel-theme/zipball/3db2869e85b4ed2d1f1fc89503e0a8487be42ff6",
-            "reference": "3db2869e85b4ed2d1f1fc89503e0a8487be42ff6",
+            "url": "https://api.github.com/repos/igaster/laravel-theme/zipball/d3835fd99418848ba130e3f7a73d3f78ab636471",
+            "reference": "d3835fd99418848ba130e3f7a73d3f78ab636471",
             "shasum": ""
         },
         "require": {
-            "illuminate/contracts": "5.4.*|5.5.*"
+            "illuminate/contracts": "5.4.*|5.5.*|5.6.*"
         },
         "require-dev": {
             "orchestra/testbench": "~3.4",
@@ -4044,7 +4044,7 @@
         "suggest": {
             "orchestra/asset": "Use '@css' and '@js' in Blade files"
         },
-        "time": "2017-09-27T11:05:13+00:00",
+        "time": "2018-02-12T11:19:00+00:00",
         "type": "library",
         "extra": {
             "laravel": {

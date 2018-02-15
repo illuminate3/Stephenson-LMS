@@ -118,6 +118,7 @@ Route::get('/categoria/{categoria}', ['as'=>'user.category','uses' => 'Controlle
 
 
 Route::get('/admin/style', ['as'=>'style.index','uses' => 'StyleController@index']);
+Route::post('/admin/style/change-theme', ['as'=>'style.change_theme', 'uses' => 'StyleController@changeTheme']);
 
 
 

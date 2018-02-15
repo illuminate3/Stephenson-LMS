@@ -14,22 +14,23 @@
 
 <div class="container">
 		<div class="row">
+
 			<?php $themes = Theme::all(); foreach($themes as $theme){ ?>
-			<div class="col s4">
-			<div class="card">
-				<div class="card-image">
-              <img src="images/sample-1.jpg">
-            </div>
-				
-				<div class="card-content">
-              <span class="card-title"><?php echo $theme->name; ?></span>
-				</div>
-				
-				<div class="card-action">
-              <a href="#">Ativar</a>
-            </div>
-			</div>
-			</div>
+								
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><?php echo $theme->name; ?></h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			<form method="post" action="<?php echo URL::route('style.change_theme'); ?>">
+          	<button class="btn btn-primary" type="submit">Ativar</button>
+				<input type="hidden" value="<?php echo $theme->name; ?>" name="theme">
+				<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+			</form>
+      </div>
+    </div>
+  </div>
+
 			<?php } ?>
 		</div>
 </div>

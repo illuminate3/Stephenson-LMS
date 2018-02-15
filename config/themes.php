@@ -57,43 +57,4 @@ return [
 	|--------------------------------------------------------------------------
 	*/
 
-	'themes' => [
-
-
-		// Add your themes here. These settings will overide theme.json settings defined for each theme
-
-		/*
-		|---------------------------[ Example Structure ]--------------------------
-		|
-		|	// Full theme Syntax:
-		|
-		|	'example1' => [
-		|		'extends'	 	=> null, 	// doesn't extend any theme
-		|		'views-path' 	=> example, // = resources/views/example_theme
-		|		'asset-path' 	=> example, // = public/example_theme
-		|	],
-		|	
-		|	// Use all Defaults:
-		|	
-		|	'example2',	// Assets =\public\example2, Views =\resources\views\example2
-		|				// Note that if you use all default values, you can ommit decleration completely.
-		|				// i.e. defaults will be used when you call Theme::set('undefined-theme')
-		|	
-		|	
-		|	// This theme shares the views with example2 but defines its own assets in \public\example3
-		|	
-		|	'example3' => [
-		|		'views-path'	=> 'example',
-		|	],
-		|	
-		|	// This theme extends example1 and may override SOME views\assets in its own paths
-		|	
-		|	'example4' => [
-		|		'extends'	=> 'example1',
-		|	],
-		|	
-		|--------------------------------------------------------------------------
-		*/
-	],
-
 ];
