@@ -64,8 +64,9 @@ class CoursesController
 
     public function all(){
       $courses = $this->repository->all();
-
-		echo view('courses.all', ['courses' => $courses]);
+		 $title = "Cursos - Stephenson";
+		 
+		echo view('courses.all', ['courses' => $courses, 'title' => $title]);
     }
 	
 	public function single($course){

@@ -13,7 +13,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
-use App\Repositories\CategoriesRepository;
 use App\Validators\UserValidator;
 use App\Services\UserService;
 use Exception;
@@ -25,79 +24,43 @@ class ProfilesController{
     protected $service;
     protected $repository;
 	 protected $validator;
-	 protected $categories_repository;
 
-    public function __construct(UserRepository $repository, UserValidator $validator, UserService $service, CategoriesRepository $categories){
+    public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
         $this->repository 	= $repository;
         $this->service 		= $service;
         $this->validator 	= $validator;
-        $this->categoriesRepository 	= $categories;
     }
 	
 	public function perfil(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-
-
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-
+		$isLoggedProfile = ($perfil->id == Auth::user()->id) ? true : false;
 		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
 
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile.profile', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
+		echo view('profile.profile', ['title' => $title, 'user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 	}
 	
 	public function perfil_about(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Sobre";		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/about', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
+		$isLoggedProfile = ($perfil->id == Auth::user()->id) ? true : false;
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
+
+		echo view('profile.about', ['title' => $title, 'user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 	}
 	
 	public function perfil_followers(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguidores";		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/followers', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
+		$isLoggedProfile = ($perfil->id == Auth::user()->id) ? true : false;
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
+
+		echo view('profile.followers', ['title' => $title, 'user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 	}
 	
 	public function perfil_following(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
-		$categories = $this->categoriesRepository->getPrimaryCategories();
-		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Seguindo";		
-		
-		if($perfil->id == Auth::user()->id){
-			$isLoggedProfile = true;
-		} else{
-			$isLoggedProfile = false;
-		}
-		
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('profile/following', ['user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
-		echo view('footer');
+		$isLoggedProfile = ($perfil->id == Auth::user()->id) ? true : false;
+		$title = $perfil['firstname'] . " " . $perfil['lastname'] . " - Feed";
+
+		echo view('profile.following', ['title' => $title, 'user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 	}
 	
  }

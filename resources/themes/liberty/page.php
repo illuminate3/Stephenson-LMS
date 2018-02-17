@@ -1,9 +1,13 @@
-<main>
-	<div id="page-title"><div class="container"><h2><?php echo $page->title; ?></h2></div></div>
-	
-	<div class="container">
-		<div id="page-content">
-			<?php echo $page->content; ?>
-		</div>
-	</div>
-</main>
+<?php echo view('header', ['title' => $title]); ?>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><?php echo $page->title ?></h1>
+  </div>
+</div>
+
+<div class="container">
+<?php echo $page->content ?>
+</div>
+
+<?php echo view('footer'); ?>

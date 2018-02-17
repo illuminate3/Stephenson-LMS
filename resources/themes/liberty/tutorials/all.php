@@ -1,4 +1,4 @@
-<?php echo view('header'); ?>
+<?php echo view('header', ['title' => $title]); ?>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Tutoriais</h1>

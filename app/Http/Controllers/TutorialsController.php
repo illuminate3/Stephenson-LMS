@@ -40,18 +40,14 @@ class TutorialsController{
 		  $this->commentsRepository  = $commentsRepository;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+	/* USUÁRIO */
 	
     public function all(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$tutorials = $this->repository->all();
+		$title = "Tutoriais - Stephenson";
 
-		echo view('tutorials.all', ['tutorials' => $tutorials]);
+		return view('tutorials.all', ['tutorials' => $tutorials, 'title' => $title]);
     }
 	
 	public function single($tutorial){
@@ -65,8 +61,10 @@ class TutorialsController{
 		$id = $matches[1];
 		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 		
-		echo view('tutorials.single', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
+		return view('tutorials.single', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
 	}
+	
+	/* PAINEL */
 	
 	 public function index(){
 	   $tutorials = $this->repository->all();

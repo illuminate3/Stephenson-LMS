@@ -1,4 +1,4 @@
-<?php echo view('header'); ?>
+<?php echo view('header', ['title' => $title]); ?>
 
 	<div class="container">
 		

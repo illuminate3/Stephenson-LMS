@@ -13,22 +13,29 @@ use App\Repositories\CategoriesRepository;
 use App\Validators\CategoriesValidator;
 use App\Services\CategoriesService;
 
-
-
 class CategoriesController{
-    protected $repository;
-    protected $validator;
-    protected $service;
+	protected $repository;
+	protected $validator;
+	protected $service;
 
-    public function __construct(CategoriesRepository $repository, CategoriesValidator $validator, CategoriesService $service)
-    {
-        $this->repository = $repository;
-        $this->validator  = $validator;
-        $this->service  = $service;
-		 
-    }
+	public function __construct(CategoriesRepository $repository, CategoriesValidator $validator, CategoriesService $service){
+		$this->repository = $repository;
+		$this->validator  = $validator;
+		$this->service  = $service;
+	}
 
-	 public function index(){
+	/* USUÁRIO */
+
+	public function single($category){
+		$category = $this->repository->findByField('slug', $category)->first();
+		$title = $category->name . " - Stephenson";	
+		
+		return view('categories.single', ['title' => $title, 'category' => $category]);
+	}
+
+	/* PAINEL */
+
+	public function index(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$categories = $this->repository->all();
 
@@ -36,8 +43,8 @@ class CategoriesController{
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.categories.index',['categories' => $categories]);
 		echo view('admin.footer');
-    }
-	
+	}
+
 	public function edit($category){
 		$categories_list= $this->repository->all();
 		$category = $this->repository->find($category);
@@ -46,72 +53,66 @@ class CategoriesController{
 		echo view('admin.categories.edit',['category' => $category, 'categories_list'=> $categories_list]);
 		echo view('admin.footer');
 	}
-	
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  TutorialCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CategoriesCreateRequest $request){
-		 
-		 $request = $this->service->store($request->all());
-		 $categories = $request['success'] ? $request['data'] : null;
-		 
-		 
-		 session()->flash('success',[
-			 'success' =>	$request['success'],
-			 'messages' =>	$request['messages']
-		 ]);
-		 
-		 return redirect()->back(); 
-    }
 
-        /**
-     * Update the specified resource in storage.
-     *
-     * @param  PageUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
-     */
-    public function update(Request $request, $id){
-		 $request = $this->service->update($request->all(), $id); 
-		 $category = $request['success'] ? $request['data'] : null;
-		  
-		 session()->flash('success',[
-			 'success' =>	$request['success'],
-			 'messages' =>	$request['messages']
-		 ]);
-		 
-		 return redirect()->back(); 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id){
-       $request= $this->service->delete($id);
-		 $category = $request['success'] ? $request['data'] : null;
-		  
-		 session()->flash('success',[
-			 'success' =>	$request['success'],
-			 'messages' =>	$request['messages']
-		 ]);
-		 
-		 return redirect()->back(); 
-    }
+	/**
+	* Store a newly created resource in storage.
+	*
+	* @param  TutorialCreateRequest $request
+	*
+	* @return \Illuminate\Http\Response
+	*/
 	
-	public function category($category){
-		$title = $category . " - Stephenson";	
-		
-		echo view('header', ['title' => $title]);
-		echo view('categories.category');
-		echo view('footer');
+	public function store(CategoriesCreateRequest $request){
+		$request = $this->service->store($request->all());
+		$categories = $request['success'] ? $request['data'] : null;
+
+
+		session()->flash('success',[
+			'success' =>	$request['success'],
+			'messages' =>	$request['messages']
+		]);
+
+		return redirect()->back(); 
+	}
+
+	/**
+	* Update the specified resource in storage.
+	*
+	* @param  PageUpdateRequest $request
+	* @param  string            $id
+	*
+	* @return Response
+	*/
+	
+	public function update(Request $request, $id){
+		$request = $this->service->update($request->all(), $id); 
+		$category = $request['success'] ? $request['data'] : null;
+
+		session()->flash('success',[
+			'success' =>	$request['success'],
+			'messages' =>	$request['messages']
+		]);
+
+		return redirect()->back(); 
+	}
+
+	/**
+	* Remove the specified resource from storage.
+	*
+	* @param  int $id
+	*
+	* @return \Illuminate\Http\Response
+	*/
+	
+	public function destroy($id){
+		$request= $this->service->delete($id);
+		$category = $request['success'] ? $request['data'] : null;
+
+		session()->flash('success',[
+			'success' =>	$request['success'],
+			'messages' =>	$request['messages']
+		]);
+
+		return redirect()->back(); 
 	}
 }
