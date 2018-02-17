@@ -82,7 +82,7 @@ class UsersController{
 	public function edit($user){
 		$user = $this->repository->find($user);
 
-		$title = "Editar " . $user['firstname'].$user['lastname']." - Stephenson";
+		$title = "Editar " . $user['firstname']. " " .$user['lastname']." - Stephenson";
 		echo view('admin.header', ['title' => $title]);
 		echo view('admin.users.edit', ['user' => $user])->render();
 		echo view('admin.footer')->render();

@@ -13,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+    if(session()->has('theme-name')){
+        Theme::set(session('theme-name'));
+    }
+
     }
 
     /**

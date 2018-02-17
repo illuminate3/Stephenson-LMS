@@ -52,7 +52,7 @@
 					<div class="card-body">
 						<a class="card-link" href="<?php echo URL::route('courses.edit', ['course_id' =>  $course['id']]);?>">Editar</a>
 						<a class="card-link" href="<?php echo URL::route('courses.manage', ['course_id' =>  $course['id']]);?>">Gerenciar</a>
-						<a class="card-link" href="<?php echo URL::to('/curso/' . $course['id']);?>">Ver</a>
+						<a class="card-link" href="<?php echo URL::route('courses.single', ['course' => $course['id']]);?>">Ver</a>
 					</div>
 				</div>
 			</div>

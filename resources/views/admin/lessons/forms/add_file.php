@@ -1,6 +1,6 @@
 <form action="<?php echo URL::route('lesson.create_material', ['lesson' => $lesson, 'material' => $material]); ?>" method="post">
 	<div class="modal-header">
-		<h5 class="modal-title">Adicionar Enquete</h5>
+		<h5 class="modal-title">Adicionar Arquivo</h5>
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -8,7 +8,7 @@
 
 	<div class="modal-body">
 		<div class="form-group">
-			<label for="exampleFormControlInput1">Pergunta</label>
+			<label for="exampleFormControlInput1">Nome do Material</label>
 			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Material" name="title">
 		</div>
 

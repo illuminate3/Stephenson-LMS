@@ -64,6 +64,14 @@
 				<input id="pasPassword" type="password" value="<?php echo $user->password; ?>" name="password" class="form-control" placeholder="Senha">
 		</div>
 		
+		<div class="form-group">
+			<label for="slcPermission">Permissão</label>
+			<select class="form-control" id="slcPermission" name="permission">
+				<option name="app.user">Usuário Comum</option>
+				<option name="app.admin">Administrador</option>
+			 </select>
+		</div>
+		
 		<button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Editar</button>
 			<input type="hidden" value="PUT" name="_method">
 			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

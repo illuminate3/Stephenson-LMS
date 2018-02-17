@@ -8,10 +8,5 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#sidebar').stickySidebar({
-		 topSpacing: 0,
-		 bottomSpacing: 0
-	});
-	
 	tinymce.init({selector: '.tinymce'});
 });

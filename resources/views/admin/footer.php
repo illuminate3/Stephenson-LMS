@@ -1,4 +1,11 @@
-		</div>
+	</main>
+	<div class="container">
+		<footer>
+			<p>Stephenson - Muito obrigado por nos escolher <3</p>
+		</footer>
+	</div>
+</div>
+		
 
 		<script type="text/javascript" src="<?php echo url('../js/jquery-3.2.1.min.js'); ?>"></script>
 		<script type="text/javascript" src="<?php echo url('../js/jquery-ui.min.js'); ?>"></script>
@@ -7,14 +14,13 @@
 		<script type="text/javascript" src="<?php echo url('../js/tinymce/tinymce.min.js'); ?>"></script>
 		<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 		<script>$('#lfm').filemanager('file');</script>
-		<script type="text/javascript" src="<?php echo url('../js/jquery.sticky-sidebar.min.js'); ?>"></script>
 		<script type="text/javascript" src="<?php echo url('../js/script.js'); ?>"></script>
 		<script>
 			 $( "#modules-list" ).sortable({
-				 // handle: '.drag-module',
+				 handle: '.drag-module',
 				 update: function(){
 					$.map($(this).find('.module'),function(el){
-						var moduleId = el.id;
+						var moduleId = el.id.substr(7);
 						var moduleIndex = $(el).index();
 
 						$.ajax({
@@ -34,7 +40,7 @@
 				handle: '.drag-lesson', 
 					update: function(){
 					$.map($(this).find('.lesson'),function(el){
-						var lessonId = el.id;
+						var lessonId = el.id.substr(7);
 						var lessonIndex = $(el).index();
 
 						$.ajax({
@@ -50,26 +56,28 @@
 				 }
 			});
 
-			$('.modal').modal({
-				ready: function(trigger, model) { // Callback for Modal open. Modal and trigger parameters available.
-					var id = trigger["0"].M_Modal.openingTrigger["0"].id;
-					var lesson = model["0"].parentNode.parentNode.parentNode.id;
-					$.ajax({
-						url:'<?php echo URL::to('/admin/lesson'); ?>/' + lesson + '/form/' + id,
-						headers: {
-							 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-						},
-						type: "GET", // not POST, laravel won't allow it
-						success: function(data){
-						$data = $(data); // the HTML content your controller has produced
-						$('#form-modal').html($data);    
-						}
-					});
 
-				},
-				complete: function() { $('#form-modal').empty(); } // Callback for Modal close
-				}
-			);
+			$('#add-material-modal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget) // Button that triggered the modal
+				var recipient = button.data('mtype') // Extract info from data-* attributes
+				var lesson = button["0"].parentNode.parentNode.firstElementChild.id.substr(13)
+				
+				$.ajax({
+					url:'<?php echo URL::to('/admin/lesson'); ?>/' + lesson + '/form/add_' + recipient,
+					headers: {
+						 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					type: "GET", // not POST, laravel won't allow it
+					success: function(data){
+					$data = $(data); // the HTML content your controller has produced
+						$('#add-material-modal .modal-dialog .modal-content').html($data);    
+					}
+				});
+			});
+			
+			$('#add-material-modal').on('hidden.bs.modal', function (e) {
+ 				$('#add-material-modal .modal-dialog .modal-content').empty();    
+			});
 		</script>
 	</body>
 </html>

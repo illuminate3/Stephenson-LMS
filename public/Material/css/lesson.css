@@ -1,5 +1,6 @@
 *{box-sizing: border-box}
 html,body{height: 100%;}
+body{background: #222;}
 .container{
 	width: 90%;
 }
@@ -35,3 +36,29 @@ html,body{height: 100%;}
 .lesson i{line-height: 50px;float: left;margin-right: 10px;}
 .lesson:last-child{border-bottom:none;}
 .lesson a{color: #26a69a;}
+
+
+main{
+	padding-left: 300px;
+	padding-right: 300px;
+}
+
+main .container{width: 97%;}
+
+.button-collapse-left{float: left; margin-top:20px;}
+.button-collapse-right{float: right; margin-top:20px;}
+
+@media only screen and (min-width : 992px) {
+	.button-collapse-left{visibility:hidden;}
+	.button-collapse-right{visibility:hidden;}
+}
+
+@media only screen and (max-width : 992px) {
+	main {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	
+	.button-collapse-left{visibility:visible;}
+	.button-collapse-right{visibility:visible;}
+}

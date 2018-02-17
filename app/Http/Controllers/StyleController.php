@@ -16,12 +16,15 @@ class StyleController{
 		echo view('admin.footer');
 	}
 	
-	public function changeTheme(Request $request){
-		 $themeName = $request->theme;
-       if(\Theme::set($themeName)){
-			 return redirect()->back();
-		 } else{
-			 echo "Ocorreu um erro inesperado";
-		 }
-	}
+public function changeTheme(Request $themeName)
+{
+		$themeName = $themeName->theme;
+    if(\Theme::exists($themeName)){
+        \Theme::set($themeName);
+        session(['theme-name' => $themeName]);
+        return redirect()->back();
+    } else {
+		 echo 'Deu merda';
+	 }
+}
 }

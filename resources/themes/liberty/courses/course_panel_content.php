@@ -1,4 +1,4 @@
-				<div id="course-modules">
+				<div id="course-modules" class="pt-3">
 					<?php if(count($course->getModules) > 0){?>
 
 					<div id="modules-list" class="card">

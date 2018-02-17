@@ -76,7 +76,7 @@ class CoursesController
 		if(Auth::user()){
 			$user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
 			if($user_joined){
-				echo view('courses/course_panel', ['page' => "index",'title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();
+				echo view('courses/course_panel', ['page' => "single",'title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();
 			} else{
 				echo view('courses.single', ['title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();	
 			}

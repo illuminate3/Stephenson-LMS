@@ -20,11 +20,14 @@ html,body{
 nav#top-menu{
 	background: white;
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+	padding: .3rem auto;
 }
 
 #site-logo{
 	width: 60px;
 	height: 57px;
+	top: 0;
+	left: 0;
 	background-color: #003f9a;
 	overflow: hidden;
 	color: white;
@@ -32,28 +35,27 @@ nav#top-menu{
 	line-height: 57px;
 	font-size: 2em;
 	text-transform: uppercase;
+	z-index: 101;
+	position: absolute;
 }
 
 nav#sidemenu{
   background-color: #000B1D;
   position: absolute;
-	min-height: calc(100% - 56px);
-	z-index: 100;
-	top: 56px;
-	 will-change: min-height;
+  top: 56px;
+  z-index: 100;
 }
 
-.sidebar__inner{
-    transform: translate(0, 0); /* For browsers don't support translate3d. */
-    transform: translate3d(0, 0, 0);
-    will-change: position, transform;
-	z-index: 997;
-	position: absolute;
+#sidemenu-fixed{
+	height:100%;
+	width: 60px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background: #000B1D
 }
 
-.inner-wrapper-sticky{
-	z-index: 999;
-}
 
 .left-navigation{
   width: 60px;
@@ -117,6 +119,10 @@ nav#sidemenu{
 	width: calc(100% - 60px);
 }
 
+main{
+	min-height: calc(100% - 60px);
+}
+
 #page-nav{background: #003f9a;}
 #page-nav .breadcrumb{background: transparent;padding: .75rem 0rem;}
 #page-nav .breadcrumb a{color: #00CD99}
@@ -130,4 +136,30 @@ nav#sidemenu{
 
 .lesson-actions .action-buttons, .module-actions .action-buttons{
 	float: right;
+}
+
+.card-statistic{border-radius: 5px;overflow: hidden;height: 120px;}
+.card-statistic .row{padding: 0px;margin: 0px;}
+
+.card-statistic-title{
+	background: #00CD99;
+	color: white;
+	text-align: center;
+	padding: 25px 0px;
+}
+
+.card-statistic-title i{font-size: 30px;line-height: 30px;background: white;border-radius: 100%;padding: 10px;color: #00CD99}
+.card-statistic-title div{font-size: 20px;line-height: 20px;margin-top: 5px;}
+
+.card-statistic p{font-size: 35px;font-weight: bold;line-height: 120px;padding: 0px;margin: 0px;}
+
+footer{
+	text-align: center;
+	color: #777;
+	margin-top: 30px;
+	padding: 15px 0px;
+	display: block;
+	width: 100%;
+	font-size: 15px;
+	border-top: 1px solid #ccc;
 }
