@@ -62,7 +62,7 @@
 			
 				<div class="col-3">
 
-					<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Adicionar</button>
+					<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Editar</button>
 
 					<div class="card mt-3">
 					  <h5 class="card-header">Tags</h5>

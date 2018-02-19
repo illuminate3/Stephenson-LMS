@@ -110,4 +110,8 @@ return [
 	'site_slogan' 			=> 'Slogan do Site',
 	'footer_credits' 		=> 'Créditos no Rodapé',
 	'site_email' 			=> 'E-mail do Site',
+	
+	/* ACTIVITIES */
+	
+	'activity.enter_course' => 'entrou no curso :course',
 ];

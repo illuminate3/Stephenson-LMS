@@ -2,11 +2,13 @@
 
 namespace App\Services;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\ServiceProvider;
 use Exception;
 use Prettus\Validator\Contracts\ValidatorInterface;	
 use Prettus\Validator\Contracts\ValidatorException;	
 use App\Repositories\PostRepository;
 use App\Validators\PostValidator;
+
 
 class PostService{
 	private $respository;
@@ -24,7 +26,7 @@ class PostService{
 			
 			return [
 				'success'   => true,
-				'messages'  => "Postagem criada com sucesso!",
+				//'messages'  => 'Postagem criada com sucesso!<a href="' . URL::route('posts.single', ['id' =>]) . '"> Ver Postagem</a>',
 				'data'     => $post
 			];
 		} catch(Exception $e){
@@ -39,10 +41,9 @@ class PostService{
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 			$post = $this->repository->update($data, $post_id);
-			
 			return [
 				'success'   => true,
-				'messages'  => "Postagem editada com sucesso!",
+				'messages'  => 'Postagem editada com sucesso!<a href="' . URL::route('posts.single', ['id' => $post_id]) . '"> Ver Postagem</a>',
 				'data'     => $post
 			];
 		} catch(Exception $e){

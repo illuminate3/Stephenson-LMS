@@ -15,6 +15,7 @@ use App\Repositories\CategoriesRepository;
 use App\Repositories\ModuleRepository;
 use App\Validators\CourseValidator;
 use App\Services\CourseService;
+use App\Services\UserActivitiesService;
 use Auth;
 
 class CoursesController
@@ -27,13 +28,14 @@ class CoursesController
     protected $validator;
     protected $service;
 
-    public function __construct(CourseRepository $repository, CourseValidator $validator, CourseService $service, CategoriesRepository $categoriesRepository, ModuleRepository $moduleRepository)
+    public function __construct(CourseRepository $repository, CourseValidator $validator, CourseService $service, CategoriesRepository $categoriesRepository, ModuleRepository $moduleRepository, UserActivitiesService $user_activities_service)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
         $this->service  = $service;
         $this->categoriesRepository  = $categoriesRepository;
         $this->moduleRepository  = $moduleRepository;
+        $this->userActivitiesService  = $user_activities_service;
     }
 
 
@@ -204,6 +206,14 @@ class CoursesController
 		$course = $request->query->get('course_id');
 		$user = $request->query->get('user_id');
 		$type = $request->query->get('type');
+		
+		if($type == 1){
+			$activity = array('user_id' => $user, 'type' => 'favorite_course');
+		} elseif($type == 2){
+			$activity = array('user_id' => $user, 'type' => 'enter_course');
+		}
+		
+		$new_activity = $this->userActivitiesService->store($activity);
 		return  $this->repository->enter_or_favorite_course($course, $user, $type);
 	}
 	

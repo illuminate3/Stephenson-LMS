@@ -67,7 +67,7 @@
 			</div>
 				
 					<div class="form-group">
-						<textarea type="text" class="form-control tinymce" rows="8" id="txtContent" placeholder="Conteúdo" name="description"></textarea>
+						<textarea type="text" class="form-control tinymce" rows="8" id="txtContent" placeholder="Conteúdo" name="content"></textarea>
 					</div>
 
 					<div class="form-group">

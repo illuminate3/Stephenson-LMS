@@ -26,11 +26,15 @@ class DashboardController{
 		$courses = $courseRepository->all();
 		$tutorials = $tutorialRepository->all();
 		$pages = $pageRepository->all();
-
 		$title = "Dashboard - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.dashboard.index', ['courses' => $courses, 'users' => $users, 'pages' => $pages, 'tutorials' => $tutorials]);
-		echo view('admin.footer');
+		
+		return view('admin.dashboard.index', [
+			'title' => $title, 
+			'courses' => $courses, 
+			'users' => $users, 
+			'pages' => $pages, 
+			'tutorials' => $tutorials
+		]);
 	}
 	
 	public function library(){

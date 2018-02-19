@@ -67,8 +67,8 @@
 			</div>
 				
 					<div class="form-group">
-						<textarea type="text" class="form-control tinymce" rows="8" id="txtContent" placeholder="Conteúdo" name="description">
-						<?php echo $lesson->description ?>
+						<textarea type="text" class="form-control tinymce" rows="8" id="txtContent" placeholder="Conteúdo" name="content">
+						<?php echo $lesson->content ?>
 						</textarea>
 					</div>
 

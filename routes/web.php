@@ -93,6 +93,7 @@ Route::get('/profile/{profile}', ['as' => 'profile.profile', 'uses' => 'Profiles
 Route::get('/profile/{profile}/about', ['as' => 'profile.about', 'uses' => 'ProfilesController@perfil_about']);
 Route::get('/profile/{profile}/followers', ['as' => 'profile.followers', 'uses' => 'ProfilesController@perfil_followers']);
 Route::get('/profile/{profile}/following', ['as' => 'profile.following', 'uses' => 'ProfilesController@perfil_following']);
+Route::resource('/profile/post', 'UserActivitiesController');
 
 /* ROTAS PARA OS CURSOS */
 Route::get('/courses', ['as'=>'courses.all','uses' => 'CoursesController@all']);

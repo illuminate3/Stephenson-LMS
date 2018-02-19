@@ -1,0 +1,119 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  width: 100;
+  height: 100%;
+  background-color: #eaeaea;
+}
+main {
+  display: flex;
+  height: inherit;
+  width: inherit;
+}
+aside {
+  height: inherit;
+  width: 20%;
+  background-color: #f2f2f2;
+  position: fixed;
+}
+article {
+  height: inherit;
+  width: 80%;
+  background-color: #eaeaea;
+  padding: 2% 1%;
+  margin-left: 20%;
+}
+
+.tab-content {
+  width: 100%;
+  height: auto;
+  background-color: white;
+}
+.content-menu{
+    position: relative;
+    height: inherit;
+    width: 100%;
+}
+
+.content-menu > .bottom-menu{
+    position: absolute;
+    bottom: 0;
+    width: inherit;
+}
+
+/* Article */
+
+.header-lesson {
+  text-align: center;
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-color: #dfdfdf;
+}
+.header-lesson > h1 {
+  width: 90%;
+}
+
+.header-lesson > .btn-group {
+  width: 10%;
+  display: flex;
+  height: inherit;
+  padding: 5px 0.5%;
+}
+.header-lesson > .btn-group > .btn {
+  width: 45%;
+  background-color: transparent;
+  color: #007bff;
+  transition-duration: 0.5s
+}
+.header-lesson > .btn-group > .btn:hover {
+    color: #007bff;
+    background-color: #e7e7e7;
+    transition-duration: 0.5s
+  }
+  .header-lesson > .btn-group > .btn:active {
+    color: #e7e7e7;
+    background-color: #007bff;
+    transition-duration: 0.1s
+  }
+.content-lesson {
+  background-color: #fefefe;
+}
+
+.main-lesson {
+  padding: 2% 10%;
+}
+
+.lesson-midia {
+  margin-bottom: 4%;
+}
+
+/* Responsividade */
+
+/* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+
+ }
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+
+ }
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    
+ }
