@@ -51,9 +51,11 @@ class LessonsController{
 		$atual_course = $this->course_repository->find($course);
 		$atual_module = $this->module_repository->find($module);
 
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.lessons.create', ['course' => $atual_course, 'module' => $atual_module]);
-		echo view('admin.footer');
+		return view('admin.lessons.create', [
+			'title' => $title,
+			'course' => $atual_course,
+			'module' => $atual_module
+		]);
 	}
 
 
@@ -61,12 +63,14 @@ class LessonsController{
 		$course = $this->course_repository->find($course);
 		$module = $this->module_repository->find($module);
 		$lesson = $this->repository->find($lesson);
-
 		$title = "Editar " . $lesson->title ." - Stephenson";
 
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.lessons.edit', ['course' => $course, 'module' => $module, 'lesson' => $lesson]);
-		echo view('admin.footer');
+		return view('admin.lessons.edit', [
+			'title' => $title,
+			'course' => $course,
+			'module' => $module,
+			'lesson' => $lesson
+		]);
 	}
 
 	/**
@@ -77,7 +81,7 @@ class LessonsController{
 	* @return \Illuminate\Http\Response
 	*/
 	public function store(LessonCreateRequest $request){
-		$request = $this->service->store($request->all()); 
+		$request = $this->service->store($request->all());
 		$lesson = $request['success'] ? $request['data'] : null;
 
 
@@ -86,11 +90,11 @@ class LessonsController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	public function update(Request $request, $course_id, $module_id, $lesson_id){
-		$request = $this->service->update($request->all(), $lesson_id); 
+		$request = $this->service->update($request->all(), $lesson_id);
 		$lesson = $request['success'] ? $request['data'] : null;
 
 		session()->flash('success',[
@@ -98,7 +102,7 @@ class LessonsController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	/**
@@ -117,7 +121,7 @@ class LessonsController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	public function reorder(){

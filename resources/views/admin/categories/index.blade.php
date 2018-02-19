@@ -1,9 +1,14 @@
+{{-- Chama a template pré pronta --}}
+@extends('admin.templates.template')
+
+@section('viewMain')
+    @parent
 <nav aria-label="breadcrumb" id="page-nav">
 	<div class="container">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item active" aria-current="page">Categorias</li>
 		</ol>
-	</div>	
+	</div>
 </nav>
 
 <div class="jumbotron jumbotron-fluid">
@@ -15,7 +20,7 @@
 </div>
 
 <div class="container">
-	<?php 
+	<?php
 		if (session('success')){
 			if (session('success')['success'] == false){
 				echo '<div class="alert alert-danger" role="alert">' . session('success')['messages'] . '</div>';
@@ -35,7 +40,7 @@
 						<label for="txtName">Nome</label>
 						<input type="text" class="form-control" id="txtName" placeholder="Nome" name="name">
 					</div>
-					
+
 					<div class="form-group">
 						<label for="txtSlug">Slug</label>
 						<input type="text" class="form-control" id="txtSlug" placeholder="Slug" name="slug">
@@ -51,7 +56,7 @@
 						 </select>
 					  </div>
 
-					
+
 					<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Adicionar</button>
 					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 				</form>
@@ -61,7 +66,7 @@
 
 		<div class="col-7">
 			<div class="card list-itens">
-				<?php			
+				<?php
 					if(count($categories) < 1){
 						echo __('messages.no_category_created');
 					} else{
@@ -93,7 +98,7 @@
 										<a href="<?php echo URL::route('categories.edit', ['id' =>  $category['id']]);?>">
 											<button type="button" class="btn btn-primary"><i class="material-icons">edit</i></button>
 										</a>
-										
+
 										<form method="post" action="<?php echo URL::route('categories.destroy', ['id' =>  $category['id']]);?>">
 											<button type="submit" type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
 											<input type="hidden" value="DELETE" name="_method">
@@ -110,3 +115,4 @@
 		</div>
 	</div>
 </div>
+@endsection

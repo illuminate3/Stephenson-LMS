@@ -31,76 +31,87 @@ class TutorialsController{
     protected $validator;
     protected $service;
 
-    public function __construct(TutorialRepository $repository, TutorialValidator $validator, TutorialService $service, CategoriesRepository $categoriesRepository, CommentRepository $commentsRepository)
-    {
+    public function __construct(TutorialRepository $repository, TutorialValidator $validator, TutorialService $service, CategoriesRepository $categoriesRepository, CommentRepository $commentsRepository){
         $this->repository = $repository;
         $this->validator  = $validator;
         $this->service  = $service;
-		  $this->categoriesRepository  = $categoriesRepository;
-		  $this->commentsRepository  = $commentsRepository;
+  		  $this->categoriesRepository  = $categoriesRepository;
+  		  $this->commentsRepository  = $commentsRepository;
     }
 
 	/* USUÁRIO */
-	
-    public function all(){
+
+  public function all(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$tutorials = $this->repository->all();
 		$title = "Tutoriais - Stephenson";
 
 		return view('tutorials.all', ['tutorials' => $tutorials, 'title' => $title]);
-    }
-	
+  }
+
 	public function single($tutorial){
 		$tutorial = $this->repository->find($tutorial);
 		$title = $tutorial['title'] ." - Stephenson";
 		$comments = $this->commentsRepository->getComments($tutorial->id,'tutorial');
-		
+
 		$url = $tutorial['video_url'];
 		preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
 
 		$id = $matches[1];
 		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
-		
+
 		return view('tutorials.single', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
 	}
-	
+
 	/* PAINEL */
-	
+
 	 public function index(){
-	   $tutorials = $this->repository->all();
-		$loop = "all";
-		$title = "Tutoriais - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.tutorials.index',['tutorials' => $tutorials, 'loop' => $loop]);
-		echo view('admin.footer');
+  	  $tutorials = $this->repository->all();
+  		$loop = "all";
+  		$title = "Tutoriais - Stephenson";
+
+  		return view('admin.tutorials.index', [
+        'title' => $title,
+        'tutorials' => $tutorials,
+        'loop' => $loop
+      ]);
     }
-	
+
 	public function trash(){
-	   $tutorials = $this->repository->getTrashed();
+	  $tutorials = $this->repository->getTrashed();
 		$loop = "trash";
 		$title = "Tutoriais - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.tutorials.index',['tutorials' => $tutorials, 'loop' => $loop]);
-		echo view('admin.footer');
-    }
-	
+
+		return view('admin.tutorials.index', [
+      'title' => $title,
+      'tutorials' => $tutorials,
+      'loop' => $loop
+    ]);
+  }
+
 	public function create(){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$title = "Adicionar Tutorial - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.tutorials.create', ['categories' => $categories_list])->render();
-		echo view('admin.footer')->render();
+
+		return view('admin.tutorials.create', [
+      'title' => $title,
+      'categories' => $categories_list
+    ]);
 	}
-	
+
 	public function edit($tutorial){
 		$categories_list = $this->categoriesRepository->selectBoxList();
 		$tutorial = $this->repository->find($tutorial);
 		$atual_category = $this->categoriesRepository->getAtualCategoryInfo($tutorial['category_id']);
-
 		$title = "Editar " .$tutorial['title']." - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.tutorials.edit', ['categories' => $categories_list, 'tutorial' => $tutorial, 'atual_category' => $atual_category])->render();
-		echo view('admin.footer')->render();
+
+		return view('admin.tutorials.edit', [
+      'title' => $title,
+      'categories' => $categories_list,
+      'tutorial' => $tutorial,
+      'atual_category' => $atual_category
+      ]);
+
 	}
 
     /**
@@ -111,16 +122,16 @@ class TutorialsController{
      * @return \Illuminate\Http\Response
      */
     public function store(TutorialCreateRequest $request){
-		 $request = $this->service->store($request->all()); 
+		 $request = $this->service->store($request->all());
 		 $tutorial = $request['success'] ? $request['data'] : null;
-		 
-		  
+
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
 
     /**
@@ -132,15 +143,15 @@ class TutorialsController{
      * @return Response
      */
     public function update(Request $request, $id){
-		 $request = $this->service->update($request->all(), $id); 
+		 $request = $this->service->update($request->all(), $id);
 		 $tutorial = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
 
     /**
@@ -153,36 +164,36 @@ class TutorialsController{
     public function destroy($id){
        $request= $this->service->delete($id);
 		 $tutorial = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
-	
+
 	 public function restore($id){
        $request = $this->service->restore($id);
 		 $tutorial = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
-	
+
 	 public function deleteFromBD($id){
        $request = $this->service->deleteFromBD($id);
 		 $tutorial = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
 }

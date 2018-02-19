@@ -7,15 +7,17 @@ use App\Http\Controllers\Controller;
 
 class StyleController{
 	public function __construct(){
-		
+
 	}
-	
+
 	public function index(){
-		echo view('admin.header',['title' => "Estilos"]);
-		echo view('admin.style.index');
-		echo view('admin.footer');
+		$title = "Estilos";
+
+		return view('admin.style.index',[
+			'title' => "Estilos"
+		]);
 	}
-	
+
 public function changeTheme(Request $themeName)
 {
 		$themeName = $themeName->theme;

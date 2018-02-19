@@ -14,19 +14,20 @@ class SettingsController{
 
     protected $validator;
     protected $service;
-	
+
 	 protected $categories_repository;
 
     public function __construct(SettingValidator $validator, SettingService $service){
         $this->validator  = $validator;
         $this->service  = $service;
     }
-	
+
     public function index(){
 			$title = "Configurações - Stephenson";
-			echo view('admin.header', ['title' => $title]);
-			echo view('admin.settings.index');
-			echo view('admin.footer');
+
+			return view('admin.settings.index', [
+        'title' => $title
+      ]);
     }
 
 
@@ -40,15 +41,15 @@ class SettingsController{
      */
 	/*
     public function update(Request $request, $id){
-		 $request = $this->service->update($request->all(), $id); 
+		 $request = $this->service->update($request->all(), $id);
 		 $page = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }*/
 
 }

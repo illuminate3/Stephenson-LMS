@@ -28,8 +28,8 @@ class CategoriesController{
 
 	public function single($category){
 		$category = $this->repository->findByField('slug', $category)->first();
-		$title = $category->name . " - Stephenson";	
-		
+		$title = $category->name . " - Stephenson";
+
 		return view('categories.single', ['title' => $title, 'category' => $category]);
 	}
 
@@ -38,20 +38,24 @@ class CategoriesController{
 	public function index(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$categories = $this->repository->all();
-
 		$title = "Categorias - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.categories.index',['categories' => $categories]);
-		echo view('admin.footer');
+
+		echo view('admin.categories.index',[
+			'title' => $title,
+			'categories' => $categories,
+		]);
 	}
 
 	public function edit($category){
 		$categories_list= $this->repository->all();
 		$category = $this->repository->find($category);
 		$title = "Editar " .$category['name'] . " - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.categories.edit',['category' => $category, 'categories_list'=> $categories_list]);
-		echo view('admin.footer');
+
+		echo view('admin.categories.edit', [
+			'title' => $title,
+			'category' => $category,
+			'categories_list'=> $categories_list
+		]);
 	}
 
 	/**
@@ -61,7 +65,7 @@ class CategoriesController{
 	*
 	* @return \Illuminate\Http\Response
 	*/
-	
+
 	public function store(CategoriesCreateRequest $request){
 		$request = $this->service->store($request->all());
 		$categories = $request['success'] ? $request['data'] : null;
@@ -72,7 +76,7 @@ class CategoriesController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	/**
@@ -83,9 +87,9 @@ class CategoriesController{
 	*
 	* @return Response
 	*/
-	
+
 	public function update(Request $request, $id){
-		$request = $this->service->update($request->all(), $id); 
+		$request = $this->service->update($request->all(), $id);
 		$category = $request['success'] ? $request['data'] : null;
 
 		session()->flash('success',[
@@ -93,7 +97,7 @@ class CategoriesController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	/**
@@ -103,7 +107,7 @@ class CategoriesController{
 	*
 	* @return \Illuminate\Http\Response
 	*/
-	
+
 	public function destroy($id){
 		$request= $this->service->delete($id);
 		$category = $request['success'] ? $request['data'] : null;
@@ -113,6 +117,6 @@ class CategoriesController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 }

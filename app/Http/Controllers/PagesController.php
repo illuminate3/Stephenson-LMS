@@ -24,54 +24,59 @@ class PagesController{
 		$this->validator  = $validator;
 		$this->service  = $service;
 	}
-	
+
 	/* USUÁRIO */
 
 	public function single ($page) {
 		$page = $this->repository->findByField('slug', $page)->first();
 		$title = $page['title'] . " - Stephenson";
-		
+
 		echo view('page', ['page' => $page, 'title' => $title]);
 	}
-	
+
 	/* PAINEL */
 
 	public function index(){
 		$pages = $this->repository->all();
 		$loop = "all";
-
 		$title = "Páginas - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.pages.index', ['pages' => $pages, 'loop' => $loop]);
-		echo view('admin.footer');
+
+		return view('admin.pages.index', [
+			'title' => $title,
+			'pages' => $pages,
+			'loop' => $loop
+		]);
 	}
 
 	public function trash(){
 		$pages = $this->repository->getTrashed();
 		$loop = "trash";
-
 		$title = "Páginas - Stephenson";
-		
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.pages.index', ['pages' => $pages, 'loop' => $loop]);
-		echo view('admin.footer');
+
+		return view('admin.pages.index', [
+			'title' => $title,
+			'pages' => $pages,
+			'loop' => $loop
+		]);
+
 	}
 
 	public function create(){
 		$title = "Adicionar Página - Stephenson";
-		
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.pages.create');
-		echo view('admin.footer');
+
+		return view('admin.pages.create', [
+			'title' => $title
+		]);
 	}
 
 	public function edit($page){
 		$page = $this->repository->find($page);
 		$title = "Editar Página - Stephenson";
-		
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.pages.edit',['page' => $page]);
-		echo view('admin.footer');
+
+		return view('admin.pages.edit',[
+			'title' => $title,
+			'page' => $page
+		]);
 	}
 	/**
 	* Store a newly created resource in storage.
@@ -81,7 +86,7 @@ class PagesController{
 	* @return \Illuminate\Http\Response
 	*/
 	public function store(PageCreateRequest $request){
-		$request = $this->service->store($request->all()); 
+		$request = $this->service->store($request->all());
 		$page = $request['success'] ? $request['data'] : null;
 
 		session()->flash('success',[
@@ -89,7 +94,7 @@ class PagesController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 
@@ -102,7 +107,7 @@ class PagesController{
 	* @return Response
 	*/
 	public function update(Request $request, $id){
-		$request = $this->service->update($request->all(), $id); 
+		$request = $this->service->update($request->all(), $id);
 		$page = $request['success'] ? $request['data'] : null;
 
 		session()->flash('success',[
@@ -110,7 +115,7 @@ class PagesController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	/**
@@ -129,7 +134,7 @@ class PagesController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	public function restore($id){
@@ -141,7 +146,7 @@ class PagesController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	public function deleteFromBD($id){
@@ -153,6 +158,6 @@ class PagesController{
 			'messages' =>	$request['messages']
 	]);
 
-	return redirect()->back(); 
+	return redirect()->back();
 	}
 }

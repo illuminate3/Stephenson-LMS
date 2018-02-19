@@ -20,9 +20,8 @@ use Auth;
 
 
 class UsersController{
-
-    protected $service;
-    protected $repository;
+   protected $service;
+   protected $repository;
 	 protected $validator;
 	 protected $categories_repository;
 
@@ -39,13 +38,14 @@ class UsersController{
      * @return \Illuminate\Http\Response
      */
     public function index() {
-         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-         $users = $this->repository->all();
+      $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+      $users = $this->repository->all();
 		 	$title = "Usuários - Stephenson";
-		 
-			echo view('admin.header',['title' => $title]);
-			echo view('admin.users.index', ['users' => $users]);
-			echo view('admin.footer');
+
+			return view('admin.users.index', [
+        'title' => $title,
+        'users' => $users
+      ]);
     }
 
 
@@ -56,36 +56,37 @@ class UsersController{
      *
      * @return \Illuminate\Http\Response
      */
-	
+
 	 public function create(){
 		 $title = "Adicionar Usuário - Stephenson";
-		 
-		 echo view('admin.header', ['title' => $title])->render();
-		 echo view('admin.users.create')->render();
-		 echo view('admin.footer')->render();
+
+		 return view('admin.users.create', [
+       'title' => $title
+     ]);
 	 }
 
-	
+
     public function store(UserCreateRequest $request){
 		 $request = $this->service->store($request->all());
 		 $usuario = $request['success'] ? $request['data'] : null;
-		 
-		 
+
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
-	
+
 	public function edit($user){
 		$user = $this->repository->find($user);
-
 		$title = "Editar " . $user['firstname']. " " .$user['lastname']." - Stephenson";
-		echo view('admin.header', ['title' => $title]);
-		echo view('admin.users.edit', ['user' => $user])->render();
-		echo view('admin.footer')->render();
+
+		return view('admin.users.edit', [
+      'title' => $title,
+      'user' => $user
+    ]);
 	}
 
     /**
@@ -97,15 +98,15 @@ class UsersController{
      * @return Response
      */
     public function update(Request $request, $id){
-		 $request = $this->service->update($request->all(), $id); 
+		 $request = $this->service->update($request->all(), $id);
 		 $user = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
 
     /**
@@ -118,12 +119,12 @@ class UsersController{
     public function destroy($id){
        $request= $this->service->delete($id);
 		 $user = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
 }
