@@ -165,12 +165,11 @@ return [
 		  Prettus\Repository\Providers\RepositoryServiceProvider::class,
 		  Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-		  Igaster\LaravelTheme\themeServiceProvider::class,
         /*
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-		 
+
 
         /*
          * Application Service Providers...
