@@ -9,5 +9,5 @@ use Prettus\Repository\Traits\TransformableTrait;
 class UserActivities extends Model{
 	 public $timestamps = true;
 	 protected $table = 'user_activities';
-    protected $fillable = ['type','user_id', 'relation', 'content'];
+   protected $fillable = ['type','user_id', 'relation', 'content'];
 }

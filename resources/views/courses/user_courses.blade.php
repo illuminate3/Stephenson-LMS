@@ -12,40 +12,39 @@
     <div class="container">
     	<ul class="nav nav-tabs mb-3">
     		<li class="nav-item">
-    			<a class="nav-link <?php echo ($loop == "studying") ? "active" : null;?>" href="<?php echo URL::route('courses.user_courses'); ?>">Cursando</a>
+    			<a class="nav-link {{ ($loop == "studying") ? "active" : null}}" href="{{ URL::route('courses.user_courses') }}">Cursando</a>
     		</li>
 
     		<li class="nav-item">
-    			<a class="nav-link <?php echo ($loop == "favorites") ? "active" : null;?>" href="<?php echo URL::route('courses.user_favorite_courses'); ?>">Favoritos</a>
+    			<a class="nav-link {{ ($loop == "favorites") ? "active" : null}}" href="{{ URL::route('courses.user_favorite_courses') }}">Favoritos</a>
     		</li>
     	</ul>
 
-    	<?php if(count($courses) > 0) { ?>
+    	@if(count($courses) > 0)
     		<div class="row">
-    			<?php foreach($courses as $course) { ?>
+    			@foreach($courses as $course)
     				<div class="col-3">
     					<div class="card">
-    							<?php if($course->course->cover == NULL){?>
-    								<img class="card-img-top" src="<?php echo asset("assets/images/thumbnail-default.jpg"); ?>" alt="<?php echo $course['title']; ?>">
-    							<?php } else {?>
-    								<img class="card-img-top" src="<?php echo asset($course->course->cover); ?>" alt="<?php echo $course['title']; ?>">
-    							<?php }?>
+    							@if($course->course->cover == NULL)
+    								<img class="card-img-top" src="{{ asset("assets/images/thumbnail-default.jpg") }}" alt="{{ $course['title'] }}">
+    							@else
+    								<img class="card-img-top" src="{{ asset($course->course->cover) }}" alt="{{ $course['title'] }}">
+    							@endif
     						<div class="card-body">
-    						<h5 class="card-title"><?php echo $course->course->title; ?></h5>
-    						<p class="card-text"><?php echo $course->course->resume; ?></p>
-    						<a href="<?php echo URL::route('courses.single', ['course' => $course->course->id]);?>" class="btn btn-primary">Ver</a>
+    						<h5 class="card-title">{{ $course->course->title }}</h5>
+    						<p class="card-text">{{ $course->course->resume }}</p>
+    						<a href="{{ URL::route('courses.single', ['course' => $course->course->id])}}" class="btn btn-primary">Ver</a>
     						</div>
     					</div>
     				</div>
-    			<?php } ?>
+    			@endforeach
     		</div>
-    	<?php } else {
-    		if($loop == "studying"){
-    			echo "<p>Você não está cursando nenhum curso atualmente.</p>";
-    		} else{
-    			echo "<p>Você não favoritou nenhum curso.</p>";
-    		}
-    	}
-      ?>
+    	@else
+    		@if($loop == "studying")
+    			<p>Você não está cursando nenhum curso atualmente.</p>
+    		@else
+    			<p>Você não favoritou nenhum curso.</p>
+    		@endif
+    	@endif
     </div>
 @endsection

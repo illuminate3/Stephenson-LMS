@@ -10,27 +10,27 @@
     </div>
 
     <div class="container">
-    		<?php if(count($courses) > 0) { ?>
+    		@if(count($courses) > 0)
     			<div class="row">
-    				<?php foreach($courses as $course) { ?>
+    				@foreach($courses as $course)
     				<div class="col-3">
     					<div class="card">
-    							<?php if($course['cover'] == NULL){?>
-    								<img class="card-img-top" src="<?php echo asset("assets/images/thumbnail-default.jpg"); ?>" alt="<?php echo $course['title']; ?>">
-    							<?php } else {?>
-    								<img class="card-img-top" src="<?php echo asset($course['cover']); ?>" alt="<?php echo $course['title']; ?>">
-    							<?php }?>
+    							@if($course['cover'] == NULL)
+    								<img class="card-img-top" src="{{ asset("assets/images/thumbnail-default.jpg")}}" alt="{{ $course['title']}}">
+    							@else
+    								<img class="card-img-top" src="{{ asset($course['cover'])}}" alt="{{ $course['title']}}">
+    							@endif
     						<div class="card-body">
-    						<h5 class="card-title"><?php echo $course['title']; ?></h5>
-    						<p class="card-text"><?php echo $course['resume'] ?></p>
-    						<a href="<?php echo URL::route('courses.single', ['course' => $course->id]);?>" class="btn btn-primary">Ver</a>
+    						<h5 class="card-title">{{ $course['title']}}</h5>
+    						<p class="card-text">{{ $course['resume']}}</p>
+    						<a href="{{ URL::route('courses.single', ['course' => $course->id])}}" class="btn btn-primary">Ver</a>
     						</div>
     					</div>
     				</div>
-    			<?php } ?>
+    			@endforeach
     		</div>
-    		<?php } else {?>
+      @else
     			<p>Nenhum curso cadastrado.</p>
-    		<?php }?>
+    	@endif
     </div>
 @endsection

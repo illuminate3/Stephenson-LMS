@@ -4,8 +4,10 @@
 @section('courseContent')
     @parent
 		<div id="course-description" class="pt-3">
-			<?php if( $course->description == null){?>
-			<p>Nenhuma descrição disponível para este curso.</p>
-			<?php } else {echo $course->description;}?>
+			@if ($course->description == null)
+        <p>Nenhuma descrição disponível para este curso.</p>
+      @else
+        {{ $course->description }}
+      @endif
 		</div>
 @endsection

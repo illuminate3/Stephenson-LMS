@@ -32,6 +32,11 @@ article {
   height: auto;
   background-color: white;
 }
+
+#nav-tabContent {
+  padding: 10px;
+}
+
 .content-menu{
     position: relative;
     height: inherit;
@@ -42,6 +47,7 @@ article {
     position: absolute;
     bottom: 0;
     width: inherit;
+    padding: 10px;
 }
 
 /* Article */
@@ -94,7 +100,7 @@ article {
 /* Responsividade */
 
 /* // Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
 
  }
 
@@ -104,16 +110,16 @@ article {
  }
 
 /* // Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) { 
+@media (min-width: 768px) and (max-width: 991.98px) {
 
  }
 
 /* // Large devices (desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1199.98px) { 
+@media (min-width: 992px) and (max-width: 1199.98px) {
 
  }
 
 /* // Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
-    
+@media (min-width: 1200px) {
+
  }

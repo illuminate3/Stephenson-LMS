@@ -10,27 +10,27 @@
     </div>
 
     <div class="container">
-    		<?php if(count($tutorials) > 0) { ?>
+    		@if(count($tutorials) > 0)
     		<div class="row">
-    			<?php foreach($tutorials as $tutorial) {?>
+    			@foreach ($tutorials as $tutorial)
     				<div class="col-3">
     					<div class="card">
-    							<?php if($tutorial['thumbnail'] == NULL){?>
-    								<img class="card-img-top" src="<?php echo asset("assets/images/thumbnail-default.jpg"); ?>" alt="<?php echo $tutorial['title']; ?>">
-    							<?php } else {?>
-    								<img class="card-img-top" src="<?php echo asset($tutorial['thumbnail']); ?>" alt="<?php echo $tutorial['title']; ?>">
-    							<?php }?>
+    							@if ($tutorial['thumbnail'] == NULL)
+    								<img class="card-img-top" src="{{asset("assets/images/thumbnail-default.jpg")}}" alt="{{$tutorial['title']}}">
+    							@else
+    								<img class="card-img-top" src="{{asset($tutorial['thumbnail'])}}" alt="{{$tutorial['title']}}">
+    							@endif
     						<div class="card-body">
-    						<h5 class="card-title"><?php echo $tutorial['title']; ?></h5>
-    						<p class="card-text"><?php echo $tutorial['resume'] ?></p>
-    						<a href="<?php echo URL::route('tutorials.single', ['tutorial' => $tutorial->id]);?>" class="btn btn-primary">Ver</a>
+    						<h5 class="card-title">{{$tutorial['title']}}</h5>
+    						<p class="card-text">{{$tutorial['resume']}}</p>
+    						<a href="{{URL::route('tutorials.single', ['tutorial' => $tutorial->id])}}" class="btn btn-primary">Ver</a>
     						</div>
     					</div>
     				</div>
-    			<?php } ?>
+    			@endforeach
     		</div>
-    		<?php } else {?>
+        @else
     			<p>Nenhum tutorial cadastrado.</p>
-    		<?php }?>
+    	  @endif
     </div>
 @endsection

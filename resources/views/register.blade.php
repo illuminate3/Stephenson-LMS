@@ -4,23 +4,21 @@
 @section('viewMain')
     @parent
 		<div class="jumbotron jumbotron-fluid">
-		<div class="container">
-		<h1 class="display-4">Cadastro</h1>
-		</div>
+  		<div class="container">
+  		    <h1 class="display-4">Cadastro</h1>
+  		</div>
 		</div>
 
 		<div class="container">
-			<?php
-				if (session('success')){
-					if (session('success')['success'] == false){
-						echo '<div class="alert alert-danger" role="alert">' . session('success')['messages'] . '</div>';
-					} else {
-						echo '<div class="alert alert-success" role="alert">' . session('success')['messages'] . '</div>';
-					}
-				}
-			?>
+  		@if(session('success'))
+  			@if(session('success')['success'] == false)
+  				<div class="alert alert-danger" role="alert"> {{ session('success')['messages'] }} </div>
+  			@else
+  				<div class="alert alert-success" role="alert"> {{ session('success')['messages'] }} </div>
+  			@endif
+  		@endif
 
-			<form  method="post" action="<?php echo URL::route('register');?>">
+			<form  method="post" action="{{URL::route('register')}}">
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<input type="text" class="form-control" placeholder="Nome" name="firstname">
@@ -57,7 +55,7 @@
 				</div>
 
 				<button class="btn btn-primary" type="submit">Cadastrar</button>
-				<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+				<input type="hidden" name="_token" value="{{csrf_token()}}">
 			</form>
 		</div>
 @endsection

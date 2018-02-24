@@ -3,44 +3,44 @@
 
 @section('courseContent')
     @parent
-		<div id="course-modules" class="pt-3">
-			<?php if(count($course->getModules) > 0){?>
+		<div id="modules" class="pt-3">
+		@if(count($course->getModules) > 0)
+      <div id="modules-list" class="card">
+				@php $modules = $course->getModules @endphp
+        @foreach ($modules as $module)
+          <div class="card module">
+            <div class="card-header module-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link module-name" data-toggle="collapse" data-target="#module-{{$module->id}}" aria-expanded="true" aria-controls="collapseOne">
+                  {{$module->name}}
+                </button>
+              </h5>
+            </div>
 
-			<div id="modules-list" class="card">
-				<?php $modules = $course->getModules; foreach ($modules as $module) {  ?>
-
-					<div class="module">
-						<div class="module-header">
-							<div class="module-name">
-								<i class="material-icons">folder</i><?php echo $module['name']; ?>
-							</div>
-						</div>
-
-						<div class="module-body">
-							<?php if(count($module->getLessons) > 0){ ?>
-
-								<div class="lessons-list">
-									<?php $lessons = $module->getLessons; foreach ($lessons as $lesson) { ?>
-										<div class="lesson">
-											<i class="material-icons">play_circle_outline</i><a href="<?php echo URL::route('lesson.view_lesson', ['course_id' => $course->id, 'lesson' => $lesson->id]);?>"><?php echo $lesson->title; ?></a> - <span class="lesson-time"><?php echo $lesson->time; ?></span>
-										</div>
-									<?php }?>
-								</div>
-
-							<?php } else{ ?>
-
-								<div class="no-lesson">Nenhuma aula cadastrada nesse módulo.</div>
-
-							<?php }?>
-						</div>
-					</div>
-
-				<?php } ?>
+            <div id="module-{{$module->id}}" class="collapse" data-parent="#modules">
+              <div class="card-body">
+                @if(count($module->getLessons) > 0)
+  								<ul class="list-group">
+  									@php $lessons = $module->getLessons @endphp
+                    @foreach ($lessons as $lesson)
+  										<li class="lesson list-group-item">
+                          <a href="{{ URL::route('lesson.view_lesson', ['course_id' => $course->id, 'lesson' => $lesson->id]) }}">
+                          {{$lesson->title}}
+                          </a> -
+                          <span class="lesson-time">{{$lesson->time}}</span>
+  										</li>
+  									@endforeach
+  								</ul>
+  							@else
+  								<div class="no-lesson">Nenhuma aula cadastrada nesse módulo.</div>
+  							@endif
+              </div>
+            </div>
+          </div>
+				@endforeach
 			</div>
-			<?php } else { ?>
-
+    @else
 			<div class="no-module card">Nenhum módulo criado. Quem sabe mais tarde...</div>
-
-			<?php }?>
+    @endif
 		</div>
 @endsection
