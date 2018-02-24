@@ -98,7 +98,7 @@ Route::resource('/profile/post', 'UserActivitiesController');
 /* ROTAS PARA OS CURSOS */
 Route::get('/courses', ['as'=>'courses.all','uses' => 'CoursesController@all']);
 Route::get('/course/{course}', ['as'=>'courses.single','uses' => 'CoursesController@single']);
-Route::get('/course/{course}/{page}', ['as'=>'courses.single_content','uses' => 'CoursesController@singlePage']);
+Route::get('/course/{course}/{page}', ['as'=>'courses.single_content','uses' => 'CoursesController@panel']);
 Route::get('/my-courses', ['as'=>'courses.user_courses','uses' => 'Controller@userCourses']);
 Route::get('/my-courses/favorites', ['as'=>'courses.user_favorite_courses','uses' => 'Controller@userFavoriteCourses']);
 Route::post('/course/enter', ['as'=>'courses.enter_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
@@ -123,4 +123,3 @@ Route::resource('/comment', 'CommentsController');
 Route::get('/category/{category}', ['as'=>'user.category','uses' => 'Controller@category']);
 
 Route::get('/{page}', ['as'=>'pages.single','uses' => 'PagesController@single']);
-

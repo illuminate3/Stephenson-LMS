@@ -1,13 +1,15 @@
-<?php echo view('header', ['title' => $title]); ?>
+{{-- Chama a template pré pronta --}}
+@extends('template')
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4"><?php echo $page->title ?></h1>
-  </div>
-</div>
+@section('viewMain')
+    @parent
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4"><?php echo $page->title ?></h1>
+      </div>
+    </div>
 
-<div class="container">
-<?php echo $page->content ?>
-</div>
-
-<?php echo view('footer'); ?>
+    <div class="container">
+    <?php echo $page->content ?>
+    </div>
+@endsection

@@ -48,7 +48,9 @@ class Controller extends BaseController{
 		if(Auth::check()){
 			return redirect()->route('dashboard.index');
 		} else{
-			echo view('login');
+			return view('login', [
+        'title' => "Login - Stephenson"
+      ]);
 		}
 
 	}
@@ -98,10 +100,13 @@ class Controller extends BaseController{
 		if(Auth::check()){
 			return redirect()->route('home');
 		} else{
-			return view('register')->render();
+      return view('register', [
+        'title' => "Cadastro - Stephenson"
+      ]);
 		}
 	}
-	    public function store(UserCreateRequest $request){
+
+	public function store(UserCreateRequest $request){
 		 $request = $this->service->store($request->all());
 		 $usuario = $request['success'] ? $request['data'] : null;
 
@@ -120,9 +125,16 @@ class Controller extends BaseController{
 		$tutorials = $tutorialRepository->all();
 		$lessons = $lessonRepository->all();
 		$categories = $this->categoriesRepository->getPrimaryCategories();
-
 		$title = "Stephenson - Plataforma EAD Open Source";
-		echo view('home', ['title' => $title, 'courses' => $courses, 'users' => $users, 'lessons' => $lessons, 'tutorials' => $tutorials, 'categories' => $categories]);
+
+		return view('home', [
+      'title' => $title,
+      'courses' => $courses,
+      'users' => $users,
+      'lessons' => $lessons,
+      'tutorials' => $tutorials,
+      'categories' => $categories
+    ]);
 	}
 
 
@@ -131,11 +143,13 @@ class Controller extends BaseController{
 		$user = $this->repository->find(Auth::user()->id);
 		$courses = $user->getCourses;
 		$loop = 'studying';
-
 		$title = "Meus Cursos - Stephenson";
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('courses.user_courses',['courses' => $courses, 'loop' => $loop])->render();
-		echo view('footer')->render();
+
+		return view('courses.user_courses',[
+      'title' => $title,
+      'courses' => $courses,
+      'loop' => $loop
+    ]);
 	}
 
 	public function userFavoriteCourses(){
@@ -143,10 +157,12 @@ class Controller extends BaseController{
 		$user = $this->repository->find(Auth::user()->id);
 		$courses = $user->getFavoriteCourses;
 		$loop = 'favorites';
-
 		$title = "Cursos Favoritos - Stephenson";
-		echo view('header', ['title' => $title, 'categories' => $categories]);
-		echo view('courses.user_courses',['courses' => $courses, 'loop' => $loop])->render();
-		echo view('footer')->render();
+
+		return view('courses.user_courses',[
+      'title' => $title,
+      'courses' => $courses,
+      'loop' => $loop
+    ]);
 	}
 }

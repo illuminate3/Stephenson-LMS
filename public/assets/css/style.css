@@ -1,0 +1,26 @@
+#topnav{
+	background: #013448;
+	padding: 0rem 1rem;
+	line-height: 60px;
+	height: 60px;
+	box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+}
+#topnav{padding: 0px;}
+#topnav a{color: white;padding: 0px 10px;line-height: 60px;transition: .4s;}
+#topnav li a:hover, #topnav li.active a{background:rgba(0,0,0,.3);}
+
+#topnav .form-inline input.form-control{
+	background: rgba(0,0,0,.3);
+	border: none;
+	height: 44px;
+	line-height: 44px;
+	color: white;
+	width: 100%;
+}
+#topnav .form-inline input.form-control::placeholder{color: white}
+#topnav .form-inline input.form-control:focus{box-shadow: none;}
+
+#topnav .search{width: 40%;}
+
+#topnav .dropdown-menu a{color: #444;line-height: 40px;}
+#topnav .dropdown-menu a:hover{background: #eee}

@@ -18,18 +18,13 @@ use App\Services\CourseService;
 use App\Services\UserActivitiesService;
 use Auth;
 
-class CoursesController
-{
+class CoursesController{
 
-  /**
-  * @var CourseRepository
-  */
   protected $repository;
   protected $validator;
   protected $service;
 
-  public function __construct(CourseRepository $repository, CourseValidator $validator, CourseService $service, CategoriesRepository $categoriesRepository, ModuleRepository $moduleRepository, UserActivitiesService $user_activities_service)
-  {
+  public function __construct(CourseRepository $repository, CourseValidator $validator, CourseService $service, CategoriesRepository $categoriesRepository, ModuleRepository $moduleRepository, UserActivitiesService $user_activities_service){
     $this->repository = $repository;
     $this->validator  = $validator;
     $this->service  = $service;
@@ -38,12 +33,106 @@ class CoursesController
     $this->userActivitiesService  = $user_activities_service;
   }
 
+  /* USUÁRIO */
 
-  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
+  public function all(){
+    $courses = $this->repository->all();
+    $title = "Cursos - Stephenson";
+
+    return view('courses.all', [
+      'title' => $title,
+      'courses' => $courses
+    ]);
+  }
+
+  public function single($course){
+    $course = $this->repository->find($course);
+    $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
+    $title =  $course['title']." - Stephenson";
+
+    if(Auth::user()){
+      $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
+      if($user_joined){
+        return view('courses.panel', [
+          'page' => "single",
+          'title' => $title,
+          'course' => $course,
+          'modules' => $modules_list,
+          'user_joined' => $user_joined
+        ]);
+      } else{
+        return view('courses.single', [
+          'title' => $title,
+          'course' => $course,
+          'modules' => $modules_list,
+          'user_joined' => $user_joined
+        ]);
+      }
+    } else{
+      return view('courses.single', [
+        'title' => $title,
+        'course' => $course,
+        'modules' => $modules_list
+      ]);
+    }
+  }
+
+  public function panel($course, $page){
+    $course = $this->repository->find($course);
+    $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
+    $categories = $this->categoriesRepository->getPrimaryCategories();
+    $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
+
+    if($page == "content"){
+      return view('courses/panel_content', [
+        'title' => $course['title']." | Conteúdo - Stephenson",
+        'course' => $course,
+        'page' => $page,
+        'user_joined' => $user_joined
+      ]);
+    }
+
+    if($page == "notices"){
+      return view('courses.panel_notices', [
+        'title' => $course['title']." | Avisos - Stephenson",
+        'course' => $course,
+        'page' => $page,
+        'user_joined' => $user_joined
+      ]);
+    }
+
+    if($page == "rating"){
+      return view('courses.panel_rating', [
+        'title' => $course['title']." | Avaliações - Stephenson",
+        'course' => $course,
+        'page' => $page,
+        'user_joined' => $user_joined
+      ]);
+    }
+  }
+
+  public function enterOrFavoriteCourse(Request $request){
+    $course = $request->query->get('course_id');
+    $user = $request->query->get('user_id');
+    $type = $request->query->get('type');
+
+    if($type == 1){
+      $activity = array('user_id' => $user, 'type' => 'favorite_course');
+    } elseif($type == 2){
+      $activity = array('user_id' => $user, 'type' => 'enter_course');
+    }
+
+    $new_activity = $this->userActivitiesService->store($activity);
+    return  $this->repository->enter_or_favorite_course($course, $user, $type);
+  }
+
+  public function leaveCourse(Request $request){
+    $course = $request->query->get('course_id');
+    return  $this->repository->leave_course($course);
+  }
+
+  /* ADMINISTRAÇÃO */
+
   public function index(){
     $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
     $courses = $this->repository->all();
@@ -57,30 +146,6 @@ class CoursesController
     $title = "Adicionar Curso - Stephenson";
 
     return view('admin.courses.create', ['title' => $title, 'categories'=> $categories_list])->render();
-  }
-
-  public function all(){
-    $courses = $this->repository->all();
-    $title = "Cursos - Stephenson";
-
-    return view('courses.all', ['title' => $title, 'courses' => $courses, 'title']);
-  }
-
-  public function single($course){
-    $course = $this->repository->find($course);
-    $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
-    $title =  $course['title']." - Stephenson";
-
-    if(Auth::user()){
-      $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
-      if($user_joined){
-        return view('courses/course_panel', ['page' => "single",'title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();
-      } else{
-        return view('courses.single', ['title' => $title, 'course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined])->render();
-      }
-    } else{
-      return view('courses.single', ['title' => $title, 'course' => $course, 'modules' => $modules_list])->render();
-    }
   }
 
   /**
@@ -127,39 +192,6 @@ class CoursesController
     ]);
   }
 
-
-  public function singlePage($course, $page){
-    $course = $this->repository->find($course);
-    $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
-    $categories = $this->categoriesRepository->getPrimaryCategories();
-    $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
-    $title =  $course['title']." | Conteúdo - Stephenson";
-
-    return view('header', ['title' => $title, 'categories' => $categories]);
-
-    if($user_joined){
-      return view('courses/course_panel_header', ['course' => $course, 'user_joined' => $user_joined, 'page' => $page]);
-
-      if($page == "content"){
-        return view('courses/course_panel_content', ['course' => $course, 'user_joined' => $user_joined]);
-      }
-
-      if($page == "notices"){
-        return view('courses/course_panel_content', ['course' => $course, 'user_joined' => $user_joined]);
-      }
-
-      if($page == "rating"){
-        return view('courses/course_panel_content', ['course' => $course, 'user_joined' => $user_joined]);
-      }
-
-      return view('courses/course_panel_footer');
-    } else{
-      return view('courses/course', ['course' => $course, 'modules' => $modules_list, 'user_joined' => $user_joined]);
-    }
-
-    echo view('footer')->render();
-  }
-
   /**
   * Update the specified resource in storage.
   *
@@ -197,25 +229,5 @@ class CoursesController
     ]);
 
     return redirect()->back();
-  }
-
-  public function enterOrFavoriteCourse(Request $request){
-    $course = $request->query->get('course_id');
-    $user = $request->query->get('user_id');
-    $type = $request->query->get('type');
-
-    if($type == 1){
-      $activity = array('user_id' => $user, 'type' => 'favorite_course');
-    } elseif($type == 2){
-      $activity = array('user_id' => $user, 'type' => 'enter_course');
-    }
-
-    $new_activity = $this->userActivitiesService->store($activity);
-    return  $this->repository->enter_or_favorite_course($course, $user, $type);
-  }
-
-  public function leaveCourse(Request $request){
-    $course = $request->query->get('course_id');
-    return  $this->repository->leave_course($course);
   }
 }
