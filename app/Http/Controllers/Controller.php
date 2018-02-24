@@ -37,6 +37,9 @@ class Controller extends BaseController{
 		$this->categoriesRepository 	= $categories_repository;
 	}
 
+  public function error404(){
+    return view('404', ['title' => "Erro 404 - Página não encontrada!"]);
+  }
 
 	function logout(){
 		auth()->logout();

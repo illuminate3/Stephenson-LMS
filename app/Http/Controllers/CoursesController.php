@@ -46,34 +46,38 @@ class CoursesController{
   }
 
   public function single($course){
-    $course = $this->repository->find($course);
-    $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
-    $title =  $course['title']." - Stephenson";
+    $course = $this->repository->findByField('id', $course);
+    if(count($course) == 0){
+      return redirect()->route('error404');
+    } else {
+      $modules_list = $this->moduleRepository->findByField('course_id',$course['id'])->first();
+      $title =  $course['title']." - Stephenson";
 
-    if(Auth::user()){
-      $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
-      if($user_joined){
-        return view('courses.panel', [
-          'page' => "single",
-          'title' => $title,
-          'course' => $course,
-          'modules' => $modules_list,
-          'user_joined' => $user_joined
-        ]);
+      if(Auth::user()){
+        $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
+        if($user_joined){
+          return view('courses.panel', [
+            'page' => "single",
+            'title' => $title,
+            'course' => $course,
+            'modules' => $modules_list,
+            'user_joined' => $user_joined
+          ]);
+        } else{
+          return view('courses.single', [
+            'title' => $title,
+            'course' => $course,
+            'modules' => $modules_list,
+            'user_joined' => $user_joined
+          ]);
+        }
       } else{
         return view('courses.single', [
           'title' => $title,
           'course' => $course,
-          'modules' => $modules_list,
-          'user_joined' => $user_joined
+          'modules' => $modules_list
         ]);
       }
-    } else{
-      return view('courses.single', [
-        'title' => $title,
-        'course' => $course,
-        'modules' => $modules_list
-      ]);
     }
   }
 
