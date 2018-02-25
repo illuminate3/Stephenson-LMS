@@ -21,10 +21,8 @@ class TutorialTransformer extends TransformerAbstract
     public function transform(Tutorial $model)
     {
         return [
-            'id'         => (int) $model->id,
-
-            'thumbnail' => $new_image_name;
-
+            'id' => (int)$model->id,
+            'thumbnail' => $new_image_name,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
