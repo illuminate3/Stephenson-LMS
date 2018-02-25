@@ -49,15 +49,19 @@ class PostsController
     }
 
 	public function single($post){
-		$post = $this->repository->find($post);
-		$title = $post['title'] ." - Stephenson";
-		$comments = $this->commentsRepository->getComments($post->id,'post');
+		$post = $this->repository->findByField('id', $post)->first();
+    if(count($post) == 0){
+      return redirect()->route('error404');
+    } else {
+  		$title = $post->title . " - Stephenson";
+  		$comments = $this->commentsRepository->getComments($post->id,'post');
 
-		return view('posts.single', [
-      'post' => $post,
-      'comments' => $comments,
-      'title' => $title
-    ]);
+  		return view('posts.single', [
+        'post' => $post,
+        'comments' => $comments,
+        'title' => $title
+      ]);
+    }
 	}
 
     public function index(){

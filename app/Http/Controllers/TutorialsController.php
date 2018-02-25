@@ -50,18 +50,20 @@ class TutorialsController{
   }
 
 	public function single($tutorial){
-		$tutorial = $this->repository->find($tutorial);
-		$title = $tutorial['title'] ." - Stephenson";
-		$comments = $this->commentsRepository->getComments($tutorial->id,'tutorial');
+		$tutorial = $this->repository->findByField('id', $tutorial)->first();
+    if(count($tutorial) == 0){
+      return redirect()->route('error404');
+    } else {
+      $title = $tutorial['title'] ." - Stephenson";
+      $comments = $this->commentsRepository->getComments($tutorial->id,'tutorial');
+      $url = $tutorial['video_url'];
+      preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
+      $id = $matches[1];
+      $video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 
-		$url = $tutorial['video_url'];
-		preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
-
-		$id = $matches[1];
-		$video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
-
-		return view('tutorials.single', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
-	}
+      return view('tutorials.single', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
+    }
+  }
 
 	/* PAINEL */
 

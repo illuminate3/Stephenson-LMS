@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth', 'is_admin']], function() {
 /*  ROTAS GERAIS PARA VISITANTES  */
 /******************************************/
 
+Route::get('/404', ['as' => 'error404','uses' => 'Controller@error404']);
 Route::get('/', ['as' => 'home','uses' => 'Controller@homepage']);
 
 Route::get('/register', ['as'=>'register','uses' => 'Controller@register']);
@@ -99,8 +100,8 @@ Route::resource('/profile/post', 'UserActivitiesController');
 Route::get('/courses', ['as'=>'courses.all','uses' => 'CoursesController@all']);
 Route::get('/course/{course}', ['as'=>'courses.single','uses' => 'CoursesController@single']);
 Route::get('/course/{course}/{page}', ['as'=>'courses.single_content','uses' => 'CoursesController@panel']);
-Route::get('/my-courses', ['as'=>'courses.user_courses','uses' => 'Controller@userCourses']);
-Route::get('/my-courses/favorites', ['as'=>'courses.user_favorite_courses','uses' => 'Controller@userFavoriteCourses']);
+Route::get('/my-courses', ['as'=>'courses.user_courses','uses' => 'Controller@userCourses', 'middleware' => 'auth']);
+Route::get('/my-courses/favorites', ['as'=>'courses.user_favorite_courses','uses' => 'Controller@userFavoriteCourses', 'middleware' => 'auth']);
 Route::post('/course/enter', ['as'=>'courses.enter_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
 Route::post('/course/favorite', ['as'=>'courses.favorite_course','uses' => 'CoursesController@enterOrFavoriteCourse']);
 Route::post('/course/leave', ['as'=>'courses.leave_course','uses' => 'CoursesController@leaveCourse']);

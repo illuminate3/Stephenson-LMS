@@ -29,9 +29,13 @@ class PagesController{
 
 	public function single ($page) {
 		$page = $this->repository->findByField('slug', $page)->first();
-		$title = $page['title'] . " - Stephenson";
 
-		echo view('page', ['page' => $page, 'title' => $title]);
+		if(count($page) == 0){
+			return redirect()->route('error404');
+		} else {
+			$title = $page['title'] . " - Stephenson";
+			return view('page', ['page' => $page, 'title' => $title]);
+		}
 	}
 
 	/* PAINEL */
