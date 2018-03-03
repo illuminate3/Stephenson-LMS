@@ -13,12 +13,13 @@
 				<li class="nav-item {{ request()->is('posts') ? 'active' : '' }}"><a class="nav-link" href="{{ URL::route('posts.all')}}">Blog</a></li>
 			</ul>
 
-			<form class="form-inline mr-auto search">
-				<input class="form-control" type="search" placeholder="Busque por tutoriais, postagens e cursos" aria-label="Search">
+			<form class="form-inline mr-auto search" method="get" action="{{URL::route('search')}}">
+				<input class="form-control" type="search" placeholder="Busque por tutoriais, postagens e cursos" aria-label="Search" name="q">
 			</form>
 
 			<ul class="navbar-nav my-2 my-lg-0">
 				@auth
+					
 					<li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          {{ Auth::user()->firstname }}

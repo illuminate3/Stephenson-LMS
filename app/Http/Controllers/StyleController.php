@@ -17,16 +17,4 @@ class StyleController{
 			'title' => "Estilos"
 		]);
 	}
-
-public function changeTheme(Request $themeName)
-{
-		$themeName = $themeName->theme;
-    if(\Theme::exists($themeName)){
-        \Theme::set($themeName);
-        session(['theme-name' => $themeName]);
-        return redirect()->back();
-    } else {
-		 echo 'Deu merda';
-	 }
-}
 }

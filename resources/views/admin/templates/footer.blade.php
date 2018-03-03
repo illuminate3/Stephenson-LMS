@@ -7,12 +7,14 @@
 
 <!-- Necessário em todas as páginas -->
 <script type="text/javascript" src="{{ asset('assets/admin/js/jquery-3.2.1.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/admin/js/pooper.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('assets/admin/js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{ url('assets/admin/js/script.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/admin/js/bootstrap-tagsinput.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/admin/js/script.js')}}"></script>
 
 
 <!-- Necessário nas páginas com upload -->
-<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+<script src="{{ asset('assets/laravel-filmenager/js/lfm.js')}}"></script>
 <script>$('#lfm').filemanager('file');</script>
 
 <!-- Necessário nas páginas com editor de texto -->

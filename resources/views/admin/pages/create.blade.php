@@ -6,15 +6,15 @@
 		<nav aria-label="breadcrumb" id="page-nav">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<?php echo URL::route('pages.index');?>"><?php echo __('messages.pages'); ?></a></li>
-					<li class="breadcrumb-item active" aria-current="page"><?php echo __('messages.create_page'); ?></li>
+					<li class="breadcrumb-item"><a href="{{URL::route('pages.index')}}">{{__('messages.pages')}}</a></li>
+					<li class="breadcrumb-item active" aria-current="page">{{__('messages.create_page')}}</li>
 				</ol>
 			</div>
 		</nav>
 
 		<div class="jumbotron jumbotron-fluid">
 		  <div class="container">
-		    <h1 class="display-4"><?php echo __('messages.create_page'); ?></h1>
+		    <h1 class="display-4">{{__('messages.create_page')}}</h1>
 		  </div>
 		</div>
 
@@ -28,10 +28,10 @@
 						echo '<div class="alert alert-success" role="alert">' . session('success')['messages'] . '</div>';
 					}
 				}
-			?>
+			}}
 
 			<div class="row">
-				<form method="post" class="col" action="<?php echo URL::route('pages.store');?>" enctype="multipart/form-data">
+				<form method="post" class="col" action="{{URL::route('pages.store')}}" enctype="multipart/form-data">
 					<div class="row">
 					<div class="col-9">
 						  <div class="form-group">
@@ -49,7 +49,7 @@
 								<textarea type="text" class="form-control tinymce"  rows="8"id="txtContent" placeholder="Conteúdo" name="content"></textarea>
 						  </div>
 
-						<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
+						<input type="hidden" name="author_id" value="{{Auth::user()->id}}">
 					</div>
 
 					<div class="col-3">
@@ -57,7 +57,7 @@
 					</div>
 					</div>
 
-					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+					<input type="hidden" name="_token" value="{{csrf_token()}}">
 				</form>
 			</div>
 		</div>

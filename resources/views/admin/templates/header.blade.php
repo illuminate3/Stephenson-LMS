@@ -46,13 +46,6 @@
 				</li>
 
 				<li>
-					<a href="{{URL::route('style.index')}}">
-				 	<i class="material-icons">brush</i>
-				 	<span>Design</span>
-				 </a>
-				</li>
-
-				<li>
 					<a href="{{URL::route('library.index')}}">
 					 <i class="material-icons">library_add</i>
 					 <span>Galeria</span>

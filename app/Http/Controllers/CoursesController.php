@@ -46,11 +46,11 @@ class CoursesController{
   }
 
   public function single($course){
-    $course = $this->repository->findByField('id', $course);
+    $course = $this->repository->findByField('id', $course)->first();
     if(count($course) == 0){
       return redirect()->route('error404');
     } else {
-      $modules_list = $this->moduleRepository->findByField('course_id',$course['id'])->first();
+      $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
       $title =  $course['title']." - Stephenson";
 
       if(Auth::user()){
@@ -123,7 +123,7 @@ class CoursesController{
     if($type == 1){
       $activity = array('user_id' => $user, 'type' => 'favorite_course');
     } elseif($type == 2){
-      $activity = array('user_id' => $user, 'type' => 'enter_course');
+      $activity = array('user_id' => $user, 'type' => 'enter_course' );
     }
 
     $new_activity = $this->userActivitiesService->store($activity);

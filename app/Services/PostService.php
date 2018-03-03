@@ -25,7 +25,7 @@ class PostService{
 
 			return [
 				'success'   => true,
-				//'messages'  => 'Postagem criada com sucesso!<a href="' . URL::route('posts.single', ['id' =>]) . '"> Ver Postagem</a>',
+				'messages'  => 'Postagem criada com sucesso!',
 				'data'     => $post
 			];
 		} catch(Exception $e){

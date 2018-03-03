@@ -19,13 +19,13 @@ class UserActivitiesRepositoryEloquent extends BaseRepository implements UserAct
      *
      * @return string
      */
-	
+
 	public function newActivity($type, $user){
-		
+
 		  $activity = new UserActivities;
         $activity->user_id = $user;
         $activity->type = $type;
-		
+
         if($activity->save()){
 			  return redirect()->back();
 		  }

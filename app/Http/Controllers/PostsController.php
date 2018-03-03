@@ -14,6 +14,7 @@ use App\Validators\PostValidator;
 use App\Services\PostService;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\CommentRepository;
+use Auth;
 
 class PostsController
 {
@@ -116,7 +117,8 @@ class PostsController
 
 
     public function store(PostCreateRequest $request){
-		 $request = $this->service->store($request->all());
+     $author_id = ['author_id' => Auth::user()->id];
+		 $request = $this->service->store($request->all() + $author_id);
 		 $post = $request['success'] ? $request['data'] : null;
 
 

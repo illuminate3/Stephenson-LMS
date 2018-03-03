@@ -7,19 +7,19 @@
 			<div class="container">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
-						<a href="<?php echo URL::route('courses.index') ?>">
-							<?php echo __('messages.courses'); ?>
+						<a href="{{ URL::route('courses.index') }}">
+							{{ __('messages.courses')}}
 						</a>
 					</li>
 
 					<li class="breadcrumb-item">
-						<a href="<?php echo URL::route('courses.manage', ['module' => $course->id]) ?>">
-							<?php echo __('messages.manage_course'); ?>
+						<a href="{{ URL::route('courses.manage', ['module' => $course->id]) }}">
+							{{ __('messages.manage_course')}}
 						</a>
 					</li>
 
 					<li class="breadcrumb-item active" aria-current="page">
-						<?php echo __('messages.create_lesson'); ?>
+						{{ __('messages.create_lesson')}}
 					</li>
 				</ol>
 			</div>
@@ -28,7 +28,7 @@
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h1 class="display-4">
-					<?php echo __('messages.create_lesson'); ?>
+					{{ __('messages.create_lesson')}}
 				</h1>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 			?>
 
 			<div class="row">
-				<form method="post" class="col-12" action="<?php echo URL::route('course.module.lesson.store',['course' => $course->id, 'module' => $module->id]);?>" enctype="multipart/form-data">
+				<form method="post" class="col-12" action="{{ URL::route('course.module.lesson.store',['course' => $course->id, 'module' => $module->id])}}" enctype="multipart/form-data">
 					<div class="row">
 					<div class="col-9">
 					<div class="form-group">
@@ -67,7 +67,7 @@
 
 						<div class="form-group col-md-2">
 							<label for="inputPassword4">Tempo</label>
-							<input type="time" class="form-control" id="inputPassword4" name="time">
+							<input type="datetime" class="form-control" id="inputPassword4" name="time">
 						</div>
 					</div>
 
@@ -80,9 +80,9 @@
 								<textarea type="text" class="form-control" id="txtTitle" placeholder="Resumo" name="resume"></textarea>
 							</div>
 
-						<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
-						<input type="hidden" name="course_id" value="<?php echo $course['id']?>">
-						<input type="hidden" name="module_id" value="<?php echo $module['id']?>">
+						<input type="hidden" name="author_id" value="{{ Auth::user()->id}}">
+						<input type="hidden" name="course_id" value="{{ $course['id']}}">
+						<input type="hidden" name="module_id" value="{{ $module['id']}}">
 					</div>
 
 					<div class="col-3">
@@ -100,7 +100,7 @@
 					</div>
 					</div>
 
-					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
 				</form>
 			</div>
 		</div>

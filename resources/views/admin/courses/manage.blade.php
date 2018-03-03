@@ -15,12 +15,12 @@
     	<div class="container">
     		<ol class="breadcrumb">
     			<li class="breadcrumb-item">
-    				<a href="<?php echo URL::route('courses.index');?>">
-    					<?php echo __('messages.courses'); ?>
+    				<a href="{{ URL::route('courses.index')}}">
+    					{{ __('messages.courses')}}
     				</a>
     			</li>
     			<li class="breadcrumb-item active" aria-current="page">
-    				<?php echo __('messages.manage_course'); ?>
+    				{{ __('messages.manage_course')}}
     			</li>
     		</ol>
     	</div>
@@ -29,7 +29,7 @@
     <div class="jumbotron jumbotron-fluid">
     	<div class="container">
     		<h1 class="display-4">
-    			<?php echo __('messages.manage_course'); ?>
+    			{{ __('messages.manage_course')}}
     		</h1>
     	</div>
     </div>
@@ -45,16 +45,17 @@
     		}
     	?>
 
-    	<?php if(count($course->getModules) > 0){?>
+    	@if(count($course->getModules) > 0)
       	<div id="modules-list">
-      		<?php $modules = $course->getModules; foreach ($modules as $module) {  ?>
-      		<div class="card module" id="module-<?php echo $module->id ?>">
-      			<div class="card-header" id="module-heading-<?php echo $module->id ?>">
+      		@php $modules = $course->getModules @endphp
+          @foreach ($modules as $module)
+      		<div class="card module" id="module-{{ $module->id }}">
+      			<div class="card-header" id="module-heading-{{ $module->id }}">
       				<div class="row">
       					<div class="col-1 drag-module">=</div>
       					<h5 class="mb-0 col-8">
-      						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-<?php echo $module->id ?>" aria-expanded="false" aria-controls="collapse-<?php echo $module->id ?>">
-      						 <?php echo $module->name ?>
+      						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-{{ $module->id }}" aria-expanded="false" aria-controls="collapse-{{ $module->id }}">
+      						 {{ $module->name }}
       					  </button>
       					</h5>
 
@@ -64,47 +65,47 @@
       							<button type="button" class="btn btn-primary"><i class="material-icons">edit</i></button>
       						</a>
 
-      							<form method="post" action="<?php echo URL::route('course.module.destroy', ['course_id' => $course->id, 'module_id' =>  $module['id']]);?>">
+      							<form method="post" action="{{ URL::route('course.module.destroy', ['course_id' => $course->id, 'module_id' =>  $module['id']])}}">
       								<button type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
       								<input type="hidden" value="DELETE" name="_method">
-      								<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+      								<input type="hidden" name="_token" value="{{ csrf_token()}}">
       							</form>
       						</div>
       					</div>
       				</div>
       			</div>
-      			<div id="collapse-<?php echo $module->id ?>" class="collapse" aria-labelledby="module-heading-<?php echo $module->id ?>" data-parent="#modules-list">
+      			<div id="collapse-{{ $module->id }}" class="collapse" aria-labelledby="module-heading-{{ $module->id }}" data-parent="#modules-list">
       				<div class="card-body">
-      					<?php if(count($module->getLessons) > 0){ ?>
-
+      					@if(count($module->getLessons) > 0)
       					<div class="lessons-list">
-      						<?php $lessons = $module->getLessons; foreach ($lessons as $lesson) { ?>
-      						<div class="card lesson" id="lesson-<?php echo $lesson->id ?>">
-      							<div class="card-header" id="lesson-heading-<?php echo $lesson->id; ?>">
+      						@php $lessons = $module->getLessons @endphp
+                  @foreach ($lessons as $lesson)
+      						<div class="card lesson" id="lesson-{{ $lesson->id }}">
+      							<div class="card-header" id="lesson-heading-{{ $lesson->id}}">
       								<div class="row">
       									<div class="col-1 drag-lesson">=</div>
       									<h5 class="mb-0 col-8">
-      										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#lesson-collapse-<?php echo $lesson->id; ?>" aria-expanded="false" aria-controls="collapseTwo">
-      											<?php echo $lesson->title ?>
+      										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#lesson-collapse-{{ $lesson->id}}" aria-expanded="false" aria-controls="collapseTwo">
+      											{{ $lesson->title }}
       									   </button>
       									</h5>
 
       									<div class="lesson-actions col-3">
       										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-      											<a href="<?php echo URL::route('course.module.lesson.edit',['course_id' => $course->id, 'module_id' => $module->id, 'lesson_id' => $lesson->id]);?>">
+      											<a href="{{ URL::route('course.module.lesson.edit',['course_id' => $course->id, 'module_id' => $module->id, 'lesson_id' => $lesson->id])}}">
       												<button type="button" class="btn btn-primary"><i class="material-icons">edit</i></button>
       											</a>
-      											<form method="post" action="<?php echo URL::route('course.module.lesson.destroy', ['course_id' => $course->id, 'module_id' =>  $module->id, 'lesson_id' => $lesson->id]);?>">
+      											<form method="post" action="{{ URL::route('course.module.lesson.destroy', ['course_id' => $course->id, 'module_id' =>  $module->id, 'lesson_id' => $lesson->id])}}">
       												<button type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
       												<input type="hidden" value="DELETE" name="_method">
-      												<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+      												<input type="hidden" name="_token" value="{{ csrf_token()}}">
       											</form>
 
       											<div class="btn-group" role="group">
-      												<button id="add-material-<?php echo $lesson->id; ?>" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      												<button id="add-material-{{ $lesson->id}}" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       												Material
       											 </button>
-      												<div class="dropdown-menu" aria-labelledby="add-material-<?php echo $lesson->id; ?>">
+      												<div class="dropdown-menu" aria-labelledby="add-material-{{ $lesson->id}}">
       													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="file" href="#">Arquivo</a>
       													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="image" href="#">Imagem</a>
       													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="video" href="#">Vídeo</a>
@@ -116,62 +117,62 @@
       									</div>
       								</div>
       							</div>
-      							<div id="lesson-collapse-<?php echo $lesson->id; ?>" class="collapse" aria-labelledby="lesson-heading-<?php echo $lesson->id; ?>" data-parent=".lesson-list">
+      							<div id="lesson-collapse-{{ $lesson->id}}" class="collapse" aria-labelledby="lesson-heading-{{ $lesson->id}}" data-parent=".lesson-list">
       								<div class="card-body">
-      									<?php if(count($lesson->getMaterials) > 0){ ?>
+      									@if(count($lesson->getMaterials) > 0)
       									<div class="materials">
-      										<?php $materials = $lesson->getMaterials; foreach ($materials as $material) { ?>
+      										@php $materials = $lesson->getMaterials @endphp
+                          @foreach ($materials as $material)
       											<div id="material">
-      												<?php
-      													switch ($material->type) {
-      													case "add_note":
-      														echo "<i class='material-icons'>note</i>";
-      														break;
-      													case "add_poll":
-      														echo "<i class='material-icons'>question_answer</i>";
-      														break;
-      													case "add_photo":
-      														echo "<i class='material-icons'>photo</i>";
-      														break;
-      													case "add_video":
-      														echo "<i class='material-icons'>play_arrow</i>";
-      														break;
-      													}
-      												?>
-      												<?php echo $material->title;?>
+      													@switch ($material->type)
+        													@case ("add_note")
+        														<i class='material-icons'>note</i>
+        														@break
+        													@case ("add_poll")
+        														<i class='material-icons'>question_answer</i>
+        														@break
+        													@case ("add_photo")
+        														<i class='material-icons'>photo</i>
+        														@break
+        													@case ("add_video")
+        														<i class='material-icons'>play_arrow</i>
+        														@break
+      													@endswitch
+      												{{ $material->title }}
       											</div>
-      										<?php }?>
+      										@endforeach
       									</div>
-                      <?php } else {?>
-                        <p>Nenhum material cadastrado.</p>
-                      <?php } ?>
+                        @else
+                          <p>Nenhum material cadastrado.</p>
+                        @endif
       								</div>
       							</div>
       						</div>
-      						<?php } ?>
+                @endforeach
       					</div>
-      					<?php } else { ?> Nenhuma aula cadastrada
-      					<?php } ?>
-      					<a class="btn btn-primary btn-lg btn-block mt-3" href="<?php echo URL::route('course.module.lesson.create',['course_id' => $course->id, 'module_id' => $module->id]);?>">
+                @else
+                  Nenhuma aula cadastrada
+      					@endif
+      					<a class="btn btn-primary btn-lg btn-block mt-3" href="{{ URL::route('course.module.lesson.create',['course_id' => $course->id, 'module_id' => $module->id])}}">
       						Criar Aula para este Módulo
       					</a>
       				</div>
       			</div>
       		</div>
-      		<?php } ?>
+          @endforeach
       	</div>
-    	<?php } else { ?>
+    	@else
     	   <p>Nenhum módulo criado, crie um usando o formulário abaixo.</p>
-    	<?php } ?>
+    	@endif
   		<div class="card">
   			<div class="card-body">
-  				<form class="form-inline" method="post" action="<?php echo URL::route('course.module.store',['course_id' => $course->id]);?>">
+  				<form class="form-inline" method="post" action="{{ URL::route('course.module.store',['course_id' => $course->id])}}">
   					<div class="form-group">
   						<label for="inlineFormInputName2">Criar um Módulo</label>
   						<input type="text" class="form-control mx-sm-3" id="inlineFormInputName2" placeholder="Nome do Módulo" name="name">
   					</div>
-  					<input type="hidden" name="course_id" value="<?php echo $course['id'] ?>">
-  					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+  					<input type="hidden" name="course_id" value="{{ $course['id'] }}">
+  					<input type="hidden" name="_token" value="{{ csrf_token()}}">
   					<button type="submit" class="btn btn-primary sm-3">Criar</button>
 
   				</form>

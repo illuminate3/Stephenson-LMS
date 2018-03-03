@@ -7,12 +7,12 @@
 			<div class="container">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
-						<a href="<?php echo URL::route('courses.index');?>">
-							<?php echo __('messages.courses'); ?>
+						<a href="{{ URL::route('courses.index')}}">
+							{{ __('messages.courses')}}
 						</a>
 					</li>
 					<li class="breadcrumb-item active" aria-current="page">
-						<?php echo __('messages.create_course'); ?>
+						{{ __('messages.create_course')}}
 					</li>
 				</ol>
 			</div>
@@ -21,7 +21,7 @@
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h1 class="display-4">
-					<?php echo __('messages.create_course'); ?>
+					{{ __('messages.create_course')}}
 				</h1>
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 			?>
 
 			<div class="row">
-				<form  class="col-12" method="post" action="<?php echo URL::route('courses.store');?>" enctype="multipart/form-data">
+				<form  class="col-12" method="post" action="{{ URL::route('courses.store')}}" enctype="multipart/form-data">
 					<div class="row">
 					<div class="col-9">
 							<div class="form-group">
@@ -57,7 +57,7 @@
 							</div>
 
 
-						<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
+						<input type="hidden" name="author_id" value="{{ Auth::user()->id }}">
 					</div>
 
 						<div class="col-3">
@@ -69,9 +69,9 @@
 							  <div class="card-body">
 									<select name="category_id">
 										<option value="0" disabled selected>Sem categoria</option>
-										<?php foreach ($categories as $category) { ?>
-										<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
-										<?php } ?>
+										@foreach ($categories as $category)
+										<option value="{{ $category['id']}}">{{ $category['name']}}</option>
+                    @endforeach
 									</select>
 							  </div>
 							</div>
@@ -88,7 +88,7 @@
 						</div>
 					</div>
 
-					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
 				</form>
 			</div>
 		</div>

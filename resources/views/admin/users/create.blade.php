@@ -8,12 +8,12 @@
 			<div class="container">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
-						<a href="<?php echo URL::route('users.index');?>">
-							<?php echo __('messages.users'); ?>
+						<a href="{{URL::route('users.index')}}">
+							{{__('messages.users')}}
 						</a>
 					</li>
 					<li class="breadcrumb-item active" aria-current="page">
-						<?php echo __('messages.create_user'); ?>
+						{{__('messages.create_user')}}
 					</li>
 				</ol>
 			</div>
@@ -22,7 +22,7 @@
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h1 class="display-4">
-					<?php echo __('messages.create_user'); ?>
+					{{__('messages.create_user')}}
 				</h1>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 			?>
 
 
-			<form  method="post" action="<?php echo URL::route('users.store');?>">
+			<form  method="post" action="{{URL::route('users.store')}}">
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
@@ -71,7 +71,7 @@
 				</div>
 
 				<button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Adicionar</button>
-				<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+				<input type="hidden" name="_token" value="{{csrf_token()}}">
 			</form>
 		</div>
 @endsection

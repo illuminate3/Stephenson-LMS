@@ -88,6 +88,8 @@ Route::get('/logout', ['as'=>'logout', 'uses' => 'Controller@logout']);
 
 Route::get('/chat', ['as' => 'chat', 'uses' => 'MessagesController@index']);
 
+Route::get('/search', ['as' => 'search', 'uses' => 'Controller@search']);
+
 /* ROTAS PARA O PERFIL */
 
 Route::get('/profile/{profile}', ['as' => 'profile.profile', 'uses' => 'ProfilesController@perfil']);

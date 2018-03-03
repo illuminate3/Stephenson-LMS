@@ -32,7 +32,7 @@ class ProfilesController{
         $this->service 							= $service;
         $this->validator 						= $validator;
     }
-	
+
 	public function perfil(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
 		$isLoggedProfile = ($perfil->id == Auth::user()->id) ? true : false;
@@ -41,7 +41,7 @@ class ProfilesController{
 
 		echo view('profile.profile', ['title' => $title, 'user' => $perfil, 'isLoggedProfile' => $isLoggedProfile, 'activities' => $activities]);
 	}
-	
+
 	public function perfil_about(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
 		$isLoggedProfile = ($perfil->id == Auth::user()->id) ? true : false;
@@ -49,7 +49,7 @@ class ProfilesController{
 
 		echo view('profile.about', ['title' => $title, 'user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 	}
-	
+
 	public function perfil_followers(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
 		$isLoggedProfile = ($perfil->id == Auth::user()->id) ? true : false;
@@ -57,7 +57,7 @@ class ProfilesController{
 
 		echo view('profile.followers', ['title' => $title, 'user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 	}
-	
+
 	public function perfil_following(Request $request, $perfil){
 		$perfil = $this->repository->getProfileInfo($perfil);
 		$isLoggedProfile = ($perfil->id == Auth::user()->id) ? true : false;
@@ -65,5 +65,5 @@ class ProfilesController{
 
 		echo view('profile.following', ['title' => $title, 'user' => $perfil, 'isLoggedProfile' => $isLoggedProfile]);
 	}
-	
+
  }

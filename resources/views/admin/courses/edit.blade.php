@@ -7,12 +7,12 @@
 			<div class="container">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
-						<a href="<?php echo URL::route('courses.index');?>">
-							<?php echo __('messages.courses'); ?>
+						<a href="{{ URL::route('courses.index')}}">
+							{{ __('messages.courses')}}
 						</a>
 					</li>
 					<li class="breadcrumb-item active" aria-current="page">
-						<?php echo __('messages.edit_course'); ?>
+						{{ __('messages.edit_course')}}
 					</li>
 				</ol>
 			</div>
@@ -21,7 +21,7 @@
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h1 class="display-4">
-					<?php echo __('messages.edit_course'); ?>
+					{{ __('messages.edit_course')}}
 				</h1>
 			</div>
 		</div>
@@ -39,29 +39,29 @@
 			?>
 
 			<div class="row">
-				<form  class="col-12" method="post" action="<?php echo URL::route('courses.update', ['course_id' => $course->id]);?>" enctype="multipart/form-data">
+				<form  class="col-12" method="post" action="{{ URL::route('courses.update', ['course_id' => $course->id])}}" enctype="multipart/form-data">
 					<div class="row">
 					<div class="col-9">
 							<div class="form-group">
 								<label for="txtTitle">Título</label>
-								<input type="text" value="<?php echo $course->title; ?>" class="form-control" id="txtTitle" placeholder="Título" name="title">
+								<input type="text" value="{{ $course->title}}" class="form-control" id="txtTitle" placeholder="Título" name="title">
 							</div>
 
 							<div class="form-group">
 								<textarea type="text" class="form-control tinymce" rows="8" id="txtContent" placeholder="Conteúdo" name="description">
-									<?php echo $course->description; ?>
+									{{ $course->description}}
 								</textarea>
 							</div>
 
 							<div class="form-group">
 								<label for="txtTitle">Resumo</label>
 								<textarea type="text" class="form-control" id="txtTitle" placeholder="Resumo" name="resume">
-									<?php echo $course->resume; ?>
+									{{ $course->resume}}
 								</textarea>
 							</div>
 
 
-						<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
+						<input type="hidden" name="author_id" value="{{ Auth::user()->id}}">
 					</div>
 
 						<div class="col-3">
@@ -72,10 +72,10 @@
 							  <h5 class="card-header">Categoria</h5>
 							  <div class="card-body">
 									<select name="category_id">
-										<option value="<?php echo ($atual_category == NULL)? "0" : $atual_category['id'];?>" selected><?php echo ($atual_category == NULL) ? "Sem Categoria" : $atual_category['name']; ?></option>
-										<?php foreach ($categories as $category) { ?>
-										<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
-										<?php } ?>
+										<option value="{{ ($atual_category == NULL) ? "0" : $atual_category['id']}}" selected>{{ ($atual_category == NULL) ? "Sem Categoria" : $atual_category['name']}}</option>
+										@foreach ($categories as $category)
+										<option value="{{ $category['id']}}">{{ $category['name']}}</option>
+										@endforeach
 									</select>
 							  </div>
 							</div>
@@ -85,7 +85,7 @@
 							  <div class="card-body">
 									<div class="file-upload">
 										<a id="lfm" data-input="thumbnail" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
-										<input id="thumbnail" value="<?php echo $course->cover; ?>" type="text" name="cover">
+										<input id="thumbnail" value="{{ $course->cover}}" type="text" name="cover">
 									</div>
 							  </div>
 							</div>
@@ -93,7 +93,7 @@
 					</div>
 
 					<input type="hidden" value="PUT" name="_method">
-					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
 				</form>
 			</div>
 		</div>

@@ -7,12 +7,12 @@
     	<div class="container">
     		<ol class="breadcrumb">
     			<li class="breadcrumb-item">
-    				<a href="<?php echo URL::route('posts.index');?>">
-    					<?php echo __('messages.posts'); ?>
+    				<a href="{{ URL::route('posts.index')}}">
+    					{{ __('messages.posts')}}
     				</a>
     			</li>
     			<li class="breadcrumb-item active" aria-current="page">
-    				<?php echo __('messages.create_post'); ?>
+    				{{ __('messages.create_post')}}
     			</li>
     		</ol>
     	</div>
@@ -21,7 +21,7 @@
     <div class="jumbotron jumbotron-fluid">
     	<div class="container">
     		<h1 class="display-4">
-    			<?php echo __('messages.create_post'); ?>
+    			{{ __('messages.create_post')}}
     		</h1>
     	</div>
     </div>
@@ -40,7 +40,7 @@
     	?>
 
     	<div class="row">
-    		<form class="col-12" method="post" action="<?php echo URL::route('posts.store');?>" enctype="multipart/form-data">
+    		<form class="col-12" method="post" action="{{ URL::route('posts.store')}}" enctype="multipart/form-data">
     			<div class="row">
     			<div class="col-9">
 
@@ -55,10 +55,13 @@
 
     					<div class="form-group">
     						<label for="txtTitle">Resumo</label>
-    						<textarea type="text" class="form-control" id="txtTitle" placeholder="Resumo" name="resume"></textarea>
+    						<textarea class="form-control" id="txtTitle" placeholder="Resumo" name="resume"></textarea>
     					</div>
 
-    				<input type="hidden" name="author_id" value="<?php echo Auth::user()->id;?>">
+              <div class="form-group">
+                <label for="txtAuthor">Author</label>
+                <input type="text" class="form-control" id="txtAuthor" disabled value="{{Auth::user()->firstname . ' ' . Auth::user()->lastname}}"></input>
+              </div>
     			</div>
 
     				<div class="col-3">
@@ -68,20 +71,21 @@
     					<div class="card mt-3">
     					  <h5 class="card-header">Tags</h5>
     					  <div class="card-body">
-    						  Nada por aqui
+                  <p>Digite as tags separadas por vírgula.</p>
+    						  <input type="text" data-role="tagsinput" placeholder="Adicionar +" name="tags">
     					  </div>
     					</div>
 
     					<div class="card mt-3">
     					  <h5 class="card-header">Categoria</h5>
-    					  <div class="card-body">
-    							<select name="category_id">
-    								<option value="0" disabled selected>Sem categoria</option>
-    								<?php foreach ($categories as $category) { ?>
-    								<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
-    								<?php } ?>
-    							</select>
-    					  </div>
+							  <div class="card-body">
+									<select name="category_id">
+										<option value="0" disabled selected>Sem categoria</option>
+										@foreach ($categories as $category)
+										<option value="{{$category['id']}}">{{$category['name']}}</option>
+                    @endforeach
+									</select>
+							  </div>
     					</div>
 
     					<div class="card mt-3">
@@ -95,7 +99,7 @@
     					</div>
     				</div>
     			</div>
-    			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+    			<input type="hidden" name="_token" value="{{ csrf_token()}}">
     		</form>
     	</div>
     </div>

@@ -23,14 +23,24 @@
 
 			<ul class="list-unstyled" id="activities">
 			<?php foreach($activities as $activity) { ?>
-				<li class="media mb-3">
-					<img class="mr-3" height="64px" src="<?php echo asset('assets/images/avatar-default.png');?>">
-					<div class="media-body">
-      				<h5 class="mt-0 mb-1"><?php echo $user->firstname . " " . $user->lastname; ?></h5>
-						<?php echo __("messages.activity." . $activity->type, ['course' => $activity->relation]); ?>
-					</div>
-				</li>
-			<?php } ?>
+  			<?php if($activity->type == 'status') { ?>
+          <li class="media mb-3">
+  					<img class="mr-3" height="64px" src="<?php echo asset('assets/images/avatar-default.png');?>">
+  					<div class="media-body">
+        				<h5 class="mt-0 mb-1"><?php echo $user->firstname . " " . $user->lastname; ?></h5>
+  						<?php echo $activity->content?>
+  					</div>
+  				</li>
+  			<?php } else { ?>
+  				<li class="media mb-3">
+  					<img class="mr-3" height="64px" src="<?php echo asset('assets/images/avatar-default.png');?>">
+  					<div class="media-body">
+        				<h5 class="mt-0 mb-1"><?php echo $user->firstname . " " . $user->lastname; ?></h5>
+  						<?php echo __("messages.activity." . $activity->type, ['course' => $activity->relation]); ?>
+  					</div>
+  				</li>
+  			<?php }
+      } ?>
 			</ul>
 		</div>
 	</div>
