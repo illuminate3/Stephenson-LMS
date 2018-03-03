@@ -8,9 +8,15 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.min.css ") }}">
   <link rel="stylesheet" href="{{ asset("assets/css/class-room.css ") }}">
+<<<<<<< HEAD
   <script type="text/javascript" src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/class-room.js') }}"></script>
+=======
+  <script type="text/javascript" src="{{ asset("assets/js/jquery-3.2.1.min.js ") }}"></script>
+  <script type="text/javascript" src="{{ asset("assets/js/bootstrap.min.js ") }}"></script>
+  <script type="text/javascript" src="/assets/js/class-room.js"></script>
+>>>>>>> c3176c0eb2ad286511beeb6549765c1a7be64660
   <title>Class room</title>
 </head>
 
@@ -137,7 +143,11 @@
         <div class="main-lesson">
           <!-- area of midia if available -->
           <div class="lesson-midia">
+<<<<<<< HEAD
             {!!$video!!}
+=======
+            {--!!$video!!--}
+>>>>>>> c3176c0eb2ad286511beeb6549765c1a7be64660
           </div>
           <!-- area of article -->
           {!!$lesson->content!!}
@@ -155,4 +165,8 @@
   <footer></footer>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> c3176c0eb2ad286511beeb6549765c1a7be64660
