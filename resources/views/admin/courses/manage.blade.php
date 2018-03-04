@@ -124,19 +124,20 @@
       										@php $materials = $lesson->getMaterials @endphp
                           @foreach ($materials as $material)
       											<div id="material">
-      													@switch ($material->type)
-        													@case ("add_note")
+      													@switch ({{$material->type}})
+        													@case ("note")
         														<i class='material-icons'>note</i>
         														@break
-        													@case ("add_poll")
+        													@case ("poll")
         														<i class='material-icons'>question_answer</i>
         														@break
-        													@case ("add_photo")
+        													@case ("photo")
         														<i class='material-icons'>photo</i>
         														@break
-        													@case ("add_video")
+        													@case ("video")
         														<i class='material-icons'>play_arrow</i>
         														@break
+                                  @default
       													@endswitch
       												{{ $material->title }}
       											</div>

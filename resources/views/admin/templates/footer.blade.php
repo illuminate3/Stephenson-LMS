@@ -14,11 +14,12 @@
 
 
 <!-- Necessário nas páginas com upload -->
-<script src="{{ asset('assets/laravel-filmenager/js/lfm.js')}}"></script>
+<script src="{{ asset('assets//js/lfm.js')}}"></script>
 <script>$('#lfm').filemanager('file');</script>
 
 <!-- Necessário nas páginas com editor de texto -->
 <script type="text/javascript" src="{{ asset('assets/admin/js/tinymce/tinymce.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/admin/js/tinymce/config.js')}}"></script>
 
 <!-- Necessário nas páginas na página de gerenciamento de curso -->
 <script type="text/javascript" src="{{ asset('assets/admin/js/jquery-ui.min.js')}}"></script>
