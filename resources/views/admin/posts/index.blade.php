@@ -42,9 +42,9 @@
 				<div class="card-body">
 						@if(count($posts) < 1)
 							@if($loop == "trash")
-								echo "Nenhuma postagem encontrada na lixeira.";
+								Nenhuma postagem encontrada na lixeira
 							@else
-								echo "Nenhuma postagem criada. <a href='". URL::route('posts.create') . "'>Criar uma postagem</a>";
+								Nenhuma postagem criada. <a href="{{URL::route('posts.create')}}">Criar uma postagem</a>
 							@endif
 						@else
 						<table class="table table-hover">

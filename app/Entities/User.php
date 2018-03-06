@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable{
-	 use SoftDeletes;
-    use Notifiable;
-	
-	 public $timestamps = true;
-	 protected $table = 'users';
-    protected $fillable = ['firstname', 'lastname', 'user','email','password','birth','gender','password'];
-    protected $hidden = ['remember_token'];
-	
+	use SoftDeletes;
+  use Notifiable;
+
+	public $timestamps = true;
+	protected $table = 'users';
+  protected $fillable = ['firstname', 'lastname', 'user','email', 'password','sex', 'born', 'locale', 'avatar'];
+  protected $hidden = ['remember_token'];
+
 	public function getCourses(){
 		$instance = $this->hasMany(CoursesMeta::class)->where('type','=', 2);
     	return $instance;
 	}
-	
+
 	public function getFavoriteCourses(){
 		$instance = $this->hasMany(CoursesMeta::class)->where('type','=', 1);
     	return $instance;
@@ -35,7 +35,7 @@ class User extends Authenticatable{
 		return $birth;
 			}
 	}
-	
+
 	public function getGenderAttribute(){
 		$gender = $this->attibutes['gender'];
 		if($gender == 1){
@@ -46,5 +46,5 @@ class User extends Authenticatable{
 			return NULL;
 		}
 	}
-	
+
 }

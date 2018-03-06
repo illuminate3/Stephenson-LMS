@@ -27,9 +27,9 @@
     					<a href="{{ URL::route('login')}}" class="btn btn-primary btn-block">Entrar no Curso</a>
     				@endguest
     				<div id="course-info">
-    					<div class="info"><i class="far fa-user"></i>{{ $course->author->firstname . " " . $course->author->lastname}}</div>
-    					<div class="info"><i class="far fa-folder"></i>{{ count($course->getModules)}} módulos</div>
-    					<div class="info"><i class="far fa-play"></i>{{ count($course->getLessons)}} aulas</div>
+    					<div class="info"><i class="ion-ios-person-outline"></i>{{ $course->author->firstname . " " . $course->author->lastname}}</div>
+    					<div class="info"><i class="ion-ios-folder-outline"></i>{{ count($course->getModules)}} módulos</div>
+    					<div class="info"><i class="ion-ios-videocam-outline"></i>{{ count($course->getLessons)}} aulas</div>
     				</div>
     				</div>
     			</div>
@@ -39,7 +39,7 @@
     			@if ($course->description == null)
     				<p>Nenhuma descrição disponível para este curso.</p>
     			@else
-            {{$course->description}}
+            {!! $course->description !!}
           @endif
     		</div>
     	</div>

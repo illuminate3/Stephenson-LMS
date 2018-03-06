@@ -25,7 +25,7 @@
 		<div class="row">
 			<div class="col-3">
 			<div class="card" id="course-sidebar">
-				<img class="card-img-top" src="{{ $course->cover}}">
+				<img class="card-img-top" src="{{$course->cover}}">
 
 				<div class="card-body">
 				<form method="post" id="leave-course" action="{{ URL::route('courses.leave_course', ['course_id' => $user_joined->id])}}">
@@ -33,9 +33,9 @@
 					<input type="hidden" name="_token" value="{{ csrf_token()}}">
 				</form>
 				<div id="course-info">
-					<div class="info"><i class="far fa-user"></i>{{ $course->author->firstname . " " . $course->author->lastname}}</div>
-					<div class="info"><i class="far fa-folder"></i>{{ count($course->getModules)}} módulos</div>
-					<div class="info"><i class="far fa-play"></i>{{ count($course->getLessons)}} aulas</div>
+					<div class="info"><i class="ion-ios-person-outline"></i>{{ $course->author->firstname . " " . $course->author->lastname}}</div>
+					<div class="info"><i class="ion-ios-folder-outline"></i>{{ count($course->getModules)}} módulos</div>
+					<div class="info"><i class="ion-ios-videocam-outline"></i>{{ count($course->getLessons)}} aulas</div>
 				</div>
 				</div>
 			</div>

@@ -52,9 +52,6 @@ class Handler extends ExceptionHandler
         case 404:
           return redirect()->route('error404');
           break;
-        case 405:
-          return redirect()->route('405');
-          break;
         }
       }
         return parent::render($request, $exception);

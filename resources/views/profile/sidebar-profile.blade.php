@@ -5,7 +5,7 @@
 			<?php if ($user['avatar'] == null){ ?>
 			<img class="card-img-top" src="<?php echo asset('assets/images/avatar-default.png');?>" alt="Card image cap">
 			<?php } else { ?>
-			<img class="card-img-top" src="<?php echo asset($user['avatar']);?>" alt="Card image cap">
+			<img class="card-img-top" src="<?php echo asset('uploads/avatars/' . $user['avatar']);?>" alt="Card image cap">
 			<?php }?>
 
 			<div class="card-body">
@@ -13,19 +13,16 @@
 					<?php echo $user['firstname'] . " " . $user['lastname']; ?>
 				</h5>
 
-					<?php if(!$isLoggedProfile){ ?>
-				<div class="card-text">
-					<div id="profile-buttons" class="row mt-2 mb-2">
-						<div class="col-6">
-							<button class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i></button>
+				@auth
+					@if(!$isLoggedProfile)
+					<div class="card-text mb-2">
+						<div class="btn-group" role="group" aria-label="Basic example" style="width:100%">
+						  <button type="button" class="btn btn-primary" style="width:50%"><i class="ion-social-rss"></i></button>
+						  <button type="button" class="btn btn-primary" style="width:50%"><i class="ion-ios-email"></i></button>
 						</div>
-
-						<div class="col-6">
-							<button class="btn btn-primary btn-block"><i class="fas fa-envelope"></i></button>
 						</div>
-					</div>
-					</div>
-					<?php } ?>
+						@endif
+					@endauth
 
 				<ul class="nav nav-pills flex-column list-group">
 					<li class="nav-item">

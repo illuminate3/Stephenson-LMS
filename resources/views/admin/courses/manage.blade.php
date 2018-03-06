@@ -34,6 +34,26 @@
     	</div>
     </div>
 
+    <div class="container mb-3">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('admin/course/{}') ? 'active' : '' }}" href="#">Início</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('admin/course/{}/manage') ? 'active' : '' }}" href="#">Gerenciar</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('admin/course/{}/edit') ? 'active' : '' }}" href="#">Editar</a>
+        </li>
+
+        <li class="nav-item {{ request()->is('admin/course/{}') ? 'active' : '' }}">
+          <a class="nav-link" href="#">Dúvidas</a>
+        </li>
+      </ul>
+    </div>
+
     <div class="container">
     	<?php
     		if (session('success')){

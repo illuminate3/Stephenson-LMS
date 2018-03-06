@@ -117,7 +117,7 @@ class CoursesController{
 
   public function enterOrFavoriteCourse(Request $request){
     $course = $request->query->get('course_id');
-    $user = $request->query->get('user_id');
+    $user = Auth::user()->id;
     $type = $request->query->get('type');
 
     if($type == 1){
@@ -131,7 +131,11 @@ class CoursesController{
   }
 
   public function leaveCourse(Request $request){
+    $user = Auth::user()->id;
     $course = $request->query->get('course_id');
+    $activity = array('user_id' => $user, 'type' => 'leave_course');
+    
+    $new_activity = $this->userActivitiesService->store($activity);
     return  $this->repository->leave_course($course);
   }
 

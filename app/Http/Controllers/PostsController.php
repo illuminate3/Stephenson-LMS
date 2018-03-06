@@ -79,7 +79,6 @@ class PostsController
     }
 
 	 public function trash(){
-      $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
       $posts = $this->repository->getTrashed();
   		$loop = "trash";
   		$title = "Postagens - Stephenson";
@@ -158,7 +157,7 @@ class PostsController
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-       $request= $this->service->delete($id);
+    $request= $this->service->delete($id);
 		 $post = $request['success'] ? $request['data'] : null;
 
 		 session()->flash('success',[

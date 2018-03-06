@@ -19,7 +19,24 @@
 
 			<ul class="navbar-nav my-2 my-lg-0">
 				@auth
-					
+					<li class="nav-item dropdown" id="notification-link">
+						<a class="nav-link" href="#" id="notificationsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="ion-android-notifications-none"></i> <span class="badge badge-pill badge-primary">{{Auth::user()->notifications->count()}}</span>
+						</a>
+
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationsDropdown">
+							@if(Auth::user()->notifications->count() > 0)
+								@foreach (Auth::user()->notifications as $notification)
+									<a class="dropdown-item" href="#">{{$notification->data}}</a>
+								@endforeach
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Ver Todas</a>
+							@else
+								<a class="dropdown-item" href="#">Nenhuma notificação ainda..</a>
+							@endif
+						</div>
+					</li>
+
 					<li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          {{ Auth::user()->firstname }}

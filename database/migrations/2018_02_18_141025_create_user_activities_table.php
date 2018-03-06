@@ -14,12 +14,12 @@ class CreateUserActivitiesTable extends Migration
 	public function up()
 	{
 		Schema::create('user_activities', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('type', 50);
-            $table->text('message');
+        $table->increments('id');
+        $table->string('type', 50);
+        $table->text('data');
 				$table->unsignedInteger('user_id');
 				$table->timestamps();
-			
+
 				$table->foreign('user_id')->references('id')->on('users');
 		});
 	}

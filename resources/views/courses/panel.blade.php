@@ -7,7 +7,7 @@
 			@if ($course->description == null)
         <p>Nenhuma descrição disponível para este curso.</p>
       @else
-        {{ $course->description }}
+        {!! $course->description !!}
       @endif
 		</div>
 @endsection

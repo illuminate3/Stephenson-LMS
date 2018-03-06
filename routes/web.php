@@ -94,6 +94,8 @@ Route::get('/search', ['as' => 'search', 'uses' => 'Controller@search']);
 
 Route::get('/profile/{profile}', ['as' => 'profile.profile', 'uses' => 'ProfilesController@perfil']);
 Route::get('/profile/{profile}/about', ['as' => 'profile.about', 'uses' => 'ProfilesController@perfil_about']);
+Route::put('/profile/update_profile', ['as' => 'profile.update_profile', 'uses' => 'ProfilesController@update_profile']);
+Route::put('/profile/update_avatar', ['as' => 'profile.update_avatar', 'uses' => 'ProfilesController@update_avatar']);
 Route::get('/profile/{profile}/followers', ['as' => 'profile.followers', 'uses' => 'ProfilesController@perfil_followers']);
 Route::get('/profile/{profile}/following', ['as' => 'profile.following', 'uses' => 'ProfilesController@perfil_following']);
 Route::resource('/profile/post', 'UserActivitiesController');
