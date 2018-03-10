@@ -30,7 +30,7 @@
 				}
 			?>
 
-				@if(count($courses) < 1){
+				@if(count($courses) < 1)
 					<p>{{__('messages.no_course_created')}} <a href="{{URL::route('courses.create')}}">{{__('messages.create_course')}}</a></p>
         @else
 				<div class="row">

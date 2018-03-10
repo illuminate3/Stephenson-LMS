@@ -450,7 +450,6 @@ class ComposerStaticInit4adb8bc5d63b536b01b23123c553bd18
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
-        'CreateCacheTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_05_222505_create_cache_table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_01_144622_create_categories_table.php',
         'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_01_144702_create_comments_table.php',
         'CreateCoursesMetaTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_01_144692_create_courses_meta_table.php',

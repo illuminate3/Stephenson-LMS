@@ -137,7 +137,6 @@ return array(
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
-    'CreateCacheTable' => $baseDir . '/database/migrations/2018_03_05_222505_create_cache_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2018_01_01_144622_create_categories_table.php',
     'CreateCommentsTable' => $baseDir . '/database/migrations/2018_01_01_144702_create_comments_table.php',
     'CreateCoursesMetaTable' => $baseDir . '/database/migrations/2018_01_01_144692_create_courses_meta_table.php',

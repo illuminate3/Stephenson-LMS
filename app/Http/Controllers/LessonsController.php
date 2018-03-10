@@ -140,7 +140,7 @@ class LessonsController{
 
 	public function createMaterial(LessonCreateRequest $request, $lesson, $material){
 		$lesson = $lesson;
-		dd($material = substr($material, 4));
+		$material = substr($material, 4);
 		$title= $request->title;
 		$content = $request->content;
 

@@ -21,4 +21,8 @@ class UserActivitiesPresenter extends FractalPresenter
     {
         return new UserActivitiesTransformer();
     }
+
+    public function date(){
+      return $this->created_at;
+    }
 }

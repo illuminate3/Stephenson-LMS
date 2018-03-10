@@ -22,14 +22,15 @@ class CreateTutorialsTable extends Migration
             $table->time('time');
             $table->unsignedInteger('author_id');
             $table->unsignedInteger('category_id');
+						$table->text('tags')->nullable();
             $table->string('thumbnail', 60)->nullable();
             $table->rememberToken();
             $table->timestamps();
 				$table->softDeletes();
-			
+
 			  $table->foreign('author_id')->references('id')->on('users');
 			  $table->foreign('category_id')->references('id')->on('categories');
-			
+
 		});
 	}
 

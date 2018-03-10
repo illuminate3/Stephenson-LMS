@@ -132,7 +132,6 @@ class Controller extends BaseController{
 		$courses = $courseRepository->all();
 		$tutorials = $tutorialRepository->all();
 		$lessons = $lessonRepository->all();
-		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$title = "Stephenson - Plataforma EAD Open Source";
 
 		return view('home', [
@@ -141,13 +140,11 @@ class Controller extends BaseController{
       'users' => $users,
       'lessons' => $lessons,
       'tutorials' => $tutorials,
-      'categories' => $categories
     ]);
 	}
 
 
 	public function userCourses(){
-		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$user = $this->repository->find(Auth::user()->id);
 		$courses = $user->getCourses;
 		$loop = 'studying';
@@ -155,13 +152,13 @@ class Controller extends BaseController{
 
 		return view('courses.user_courses',[
       'title' => $title,
+      'user' => $user,
       'courses' => $courses,
       'loop' => $loop
     ]);
 	}
 
 	public function userFavoriteCourses(){
-		$categories = $this->categoriesRepository->getPrimaryCategories();
 		$user = $this->repository->find(Auth::user()->id);
 		$courses = $user->getFavoriteCourses;
 		$loop = 'favorites';

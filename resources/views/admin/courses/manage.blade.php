@@ -41,7 +41,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {{ request()->is('admin/course/{}/manage') ? 'active' : '' }}" href="#">Gerenciar</a>
+          <a class="nav-link {{ request()->is('admin/course/') ? 'active' : '' }}" href="#">Gerenciar</a>
         </li>
 
         <li class="nav-item">

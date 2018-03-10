@@ -19,8 +19,8 @@
 				  <div class="clearfix"></div>
 			  </form>
 			<?php } ?>
-
-			<ul class="list-unstyled" id="activities">
+      @if (count($activities) >= 1)
+      <ul class="list-unstyled" id="activities">
     		@foreach($activities as $activity)
           <li class="media mb-3">
             <?php if ($user['avatar'] == null){ ?>
@@ -33,15 +33,16 @@
               <?php
               switch($activity->type){
                   case('enter_course'):
-                      echo __('messages.activity.' . $activity->type);
+                      $activity_data = unserialize($activity->data);
+                      echo __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
                       break;
-
                   case('favorite_course'):
-                      echo __('messages.activity.' . $activity->type);
+                      $activity_data = unserialize($activity->data);
+                      echo __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
                       break;
-
                   case('leave_course'):
-                      echo __('messages.activity.' . $activity->type);
+                      $activity_data = unserialize($activity->data);
+                      echo __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
                       break;
                   default:
                       echo $activity->data;
@@ -51,6 +52,9 @@
   				</li>
         @endforeach
 			</ul>
+      @else
+        Nenhuma atividade encontrada.
+      @endif
 		</div>
 	</div>
 </div>

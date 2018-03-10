@@ -27,7 +27,7 @@
     					<a href="{{ URL::route('login')}}" class="btn btn-primary btn-block">Entrar no Curso</a>
     				@endguest
     				<div id="course-info">
-    					<div class="info"><i class="ion-ios-person-outline"></i>{{ $course->author->firstname . " " . $course->author->lastname}}</div>
+    					<div class="info"><i class="ion-ios-person-outline"></i><a href="{{URL::route('profile.profile', ['id' => $course->author->id])}}">{{ $course->author->firstname . " " . $course->author->lastname}}</a></div>
     					<div class="info"><i class="ion-ios-folder-outline"></i>{{ count($course->getModules)}} módulos</div>
     					<div class="info"><i class="ion-ios-videocam-outline"></i>{{ count($course->getLessons)}} aulas</div>
     				</div>

@@ -14,18 +14,19 @@ class CreatePostsTable extends Migration
 	public function up()
 	{
 		Schema::create('posts', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('title', 100);
-            $table->text('content')->nullable();
-            $table->text('resume')->nullable();
-            $table->unsignedInteger('category_id');
+        $table->increments('id');
+        $table->string('title', 100);
+        $table->text('content')->nullable();
+        $table->text('resume')->nullable();
+        $table->unsignedInteger('category_id');
 				$table->string('thumbnail')->nullable();
-            $table->unsignedInteger('author_id');
+				$table->text('tags')->nullable();
+        $table->unsignedInteger('author_id');
 
-            $table->timestamps();
+        $table->timestamps();
 				$table->rememberToken();
 				$table->softDeletes();
-			
+
 				$table->foreign('author_id')->references('id')->on('users');
 				$table->foreign('category_id')->references('id')->on('categories');
 		});

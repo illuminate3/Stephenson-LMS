@@ -13,9 +13,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
-use App\Repositories\UserActivitiesRepository;
 use App\Validators\UserValidator;
 use App\Services\UserService;
+use App\Entities\User;
 use Exception;
 use Auth;
 use Image;
@@ -24,26 +24,31 @@ class ProfilesController{
 
     protected $service;
     protected $repository;
-	 protected $validator;
+	  protected $validator;
 
-    public function __construct(UserRepository $repository, UserActivitiesRepository $user_activities_repository, UserValidator $validator, UserService $service){
-        $this->repository 						= $repository;
-        $this->userActivitiesRepository 	= $user_activities_repository;
-        $this->service 							= $service;
-        $this->validator 						= $validator;
+    public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
+        $this->repository 			= $repository;
+        $this->service 					= $service;
+        $this->validator 				= $validator;
     }
 
-	public function perfil(Request $request, $profile){
-		$profile = $this->repository->getProfileInfo($profile);
+	public function perfil(Request $request, $username){
+    $user = new User();
+		$profile = $user->where('user', $username)->first();
+    $activities = $profile->getActivities;
+
     if(Auth::check()){
 		    $isLoggedProfile = ($profile->id == Auth::user()->id) ? true : false;
     } else{
       $isLoggedProfile = false;
     }
 		$title = $profile['firstname'] . " " . $profile['lastname'] . " - Feed";
-		$activities = $this->userActivitiesRepository->findWhere(['user_id' => $profile->id])->all();
-
-		return view('profile.profile', ['title' => $title, 'user' => $profile, 'isLoggedProfile' => $isLoggedProfile, 'activities' => $activities]);
+		return view('profile.profile', [
+      'title' => $title,
+      'user' => $profile,
+      'activities' => $activities,
+      'isLoggedProfile' => $isLoggedProfile
+    ]);
 	}
 
 	public function perfil_about(Request $request, $profile){

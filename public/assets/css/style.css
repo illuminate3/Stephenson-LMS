@@ -42,3 +42,10 @@
 	float: left;
 	font-size: 22px;
 }
+
+.post-info li{
+	padding-right:10px;
+	font-size:1.2em;
+	line-height:2em;
+}
+.post-info li i{line-height:2em;float:left;margin-right:5px;}

@@ -33,7 +33,7 @@
 					<input type="hidden" name="_token" value="{{ csrf_token()}}">
 				</form>
 				<div id="course-info">
-					<div class="info"><i class="ion-ios-person-outline"></i>{{ $course->author->firstname . " " . $course->author->lastname}}</div>
+					<div class="info"><i class="ion-ios-person-outline"></i><a href="{{ URL::route('profile.profile', ['id' => $course->author->user])}}">{{ $course->author->firstname . " " . $course->author->lastname}}</a></div>
 					<div class="info"><i class="ion-ios-folder-outline"></i>{{ count($course->getModules)}} módulos</div>
 					<div class="info"><i class="ion-ios-videocam-outline"></i>{{ count($course->getLessons)}} aulas</div>
 				</div>

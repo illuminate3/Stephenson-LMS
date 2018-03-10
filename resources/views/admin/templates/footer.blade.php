@@ -14,7 +14,7 @@
 
 
 <!-- Necessário nas páginas com upload -->
-<script src="{{ asset('assets//js/lfm.js')}}"></script>
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js')}}"></script>
 <script>$('#lfm').filemanager('file');</script>
 
 <!-- Necessário nas páginas com editor de texto -->

@@ -25,6 +25,11 @@ class User extends Authenticatable{
     	return $instance;
 	}
 
+	public function getActivities(){
+		$instance = $this->hasMany(UserActivities::class)->orderBy('created_at', 'desc');
+		return $instance;
+	}
+
 	public function getBirthAttribute(){
 		$birth = explode('-',$this->attributes['birth']);
 

@@ -15,7 +15,7 @@ use App\Services\UserActivitiesService;
 
 
 class UserActivitiesController{
-	
+
     protected $repository;
     protected $validator;
     protected $service;
@@ -57,7 +57,7 @@ class UserActivitiesController{
      */
     public function store(UserActivitiesCreateRequest $request)
     {
-		$request = $this->service->store($request->all()); 
+		$request = $this->service->store($request->all());
 		$page = $request['success'] ? $request['data'] : null;
 
 		session()->flash('success',[
@@ -65,7 +65,7 @@ class UserActivitiesController{
 			'messages' =>	$request['messages']
 		]);
 
-		return redirect()->back(); 
+		return redirect()->back();
     }
 
 

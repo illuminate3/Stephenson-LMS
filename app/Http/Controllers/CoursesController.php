@@ -116,25 +116,28 @@ class CoursesController{
   }
 
   public function enterOrFavoriteCourse(Request $request){
-    $course = $request->query->get('course_id');
+
+    $course_id = $request->query->get('course_id');
+    $course_name = $this->repository->find($course_id, ['title']);
     $user = Auth::user()->id;
     $type = $request->query->get('type');
-
+    $data = serialize(['course_name' => $course_name->title, 'course_id' => $course_id]);
+    
     if($type == 1){
-      $activity = array('user_id' => $user, 'type' => 'favorite_course');
+      $activity = array('user_id' => $user, 'type' => 'favorite_course','data' => $data);
     } elseif($type == 2){
-      $activity = array('user_id' => $user, 'type' => 'enter_course' );
+      $activity = array('user_id' => $user, 'type' => 'enter_course','data' => $data);
     }
 
     $new_activity = $this->userActivitiesService->store($activity);
-    return  $this->repository->enter_or_favorite_course($course, $user, $type);
+    return  $this->repository->enter_or_favorite_course($course_id, $user, $type);
   }
 
   public function leaveCourse(Request $request){
     $user = Auth::user()->id;
     $course = $request->query->get('course_id');
     $activity = array('user_id' => $user, 'type' => 'leave_course');
-    
+
     $new_activity = $this->userActivitiesService->store($activity);
     return  $this->repository->leave_course($course);
   }

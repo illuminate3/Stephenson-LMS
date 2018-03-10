@@ -5,13 +5,21 @@
     @parent
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4">
+				<h1 class="display-4 pb-2">
 					{{$post->title}}
 				</h1>
+				<b>Tags:</b> {{$post->tags}}
 			</div>
 		</div>
 
 		<div class="container">
+			
+			<ul class="post-info list-inline">
+				<li class="list-inline-item"><i class="ion-person"></i><a href="{{ URL::route('profile.profile', ['user' => $post->author->user])}}">{{$post->author->firstname}}</a></li>
+				<li class="list-inline-item"><i class="ion-calendar"></i>{{$post->created_at}}</li>
+				<li class="list-inline-item"><i class="ion-pricetags"></i>{{$post->category->name}}</li>
+			</ul>
+			
 			{!!$post->content!!}
 
 			<div id="comments-area" class="mt-5">
@@ -42,7 +50,7 @@
 							@if ($comment->author->avatar == null)
 								<img style="height:64px;"class="align-self-start mr-3" src="{{asset('assets/images/avatar-default.png')}}">
 							@else
-								<img style="height:64px;" class="align-self-start mr-3" src="{{$comment->author->avatar}}">
+								<img style="height:64px;" class="align-self-start mr-3" src="/uploads/avatars/{{$comment->author->avatar}}">
 							@endif
 
 						<div class="media-body">
