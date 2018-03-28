@@ -3,19 +3,26 @@
 
 @section('viewMain')
     @parent
-    <div class="jumbotron jumbotron-fluid">
+    <style media="screen">
+      .course-header{
+        background: url('<?php echo $course->cover; ?>');
+        width:100%;
+        height: 400px;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+    </style>
+    <div class="course-header">
       <div class="container">
-        <h1 class="display-4">{{ $course->title }}</h1>
+        <h2>{{$course->title}}</h2>
+        <p>{{$course->resume}}</p>
       </div>
     </div>
-
     <div class="container">
     	<div class="row">
     		<div class="col-3">
-
     			<div class="card" id="course-sidebar">
-    				<img class="card-img-top" src="{{ $course->cover}}">
-
     				<div class="card-body">
     				@auth
     					<form method="post" action="{{ URL::route('courses.enter_course', ['course_id' => $course->id, 'user_id' => Auth::user()->id, 'type' => 2])}}">
@@ -27,7 +34,7 @@
     					<a href="{{ URL::route('login')}}" class="btn btn-primary btn-block">Entrar no Curso</a>
     				@endguest
     				<div id="course-info">
-    					<div class="info"><i class="ion-ios-person-outline"></i><a href="{{URL::route('profile.profile', ['id' => $course->author->id])}}">{{ $course->author->firstname . " " . $course->author->lastname}}</a></div>
+    					<div class="info"><i class="ion-ios-person-outline"></i><a href="{{URL::route('profile.profile', ['id' => $course->author->user])}}">{{ $course->author->firstname . " " . $course->author->lastname}}</a></div>
     					<div class="info"><i class="ion-ios-folder-outline"></i>{{ count($course->getModules)}} módulos</div>
     					<div class="info"><i class="ion-ios-videocam-outline"></i>{{ count($course->getLessons)}} aulas</div>
     				</div>

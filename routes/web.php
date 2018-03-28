@@ -128,3 +128,4 @@ Route::resource('/comment', 'CommentsController');
 Route::get('/category/{category}', ['as'=>'user.category','uses' => 'Controller@category']);
 
 Route::get('/{page}', ['as'=>'pages.single','uses' => 'PagesController@single']);
+Route::post('/sendemail', ['uses' => 'Controller@sendEmail', 'as' => 'send_email']);

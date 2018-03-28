@@ -6,7 +6,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\LessonRepository;
 use App\Entities\Lesson;
-use App\Entities\LessonsMeta;
+use App\Entities\Material;
 use App\Validators\LessonValidator;
 
 /**
@@ -15,14 +15,13 @@ use App\Validators\LessonValidator;
  */
 class LessonRepositoryEloquent extends BaseRepository implements LessonRepository
 {
-	
+
 	public function create_material($lesson, $material, $title, $content){
-		$lesson_meta = new LessonsMeta;
-      $lesson_meta->lesson_id = $lesson;
-      $lesson_meta->content = $content;
-		$lesson_meta->title = $title;
-      $lesson_meta->type = $material;
-		
+			$lesson_meta = new Material;
+	    $lesson_meta->meta = serialize(['type' => $material, 'id' => $lesson, 'content' => $content]);
+			$lesson_meta->title = $title;
+	    $lesson_meta->type = 'lesson';
+
       if($lesson_meta->save()){
 			return true;
 		}

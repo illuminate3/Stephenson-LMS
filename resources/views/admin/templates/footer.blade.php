@@ -1,17 +1,18 @@
-
-<div class="container">
-	<footer>
-		<p>Stephenson - Muito obrigado por nos escolher <3</p>
-	</footer>
-</div>
-
-<!-- Necessário em todas as páginas -->
-<script type="text/javascript" src="{{ asset('assets/admin/js/jquery-3.2.1.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('assets/admin/js/pooper.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('assets/admin/js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('assets/admin/js/bootstrap-tagsinput.js')}}"></script>
-<script type="text/javascript" src="{{ asset('assets/admin/js/script.js')}}"></script>
-
+<!-- End Wrapper -->
+<!-- All Jquery -->
+<script src="{{asset('assets/admin/js/lib/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('assets/admin/js/jquery-ui.min.js')}}"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="{{asset('assets/admin/js/pooper.min.js')}}"></script>
+<script src="{{asset('assets/admin/js/bootstrap.min.js')}}"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="{{asset('assets/admin/js/jquery.slimscroll.js')}}"></script>
+<!--Menu sidebar -->
+<script src="{{asset('assets/admin/js/sidebarmenu.js')}}"></script>
+<!--stickey kit -->
+<script src="{{asset('assets/admin/js/lib/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
+<!--Custom JavaScript -->
+<script src="{{asset('assets/admin/js/custom.min.js')}}"></script>
 
 <!-- Necessário nas páginas com upload -->
 <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js')}}"></script>
@@ -22,7 +23,6 @@
 <script type="text/javascript" src="{{ asset('assets/admin/js/tinymce/config.js')}}"></script>
 
 <!-- Necessário nas páginas na página de gerenciamento de curso -->
-<script type="text/javascript" src="{{ asset('assets/admin/js/jquery-ui.min.js')}}"></script>
 <script>
 	 $( "#modules-list" ).sortable({
 		 handle: '.drag-module',

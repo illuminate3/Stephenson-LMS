@@ -16,12 +16,13 @@ class CreateLessonsMetaTable extends Migration
 		 Schema::create('lessons_meta', function(Blueprint $table) {
 			$table->increments('id');
 			$table->unsignedInteger('lesson_id');
+			$table->unsignedInteger('user_id');
 		 	$table->string('type', '24');
-		 	$table->string('title', '100');
-			$table->text('content');
+		 	$table->text('data', '100');
 			$table->timestamps();
 
 			$table->foreign('lesson_id')->references('id')->on('lessons');
+			$table->foreign('user_id')->references('id')->on('users');
 		});
     }
 

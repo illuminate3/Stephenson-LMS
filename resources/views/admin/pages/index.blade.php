@@ -3,23 +3,19 @@
 
 @section('viewMain')
     @parent
-		<nav aria-label="breadcrumb" id="page-nav">
-			<div class="container">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item active" aria-current="page">Páginas</li>
-				</ol>
-			</div>
-		</nav>
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Páginas</h3> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Páginas</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
 
-		<div class="jumbotron jumbotron-fluid">
-			<div class="container">
-				<h1 class="display-4">
-					{{ __('messages.pages')}}
-				</h1>
-			</div>
-		</div>
-
-		<div class="container">
+		<div class="container-fluid">
 			<?php
 				if (session('success')){
 					if (session('success')['success'] == false){
@@ -30,15 +26,12 @@
 				}
 			?>
 
-			<div class="card">
-				<div class="card-header">
-					<ul class="nav nav-tabs card-header-tabs">
+
+					<ul class="nav nav-tabs customtab mb-3">
 						<li class="nav-item"><a class="nav-link {{ ($loop == "all") ? "active " : null}}" href="{{ URL::route('pages.index') }}">Publicados</a></li>
 						<li class="nav-item"><a class="nav-link {{ ($loop == "trash") ? "active " : null}}" href="{{ URL::route('pages.trash') }}">Lixeira</a></li>
 					</ul>
-				</div>
 
-				<div class="card-body">
 						@if(count($pages) < 1)
 							@if($loop == "trash")
                 Nenhuma página encontrada na lixeira
@@ -75,14 +68,14 @@
 										<div class="btn-group action-buttons" role="group">
 											<div class="action">
 												<form method="post" action="{{ URL::route('pages.restore', ['id' =>  $page['id']])}}">
-													<button type="submit" class="btn btn-primary"><i class="material-icons">restore</i></button>
+													<button type="submit" class="btn btn-primary"><i class="fa fa-undo"></i></button>
 													<input type="hidden" name="_token" value="{{ csrf_token()}}">
 												</form>
 											</div>
 
 											<div class="action">
 												<form method="post" action="{{ URL::route('pages.deletefrombd', ['id' =>  $page['id']])}}">
-													<button type="submit" class="btn btn-danger"><i class="material-icons">remove</i></button>
+													<button type="submit" class="btn btn-danger"><i class="fa fa-remove"></button>
 													<input type="hidden" name="_token" value="{{ csrf_token()}}">
 												</form>
 											</div>
@@ -90,10 +83,10 @@
                   @else
 										<div class="btn-group action-buttons" role="group">
 											<a href="{{ URL::to('/'. $page['slug'] )}}">
-		<button type="button" class="btn btn-primary"><i class="material-icons">visibility</i></button>
-		</a>
+                  		    <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button>
+                  		</a>
 											<form method="post" action="{{ URL::route('pages.destroy', ['id' =>  $page['id']])}}">
-												<button type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
+												<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 												<input type="hidden" value="DELETE" name="_method">
 												<input type="hidden" name="_token" value="{{ csrf_token()}}">
 											</form>
@@ -105,7 +98,6 @@
 							</tbody>
 						</table>
           @endif
-				</div>
 			</div>
 		</div>
 @endsection

@@ -11,50 +11,19 @@
       </div>
     </div>
 
-    <nav aria-label="breadcrumb" id="page-nav">
-    	<div class="container">
-    		<ol class="breadcrumb">
-    			<li class="breadcrumb-item">
-    				<a href="{{ URL::route('courses.index')}}">
-    					{{ __('messages.courses')}}
-    				</a>
-    			</li>
-    			<li class="breadcrumb-item active" aria-current="page">
-    				{{ __('messages.manage_course')}}
-    			</li>
-    		</ol>
-    	</div>
-    </nav>
-
-    <div class="jumbotron jumbotron-fluid">
-    	<div class="container">
-    		<h1 class="display-4">
-    			{{ __('messages.manage_course')}}
-    		</h1>
-    	</div>
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Gerenciar Curso</h3> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{URL::route('courses.index')}}">Cursos</a></li>
+                <li class="breadcrumb-item active">Gerenciar Curso</li>
+            </ol>
+        </div>
     </div>
+    <!-- End Bread crumb -->
 
-    <div class="container mb-3">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('admin/course/{}') ? 'active' : '' }}" href="#">Início</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('admin/course/') ? 'active' : '' }}" href="#">Gerenciar</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('admin/course/{}/edit') ? 'active' : '' }}" href="#">Editar</a>
-        </li>
-
-        <li class="nav-item {{ request()->is('admin/course/{}') ? 'active' : '' }}">
-          <a class="nav-link" href="#">Dúvidas</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="container">
+		<div class="container-fluid">
     	<?php
     		if (session('success')){
     			if (session('success')['success'] == false){
@@ -140,26 +109,33 @@
       							<div id="lesson-collapse-{{ $lesson->id}}" class="collapse" aria-labelledby="lesson-heading-{{ $lesson->id}}" data-parent=".lesson-list">
       								<div class="card-body">
       									@if(count($lesson->getMaterials) > 0)
-      									<div class="materials">
+      									<div class="materials row">
       										@php $materials = $lesson->getMaterials @endphp
                           @foreach ($materials as $material)
-      											<div id="material">
-      													@switch ({{$material->type}})
-        													@case ("note")
-        														<i class='material-icons'>note</i>
-        														@break
-        													@case ("poll")
-        														<i class='material-icons'>question_answer</i>
-        														@break
-        													@case ("photo")
-        														<i class='material-icons'>photo</i>
-        														@break
-        													@case ("video")
-        														<i class='material-icons'>play_arrow</i>
-        														@break
-                                  @default
-      													@endswitch
-      												{{ $material->title }}
+      											<div class="material col-4">
+                                <div class="material-content card">
+                                    <?php switch ($material->type){ case ("note"): ?>
+                                      <div class="card-body">
+                                        <h5 class="card-title"><i class='material-icons'>note</i> {{$material->title}}</h5>
+                                        {{$material->content}}
+                                      </div>
+                                    <?php break; case ("file"): ?>
+                                      <div class="card-body">
+                                        <h5 class="card-title"><i class='material-icons'>file</i> {{$material->title}}</h5>
+                                        {{$material->content}}
+                                      </div>
+                                    <?php break; case ("image"): ?>
+                                      <img class="card-img-top" src="{{$material->content}}">
+                                      <div class="card-body">
+                                        <h5 class="card-title"><i class='material-icons'>photo</i> {{$material->title}}</h5>
+                                      </div>
+                                    <?php break; case ("video"): ?>
+                                      <div class="card-body">
+                                        <h5 class="card-title"><i class='material-icons'>play_arrow</i> {{$material->title}}</h5>
+                                        {{$material->content}}
+                                      </div>
+                                    <?php break;} ?>
+                                </div>
       											</div>
       										@endforeach
       									</div>

@@ -3,31 +3,19 @@
 
 @section('viewMain')
     @parent
-		<nav aria-label="breadcrumb" id="page-nav">
-			<div class="container">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">
-						<a href="{{ URL::route('courses.index')}}">
-							{{ __('messages.courses')}}
-						</a>
-					</li>
-					<li class="breadcrumb-item active" aria-current="page">
-						{{ __('messages.create_course')}}
-					</li>
-				</ol>
-			</div>
-		</nav>
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Criar Curso</h3> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{URL::route('courses.index')}}">Cursos</a></li>
+                <li class="breadcrumb-item active">Editar Curso</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
 
-		<div class="jumbotron jumbotron-fluid">
-			<div class="container">
-				<h1 class="display-4">
-					{{ __('messages.create_course')}}
-				</h1>
-			</div>
-		</div>
-
-
-		<div class="container">
+		<div class="container-fluid">
 			<?php
 				if (session('success')){
 					if (session('success')['success'] == false){

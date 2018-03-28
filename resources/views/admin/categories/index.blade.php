@@ -3,23 +3,20 @@
 
 @section('viewMain')
     @parent
-<nav aria-label="breadcrumb" id="page-nav">
-	<div class="container">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item active" aria-current="page">Categorias</li>
-		</ol>
-	</div>
-</nav>
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Categorias</h3> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Categorias</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
 
-<div class="jumbotron jumbotron-fluid">
-	<div class="container">
-		<h1 class="display-4">
-			{{ __('messages.categories')}}
-		</h1>
-	</div>
-</div>
-
-<div class="container">
 	<?php
 		if (session('success')){
 			if (session('success')['success'] == false){
@@ -94,15 +91,15 @@
 								<td>
 									<div class="btn-group action-buttons" role="group">
 										<a href="{{ URL::route('categories.edit', ['id' =>  $category['id']])}}">
-											<button type="button" class="btn btn-primary"><i class="material-icons">edit</i></button>
+											<button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
 										</a>
 
 										<form method="post" action="{{ URL::route('categories.destroy', ['id' =>  $category['id']])}}">
-											<button type="submit" type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
+											<button type="submit" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 											<input type="hidden" value="DELETE" name="_method">
 											<input type="hidden" name="_token" value="{{ csrf_token()}}">
 										</form>
-									</div>
+
 								</td>
 							</tr>
               @endforeach

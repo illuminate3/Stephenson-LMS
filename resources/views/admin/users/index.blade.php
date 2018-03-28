@@ -3,23 +3,19 @@
 
 @section('viewMain')
     @parent
-		<nav aria-label="breadcrumb" id="page-nav">
-			<div class="container">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item active" aria-current="page">Usuários</li>
-				</ol>
-			</div>
-		</nav>
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Usuários</h3> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Usuários</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
 
-		<div class="jumbotron jumbotron-fluid">
-			<div class="container">
-				<h1 class="display-4">
-					{{__('messages.users')}}
-				</h1>
-			</div>
-		</div>
-
-		<div class="container">
+		<div class="container-fluid">
 			<?php
 				if (session('success')){
 					if (session('success')['success'] == false){
@@ -33,8 +29,6 @@
 			@if(count($users) < 1)
 				<p>Nenhum usuário cadastrado.</p>
 			@else
-				<div class="card">
-
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -89,7 +83,6 @@
               @endforeach
 						</tbody>
 					</table>
-				</div>
       @endif
 		</div>
 @endsection

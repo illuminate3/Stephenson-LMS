@@ -3,31 +3,19 @@
 
 @section('viewMain')
     @parent
-		<nav aria-label="breadcrumb" id="page-nav">
-			<div class="container">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">
-						<a href="{{ URL::route('users.index')}}">
-							{{ __('messages.users')}}
-						</a>
-					</li>
-					<li class="breadcrumb-item active" aria-current="page">
-						{{ __('messages.edit_user')}}
-					</li>
-				</ol>
-			</div>
-		</nav>
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Editar Usuário</h3> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{URL::route('users.index')}}">Usuários</a></li>
+                <li class="breadcrumb-item active">Editar Usuário</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
 
-		<div class="jumbotron jumbotron-fluid">
-			<div class="container">
-				<h1 class="display-4">
-					{{ __('messages.edit_user')}}
-				</h1>
-			</div>
-		</div>
-
-
-		<div class="container">
+		<div class="container-fluid">
 			<?php
 				if (session('success')){
 					if (session('success')['success'] == false){

@@ -1,6 +1,6 @@
 		<div class="container mt-5">		
 			<hr>
-			<p class="text-center p-2">Site desenvolvido com a plataforma Stepherson utilizando o tema Liberty</p>
+			<p class="text-center p-2">Site desenvolvido com a plataforma Stephenson LMS utilizando o tema Liberty</p>
 		</div>
 
 		<script type="text/javascript" src="{{ asset('assets/js/jquery-3.2.1.min.js')}}"></script>

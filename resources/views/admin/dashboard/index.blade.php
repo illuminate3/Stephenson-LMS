@@ -3,65 +3,74 @@
 
 @section('viewMain')
     @parent
-		<div class="jumbotron jumbotron-fluid">
-		  <div class="container">
-			 <h1 class="display-4">{{ __('messages.dashboard')}}</h1>
-		  </div>
-		</div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="card card-statistic">
-						<div class="row">
-							<div class="col-6 card-statistic-title">
-								<i class="material-icons">people</i>
-								<div>{{ __('messages.users')}}</div>
-							</div>
-
-							<div class="col-6"><p>{{count($users)}}</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card card-statistic">
-						<div class="row">
-							<div class="col-6 card-statistic-title">
-								<i class="material-icons">video_library</i>
-								<div>{{ __('messages.tutorials')}}</div>
-							</div>
-
-							<div class="col-6"><p>{{count($tutorials)}}</p></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col">
-					<div class="card card-statistic">
-						<div class="row">
-							<div class="col-6 card-statistic-title">
-								<i class="material-icons">star</i>
-								<div>{{__('messages.courses')}}</div>
-							</div>
-
-							<div class="col-6"><p>{{count($courses)}}</p></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col">
-					<div class="card card-statistic">
-						<div class="row">
-							<div class="col-6 card-statistic-title">
-								<i class="material-icons">insert_drive_file</i>
-								<div>{{__('messages.pages')}}</div>
-							</div>
-
-							<div class="col-6"><p>{{count($pages)}}</p></div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Dashboard</h3> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card bg-primary p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-bag f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 class="color-white">{{count($users)}}</h2>
+                            <p class="m-b-0">Usuários</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-pink p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-comment f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 class="color-white">278</h2>
+                            <p class="m-b-0">New Comment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-vector f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 class="color-white">$27647</h2>
+                            <p class="m-b-0">Bounce Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-danger p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-location-pin f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 class="color-white">278</h2>
+                            <p class="m-b-0">Total Visitor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

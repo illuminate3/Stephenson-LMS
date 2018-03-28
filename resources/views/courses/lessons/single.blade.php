@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-  <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.min.css ") }}">
-  <link rel="stylesheet" href="{{ asset("assets/css/class-room.css ") }}">
+  	<link rel="stylesheet" href="<?php echo asset("assets/admin/css/material-icons.css"); ?>" >
+  <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.min.css") }}">
+  <link rel="stylesheet" href="{{ asset("assets/css/class-room.css") }}">
   <script type="text/javascript" src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/class-room.js') }}"></script>
@@ -81,18 +82,31 @@
 
           <div id="achive" class="tab-pane fade" role="tabpanel" aria-labelledby="list-achive">
             @php $materials = $lesson->getMaterials @endphp @if(count($materials) > 0)
-            <div class="row">
               @foreach($materials as $material)
-              <div class="col s12">
-                <div class="card">
-                  <div class="card-content">
-                    <span class="card-title">{{$material->title}}</span>
-                    {{$material->content}}
-                  </div>
-                </div>
+              <div class="material-content card mt-2 mb-2">
+                  <?php switch ($material->type){ case ("note"): ?>
+                    <div class="card-body">
+                      <h5 class="card-title"><i class='material-icons'>note</i> {{$material->title}}</h5>
+                      {{$material->content}}
+                    </div>
+                  <?php break; case ("file"): ?>
+                    <div class="card-body">
+                      <h5 class="card-title"><i class='material-icons'>file</i> {{$material->title}}</h5>
+                      {{$material->content}}
+                    </div>
+                  <?php break; case ("image"): ?>
+                    <img class="card-img-top" src="{{$material->content}}">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class='material-icons'>photo</i> {{$material->title}}</h5>
+                    </div>
+                  <?php break; case ("video"): ?>
+                    <div class="card-body">
+                      <h5 class="card-title"><i class='material-icons'>play_arrow</i> {{$material->title}}</h5>
+                      {{$material->content}}
+                    </div>
+                  <?php break;} ?>
               </div>
               @endforeach
-            </div>
             @else
             <div class="alert alert-primary d-flex" role="alert">
               Não há materiais para essa aula.

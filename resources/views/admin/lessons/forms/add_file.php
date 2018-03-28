@@ -12,12 +12,17 @@
 			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Material" name="title">
 		</div>
 
+		<div class="file-upload">
+			<a id="lfm" data-input="image" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
+			<input id="image" type="text" name="content">
+		</div>
 	</div>
 
 	<div class="modal-footer">
 		<button class="btn" type="submit">Criar</button>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 	</div>
-	
 	<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 </form>
+
+<script>$('#lfm').filemanager('file');</script>

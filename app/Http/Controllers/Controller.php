@@ -21,6 +21,7 @@ use App\Repositories\LessonRepository;
 use App\Repositories\CategoriesRepository;
 use Exception;
 use Auth;
+use Mail;
 
 class Controller extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -170,4 +171,45 @@ class Controller extends BaseController{
       'loop' => $loop
     ]);
 	}
+
+  public function sendEmail(Request $request){
+    $this->validate($request, [
+			'name' => 'required',
+			'email' => 'required|email',
+			'subject' => 'min:1',
+			'message' => 'min:10']);
+
+		$news = (isset($request->news)) ? true : false;
+
+		switch($request->subject){
+			case(1):
+				$subject = "Ajuda";
+				break;
+			case(2):
+				$subject = "Dúvida";
+				break;
+			default:
+				$subject = "Outro";
+		}
+		$data = array(
+			'name' => $request->name,
+			'email' => $request->email,
+			'subject' => $subject,
+			'news' => $news,
+			'bodyMessage' => $request->message
+			);
+
+		Mail::send('emails.contact', $data, function($message) use ($data){
+			$message->from($data['email']);
+			$message->to('contato@stephenson-lms.com');
+			$message->subject($data['subject']);
+		});
+
+    session()->flash('success',[
+			'success' =>	true,
+			'messages' => "E-mail enviado com sucesso"
+		]);
+
+		return redirect()->back();
+  }
 }

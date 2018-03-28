@@ -5,7 +5,7 @@
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
-	
+
 	<div class="modal-body">
 		<div class="form-group">
 			<label for="exampleFormControlInput1">Nome do Material</label>
@@ -16,10 +16,12 @@
 			<input id="image" type="text" name="content">
 		</div>
 	</div>
-	
+
 	<div class="modal-footer">
 		<button class="btn" type="submit">Criar</button>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 	</div>
 	<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 </form>
+
+<script>$('#lfm').filemanager('image');</script>

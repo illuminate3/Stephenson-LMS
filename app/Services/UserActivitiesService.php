@@ -18,10 +18,14 @@ class UserActivitiesService{
 		$this->validator = $validator;
 	}
 
-	public function store(array $data){
+	public function store($data){
 		try{
+			$v_data = strip_tags($data['data'], '<b><i><u>');
+			$v_token = $data['_token'];
+			$v_user = Auth::user()->id;
+			$data = ['data' => $v_data, 'token' => $v_token, 'user_id' => $v_user];
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-			$activity = $this->repository->create($data + ['user_id' => Auth::user()->id]);
+			$activity = $this->repository->create($data);
 
 			return [
 				'success'   => true,

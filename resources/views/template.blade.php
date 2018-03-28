@@ -4,7 +4,9 @@
 @include('head')
 </head>
 <body>
+    <header>
     @include('header')
+    <header>
     <div id="content">
         <!-- DIVISA DE CONTEUDO -->
         @section('viewMain')

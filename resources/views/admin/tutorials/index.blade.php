@@ -3,23 +3,19 @@
 
 @section('viewMain')
     @parent
-		<nav aria-label="breadcrumb" id="page-nav">
-			<div class="container">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item active" aria-current="page">Tutoriais</li>
-				</ol>
-			</div>
-		</nav>
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Tutoriais</h3> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Tutoriais</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
 
-		<div class="jumbotron jumbotron-fluid">
-			<div class="container">
-				<h1 class="display-4">
-					{{__('messages.tutorials')}}
-				</h1>
-			</div>
-		</div>
-
-		<div class="container">
+		<div class="container-fluid">
 			<?php
 				if (session('success')){
 					if (session('success')['success'] == false){
@@ -30,15 +26,11 @@
 				}
 			?>
 
-			<div class="card">
-				<div class="card-header">
-					<ul class="nav nav-tabs card-header-tabs">
+					<ul class="nav nav-tabs customtab mb-3">
 						<li class="nav-item"><a class="nav-link {{($loop == "all") ? "active " : null}}" href="{{URL::route('tutorials.index')}}">Publicados</a></li>
 						<li class="nav-item"><a class="nav-link {{($loop == "trash") ? "active " : null}}" href="{{URL::route('tutorials.trash')}}">Lixeira</a></li>
 					</ul>
-				</div>
 
-				<div class="card-body">
 						@if(count($tutorials) < 1)
 							@if($loop == "trash")
                 Nenhum tutorial encontrado na lixeira.
@@ -121,7 +113,6 @@
 							</tbody>
 						</table>
           @endif
-				</div>
 			</div>
 		</div>
 @endsection

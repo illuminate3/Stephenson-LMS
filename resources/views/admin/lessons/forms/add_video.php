@@ -13,7 +13,7 @@
 		</div>
 		<div class="form-group">
 			<label for="exampleFormControlInput1">Link do Vídeo</label>
-			<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Link do Vídeo" name="content">
+			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Link do Vídeo" name="content">
 		</div>
 	</div>
 
@@ -21,6 +21,6 @@
 		<button class="btn" type="submit">Criar</button>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 	</div>
-	
+
 	<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 </form>
