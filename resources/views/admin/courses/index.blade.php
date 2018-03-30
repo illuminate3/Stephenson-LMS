@@ -41,11 +41,11 @@
 								</h5>
 							</div>
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item"><i class="material-icons">person</i>
+								<li class="list-group-item"><i class="fa fa-user"></i>
 									{{ count($course->getStudents)}} aluno</li>
-								<li class="list-group-item"><i class="material-icons">folder</i>
+								<li class="list-group-item"><i class="fa fa-folder"></i>
 									{{ count($course->getModules)}} módulos</li>
-								<li class="list-group-item"><i class="material-icons">video_library</i>
+								<li class="list-group-item"><i class="fa fa-video"></i>
 									{{ count($course->getLessons)}} aulas</li>
 							</ul>
 							<div class="card-body">

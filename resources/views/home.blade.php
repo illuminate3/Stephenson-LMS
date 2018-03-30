@@ -11,18 +11,11 @@
 	?>
 	<header {{ Route::current()->getName() == 'home' ? 'class=home-header' : null }}>
 		@include('header')
-		<div class="v-header container">
-    <div class="fullscreen-video-wrap">
-      <video src="{{asset('assets/css/header-bg.mp4')}}" autoplay="true" loop muted>
-    </video>
-    </div>
-    <div class="header-overlay"></div>
-    <div class="header-content">
+<div class="container">
       <h1>Stephenson LMS</h1>
       <h2>Plataforma de Grenciamento Educacional Open Source</h2>
       <a class="btn">Conheça o Projeto</a>
-    </div>
-    </div>
+</div>
   </header>
 
 	<section>

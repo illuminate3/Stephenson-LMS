@@ -16,8 +16,8 @@
             <!-- toggle and nav items -->
             <ul class="navbar-nav mr-auto mt-md-0">
                 <!-- This is  -->
-                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted" href="javascript:void(0)"><i class="fa fa-bars"></i></a> </li>
+                <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted " href="javascript:void(0)"><i class="fa fa-bars"></i></a> </li>
                 <li class="nav-item"><a href="{{URL::route('home')}}" class="nav-link">Ver Site</a></li>
             </ul>
             <!-- User profile and search -->
@@ -31,7 +31,7 @@
                 </li>
                 <!-- Comment -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i></a>
+                    <a class="nav-link dropdown-toggle text-muted text-muted  " href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i></a>
                     <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                         <ul>
                           <li>
@@ -43,7 +43,7 @@
                 <!-- End Comment -->
                 <!-- Messages -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i></a>
+                    <a class="nav-link dropdown-toggle text-muted" href="javascript:void(0)" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i></a>
                     <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
                         <ul>
                             <li>
@@ -55,11 +55,11 @@
                 <!-- End Messages -->
                 <!-- Profile -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('uploads/avatars/' . Auth::user()->avatar)}}" alt="user" class="profile-pic" /></a>
+                    <a class="nav-link dropdown-toggle text-muted  " href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('uploads/avatars/' . Auth::user()->avatar)}}" alt="user" class="profile-pic" /></a>
                     <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                         <ul class="dropdown-user">
-                            <li><a href="{{URL::route('profile.profile', ['id' => Auth::user()->user])}}"><i class="ti-user"></i> Perfil</a></li>
-                            <li><a href="#"><i class="ti-settings"></i> Configurações</a></li>
+                            <li><a href="{{URL::route('profile.profile', ['id' => Auth::user()->user])}}"><i class="fa fa-user"></i> Perfil</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-configuration"></i> Configurações</a></li>
                             <li><a href="{{URL::route('logout')}}"><i class="fa fa-power-off"></i> Sair</a></li>
                         </ul>
                     </div>
@@ -79,21 +79,21 @@
                 <li class="nav-devider"></li>
                 <li class="nav-label">Home</li>
                 <li>
-                  <a href="{{URL::route('dashboard.index')}}" aria-expanded="false"><i class="fa fa-tachometer"></i>
+                  <a href="{{URL::route('dashboard.index')}}" aria-expanded="false"><i class="fa fa-tachometer-alt"></i></i>
                     <span class="hide-menu">Dashboard</span>
                   </a>
                 </li>
 
                 <li class="nav-label">Educação</li>
 
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-video"></i><span class="hide-menu">Tutoriais</span></a>
+                <li> <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-video"></i><span class="hide-menu">Tutoriais</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{URL::route('tutorials.index')}}">Ver Todos</a></li>
                         <li><a href="{{URL::route('tutorials.create')}}">Adicionar Tutorial</a></li>
                     </ul>
                 </li>
 
-                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-graduation-cap"></i><span class="hide-menu">Cursos</span></a>
+                <li> <a class="has-arrow  " href="javascript:void(0)" aria-expanded="false"><i class="fa fa-graduation-cap"></i><span class="hide-menu">Cursos</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{URL::route('courses.index')}}">Ver Todos</a></li>
                         <li><a href="{{URL::route('courses.create')}}">Adicionar Curso</a></li>
@@ -108,14 +108,14 @@
                   </a>
                 </li>
 
-                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Páginas</span></a>
+                <li> <a class="has-arrow  " href="javascript:void(0)" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Páginas</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{URL::route('pages.index')}}">Ver Todas</a></li>
                         <li><a href="{{URL::route('pages.create')}}">Adicionar Página</a></li>
                     </ul>
                 </li>
 
-                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-edit"></i><span class="hide-menu">Postagem</span></a>
+                <li> <a class="has-arrow  " href="javascript:void(0)" aria-expanded="false"><i class="fa fa-edit"></i><span class="hide-menu">Postagem</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{URL::route('posts.index')}}">Ver Todas</a></li>
                         <li><a href="{{URL::route('posts.create')}}">Adicionar Postagem</a></li>
@@ -128,6 +128,20 @@
                   </a>
                 </li>
 
+                <li class="nav-label">Moderação</li>
+
+                <li> <a class="has-arrow  " href="javascript:void(0)" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Usuários</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{URL::route('users.index')}}">Ver Todos</a></li>
+                        <li><a href="{{URL::route('users.create')}}">Adicionar Usuário</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                  <a href="javascript:void(0)" aria-expanded="false"><i class="fa fa-comments"></i>
+                    <span class="hide-menu">Comentários</span>
+                  </a>
+                </li>
                 <li class="nav-label">Configurações</li>
 
                 <li>
@@ -137,22 +151,8 @@
                 </li>
 
                 <li>
-                  <a href="#" aria-expanded="false"><i class="fa fa-paint-brush"></i>
+                  <a href="javascript:void(0)" aria-expanded="false"><i class="fa fa-paint-brush"></i>
                     <span class="hide-menu">Estilo</span>
-                  </a>
-                </li>
-
-                <li class="nav-label">Moderação</li>
-                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Usuários</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="{{URL::route('users.index')}}">Ver Todos</a></li>
-                        <li><a href="{{URL::route('users.create')}}">Adicionar Usuário</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                  <a href="#" aria-expanded="false"><i class="fa fa-comments"></i>
-                    <span class="hide-menu">Comentários</span>
                   </a>
                 </li>
             </ul>

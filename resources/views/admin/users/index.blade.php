@@ -3,17 +3,30 @@
 
 @section('viewMain')
     @parent
+    <div class="pages-navigation">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Usuários</li>
+      </ol>
+    </div>
     <!-- Bread crumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-primary">Usuários</h3> </div>
-        <div class="col-md-7 align-self-center">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Usuários</li>
-            </ol>
+          <h3 class="text-primary">Usuários</h3>
+        </div>
+
+        <div class="col-md-7">
+          <div class="btn-group float-right" role="group">
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ações Múltiplas
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#">Excluir</a>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
-    <!-- End Bread crumb -->
 
 		<div class="container-fluid">
 			<?php
@@ -45,7 +58,7 @@
 								<td>
 									{{__('messages.permission')}}
 								</td>
-								<td style="width:100px;">
+								<td style="width:110px;">
 									{{__('messages.actions')}}
 								</td>
 							</tr>
@@ -68,16 +81,18 @@
 									{{$user['permission']}}
 								</td>
 								<td>
-									<div class="btn-group action-buttons" role="group">
-										<a href="{{URL::route('users.edit', ['id' =>  $user['id']])}}">
-											<button type="button" class="btn btn-primary"><i class="material-icons">edit</i></button>
-										</a>
+									<div class="action-buttons" role="group">
+                    <div class="action">
+                      <a href="{{URL::route('users.edit', ['id' =>  $user['id']])}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                    </div>
 
-										<form method="post" action="{{URL::route('users.destroy', ['id' =>  $user['id']])}}">
-											<button type="submit" type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
-											<input type="hidden" value="DELETE" name="_method">
-											<input type="hidden" name="_token" value="{{csrf_token()}}">
-										</form>
+                    <div class="action">
+  										<form method="post" action="{{URL::route('users.destroy', ['id' =>  $user['id']])}}">
+  											<button type="submit" type="submit" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+  											<input type="hidden" value="DELETE" name="_method">
+  											<input type="hidden" name="_token" value="{{csrf_token()}}">
+  										</form>
+									  </div>
 									</div>
 								</td>
               @endforeach

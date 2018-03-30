@@ -69,25 +69,23 @@ class TutorialsController{
 
 	 public function index(){
   	  $tutorials = $this->repository->all();
-  		$loop = "all";
   		$title = "Tutoriais - Stephenson";
 
   		return view('admin.tutorials.index', [
         'title' => $title,
         'tutorials' => $tutorials,
-        'loop' => $loop
+        'items' => "all",
       ]);
     }
 
 	public function trash(){
 	  $tutorials = $this->repository->getTrashed();
-		$loop = "trash";
 		$title = "Tutoriais - Stephenson";
 
 		return view('admin.tutorials.index', [
       'title' => $title,
       'tutorials' => $tutorials,
-      'loop' => $loop
+      'items' => "trash",
     ]);
   }
 

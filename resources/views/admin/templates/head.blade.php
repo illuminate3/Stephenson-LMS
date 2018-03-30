@@ -9,5 +9,5 @@
 <link href="{{asset('assets/admin/css/lib/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
 
 <link href="{{asset('assets/admin/css/helper.css')}}" rel="stylesheet">
-<link href="{{asset('assets/admin/css/style.css')}}" rel="stylesheet">
-<link href="{{asset('assets/admin/css/layout.css')}}" rel="stylesheet">
+<link href="{{asset('assets/admin/css/style.min.css')}}" rel="stylesheet">
+<link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet">

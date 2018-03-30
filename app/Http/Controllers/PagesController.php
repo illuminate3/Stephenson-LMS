@@ -42,25 +42,23 @@ class PagesController{
 
 	public function index(){
 		$pages = $this->repository->all();
-		$loop = "all";
 		$title = "Páginas - Stephenson";
 
 		return view('admin.pages.index', [
 			'title' => $title,
 			'pages' => $pages,
-			'loop' => $loop
+			'items' => "all"
 		]);
 	}
 
 	public function trash(){
 		$pages = $this->repository->getTrashed();
-		$loop = "trash";
 		$title = "Páginas - Stephenson";
 
 		return view('admin.pages.index', [
 			'title' => $title,
 			'pages' => $pages,
-			'loop' => $loop
+			'items' => "trash"
 		]);
 
 	}

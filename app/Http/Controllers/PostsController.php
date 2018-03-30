@@ -68,25 +68,23 @@ class PostsController
     public function index(){
       $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
       $posts = $this->repository->all();
-		  $loop = "all";
   		$title = "Postagens - Stephenson";
 
   		return view('admin.posts.index', [
         'title' => $title,
         'posts' => $posts,
-        'loop' => $loop
+        'items' => "all"
       ]);
     }
 
 	 public function trash(){
       $posts = $this->repository->getTrashed();
-  		$loop = "trash";
   		$title = "Postagens - Stephenson";
 
   		return view('admin.posts.index', [
         'title' => $title,
         'posts' => $posts,
-        'loop' => $loop
+        'items' => "trash"
       ]);
     }
 

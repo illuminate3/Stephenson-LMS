@@ -1,0 +1,40 @@
+.pages-navigation{
+  height: 35px;
+  line-height: 35px;
+}
+.pages-navigation .breadcrumb{
+  height: 100%;
+  padding: 0px;
+  padding-left: 25px;
+}
+
+.pages-navigation .breadcrumb li{
+  line-height: 35px;
+}
+
+.action-buttons{
+  float: right;
+}
+.action-buttons .action{
+  display: inline-block;
+}
+
+#modules-list .card-header{
+  height: 70px;
+  line-height: 70px;
+  padding: 0px 15px;
+}
+
+#modules-list .module.card{padding: 0px}
+#modules-list .lesson.card{padding: 0px}
+#modules-list .module .card-body {padding: 20px;}
+
+#modules-list .card-header{
+  background: transparent;
+  border-bottom: none;
+}
+
+.drag-module {float: left;width: 40px;height: 70px;}
+.drag-module i{line-height: 70px; cursor: move;}
+
+#modules-list .card-header h5{float: left;line-height: 70px}

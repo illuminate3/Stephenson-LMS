@@ -73,7 +73,7 @@
 									{{ __('messages.category')}}
 								</td>
 								<td>Slug</td>
-								<td style="width:100px;">
+								<td style="width:110px;">
 									{{ __('messages.actions')}}
 								</td>
 							</tr>
@@ -89,17 +89,18 @@
 									{{ $category['slug']}}
 								</td>
 								<td>
-									<div class="btn-group action-buttons" role="group">
-										<a href="{{ URL::route('categories.edit', ['id' =>  $category['id']])}}">
-											<button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-										</a>
+									<div class="action-buttons">
+                    <div class="action">
+                      <a href="{{ URL::route('categories.edit', ['id' =>  $category['id']])}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                    </div>
 
-										<form method="post" action="{{ URL::route('categories.destroy', ['id' =>  $category['id']])}}">
-											<button type="submit" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-											<input type="hidden" value="DELETE" name="_method">
-											<input type="hidden" name="_token" value="{{ csrf_token()}}">
-										</form>
-
+                    <div class="action">
+  										<form method="post" action="{{ URL::route('categories.destroy', ['id' =>  $category['id']])}}">
+  											<button type="submit" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+  											<input type="hidden" value="DELETE" name="_method">
+  											<input type="hidden" name="_token" value="{{ csrf_token()}}">
+  										</form>
+                    </div>
 								</td>
 							</tr>
               @endforeach

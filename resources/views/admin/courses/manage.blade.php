@@ -39,29 +39,31 @@
       		@php $modules = $course->getModules @endphp
           @foreach ($modules as $module)
       		<div class="card module" id="module-{{ $module->id }}">
-      			<div class="card-header" id="module-heading-{{ $module->id }}">
-      				<div class="row">
-      					<div class="col-1 drag-module">=</div>
-      					<h5 class="mb-0 col-8">
-      						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-{{ $module->id }}" aria-expanded="false" aria-controls="collapse-{{ $module->id }}">
-      						 {{ $module->name }}
-      					  </button>
-      					</h5>
+            <div class="card-header" id="module-heading-{{ $module->id }}">
+              <div class="drag-module"><i class="fa fa-bars"></i></div>
+              <h5>
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-{{ $module->id }}" aria-expanded="false" aria-controls="collapse-{{ $module->id }}">
+                  {{ $module->name }}
+                </button>
+              </h5>
 
-      					<div class="module-actions col-3">
-      						<div class="btn-group action-buttons" role="group">
-      							<a href="#">
-      							<button type="button" class="btn btn-primary"><i class="material-icons">edit</i></button>
-      						</a>
+              <div class="module-actions">
+                <div class="action-buttons" role="group">
+                  <div class="action">
+                    <a href="#">
+                      <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                    </a>
+                  </div>
 
-      							<form method="post" action="{{ URL::route('course.module.destroy', ['course_id' => $course->id, 'module_id' =>  $module['id']])}}">
-      								<button type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
-      								<input type="hidden" value="DELETE" name="_method">
-      								<input type="hidden" name="_token" value="{{ csrf_token()}}">
-      							</form>
-      						</div>
-      					</div>
-      				</div>
+                  <div class="action">
+                    <form method="post" action="{{ URL::route('course.module.destroy', ['course_id' => $course->id, 'module_id' =>  $module['id']])}}">
+                      <button type="submit" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                      <input type="hidden" value="DELETE" name="_method">
+                      <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                    </form>
+                  </div>
+                </div>
+              </div>
       			</div>
       			<div id="collapse-{{ $module->id }}" class="collapse" aria-labelledby="module-heading-{{ $module->id }}" data-parent="#modules-list">
       				<div class="card-body">
@@ -72,7 +74,7 @@
       						<div class="card lesson" id="lesson-{{ $lesson->id }}">
       							<div class="card-header" id="lesson-heading-{{ $lesson->id}}">
       								<div class="row">
-      									<div class="col-1 drag-lesson">=</div>
+      									<div class="col-1 drag-lesson"><i class="fa fa-bars"></i></div>
       									<h5 class="mb-0 col-8">
       										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#lesson-collapse-{{ $lesson->id}}" aria-expanded="false" aria-controls="collapseTwo">
       											{{ $lesson->title }}
@@ -80,28 +82,35 @@
       									</h5>
 
       									<div class="lesson-actions col-3">
-      										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-      											<a href="{{ URL::route('course.module.lesson.edit',['course_id' => $course->id, 'module_id' => $module->id, 'lesson_id' => $lesson->id])}}">
-      												<button type="button" class="btn btn-primary"><i class="material-icons">edit</i></button>
-      											</a>
-      											<form method="post" action="{{ URL::route('course.module.lesson.destroy', ['course_id' => $course->id, 'module_id' =>  $module->id, 'lesson_id' => $lesson->id])}}">
-      												<button type="submit" class="btn btn-danger"><i class="material-icons">remove_circle_outline</i></button>
-      												<input type="hidden" value="DELETE" name="_method">
-      												<input type="hidden" name="_token" value="{{ csrf_token()}}">
-      											</form>
+      										<div class="action-buttons" role="group" aria-label="Button group with nested dropdown">
+                            <div class="action">
+                              <a href="{{ URL::route('course.module.lesson.edit',['course_id' => $course->id, 'module_id' => $module->id, 'lesson_id' => $lesson->id])}}">
+        												<button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+        											</a>
+                            </div>
 
-      											<div class="btn-group" role="group">
-      												<button id="add-material-{{ $lesson->id}}" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      												Material
-      											 </button>
-      												<div class="dropdown-menu" aria-labelledby="add-material-{{ $lesson->id}}">
-      													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="file" href="#">Arquivo</a>
-      													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="image" href="#">Imagem</a>
-      													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="video" href="#">Vídeo</a>
-      													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="note" href="#">Nota</a>
-      													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="poll" href="#">Enquete</a>
-      												</div>
-      											</div>
+                            <div class="action">
+        											<form method="post" action="{{ URL::route('course.module.lesson.destroy', ['course_id' => $course->id, 'module_id' =>  $module->id, 'lesson_id' => $lesson->id])}}">
+        												<button type="submit" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+        												<input type="hidden" value="DELETE" name="_method">
+        												<input type="hidden" name="_token" value="{{ csrf_token()}}">
+        											</form>
+                            </div>
+
+                            <div class="action">
+        											<div class="btn-group" role="group">
+        												<button id="add-material-{{ $lesson->id}}" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        												Material
+        											 </button>
+        												<div class="dropdown-menu" aria-labelledby="add-material-{{ $lesson->id}}">
+        													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="file" href="#">Arquivo</a>
+        													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="image" href="#">Imagem</a>
+        													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="video" href="#">Vídeo</a>
+        													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="note" href="#">Nota</a>
+        													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="poll" href="#">Enquete</a>
+        												</div>
+        											</div>
+                            </div>
       										</div>
       									</div>
       								</div>
@@ -145,7 +154,7 @@
       								</div>
       							</div>
       						</div>
-                @endforeach
+                  @endforeach
       					</div>
                 @else
                   Nenhuma aula cadastrada
