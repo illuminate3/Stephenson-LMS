@@ -58,6 +58,14 @@
 						<input id="pasPassword" type="password" name="password" class="form-control" placeholder="Senha">
 				</div>
 
+        <div class="form-group">
+          <label for="slcPermission">Permissão</label>
+          <select class="form-control" id="slcPermission" name="permission">
+            <option value="app.user">Usuário Comum</option>
+            <option value="app.admin">Administrador</option>
+           </select>
+        </div>
+
 				<button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Adicionar</button>
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
 			</form>

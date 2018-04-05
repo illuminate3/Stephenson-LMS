@@ -51,7 +51,7 @@ class PostsController
 
 	public function single($post){
 		$post = $this->repository->findByField('id', $post)->first();
-    if(count($post) == 0){
+    if(is_null($post)){
       return redirect()->route('error404');
     } else {
   		$title = $post->title . " - Stephenson";

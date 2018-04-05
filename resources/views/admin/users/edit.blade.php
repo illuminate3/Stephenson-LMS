@@ -60,8 +60,8 @@
 				<div class="form-group">
 					<label for="slcPermission">Permissão</label>
 					<select class="form-control" id="slcPermission" name="permission">
-						<option name="app.user">Usuário Comum</option>
-						<option name="app.admin">Administrador</option>
+						<option value="app.user" {{($user->permission == "app.user") ? 'selected' : null}}>Usuário Comum</option>
+						<option value="app.admin" {{($user->permission == "app.admin") ? 'selected' : null}}>Administrador</option>
 					 </select>
 				</div>
 

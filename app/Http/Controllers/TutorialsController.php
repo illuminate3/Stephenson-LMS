@@ -51,7 +51,7 @@ class TutorialsController{
 
 	public function single($tutorial){
 		$tutorial = $this->repository->findByField('id', $tutorial)->first();
-    if(count($tutorial) == 0){
+    if(is_null($tutorial)){
       return redirect()->route('error404');
     } else {
       $title = $tutorial['title'] ." - Stephenson";

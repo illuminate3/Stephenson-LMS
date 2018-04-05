@@ -21,8 +21,8 @@ class Lesson extends Model{
 	public function module(){
 		return $this->belongsTo(Module::class);
 	}
-	
+
 	public function getMaterials(){
-		return $this->hasMany(LessonsMeta::class);
+		return $this->hasMany(Material::class, 'type_id')->where('type','=', 'lesson');
 	}
 }

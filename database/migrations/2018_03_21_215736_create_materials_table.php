@@ -17,13 +17,10 @@ class CreateMaterialsTable extends Migration
 	{
 		Schema::create('materials', function(Blueprint $table) {
 			$table->increments('id');
-			$table->unsignedInteger('course_id');
-			$table->unsignedInteger('user_id');
-			$table->integer('type');
+			$table->string('type', 30)
+			$table->unsignedInteger('type_id');
+			$table->text('meta')
 			$table->timestamps();
-
-			$table->foreign('course_id')->references('id')->on('courses');
-			$table->foreign('user_id')->references('id')->on('users');
 		});
 	}
 

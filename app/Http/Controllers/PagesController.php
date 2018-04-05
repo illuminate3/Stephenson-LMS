@@ -30,7 +30,7 @@ class PagesController{
 	public function single ($page) {
 		$page = $this->repository->findByField('slug', $page)->first();
 
-		if(count($page) == 0){
+		if(is_null($page)){
 			return redirect()->route('error404');
 		} else {
 			$title = $page['title'] . " - Stephenson";

@@ -47,7 +47,7 @@ class CoursesController{
 
   public function single($course){
     $course = $this->repository->findByField('id', $course)->first();
-    if(count($course) == 0){
+    if(is_null($course)){
       return redirect()->route('error404');
     } else {
       $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
@@ -122,7 +122,7 @@ class CoursesController{
     $user = Auth::user()->id;
     $type = $request->query->get('type');
     $data = serialize(['course_name' => $course_name->title, 'course_id' => $course_id]);
-    
+
     if($type == 1){
       $activity = array('user_id' => $user, 'type' => 'favorite_course','data' => $data);
     } elseif($type == 2){

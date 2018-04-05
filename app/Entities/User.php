@@ -12,7 +12,7 @@ class User extends Authenticatable{
 
 	public $timestamps = true;
 	protected $table = 'users';
-  protected $fillable = ['firstname', 'lastname', 'user','email', 'password','sex', 'born', 'locale', 'avatar'];
+  protected $fillable = ['firstname', 'lastname', 'user','email', 'password','sex', 'born', 'locale', 'avatar', 'permission'];
   protected $hidden = ['remember_token'];
 
 	public function getCourses(){

@@ -18,9 +18,9 @@ class LessonRepositoryEloquent extends BaseRepository implements LessonRepositor
 
 	public function create_material($lesson, $material, $title, $content){
 			$lesson_meta = new Material;
-	    $lesson_meta->meta = serialize(['type' => $material, 'id' => $lesson, 'content' => $content]);
-			$lesson_meta->title = $title;
+	    $lesson_meta->meta = serialize(['title' => $title, 'material_type' => $material, 'content' => $content]);
 	    $lesson_meta->type = 'lesson';
+	    $lesson_meta->type_id = $lesson;
 
       if($lesson_meta->save()){
 			return true;

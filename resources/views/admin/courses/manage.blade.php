@@ -121,27 +121,28 @@
       									<div class="materials row">
       										@php $materials = $lesson->getMaterials @endphp
                           @foreach ($materials as $material)
+                          @php $material_meta = unserialize($material->meta) @endphp
       											<div class="material col-4">
                                 <div class="material-content card">
-                                    <?php switch ($material->type){ case ("note"): ?>
+                                    <?php switch ($material_meta['material_type']){ case ("note"): ?>
                                       <div class="card-body">
-                                        <h5 class="card-title"><i class='material-icons'>note</i> {{$material->title}}</h5>
-                                        {{$material->content}}
+                                        {{$material_meta['content']}}
+                                        <h5 class="card-title"><i class="fa fa-sticky-note"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                     <?php break; case ("file"): ?>
                                       <div class="card-body">
-                                        <h5 class="card-title"><i class='material-icons'>file</i> {{$material->title}}</h5>
-                                        {{$material->content}}
+                                        {{$material_meta['content']}}
+                                        <h5 class="card-title"><i class="far fa-file"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                     <?php break; case ("image"): ?>
-                                      <img class="card-img-top" src="{{$material->content}}">
+                                      <img class="card-img-top" src="{{$material_meta['content']}}">
                                       <div class="card-body">
-                                        <h5 class="card-title"><i class='material-icons'>photo</i> {{$material->title}}</h5>
+                                        <h5 class="card-title"><i class="far fa-images"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                     <?php break; case ("video"): ?>
                                       <div class="card-body">
-                                        <h5 class="card-title"><i class='material-icons'>play_arrow</i> {{$material->title}}</h5>
-                                        {{$material->content}}
+                                        {{$material_meta['content']}}
+                                        <h5 class="card-title"><i class="far fa-play-circle"></i> {{$material_meta['title']}}</h5>  
                                       </div>
                                     <?php break;} ?>
                                 </div>
