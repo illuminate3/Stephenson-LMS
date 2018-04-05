@@ -47,7 +47,7 @@ class CoursesController{
 
   public function single($course){
     $course = $this->repository->findByField('id', $course)->first();
-    if(count($course) == 0){
+    if(is_null($course)){
       return redirect()->route('error404');
     } else {
       $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
