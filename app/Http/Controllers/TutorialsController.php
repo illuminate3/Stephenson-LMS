@@ -17,17 +17,9 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\CommentRepository;
 
-
 class TutorialsController{
 
-    /**
-     * @var TutorialRepository
-     */
     protected $repository;
-
-    /**
-     * @var TutorialValidator
-     */
     protected $validator;
     protected $service;
 

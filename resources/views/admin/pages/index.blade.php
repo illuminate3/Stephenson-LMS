@@ -17,6 +17,8 @@
         <div class="col-md-7">
           <div class="btn-group float-right" role="group">
             <div class="btn-group" role="group">
+              <a class="btn btn-secondary" href="{{URL::route('pages.create')}}"><i class="fa fa-plus-circle"></i> Criar</a>
+              
               <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Ações Múltiplas
               </button>

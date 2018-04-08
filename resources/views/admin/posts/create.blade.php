@@ -54,42 +54,13 @@
 
     				<div class="col-3">
 
-    					<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Adicionar</button>
+              @include('admin.templates.widgets.add_button')
 
-    					<div class="card mt-3">
-    					  <h5 class="card-header">Tags</h5>
-    					  <div class="card-body">
-                  <p>Digite as tags separadas por vírgula.</p>
-    						  <input type="text" data-role="tagsinput" placeholder="Adicionar +" name="tags">
-    					  </div>
-    					</div>
+              @include('admin.templates.widgets.categories')
 
-    					<div class="card mt-3">
-    					  <h5 class="card-header">Categoria</h5>
-							  <div class="card-body">
-									<select name="category_id">
-										<option value="0" disabled selected>Sem categoria</option>
-										@foreach ($categories as $category)
-										<option value="{{$category['id']}}">{{$category['name']}}</option>
-                    @endforeach
-									</select>
-							  </div>
-    					</div>
+              @include('admin.templates.widgets.tags')
 
-    					<div class="card mt-3">
-    					  <h5 class="card-header">Thumbnail</h5>
-    					  <div class="card-body">
-                  <div class="input-group">
-                     <span class="input-group-btn">
-                       <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                         <i class="fa fa-picture-o"></i> Choose
-                       </a>
-                     </span>
-                     <input id="thumbnail" class="form-control" type="text" name="filepath">
-                   </div>
-                   <img id="holder" style="margin-top:15px;max-height:100px;">
-    					  </div>
-    					</div>
+              @include('admin.templates.widgets.thumbnail')
     				</div>
     			</div>
     			<input type="hidden" name="_token" value="{{ csrf_token()}}">

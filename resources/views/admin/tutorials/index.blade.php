@@ -17,6 +17,8 @@
 
         <div class="col-md-7">
           <div class="btn-group float-right" role="group">
+            <a class="btn btn-secondary" href="{{URL::route('tutorials.create')}}"><i class="fa fa-plus-circle"></i> Criar</a>
+
             <a class="btn btn-secondary" href="{{URL::route('tutorials.all')}}" target="_blank"><i class="fa fa-eye"></i> Ver Todos</a>
 
             <div class="btn-group" role="group">

@@ -49,30 +49,11 @@
 					</div>
 
 						<div class="col-3">
+              @include('admin.templates.widgets.add_button')
 
-							<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Adicionar</button>
+              @include('admin.templates.widgets.categories')
 
-							<div class="card mt-3">
-							  <h5 class="card-header">Categoria</h5>
-							  <div class="card-body">
-									<select name="category_id">
-										<option value="0" disabled selected>Sem categoria</option>
-										@foreach ($categories as $category)
-										<option value="{{ $category['id']}}">{{ $category['name']}}</option>
-                    @endforeach
-									</select>
-							  </div>
-							</div>
-
-							<div class="card mt-3">
-							  <h5 class="card-header">Capa</h5>
-							  <div class="card-body">
-									<div class="file-upload">
-										<a id="lfm" data-input="thumbnail" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
-										<input id="thumbnail" type="text" name="cover">
-									</div>
-							  </div>
-							</div>
+              @include('admin.templates.widgets.thumbnail')
 						</div>
 					</div>
 

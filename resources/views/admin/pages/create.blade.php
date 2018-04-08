@@ -49,7 +49,7 @@
 					</div>
 
 					<div class="col-3">
-						<button type="submit" class="btn btn-primary btn-lg btn-block">Adicionar</button>
+            @include('admin.templates.widgets.add_button')
 					</div>
 					</div>
 

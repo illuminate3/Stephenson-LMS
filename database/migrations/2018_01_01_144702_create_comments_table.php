@@ -14,16 +14,16 @@ class CreateCommentsTable extends Migration
 	public function up()
 	{
 		Schema::create('comments', function(Blueprint $table) {
-            $table->increments('id');
+        $table->increments('id');
 				$table->unsignedInteger('author_id');
 				$table->integer('post_id');
 				$table->string('post_type', 20);
 				$table->text('content');
 				$table->integer('parent')->nullable();
 				$table->integer('approved')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
-			
+        $table->rememberToken();
+        $table->timestamps();
+
 				$table->foreign('author_id')->references('id')->on('users');
 		});
 	}

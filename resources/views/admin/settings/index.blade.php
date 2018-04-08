@@ -16,6 +16,32 @@
     <!-- End Bread crumb -->
 
 		<div class="container-fluid">
-      Nenhuma configuração disponível
+      <?php
+        if (session('success')){
+          if (session('success')['success'] == false){
+            echo '<div class="alert alert-danger" role="alert">' . session('success')['messages'] . '</div>';
+          } else {
+            echo '<div class="alert alert-success" role="alert">' . session('success')['messages'] . '</div>';
+          }
+        }
+      ?>
+
+      <form action="{{URL::route('settings.update')}}" method="post">
+        <h3>Gerais</h3>
+
+        <div class="form-group">
+         <label for="txtSlug">Título do Site</label>
+         <input type="text" class="form-control" id="txtSlug" placeholder="Título do Site" name="site_name" value="{{$settings->site_name}}">
+        </div>
+
+        <div class="form-group">
+         <label for="txtSlug">Descrição do Site</label>
+         <input type="text" class="form-control" id="txtSlug" placeholder="Descrição do Site" name="site_description" value="{{$settings->site_description}}">
+        </div>
+
+        <input type="hidden" value="PUT" name="_method">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
+        <input type="submit" value="Atualizar" class="btn btn-block btn-primary btn-lg">
+      </form>
 		</div>
 @endsection

@@ -9,24 +9,28 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Validators\SettingValidator;
 use App\Services\SettingService;
+use App\Repositories\SettingRepository;
+
 
 class SettingsController{
 
     protected $validator;
     protected $service;
+    protected $repository;
 
-	 protected $categories_repository;
-
-    public function __construct(SettingValidator $validator, SettingService $service){
+    public function __construct(SettingValidator $validator, SettingService $service, SettingRepository $repository){
         $this->validator  = $validator;
         $this->service  = $service;
+        $this->repository  = $repository;
     }
 
     public function index(){
 			$title = "Configurações - Stephenson";
-
+      $settings = $this->repository->all();
+      dd($settings);
 			return view('admin.settings.index', [
-        'title' => $title
+        'title' => $title,
+        'settings' => $settings
       ]);
     }
 
@@ -39,9 +43,9 @@ class SettingsController{
      *
      * @return Response
      */
-	/*
-    public function update(Request $request, $id){
-		 $request = $this->service->update($request->all(), $id);
+
+    public function update(Request $request){
+		 $request = $this->service->update($request->all());
 		 $page = $request['success'] ? $request['data'] : null;
 
 		 session()->flash('success',[
@@ -50,6 +54,6 @@ class SettingsController{
 		 ]);
 
 		 return redirect()->back();
-    }*/
+    }
 
 }

@@ -9,8 +9,8 @@
 		<b>Tags:</b> {{$tutorial->tags}}
       </div>
     </div>
-	
-	
+
+
 
     <div class="container">
 		<ul class="post-info list-inline">
@@ -18,11 +18,11 @@
 			<li class="list-inline-item"><i class="ion-calendar"></i>{{$tutorial->created_at}}</li>
 			<li class="list-inline-item"><i class="ion-pricetags"></i>{{$tutorial->category->name}}</li>
 		</ul>
-		
+
       <div class="embed-responsive embed-responsive-16by9">
         {!! $video_embed !!}
       </div>
-	  
+
 	  {!! $tutorial->description !!}
 			<div id="comments-area" class="mt-5">
 				<h3>Comentários</h3>
@@ -71,6 +71,6 @@
 				</div>
 			</div>
     </div>
-	
-	
+
+
 @endsection

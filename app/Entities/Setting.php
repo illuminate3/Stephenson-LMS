@@ -11,5 +11,6 @@ class Setting extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [];
+    public $timestamps = false;
 
 }

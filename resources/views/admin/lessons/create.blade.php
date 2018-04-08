@@ -86,17 +86,9 @@
 					</div>
 
 					<div class="col-3">
-						<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Adicionar</button>
+            @include('admin.templates.widgets.add_button')
 
-							<div class="card mt-3">
-							  <h5 class="card-header">Thumbnail</h5>
-							  <div class="card-body">
-									<div class="file-upload">
-										<a id="lfm" data-input="thumbnail" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
-										<input id="thumbnail" type="text" name="thumbnail">
-									</div>
-							  </div>
-							</div>
+            @include('admin.templates.widgets.thumbnail')
 					</div>
 					</div>
 

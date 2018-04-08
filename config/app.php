@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Stepherson'),
+    'name' => env('APP_NAME', 'Stephenson'),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,8 +162,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-		  Prettus\Repository\Providers\RepositoryServiceProvider::class,
-		  Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+  		  Prettus\Repository\Providers\RepositoryServiceProvider::class,
+  		  Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         /*
          * Package Service Providers...
@@ -180,7 +180,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
-
     ],
 
     /*
@@ -229,9 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-		  'Image' => Intervention\Image\Facades\Image::class,
-		  'Theme' => Igaster\LaravelTheme\Facades\Theme::class,
-
+  		  'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth', 'is_admin']], function() {
 
 	/* ROTAS PARA O CONTROLE DE CONFIGURAÇÕES */
 	Route::get('/admin/settings', ['as'=>'settings.index','uses' => 'SettingsController@index']);
+	Route::put('/admin/settings/update', ['as'=>'settings.update','uses' => 'SettingsController@update']);
 
 	/* ROTAS PARA O CONTROLE DE MÍDIA */
 	Route::get('/admin/library', ['as'=>'library.index','uses' => 'DashboardController@library']);
@@ -88,7 +89,7 @@ Route::get('/logout', ['as'=>'logout', 'uses' => 'Controller@logout']);
 
 Route::get('/chat', ['as' => 'chat', 'uses' => 'MessagesController@index']);
 
-Route::get('/search', ['as' => 'search', 'uses' => 'Controller@search']);
+Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@search']);
 
 /* ROTAS PARA O PERFIL */
 

@@ -42,11 +42,6 @@ class Controller extends BaseController{
     return view('404', ['title' => "Erro 404 - Página não encontrada!"]);
   }
 
-  public function search(Request $q){
-    $title = "Resultados para: ". $q->q;
-    return view('search', ['title' => $title]);
-  }
-
 	function logout(){
 		auth()->logout();
 		return redirect()->route('login');
