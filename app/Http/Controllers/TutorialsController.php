@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\CommentRepository;
+use SEO;
 
 class TutorialsController{
 
@@ -43,6 +44,7 @@ class TutorialsController{
 
 	public function single($tutorial){
 		$tutorial = $this->repository->findByField('id', $tutorial)->first();
+
     if(is_null($tutorial)){
       return redirect()->route('error404');
     } else {
@@ -52,6 +54,9 @@ class TutorialsController{
       preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
       $id = $matches[1];
       $video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+
+      SEO::setTitle($tutorial['title'] ." - Stephenson");
+      SEO::setDescription($tutorial['resume']);
 
       return view('tutorials.single', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
     }
