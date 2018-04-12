@@ -4,15 +4,17 @@
 @include('head')
 </head>
 <body>
-    <header>
-    @include('header')
-    <header>
-    <div id="content">
+    <div id="interface">
+      <header>
+      @include('header')
+      <header>
+      <main id="content">
         <!-- DIVISA DE CONTEUDO -->
         @section('viewMain')
             @show
-
-    @include('footer')
-	 </div>
+  	 </main>
+   </div>
+   
+   @include('footer')
 </body>
 </html>

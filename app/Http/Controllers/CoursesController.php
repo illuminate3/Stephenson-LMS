@@ -17,6 +17,7 @@ use App\Validators\CourseValidator;
 use App\Services\CourseService;
 use App\Services\UserActivitiesService;
 use Auth;
+use SEOMeta;
 
 class CoursesController{
 
@@ -37,10 +38,10 @@ class CoursesController{
 
   public function all(){
     $courses = $this->repository->all();
-    $title = "Cursos - Stephenson";
+    SEOMeta::setTitle("Cursos");
+    SEOMeta::setDescription("Cursos sobre diversos assuntos com uma incrível didática e certificado de conclusão");
 
     return view('courses.all', [
-      'title' => $title,
       'courses' => $courses
     ]);
   }
@@ -51,21 +52,20 @@ class CoursesController{
       return redirect()->route('error404');
     } else {
       $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
-      $title =  $course['title']." - Stephenson";
+      SEOMeta::setTitle($course->title);
+      SEOMeta::setDescription($course->resume);
 
       if(Auth::user()){
         $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
         if($user_joined){
           return view('courses.panel', [
             'page' => "single",
-            'title' => $title,
             'course' => $course,
             'modules' => $modules_list,
             'user_joined' => $user_joined
           ]);
         } else{
           return view('courses.single', [
-            'title' => $title,
             'course' => $course,
             'modules' => $modules_list,
             'user_joined' => $user_joined
@@ -73,7 +73,6 @@ class CoursesController{
         }
       } else{
         return view('courses.single', [
-          'title' => $title,
           'course' => $course,
           'modules' => $modules_list
         ]);
@@ -84,12 +83,11 @@ class CoursesController{
   public function panel($course, $page){
     $course = $this->repository->find($course);
     $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
-    $categories = $this->categoriesRepository->getPrimaryCategories();
     $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
 
     if($page == "content"){
+      SEOMeta::setTitle($course->title . " | Conteúdo");
       return view('courses/panel_content', [
-        'title' => $course['title']." | Conteúdo - Stephenson",
         'course' => $course,
         'page' => $page,
         'user_joined' => $user_joined
@@ -97,8 +95,8 @@ class CoursesController{
     }
 
     if($page == "notices"){
+      SEOMeta::setTitle($course->title . " | Avisos");
       return view('courses.panel_notices', [
-        'title' => $course['title']." | Avisos - Stephenson",
         'course' => $course,
         'page' => $page,
         'user_joined' => $user_joined
@@ -106,8 +104,8 @@ class CoursesController{
     }
 
     if($page == "rating"){
+      SEOMeta::setTitle($course->title . " | Avaliações");
       return view('courses.panel_rating', [
-        'title' => $course['title']." | Avaliações - Stephenson",
         'course' => $course,
         'page' => $page,
         'user_joined' => $user_joined

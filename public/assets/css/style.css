@@ -1,27 +1,45 @@
+html,body{height: 100%;}
+
+body{
+	font-family: 'Open Sans';
+	background: #f6fffc;
+}
 #topnav{
-	background: #013448;
+	background: #fff;
 	padding: 0rem 1rem;
 	line-height: 60px;
 	height: 60px;
-	box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+	box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
 }
 #topnav{padding: 0px;}
-#topnav a{color: white;padding: 0px 10px;line-height: 60px;transition: .4s;}
-#topnav li a:hover, #topnav li.active a{background:rgba(0,0,0,.3);}
-#topnav i{font-size: 25px;float: left;}
+#topnav a{color: #333;padding: 0px 10px;line-height: 60px;transition: .4s;}
+#topnav li a:hover, #topnav li.active a{background:#f2f2f2;}
+#topnav i{font-size: 20px;float: left;line-height: 60px;color: #333}
 #topnav #notification-link span{
 	margin-left: 7px;
 }
 
+#topnav .btn-register{
+	background-color: transparent;
+	border: 1px solid #16ceb4;
+	border-radius: 20px;
+	height: 40px;
+	line-height: 40px;
+	color: #16ceb4;
+	margin: 10px  0px 10px 10px;
+	padding: 0px 15px;
+}
+#topnav .btn-register:hover{background:#16ceb4; color:white}
+
 #topnav .form-inline input.form-control{
-	background: rgba(0,0,0,.3);
+	background: #f2f2f2;
 	border: none;
 	height: 44px;
 	line-height: 44px;
-	color: white;
+	color: #333;
 	width: 100%;
 }
-#topnav .form-inline input.form-control::placeholder{color: white}
+#topnav .form-inline input.form-control::placeholder{color: #777}
 #topnav .form-inline input.form-control:focus{box-shadow: none;}
 
 #topnav .search{width: 40%;}
@@ -29,19 +47,7 @@
 #topnav .dropdown-menu a{color: #444;line-height: 40px;}
 #topnav .dropdown-menu a:hover{background: #eee}
 
-#course-info .info{
-	height: 50px;
-	line-height: 50px;
-	display: block;
-	border-bottom: 1px solid #ececec;
-}
-#course-info .info i{
-	line-height: 50px;
-	height: 50px;
-	width: 30px;
-	float: left;
-	font-size: 22px;
-}
+#notification-link .badge{background:#16ceb4 }
 
 .post-info li{
 	padding-right:10px;
@@ -49,3 +55,140 @@
 	line-height:2em;
 }
 .post-info li i{line-height:2em;float:left;margin-right:5px;}
+
+.card{
+	border-radius: 15px;
+	border: 0px;
+	box-shadow: 0px 0px 25px rgba(0,0,0,0.2);
+	overflow: hidden;
+}
+
+.card-author img{
+	border-radius: 100%;
+	height: 40px;
+	float: left;
+}
+
+.card-author span{line-height: 40px;margin-left: 10px;}
+.tutorial-card{padding: 0px;transition: 0.4s;}
+.tutorial-card .card-img-top{width: 100%;}
+.tutorial-card .card-title{font-weight: bold;}
+.tutorial-card:hover{box-shadow: 0px 0px 35px rgba(0,0,0,0.3);}
+.jumbotron {
+	background: transparent;
+	padding: 3rem 2rem 0rem 2rem;
+	color: #333;
+}
+
+.jumbotron .display-4{
+	font-weight: bold;
+}
+
+.profile-avatar{
+	width: 50%;
+	margin: auto;
+	border-radius: 100%;
+	overflow: hidden;
+}
+
+.profile-avatar img{width: 100%}
+
+.profile-info{width:100%;padding: 20px 0px;}
+.profile-name{text-align: center;}
+.profile-username{text-align: center;color: #aaa;}
+
+.profile-social-buttons{text-align: center;}
+.profile-social-buttons button{transition: 0.4s;border-radius: 100%;border: 1px solid #16ceb4;background: transparent;display: inline-block;color: #16ceb4}
+.profile-social-buttons button:hover{background: #16ceb4;color: white;}
+
+#profile-menu{
+	background: #ececec;
+	height: 60px;
+	line-height: 60px;
+	border-radius: 5px 5px 0px 0px;
+	margin-bottom: 20px;
+	padding: 0px 15px;
+}
+
+#profile-menu .nav-link{padding: 0rem 1rem;}
+#profile-menu a{line-height: 57px;color: #333;}
+#profile-menu a:hover, #profile-menu li.active a{border-bottom: 3px solid #16ceb4;}
+
+footer{
+	width: 100%;
+	margin-top: 40px;
+	border-top: 1px solid #eee;
+}
+
+footer .footer-widget a{color: #777;}
+footer .footer-widget h4{font-weight: bold;color: #333;font-size: 1.1em;text-transform: uppercase;padding-bottom: 10px}
+footer .feed-subscribe input{ width: 80%;border-radius: 10px 0px 0px 10px;border: none;height: 50px;background: #f2f2f2;padding: 0px 10px;float: left;}
+footer .feed-subscribe button{border-radius: 0px 10px 10px 0px;border: none;height: 50px;padding: 0px 15px;cursor: pointer;}
+.footer-content{padding: 30px 0px;}
+.footer-content ul{margin: 0px;-webkit-padding-start: 0px;}
+.footer-content li{list-style: none;}
+
+.footer-credits{
+	padding: 15px 0px;
+	text-align: center;
+}
+
+.form-control {padding: .7rem 1.3rem;border-radius: 2rem;}
+
+.btn-round{border-radius: 30px;}
+
+#interface{min-height: 100%;}
+
+#course-sidebar{margin-top: -110px;}
+
+#course-sidebar button{
+	height: 50px;
+	line-height: 50px;
+	padding: 0px;
+	background: #16ceb4;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+	border: none;
+}
+
+.course-price{
+	text-align: center;
+	font-size: 2em;
+	color: #16ceb4;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
+
+#course-info .info{
+	height: 50px;
+	line-height: 50px;
+	display: block;
+	border-bottom: 1px solid #ececec;
+}
+
+#course-info .info i{
+	line-height: 50px;
+	height: 50px;
+	width: 30px;
+	float: left;
+	font-size: 22px;
+	margin-right: 10px;
+	color: #333;
+}
+
+.course-title{color: white;text-shadow: 3px 3px 10px rgba(0,0,0,0.6);height:400px;vertical-align: bottom;padding-top: 270px}
+.course-title h2{font-weight: bolder;font-size: 2.7em}
+.course-title p{font-weight: lighter;font-size: 1.2em}
+
+.post{text-align: center;background: white;padding: 40px 0px;}
+.post h2{padding: 10px 0px;}
+.tag{padding: 5px 10px;border-radius: 20px;background: #16ceb4;color: white;margin-right: 10px}
+.tag:last-child{margin-right: 0px}
+
+.benefit{
+	border-radius: 5px;
+	padding: 15px;
+}
+
+.benefit h4{
+	font-weight: bold;
+}

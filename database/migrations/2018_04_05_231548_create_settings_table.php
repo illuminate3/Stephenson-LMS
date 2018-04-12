@@ -17,6 +17,16 @@ class CreateSettingsTable extends Migration
         $table->string('name', 50);
         $table->string('value');
       });
+
+      DB::table('settings')->insert([
+        'name' => 'site_name',
+        'value' => 'Stephenson LMS'
+      ]);
+
+      DB::table('settings')->insert([
+        'name' => 'site_description',
+        'value' => 'Sistema de Gerenciamento EAD'
+      ]);
     }
 
     /**

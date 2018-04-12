@@ -1,6 +1,10 @@
 {{-- Chama a template pré pronta --}}
 @extends('admin.templates.template')
 
+@section("styles")
+  <link href="{{asset('assets/admin/css/bootstrap-tagsinput.css')}}" rel="stylesheet">
+@endsection
+
 @section('viewMain')
     @parent
     <!-- Bread crumb -->
@@ -74,11 +78,19 @@
               @include('admin.templates.widgets.tags')
 
               @include('admin.templates.widgets.thumbnail')
-              
+
 						</div>
 
 						<input type="hidden" name="_token" value="{{csrf_token()}}">
 					</div>
 				</form>
 			</div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript" src="{{ asset('assets/admin/js/tinymce/tinymce.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/admin/js/tinymce/config.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/admin/js/bootstrap-tagsinput.js')}}"></script>
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js')}}"></script>
+<script>$('#lfm').filemanager('file');</script>
 @endsection

@@ -53,13 +53,13 @@ return [
 
 	/* CATEGORIES  */
 
-	'category' 					=> 'Categoria',
-	'create_category' 		=> 'Criar Categoria',
-	'edit_category' 			=> 'Editar Categoria',
-	'view_category' 			=> 'Ver Categoria',
-	'no_category_created' 	=> "Nenhuma categoria criada",
-	'hierarchy' 				=> 'Hierarquia',
-	'primary' 					=> 'Primária',
+	'category' 					   => 'Categoria',
+	'create_category' 		 => 'Criar Categoria',
+	'edit_category' 			 => 'Editar Categoria',
+	'view_category' 			 => 'Ver Categoria',
+	'no_category_created'  => "Nenhuma categoria criada",
+	'hierarchy' 				   => 'Hierarquia',
+	'primary' 					   => 'Primária',
 
 
 	/* PAGES */
@@ -72,9 +72,9 @@ return [
 
 	/* COURSES */
 
-	'course' 					=> 'Curso',
-	'edit_course' 					=> 'Editar Curso',
-	'no_course_created' 		=> "Nenhum curso criado",
+	'course' 					  => 'Curso',
+	'edit_course' 			=> 'Editar Curso',
+	'no_course_created' => "Nenhum curso criado",
 
 	/* USERS */
 
@@ -83,37 +83,35 @@ return [
 	/* FORMS */
 
 	'name' 				=> 'Nome',
-	'title' 				=> 'Título',
-	'color' 				=> 'Cor',
+	'title' 			=> 'Título',
+	'color' 			=> 'Cor',
 	'resume' 			=> 'Resumo',
 	'slug' 				=> 'Slug',
 
 	/* GENERAL */
 
-	'actions' 			=> 'Ações',
-	'edit' 				=> 'Editar',
-	'update' 			=> 'Atualizar',
-	'create' 			=> 'Criar',
-	'date' 				=> 'Data',
-	'author' 			=> 'Autor',
-	'url' 				=> 'URL',
-	'email' 				=> 'E-mail',
-	'permission' 		=> 'Permissão',
-	'complet_name' 	=> 'Nome Completo',
-	'tags' 				=> 'Marcadores',
-	'thumbnail' 		=> 'Miniatura',
-	'uncategorized' 	=> 'Sem Categoria',
-
-	/* SETTINGS */
-
-	'site_name' 			=> 'Título do Site',
-	'site_slogan' 			=> 'Slogan do Site',
-	'footer_credits' 		=> 'Créditos no Rodapé',
-	'site_email' 			=> 'E-mail do Site',
+	'actions' 			 => 'Ações',
+	'edit' 				   => 'Editar',
+	'update' 			   => 'Atualizar',
+	'create' 			   => 'Criar',
+	'date' 				   => 'Data',
+	'author' 			   => 'Autor',
+	'url' 				   => 'URL',
+	'email' 				 => 'E-mail',
+	'permission' 		 => 'Permissão',
+	'complet_name' 	 => 'Nome Completo',
+	'tags' 				   => 'Marcadores',
+	'thumbnail' 		 => 'Miniatura',
+	'uncategorized'  => 'Sem Categoria',
 
 	/* ACTIVITIES */
 
-	'activity.enter_course' => 'entrou no curso :course',
+	'activity.enter_course'    => 'entrou no curso :course',
 	'activity.favorite_course' => 'favoritou o curso :course',
-	'activity.leave_course' => 'saiu do curso :course',
+	'activity.leave_course'    => 'saiu do curso :course',
+
+  /* SETTINGS */
+
+  'setting.site_name'         => 'Nome do Site',
+  'setting.site_description'  => 'Descrição do Site',
 ];

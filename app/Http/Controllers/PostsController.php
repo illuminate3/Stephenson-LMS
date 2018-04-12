@@ -15,6 +15,9 @@ use App\Services\PostService;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\CommentRepository;
 use Auth;
+use SEOMeta;
+use OpenGraph;
+
 
 class PostsController
 {
@@ -39,14 +42,11 @@ class PostsController
      */
 
 	 public function all(){
-		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$posts = $this->repository->all();
-		$title = "Blog - Stephenson";
+    SEOMeta::setTitle("Blog");
+    SEOMeta::setDescription("Blog público com as opiniões de diversos alunos e professores da plataforma");
 
-		return view('posts.all', [
-      'posts' => $posts,
-      'title' => $title
-    ]);
+		return view('posts.all', ['posts' => $posts]);
     }
 
 	public function single($post){
@@ -54,14 +54,22 @@ class PostsController
     if(is_null($post)){
       return redirect()->route('error404');
     } else {
-  		$title = $post->title . " - Stephenson";
+      SEOMeta::setTitle($post->title);
+      SEOMeta::setDescription($post->resume);
+
+      OpenGraph::setTitle($post->title)
+      ->setDescription($post->resume)
+      ->setType('article')
+      ->setArticle([
+          'published_time' => $post->created_at,
+          'modified_time' => $post->updated_at,
+          'author' => $post->author->firstname . " " . $post->author->firstname,
+          'tag' => $post->tags
+      ]);
+
   		$comments = $this->commentsRepository->getComments($post->id,'post');
 
-  		return view('posts.single', [
-        'post' => $post,
-        'comments' => $comments,
-        'title' => $title
-      ]);
+  		return view('posts.single', ['post' => $post,'comments' => $comments,]);
     }
 	}
 

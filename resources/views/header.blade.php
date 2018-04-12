@@ -2,7 +2,7 @@
 	<div class="container">
 		<a class="navbar-brand" href="#">{{config('app.name')}}</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+			<span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -21,7 +21,8 @@
 				@auth
 					<li class="nav-item dropdown" id="notification-link">
 						<a class="nav-link" href="#" id="notificationsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="ion-android-notifications-none"></i> <span class="badge badge-pill badge-primary">{{Auth::user()->notifications->count()}}</span>
+							<i class="fa fa-bell"></i>
+							<span class="badge badge-pill badge-primary">{{Auth::user()->notifications->count()}}</span>
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationsDropdown">
@@ -55,10 +56,19 @@
 		      </li>
 				@endauth
 				@guest
-					<li class="nav-item"><a class="nav-link" href="{{ URL::route('register')}}">Cadastro</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{ URL::route('login')}}">Login</a></li>
+					<li class="nav-item"><a class="btn btn-register nav-link" href="{{ URL::route('register')}}">Cadastro</a></li>
 				@endguest
 			</ul>
 		</div>
 	</div>
 </nav>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.12';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

@@ -4,13 +4,23 @@
 @section('viewMain')
     @parent
     <!-- Bread crumb -->
+    <div class="pages-navigation">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Cursos</li>
+      </ol>
+    </div>
+
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-primary">Cursos</h3> </div>
-        <div class="col-md-7 align-self-center">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Cursos</li>
-            </ol>
+          <h3 class="text-primary">Cursos</h3>
+        </div>
+
+        <div class="col-md-7">
+          <div class="btn-group float-right" role="group">
+            <a class="btn btn-secondary" href="{{URL::route('courses.create')}}"><i class="fa fa-plus-circle"></i> Criar</a>
+
+            <a class="btn btn-secondary" href="{{URL::route('courses.all')}}" target="_blank"><i class="fa fa-eye"></i> Ver Todos</a>
+          </div>
         </div>
     </div>
     <!-- End Bread crumb -->
@@ -33,25 +43,42 @@
 					@foreach($courses as $course)
 
 					<div class="col-3">
-						<div class="card">
-							<img class="card-img-top" src="{{ $course->cover}}" alt="Card image cap">
+						<div class="card admin-course">
+              <div class="course-thumbnail">
+                @if(is_null($course->cover))
+                  <img src="{{asset('assets/admin/images/thumbnail-default.jpg')}}">
+                @else
+                  <img src="{{ $course->cover}}">
+                @endif
+            </div>
+
 							<div class="card-body">
 								<h5 class="card-title">
 									{{ $course->title}}
 								</h5>
-							</div>
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item"><i class="fa fa-user"></i>
-									{{ count($course->getStudents)}} aluno</li>
-								<li class="list-group-item"><i class="fa fa-folder"></i>
-									{{ count($course->getModules)}} módulos</li>
-								<li class="list-group-item"><i class="fa fa-video"></i>
-									{{ count($course->getLessons)}} aulas</li>
-							</ul>
-							<div class="card-body">
-								<a class="card-link" href="{{ URL::route('courses.edit', ['course_id' =>  $course['id']])}}">Editar</a>
-								<a class="card-link" href="{{ URL::route('courses.manage', ['course_id' =>  $course['id']])}}">Gerenciar</a>
-								<a class="card-link" href="{{ URL::route('courses.single', ['course' => $course['id']])}}">Ver</a>
+
+  							<ul class="list-group list-group-flush">
+  								<li class="list-group-item"><i class="fa fa-user"></i>
+  									{{ count($course->getStudents)}} aluno(s)</li>
+  								<li class="list-group-item"><i class="fa fa-folder"></i>
+  									{{ count($course->getModules)}} módulo(s)</li>
+  								<li class="list-group-item"><i class="fa fa-video"></i>
+  									{{ count($course->getLessons)}} aula(s)</li>
+  							</ul>
+
+                <div class="btn-group mt-3">
+                  <a class="btn btn-primary manage-btn" href="{{URL::route('courses.manage', ['course' => $course->id])}}">Gerenciar</a>
+                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{URL::route('courses.edit', ['course' => $course->id])}}">Editar</a>
+                    <a class="dropdown-item" href="{{URL::route('courses.manage', ['course' => $course->id])}}">Estatísticas</a>
+                    <a class="dropdown-item" href="{{URL::route('courses.manage', ['course' => $course->id])}}">Mensagens</a>
+                    <a class="dropdown-item" href="{{URL::route('courses.single', ['course' => $course->id])}}">Ver</a>
+                  </div>
+                </div>
+
 							</div>
 						</div>
 					</div>

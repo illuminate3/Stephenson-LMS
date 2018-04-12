@@ -3,24 +3,45 @@
 
 @section('viewMain')
     @parent
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid post">
 			<div class="container">
-				<h1 class="display-4 pb-2">
+        <div class="tags">
+          <?php
+            $tags  = $post->tags;
+            $tags = explode(",", $tags);
+            foreach($tags as $tag){
+              echo '<span class="tag">' . $tag . '</span>';
+            }
+          ?>
+        </div>
+				<h2 class="display-4">
 					{{$post->title}}
-				</h1>
-				<b>Tags:</b> {{$post->tags}}
+				</h2>
+
+        <ul class="post-info list-inline">
+          <li class="list-inline-item"><i class="fa fa-user"></i><a href="{{ URL::route('profile.profile', ['user' => $post->author->user])}}">{{$post->author->firstname}}</a></li>
+          <li class="list-inline-item"><i class="fa fa-calendar"></i>{{$post->created_at}}</li>
+          <li class="list-inline-item"><i class="fa fa-comments"></i>{{count($post->comments)}} comentários</li>
+        </ul>
 			</div>
 		</div>
 
 		<div class="container">
-			
-			<ul class="post-info list-inline">
-				<li class="list-inline-item"><i class="ion-person"></i><a href="{{ URL::route('profile.profile', ['user' => $post->author->user])}}">{{$post->author->firstname}}</a></li>
-				<li class="list-inline-item"><i class="ion-calendar"></i>{{$post->created_at}}</li>
-				<li class="list-inline-item"><i class="ion-pricetags"></i>{{$post->category->name}}</li>
-			</ul>
-			
-			{!!$post->content!!}
+      <div class="row">
+        <div class="col-lg-8">
+          {!!$post->content!!}
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card">
+            <h5 class="card-header">Facebook</h5>
+            <div class="card-body">
+              <div class="fb-page" data-href="https://www.facebook.com/escolaltg/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/escolaltg/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/escolaltg/">Escola LTG</a></blockquote></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 			<div id="comments-area" class="mt-5">
 				<h3>Comentários</h3>

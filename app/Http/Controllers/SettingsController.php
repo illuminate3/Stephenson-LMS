@@ -27,7 +27,7 @@ class SettingsController{
     public function index(){
 			$title = "Configurações - Stephenson";
       $settings = $this->repository->all();
-      dd($settings);
+
 			return view('admin.settings.index', [
         'title' => $title,
         'settings' => $settings

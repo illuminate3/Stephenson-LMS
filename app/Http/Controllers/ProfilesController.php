@@ -32,7 +32,7 @@ class ProfilesController{
         $this->validator 				= $validator;
     }
 
-	public function perfil(Request $request, $username){
+	public function profile(Request $request, $username){
     $user = new User();
 		$profile = $user->where('user', $username)->first();
     $activities = $profile->getActivities;
@@ -43,7 +43,7 @@ class ProfilesController{
       $isLoggedProfile = false;
     }
 		$title = $profile['firstname'] . " " . $profile['lastname'] . " - Feed";
-		return view('profile.profile', [
+    return view('profile.profile', [
       'title' => $title,
       'user' => $profile,
       'activities' => $activities,
@@ -51,7 +51,7 @@ class ProfilesController{
     ]);
 	}
 
-	public function perfil_about(Request $request, $profile){
+	public function profile_about(Request $request, $profile){
 		$profile = $this->repository->getProfileInfo($profile);
     if(Auth::check()){
 		    $isLoggedProfile = ($profile->id == Auth::user()->id) ? true : false;
@@ -91,7 +91,7 @@ class ProfilesController{
     return redirect()->back();
   }
 
-	public function perfil_followers(Request $request, $profile){
+	public function profile_followers(Request $request, $profile){
 		$profile = $this->repository->getProfileInfo($profile);
     if(Auth::check()){
 		    $isLoggedProfile = ($profile->id == Auth::user()->id) ? true : false;
@@ -103,7 +103,7 @@ class ProfilesController{
 		return view('profile.followers', ['title' => $title, 'user' => $profile, 'isLoggedProfile' => $isLoggedProfile]);
 	}
 
-	public function perfil_following(Request $request, $profile){
+	public function profile_following(Request $request, $profile){
 		$profile = $this->repository->getProfileInfo($profile);
     if(Auth::check()){
 		    $isLoggedProfile = ($profile->id == Auth::user()->id) ? true : false;

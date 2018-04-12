@@ -1,12 +1,10 @@
 {{-- Chama a template pré pronta --}}
-@extends('template')
+@extends('profile.profile-template')
 
-@section('viewMain')
+@section('profileContent')
     @parent
-		<?php echo view('profile/sidebar-profile', ['user' => $user, 'isLoggedProfile' => $isLoggedProfile ]); ?>
-
-    <div class="col-10" id="profile-content">
-      <h2 class="profile-page-title">Sobre</h2> <hr>
+      <h2 class="profile-page-title">Sobre</h2>
+      <hr>
     @if($isLoggedProfile)
       <?php
         if (session('success')){
@@ -92,5 +90,4 @@
 
     <b>Entrou em:</b> {{$user->created_at}}<br>
     @endif
-    </div>
 @endsection

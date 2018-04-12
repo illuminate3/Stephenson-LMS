@@ -29,15 +29,12 @@
       <form action="{{URL::route('settings.update')}}" method="post">
         <h3>Gerais</h3>
 
+        @foreach($settings as $setting)
         <div class="form-group">
-         <label for="txtSlug">Título do Site</label>
-         <input type="text" class="form-control" id="txtSlug" placeholder="Título do Site" name="site_name" value="{{$settings->site_name}}">
+         <label for="txtSlug">{{__('messages.setting.' . $setting->name)}}</label>
+         <input type="text" class="form-control" id="txtSlug" placeholder="{{__('messages.setting.' . $setting->name)}}" name="{{$setting->name}}" value="{{$setting->value}}">
         </div>
-
-        <div class="form-group">
-         <label for="txtSlug">Descrição do Site</label>
-         <input type="text" class="form-control" id="txtSlug" placeholder="Descrição do Site" name="site_description" value="{{$settings->site_description}}">
-        </div>
+        @endforeach
 
         <input type="hidden" value="PUT" name="_method">
         <input type="hidden" name="_token" value="{{csrf_token()}}">

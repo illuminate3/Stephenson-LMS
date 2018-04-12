@@ -1,15 +1,8 @@
 {{-- Chama a template pré pronta --}}
-@extends('template')
+@extends('profile.profile-template')
 
-@section('viewMain')
+@section('profileContent')
     @parent
-		<?php echo view('profile/sidebar-profile', ['user' => $user, 'isLoggedProfile' => $isLoggedProfile ]); ?>
-
-			<div class="col s9" id="profile-content">
-				<h2 class="profile-page-title">Seguindo</h2>
-				<hr>
-
-			</div>
-		</div>
-	</div>
+			<h2 class="profile-page-title">Seguindo</h2>
+			<hr>
 @endsection

@@ -1,40 +1,57 @@
-html {
-  width: 100%;
-  height: 100%;
+html, body {height: 100%;}
+body {background-color: #f6fffc;}
+
+nav {
+  height: inherit;
+  width: 20%;
+  background-color: #fff;
+  position: fixed;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
 }
-body {
-  margin: 0;
-  width: 100;
-  height: 100%;
-  background-color: #eaeaea;
-}
+
 main {
   height: inherit;
   width: inherit;
   padding-left: 20%;
 }
-nav {
-  height: inherit;
-  width: 20%;
-  background-color: #f2f2f2;
-  position: fixed;
-}
+
 article {
   height: auto;
   width: 100%;
-  background-color: #eaeaea;
-  padding: 1% 1%;
 }
 
 .tab-content {
   width: 100%;
-  height: auto;
+  height: calc(100% - 120px);
+  overflow-y: scroll;
+  overflow-x: hidden;
   background-color: white;
 }
 
-#nav-tabContent {
-  padding: 10px;
+.tab-content::-webkit-scrollbar {background: transparent;width: 0px}
+
+.nav-tabs .nav-link {border: none;}
+#list-tab .nav-item{line-height: 60px;padding: 0px;}
+#list-tab .nav-link{
+  padding: 0px;
+  height: 100%;
+  background: white;
+  border-radius: 0px;
+  border-bottom: 1px solid #ececec;
+  color: #aaa;
 }
+
+.nav-link .badge-primary {background: #aaa;}
+.nav-link.active .badge-primary {background: #16ceb4;}
+#list-tab .nav-link:hover .badge-primary {background: #16ceb4;}
+#list-tab .nav-link.active, #list-tab .nav-link:hover  {
+  border: none;
+  padding: 0px;
+  border-bottom: 2px solid #16ceb4;
+  color: #16ceb4
+}
+
+#nav-tabContent {padding: 10px;}
 
 .content-menu {
   position: relative;
@@ -49,16 +66,38 @@ article {
   padding: 10px;
 }
 
+#modules-list.card {
+  border: none;
+}
+
+#modules-list .module{
+  width: 100%;
+  background: #fff;
+  border: none;
+  border-top: 2px solid #16ceb4;
+  border-radius: 0px;
+  margin: 5px 0px;
+  text-align: left;
+}
+
+
+#modules-list .module-header{border-bottom: none;padding: 15px;}
+#modules-list .module-header button{color: #16ceb4;padding: 0px}
+
 /* Article */
+
+article .container{width: 90%; max-width: none;padding: 0px;}
 
 .header-lesson {
   text-align: center;
   display: flex;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-color: #dfdfdf;
   background-color: #fff;
   transition-duration: 1s;
+  height: 61px;
+  line-height: 61px;
+  color: #333;
+  width: 100%;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
 }
 
 .header-lesson-fixed {
@@ -67,55 +106,40 @@ article {
   transition-duration: 1s;
   top: 0;
 }
-.header-lesson > h1 {
-  width: 90%;
+
+.header-lesson h1{
+  font-weight: lighter;
+  font-size: 2em;
+  line-height: 60px;
+  padding: 0px;margin: 0px;
+  text-transform: uppercase;
 }
 
-.header-lesson > .btn-group {
-  width: 10%;
-  display: flex;
-  height: inherit;
-  padding: 5px 0.5%;
-}
-.header-lesson > .btn-group > .btn {
-  width: 45%;
+.header-lesson .btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
   background-color: transparent;
-  color: #007bff;
-  transition-duration: 0.5s;
+  color: #333;
+  border: 1px solid #333;
+  transition-duration: 0.4s;
+  vertical-align:baseline;
 }
-.header-lesson > .btn-group > .btn:hover {
-  color: #007bff;
-  background-color: #e7e7e7;
-  transition-duration: 0.5s;
+
+.header-lesson .btn:hover, .header-lesson .btn:active{
+  color: #fff;
+  background-color: #333;
 }
-.header-lesson > .btn-group > .btn:active {
-  color: #e7e7e7;
-  background-color: #007bff;
-  transition-duration: 0.1s;
-}
+.header-lesson .btn:focus{box-shadow: none;}
+
 .content-lesson {
   background-color: #fefefe;
-}
-
-.main-lesson {
-  padding: 2% 10%;
-}
-
-.lesson-midia {
-  margin-bottom: 2%;
-  width: 100%;
-  text-align: center;
-}
-
-.lesson-midia > iframe,
-video {
-  width: 100%;
 }
 
 /* Button of menu side */
 #btnnavbar {
   margin: 5px 0.5%;
-  background-color: #fff;
+  background-color: #000;
   color: black;
   display: none;
 }

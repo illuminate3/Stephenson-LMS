@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\CommentRepository;
-use SEO;
+use Artesaos\SEOTools\SEOTools;
+use SEOMeta;
 
 class TutorialsController{
-
     protected $repository;
     protected $validator;
     protected $service;
@@ -37,28 +37,28 @@ class TutorialsController{
   public function all(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 		$tutorials = $this->repository->all();
-		$title = "Tutoriais - Stephenson";
+    SEOMeta::setTitle("Tutoriais");
+    SEOMeta::setDescription("Aprenda muito com tutoriais em vídeo explicando sobre diversos assuntos.");
 
-		return view('tutorials.all', ['tutorials' => $tutorials, 'title' => $title]);
+		return view('tutorials.all', ['tutorials' => $tutorials]);
   }
 
 	public function single($tutorial){
 		$tutorial = $this->repository->findByField('id', $tutorial)->first();
-
     if(is_null($tutorial)){
       return redirect()->route('error404');
     } else {
-      $title = $tutorial['title'] ." - Stephenson";
       $comments = $this->commentsRepository->getComments($tutorial->id,'tutorial');
+
       $url = $tutorial['video_url'];
       preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$url,$matches);
       $id = $matches[1];
       $video_embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $id . '" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 
-      SEO::setTitle($tutorial['title'] ." - Stephenson");
-      SEO::setDescription($tutorial['resume']);
+      SEOMeta::setTitle($tutorial->title);
+      SEOMeta::setDescription($tutorial->resume);
 
-      return view('tutorials.single', ['title' => $title, 'tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
+      return view('tutorials.single', ['tutorial' => $tutorial, 'video_embed' => $video_embed, 'comments' => $comments]);
     }
   }
 

@@ -12,20 +12,17 @@
   <script type="text/javascript" src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/class-room.js') }}"></script>
-  <title>Class room</title>
+  <title>{{$title}}</title>
 </head>
 
 <body>
-  <header>
-
-  </header>
   <nav id="navbar" class="">
       <div class="content-menu">
         <!-- options -->
-        <ul class="nav nav-tabs d-flex" id="list-tab" role="tablist">
+        <ul class="nav nav-tabs d-flex nav-fill" id="list-tab" role="tablist">
           <li class="nav-item op-side-menu" data-toggle="tooltip" data-placement="top" title="Grade">
             <a class="nav-link active" id="list-grid" data-toggle="list" href="#grid" role="tab" aria-controls="grid">
-              <i class="far fa-edit"></i>
+              <i class="fa fa-th-list"></i>
             </a>
           </li>
           <li class="nav-item op-side-menu" data-toggle="tooltip" data-placement="top" title="Arquivos">
@@ -125,37 +122,45 @@
           <a class="btn btn-block btn-danger" href="{{ URL::route('courses.single', ['course' => $course->id]) }}">Sair da sala</a>
         </div>
       </div>
-    </nav>
+  </nav>
+
   <main>
     <article>
-      <div class="content-lesson  container-fluid">
-        <div id="headerArticle" class="header-lesson row">
-            <div class="btn-group justify-content-between col-3">
-                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Retroceder aula">
-                  <i class="fas fa-angle-left"></i>
-                </button>
-                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Avançar aula">
-                  <i class="fas fa-angle-right"></i>
-                </button>
+      <div id="headerArticle" class="header-lesson">
+        <div class="container">
+          <div class="row">
+            <div class="col-3 text-left">
+              <button type="button" class="btn" title="Retroceder aula">
+                <i class="fa fa-angle-left"></i>
+              </button>
             </div>
+
             <div class="col-6">
-          <h1 id="test1" >{{ $lesson->title }}</h1>
-        </div>
-        <div class="col-3">
-          <button id="btnnavbar" type="button" class="btn">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-times d-none"></i>
-          </button>
-        </div>
-        </div>
-        <div class="main-lesson">
-          <!-- area of midia if available -->
-          <div class="lesson-midia">
-            {!!$video!!}
+              <h1>{{ $lesson->title }}</h1>
+            </div>
+
+            <div class="col-3 text-right">
+              <button type="button" class="btn" title="Avançar aula">
+                <i class="fa fa-angle-right"></i>
+              </button>
+            </div>
           </div>
-          <!-- area of article -->
-          {!!$lesson->content!!}
         </div>
+      </div>
+
+      <div class="main-lesson mt-4">
+        <div class="container">
+          <div class="lesson-midia">
+            <div class="embed-responsive embed-responsive-16by9">
+              {!!$video!!}
+            </div>
+          </div>
+
+          <div class="lesson-content pt-3">
+            {!!$lesson->content!!}
+          </div>
+        </div>
+      </div>
     </article>
     <!-- Quiz -->
     <article>
@@ -166,6 +171,7 @@
         </div>
     </article>
   </main>
+
   <footer></footer>
 
 </body>

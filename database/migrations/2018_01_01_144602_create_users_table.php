@@ -30,6 +30,16 @@ class CreateUsersTable extends Migration
         $table->timestamps();
 				$table->softDeletes();
 		});
+
+		DB::table('users')->insert([
+			'firstname' => 'Admin',
+			'lastname' => 'User',
+			'user' => 'admin',
+			'email' => 'admin@email.com',
+			'password' => 'admin',
+			'econfirmed' => 'active',
+			'permission' => 'app.admin',
+		]);
 	}
 
 	/**

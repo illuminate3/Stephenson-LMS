@@ -14,14 +14,18 @@ class CreateCategoriesTable extends Migration
 	public function up()
 	{
 		Schema::create('categories', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 100);
-            $table->string('color', 7)->nullable();
-            $table->string('slug', 50);
-            $table->integer('level')->default('0');
-            $table->rememberToken();
-            $table->timestamps();
+      $table->increments('id');
+      $table->string('name', 100);
+      $table->string('slug', 50);
+      $table->integer('level')->default('0');
+      $table->rememberToken();
+      $table->timestamps();
 		});
+
+		DB::table('categories')->insert([
+			'name' => 'Sem Categoria',
+			'slug' => 'sem-categoria'
+		]);
 	}
 
 	/**

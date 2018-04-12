@@ -27,15 +27,14 @@ class Controller extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 	 protected $service;
-    private $repository;
-    private $categories_repository;
+   private $repository;
+   private $categories_repository;
 	 private $validator;
 
-	public function __construct(UserRepository $repository, UserValidator $validator, UserService $service, CategoriesRepository $categories_repository){
+	public function __construct(UserRepository $repository, UserValidator $validator, UserService $service){
 		$this->repository = $repository;
 		$this->validator  = $validator;
 		$this->service 	= $service;
-		$this->categoriesRepository 	= $categories_repository;
 	}
 
   public function error404(){

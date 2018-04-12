@@ -1,13 +1,8 @@
 {{-- Chama a template pré pronta --}}
-@extends('template')
+@extends('profile.profile-template')
 
-@section('viewMain')
+@section('profileContent')
     @parent
-		<?php echo view('profile/sidebar-profile', ['user' => $user, 'isLoggedProfile' => $isLoggedProfile ]); ?>
-
-		<div class="col s9" id="profile-content">
-			<h2 class="profile-page-title">Feed</h2>
-			<hr>
 			<?php if ($isLoggedProfile){ ?>
 			  <form method="post" action="<?php echo URL::route('post.store'); ?>">
 				  <div class="form-group">
@@ -55,7 +50,4 @@
       @else
         Nenhuma atividade encontrada.
       @endif
-		</div>
-	</div>
-</div>
 @endsection

@@ -13,17 +13,23 @@
     		@if(count($tutorials) > 0)
     		<div class="row">
     			@foreach ($tutorials as $tutorial)
-    				<div class="col-3">
-    					<div class="card">
+    				<div class="col-sm-4">
+    					<div class="card tutorial-card">
+                <a href="{{URL::route('tutorials.single', ['tutorial' => $tutorial->id])}}">
     							@if ($tutorial['thumbnail'] == NULL)
-    								<img class="card-img-top" src="{{asset("assets/images/thumbnail-default.jpg")}}" alt="{{$tutorial['title']}}">
+    								<img class="card-img-top" src="{{asset('assets/images/thumbnail-default.jpg')}}" alt="{{$tutorial['title']}}">
     							@else
     								<img class="card-img-top" src="{{asset($tutorial['thumbnail'])}}" alt="{{$tutorial['title']}}">
     							@endif
+                </a>
     						<div class="card-body">
-    						<h5 class="card-title">{{$tutorial['title']}}</h5>
-    						<p class="card-text">{{$tutorial['resume']}}</p>
-    						<a href="{{URL::route('tutorials.single', ['tutorial' => $tutorial->id])}}" class="btn btn-primary">Ver</a>
+      						<h5 class="card-title">{{$tutorial['title']}}</h5>
+      						<p class="card-text">{{$tutorial['resume']}}</p>
+
+                  <div class="card-author">
+                    <img src="{{asset('uploads/avatars/' . $tutorial->author->avatar)}}">
+                    <span>{{$tutorial->author->firstname}}</span>
+                  </div>
     						</div>
     					</div>
     				</div>
