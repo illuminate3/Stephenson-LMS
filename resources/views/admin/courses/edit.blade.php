@@ -3,14 +3,33 @@
 
 @section('viewMain')
     @parent
+    <div class="pages-navigation">
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{URL::route('courses.index')}}">Cursos</a></li>
+          <li class="breadcrumb-item active">Editar Curso</li>
+      </ol>
+    </div>
+
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-primary">Editar Curso</h3> </div>
-        <div class="col-md-7 align-self-center">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{URL::route('courses.index')}}">Cursos</a></li>
-                <li class="breadcrumb-item active">Editar Curso</li>
-            </ol>
+          <h3 class="text-primary">{{$course->title}}</h3>
+        </div>
+
+        <div class="col-md-7">
+          <ul class="nav nav-pills justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="{{URL::route('courses.manage', ['course' => $course->id])}}">Gerenciar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" >Mensagens</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" >Estatísticas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{{URL::route('courses.edit', ['course' => $course->id])}}">Editar</a>
+            </li>
+          </ul>
         </div>
     </div>
     <!-- End Bread crumb -->

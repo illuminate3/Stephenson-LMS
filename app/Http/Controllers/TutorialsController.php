@@ -65,7 +65,7 @@ class TutorialsController{
 	/* PAINEL */
 
 	 public function index(){
-  	  $tutorials = $this->repository->all();
+  	  $tutorials = $this->repository->paginate();
   		$title = "Tutoriais - Stephenson";
 
   		return view('admin.tutorials.index', [

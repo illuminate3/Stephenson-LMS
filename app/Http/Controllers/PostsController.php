@@ -75,7 +75,7 @@ class PostsController
 
     public function index(){
       $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-      $posts = $this->repository->all();
+      $posts = $this->repository->paginate();
   		$title = "Postagens - Stephenson";
 
   		return view('admin.posts.index', [

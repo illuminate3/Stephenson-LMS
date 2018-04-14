@@ -39,7 +39,7 @@ class UsersController{
      */
     public function index() {
       $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-      $users = $this->repository->all();
+      $users = $this->repository->paginate();
 		 	$title = "Usuários - Stephenson";
 
 			return view('admin.users.index', [

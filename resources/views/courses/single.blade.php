@@ -5,13 +5,18 @@
     @parent
     <style media="screen">
       .course-header{
-        background: url('<?php echo $course->cover; ?>');
-        width:100%;
-        height: 400px;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-      }
+        background:
+            linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(32, 255, 18, 0.45)
+            ),
+            url({{$course->cover}});
+            width:100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
     </style>
     <div class="course-header">
       <div class="container">

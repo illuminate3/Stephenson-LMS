@@ -16,6 +16,7 @@ use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use App\Services\UserService;
 use App\Entities\User;
+use Illuminate\Support\Facades\DB;
 use Exception;
 use Auth;
 use Image;
@@ -114,5 +115,14 @@ class ProfilesController{
 
 		return view('profile.following', ['title' => $title, 'user' => $profile, 'isLoggedProfile' => $isLoggedProfile]);
 	}
+
+  public function follow_user(Request $request){
+    $follow_action = DB::table('followers');
+    $follower = Auth::user()->id;
+    $followed = $request->user;
+    $data = ['follower' => $follower, 'followed' => $followed];
+    $follow_action->insert($data);
+    return redirect()->back();
+  }
 
  }

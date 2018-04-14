@@ -37,7 +37,7 @@ class CategoriesController{
 
 	public function index(){
 		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-		$categories = $this->repository->all();
+		$categories = $this->repository->paginate(10);
 		$title = "Categorias - Stephenson";
 
 		echo view('admin.categories.index',[

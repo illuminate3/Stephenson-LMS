@@ -164,6 +164,7 @@ return array(
     'CreateCommentsTable' => $baseDir . '/database/migrations/2018_01_01_144702_create_comments_table.php',
     'CreateCoursesMetaTable' => $baseDir . '/database/migrations/2018_01_01_144692_create_courses_meta_table.php',
     'CreateCoursesTable' => $baseDir . '/database/migrations/2018_01_01_144642_create_courses_table.php',
+    'CreateFollowersTable' => $baseDir . '/database/migrations/2018_04_12_213035_CreateFollowersTable.php',
     'CreateLessonsMetaTable' => $baseDir . '/database/migrations/2018_02_03_225956_create_lessons_meta_table.php',
     'CreateLessonsTable' => $baseDir . '/database/migrations/2018_01_01_144662_create_lessons_table.php',
     'CreateMaterialsTable' => $baseDir . '/database/migrations/2018_03_21_215736_create_materials_table.php',

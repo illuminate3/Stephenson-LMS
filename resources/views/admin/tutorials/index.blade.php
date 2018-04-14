@@ -134,6 +134,7 @@
               @endforeach
 							</tbody>
 						</table>
+            {!! $tutorials->links('vendor.pagination.bootstrap-4'); !!}
           @endif
 			</div>
 		</div>

@@ -12,13 +12,20 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+$factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'firstname' => $faker->firstName,
+        'lastname' => $faker->lastName,
+        'user' => $faker->userName,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => "123",
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Entities\Followers::class, function (Faker\Generator $faker) {
+    return [
+        'follower' => App\Entities\User::all()->random()->id,
+        'followed' => App\Entities\User::all()->random()->id,
     ];
 });

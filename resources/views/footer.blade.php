@@ -43,6 +43,7 @@
 		<script type="text/javascript" src="{{ asset('assets/js/jquery-3.2.1.min.js')}}"></script>
 		<script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
 		<script type="text/javascript" src="{{ asset('assets/js/script.js')}}"></script>
+		@yield('scripts')
 </body>
 
 </html>

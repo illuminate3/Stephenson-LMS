@@ -74,15 +74,14 @@ body{
 .tutorial-card .card-img-top{width: 100%;}
 .tutorial-card .card-title{font-weight: bold;}
 .tutorial-card:hover{box-shadow: 0px 0px 35px rgba(0,0,0,0.3);}
+
 .jumbotron {
 	background: transparent;
 	padding: 3rem 2rem 0rem 2rem;
 	color: #333;
 }
 
-.jumbotron .display-4{
-	font-weight: bold;
-}
+.jumbotron .display-4{font-weight: bold;}
 
 .profile-avatar{
 	width: 50%;
@@ -98,7 +97,8 @@ body{
 .profile-username{text-align: center;color: #aaa;}
 
 .profile-social-buttons{text-align: center;}
-.profile-social-buttons button{transition: 0.4s;border-radius: 100%;border: 1px solid #16ceb4;background: transparent;display: inline-block;color: #16ceb4}
+.profile-social-buttons button, .profile-social-buttons form{display: inline-block;}
+.profile-social-buttons button{transition: 0.4s;border-radius: 100%;border: 1px solid #16ceb4;background: transparent;color: #16ceb4}
 .profile-social-buttons button:hover{background: #16ceb4;color: white;}
 
 #profile-menu{
@@ -184,11 +184,26 @@ footer .feed-subscribe button{border-radius: 0px 10px 10px 0px;border: none;heig
 .tag{padding: 5px 10px;border-radius: 20px;background: #16ceb4;color: white;margin-right: 10px}
 .tag:last-child{margin-right: 0px}
 
-.benefit{
-	border-radius: 5px;
-	padding: 15px;
-}
+.course .tile__details{padding: 10px;display: none}
+.course img{max-width: 100%; cursor: pointer;box-shadow: 0px 0px 20px rgba(0,0,0,.5)}
+.course:hover{transform: scale(1.3);z-index: 100;width: auto;transition: 0.4s;}
+.course:hover .tile__details{display: block;background: white;}
 
-.benefit h4{
-	font-weight: bold;
-}
+.people{padding:15px;border-radius: 10px;box-shadow: none;border: 1px solid #ddd;}
+.people-avatar{border-radius: 100%;width: 60%;margin: auto;overflow: hidden;}
+.people-avatar img{width: 100%}
+.people-name {margin-top: 10px;text-align: center;font-size: 1.1em}
+.people-name a{color: #333}
+.people-name span{color: #999;font-size: .9em}
+
+#activities .activity{width: 100%;background: white;border-radius: 10px;padding: 15px;border: 1px solid #ececec}
+#activities .activity .activity-header{width: 100%;}
+#activities .activity .activity-header .activity-avatar{height: 3em;width: 3em;float: left;border-radius: 100%;overflow: hidden;}
+#activities .activity .activity-header .activity-avatar img{height: 3em;width: 3em;}
+#activities .activity .activity-header .activity-info{float: left;height: 3em;padding: .1em 0em;margin-left: 15px;}
+#activities .activity .activity-header .activity-name{font-size: 1.2em;color: #333;line-height: 1.4em;font-weight: 700;}
+#activities .activity .activity-header .activity-date{font-size: .9em;color: #888;line-height: 1.2em;}
+#activities .activity .activity-header .activity-actions{float: right;}
+#activities .activity .activity-header .activity-actions button{color: #bbb;padding-left: 5px;border: none;background: transparent;cursor: pointer;}
+#activities .activity .activity-header .activity-actions button:hover{color: #333}
+#activities .activity .activity-body{width: 100%;font-size: 1.1em;color: #555}

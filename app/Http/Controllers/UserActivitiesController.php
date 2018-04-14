@@ -27,27 +27,6 @@ class UserActivitiesController{
         $this->service  = $service;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $userActivities = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $userActivities,
-            ]);
-        }
-
-        return view('userActivities.index', compact('userActivities'));
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -67,45 +46,6 @@ class UserActivitiesController{
 
 		return redirect()->back();
     }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $userActivity = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $userActivity,
-            ]);
-        }
-
-        return view('userActivities.show', compact('userActivity'));
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $userActivity = $this->repository->find($id);
-
-        return view('userActivities.edit', compact('userActivity'));
-    }
-
 
     /**
      * Update the specified resource in storage.

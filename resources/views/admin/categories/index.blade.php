@@ -106,6 +106,8 @@
               @endforeach
 						</tbody>
 					</table>
+
+          {!! $categories->links('vendor.pagination.bootstrap-4'); !!}
           @endif
 			</div>
 		</div>

@@ -99,7 +99,8 @@ Route::put('/profile/update_profile', ['as' => 'profile.update_profile', 'uses' 
 Route::put('/profile/update_avatar', ['as' => 'profile.update_avatar', 'uses' => 'ProfilesController@update_avatar']);
 Route::get('/profile/{profile}/followers', ['as' => 'profile.followers', 'uses' => 'ProfilesController@profile_followers']);
 Route::get('/profile/{profile}/following', ['as' => 'profile.following', 'uses' => 'ProfilesController@profile_following']);
-Route::resource('/profile/post', 'UserActivitiesController');
+Route::post('/follow-user', ['as' => 'follow_user', 'uses' => 'ProfilesController@follow_user']);
+Route::resource('/profile/activity', 'UserActivitiesController');
 
 /* ROTAS PARA OS CURSOS */
 Route::get('/courses', ['as'=>'courses.all','uses' => 'CoursesController@all']);

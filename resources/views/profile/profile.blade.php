@@ -4,7 +4,7 @@
 @section('profileContent')
     @parent
 			<?php if ($isLoggedProfile){ ?>
-			  <form method="post" action="<?php echo URL::route('post.store'); ?>">
+			  <form method="post" action="<?php echo URL::route('activity.store'); ?>">
 				  <div class="form-group">
 					 <textarea name="data" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alguma novidade que deseja compartilhar?"></textarea>
 				  </div>
@@ -15,38 +15,61 @@
 			  </form>
 			<?php } ?>
       @if (count($activities) >= 1)
-      <ul class="list-unstyled" id="activities">
+      <div id="activities">
     		@foreach($activities as $activity)
-          <li class="media mb-3">
-            <?php if ($user['avatar'] == null){ ?>
-              <img class="mr-3" height="64px" src="<?php echo asset('assets/images/avatar-default.png');?>" alt="Card image cap">
-            <?php } else { ?>
-              <img class="mr-3" height="64px" src="<?php echo asset('uploads/avatars/' . $user['avatar']);?>" alt="Card image cap">
-            <?php }?>
-  					<div class="media-body">
-        			<div class="mt-0 mb-1"><b><?php echo $user->firstname . " " . $user->lastname; ?></b>  - em <span>{{$activity->created_at}}</span></div>
+          <div class="activity mt-4 mb-4">
+            <div class="activity-header">
+              <div class="activity-avatar">
+                @if ($user['avatar'] == null)
+                  <img class="mr-3" src="<?php echo asset('assets/images/avatar-default.png');?>" alt="Card image cap">
+                @else
+                  <img class="mr-3" src="<?php echo asset('uploads/avatars/' . $user['avatar']);?>" alt="Card image cap">
+                @endif
+              </div>
+
+              <div class="activity-info">
+                <div class="activity-name">{{ $user->firstname . " " . $user->lastname }}</div>
+                <div class="activity-date"><span>{{$activity->created_at}}</span></div>
+              </div>
+
+              @if($isLoggedProfile)
+                <div class="activity-actions">
+                  <!-- <a href="#"><i class="fa fa-edit"></i></a> -->
+                  <form action="{{URL::route('activity.destroy', ['id' => $activity->id])}}" method="post">
+                    <button type="submit"><i class="fa fa-trash"></i></button>
+                    <input type="hidden" value="DELETE" name="_method">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                  </form>
+                </div>
+              @endif
+
+              <div class="clearfix">
+              </div>
+            </div>
+
+  					<div class="activity-body pt-3">
               <?php
               switch($activity->type){
                   case('enter_course'):
                       $activity_data = unserialize($activity->data);
-                      echo __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
+                      echo '<i class="fa fa-star"></i> ' . __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
                       break;
                   case('favorite_course'):
                       $activity_data = unserialize($activity->data);
-                      echo __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
+                      echo '<i class="fa fa-star"></i> ' . __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
                       break;
                   case('leave_course'):
                       $activity_data = unserialize($activity->data);
-                      echo __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
+                      echo '<i class="fa fa-star"></i> ' . __('messages.activity.' . $activity->type, ['course' => $activity_data['course_name']]);
                       break;
                   default:
                       echo $activity->data;
               }
               ?>
   					</div>
-  				</li>
+  				</div>
         @endforeach
-			</ul>
+			</div>
       @else
         Nenhuma atividade encontrada.
       @endif

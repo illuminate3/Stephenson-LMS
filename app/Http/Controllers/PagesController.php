@@ -41,7 +41,7 @@ class PagesController{
 	/* PAINEL */
 
 	public function index(){
-		$pages = $this->repository->all();
+		$pages = $this->repository->paginate();
 		$title = "Páginas - Stephenson";
 
 		return view('admin.pages.index', [

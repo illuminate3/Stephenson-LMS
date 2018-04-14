@@ -30,6 +30,14 @@ class User extends Authenticatable{
 		return $instance;
 	}
 
+	public function getFollowed(){
+		return $this->hasMany(Followers::class, 'follower');
+	}
+
+	public function getFollower(){
+		return $this->hasMany(Followers::class, 'followed');
+	}
+
 	public function getBirthAttribute(){
 		$birth = explode('-',$this->attributes['birth']);
 

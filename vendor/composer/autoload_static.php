@@ -482,6 +482,7 @@ class ComposerStaticInit4adb8bc5d63b536b01b23123c553bd18
         'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_01_144702_create_comments_table.php',
         'CreateCoursesMetaTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_01_144692_create_courses_meta_table.php',
         'CreateCoursesTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_01_144642_create_courses_table.php',
+        'CreateFollowersTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_12_213035_CreateFollowersTable.php',
         'CreateLessonsMetaTable' => __DIR__ . '/../..' . '/database/migrations/2018_02_03_225956_create_lessons_meta_table.php',
         'CreateLessonsTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_01_144662_create_lessons_table.php',
         'CreateMaterialsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_21_215736_create_materials_table.php',
