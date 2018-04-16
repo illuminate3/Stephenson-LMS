@@ -9,7 +9,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{URL::route('courses.index')}}">Cursos</a></li>
-                <li class="breadcrumb-item "><a href="{{URL::route('courses.edit', ['id' => $course->id])}}">{{$course->title}}</a></li>
+                <li class="breadcrumb-item "><a href="{{URL::route('courses.manage', ['id' => $course->id])}}">{{$course->title}}</a></li>
                 <li class="breadcrumb-item active">Criar Aula</li>
             </ol>
         </div>

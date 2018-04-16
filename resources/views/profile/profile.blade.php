@@ -3,7 +3,7 @@
 
 @section('profileContent')
     @parent
-			<?php if ($isLoggedProfile){ ?>
+			<?php if ($user->isLoggedProfile){ ?>
 			  <form method="post" action="<?php echo URL::route('activity.store'); ?>">
 				  <div class="form-group">
 					 <textarea name="data" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alguma novidade que deseja compartilhar?"></textarea>
@@ -20,19 +20,19 @@
           <div class="activity mt-4 mb-4">
             <div class="activity-header">
               <div class="activity-avatar">
-                @if ($user['avatar'] == null)
+                @if (is_null($user->user->avatar))
                   <img class="mr-3" src="<?php echo asset('assets/images/avatar-default.png');?>" alt="Card image cap">
                 @else
-                  <img class="mr-3" src="<?php echo asset('uploads/avatars/' . $user['avatar']);?>" alt="Card image cap">
+                  <img class="mr-3" src="<?php echo asset('uploads/avatars/' . $user->user->avatar);?>" alt="Card image cap">
                 @endif
               </div>
 
               <div class="activity-info">
-                <div class="activity-name">{{ $user->firstname . " " . $user->lastname }}</div>
+                <div class="activity-name">{{ $user->user->firstname . " " . $user->user->lastname }}</div>
                 <div class="activity-date"><span>{{$activity->created_at}}</span></div>
               </div>
 
-              @if($isLoggedProfile)
+              @if($user->isLoggedProfile)
                 <div class="activity-actions">
                   <!-- <a href="#"><i class="fa fa-edit"></i></a> -->
                   <form action="{{URL::route('activity.destroy', ['id' => $activity->id])}}" method="post">

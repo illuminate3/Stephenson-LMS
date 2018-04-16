@@ -33,37 +33,34 @@ class ProfilesController{
         $this->validator 				= $validator;
     }
 
-	public function profile(Request $request, $username){
-    $user = new User();
-		$profile = $user->where('user', $username)->first();
-    $activities = $profile->getActivities;
+  /* PROFILE PAGES */
 
-    if(Auth::check()){
-		    $isLoggedProfile = ($profile->id == Auth::user()->id) ? true : false;
-    } else{
-      $isLoggedProfile = false;
-    }
-		$title = $profile['firstname'] . " " . $profile['lastname'] . " - Feed";
-    return view('profile.profile', [
-      'title' => $title,
-      'user' => $profile,
-      'activities' => $activities,
-      'isLoggedProfile' => $isLoggedProfile
-    ]);
+	public function profile(Request $request, $profile){
+    $profile = $this->repository->getProfileInfo($profile);
+    $activities = $profile->user->getActivities;
+
+    return view('profile.profile', ['user' => $profile,'activities' => $activities,]);
 	}
 
 	public function profile_about(Request $request, $profile){
 		$profile = $this->repository->getProfileInfo($profile);
-    if(Auth::check()){
-		    $isLoggedProfile = ($profile->id == Auth::user()->id) ? true : false;
-    } else{
-      $isLoggedProfile = false;
-    }
 
-		$title = $profile['firstname'] . " " . $profile['lastname'] . " - Feed";
-
-		return view('profile.about', ['title' => $title, 'user' => $profile, 'isLoggedProfile' => $isLoggedProfile]);
+		return view('profile.about', ['user' => $profile]);
 	}
+
+  public function profile_followers(Request $request, $profile){
+    $profile = $this->repository->getProfileInfo($profile);
+
+		return view('profile.followers', ['user' => $profile]);
+	}
+
+	public function profile_following(Request $request, $profile){
+		$profile = $this->repository->getProfileInfo($profile);
+
+		return view('profile.following', ['user' => $profile]);
+	}
+
+  /* PROFILE ACTIONS */
 
   public function update_profile(Request $request){
     $locale = ['locale' => serialize(['country' => $request->country, 'state' => $request->state, 'city' => $request->city])];
@@ -92,36 +89,20 @@ class ProfilesController{
     return redirect()->back();
   }
 
-	public function profile_followers(Request $request, $profile){
-		$profile = $this->repository->getProfileInfo($profile);
-    if(Auth::check()){
-		    $isLoggedProfile = ($profile->id == Auth::user()->id) ? true : false;
-    } else{
-      $isLoggedProfile = false;
-    }
-		$title = $profile['firstname'] . " " . $profile['lastname'] . " - Feed";
-
-		return view('profile.followers', ['title' => $title, 'user' => $profile, 'isLoggedProfile' => $isLoggedProfile]);
-	}
-
-	public function profile_following(Request $request, $profile){
-		$profile = $this->repository->getProfileInfo($profile);
-    if(Auth::check()){
-		    $isLoggedProfile = ($profile->id == Auth::user()->id) ? true : false;
-    } else{
-      $isLoggedProfile = false;
-    }
-		$title = $profile['firstname'] . " " . $profile['lastname'] . " - Feed";
-
-		return view('profile.following', ['title' => $title, 'user' => $profile, 'isLoggedProfile' => $isLoggedProfile]);
-	}
-
   public function follow_user(Request $request){
     $follow_action = DB::table('followers');
     $follower = Auth::user()->id;
     $followed = $request->user;
-    $data = ['follower' => $follower, 'followed' => $followed];
-    $follow_action->insert($data);
+
+    $isFollowing = $follow_action->where('followed', $followed)->where('follower', $follower)->first();
+
+    if(is_null($isFollowing)){
+      $data = ['follower' => $follower, 'followed' => $followed];
+      $follow_action->insert($data);
+    } else{
+      $follow_action->where('id', $isFollowing->id)->delete();
+    }
+
     return redirect()->back();
   }
 

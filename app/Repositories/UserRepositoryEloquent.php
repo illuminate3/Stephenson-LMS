@@ -6,7 +6,9 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\UserRepository;
 use App\Entities\User;
+use App\Entities\Followers;
 use App\Validators\UserValidator;
+use Auth;
 
 /**
  * Class UserRepositoryEloquent
@@ -14,10 +16,27 @@ use App\Validators\UserValidator;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
-	
+
 	public function getProfileInfo($user){
-		$id = $this->findByField('user', $user)->first();
-		return $this->find($id['attributes']['id']);
+		$user = $this->model->where('user', $user)->first();
+
+		if(Auth::check()){
+			$isLoggedProfile = ($user->id == Auth::user()->id) ? true : false;
+		} else{
+			$isLoggedProfile = false;
+		}
+
+		if($isLoggedProfile){
+			$isFollowing = false;
+		} else{
+			$user_id = $user->id;
+			$current_user = Auth::user()->id;
+
+			$isFollowing = Followers::where('followed', $user_id)->where('follower', $current_user)->first();
+			$isFollowing = (is_null($isFollowing)) ? false : true;
+		}
+
+		return (object) array('user' => $user, 'isLoggedProfile' => $isLoggedProfile, 'isFollowing' => $isFollowing);
 	}
     /**
      * Specify Model class name

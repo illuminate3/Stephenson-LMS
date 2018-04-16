@@ -73,8 +73,8 @@
                   </button>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{URL::route('courses.edit', ['course' => $course->id])}}">Editar</a>
-                    <a class="dropdown-item" href="{{URL::route('courses.manage', ['course' => $course->id])}}">Estatísticas</a>
-                    <a class="dropdown-item" href="{{URL::route('courses.manage', ['course' => $course->id])}}">Mensagens</a>
+                    <a class="dropdown-item" href="{{URL::route('courses.statistics', ['course' => $course->id])}}">Estatísticas</a>
+                    <a class="dropdown-item" href="{{URL::route('courses.messages', ['course' => $course->id])}}">Mensagens</a>
                     <a class="dropdown-item" href="{{URL::route('courses.single', ['course' => $course->id])}}">Ver</a>
                   </div>
                 </div>
