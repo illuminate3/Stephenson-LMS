@@ -25,6 +25,8 @@
   padding: 0px 15px;
 }
 
+#modules-list .card-header .action {line-height:normal; }
+
 #modules-list .module.card{padding: 0px}
 #modules-list .lesson.card{padding: 0px}
 #modules-list .module .card-body {padding: 20px;}
@@ -62,3 +64,7 @@
 .admin-course .card-body{padding: 15px;}
 .admin-course .btn-group {width: 100%}
 .admin-course .manage-btn {width: calc(100% - 40px)}
+
+.widget{padding: 0px;}
+.widget .card-header{padding: 15px 20px;background: transparent; font-size: 1.1em}
+.widget .card-body{padding: 20px;}

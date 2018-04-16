@@ -29,23 +29,27 @@
       <div class="row">
         <div class="col-3">
           <div class="profile-avatar">
-            <?php if ($user['avatar'] == null){ ?>
+            <?php if (is_null($user->user->avatar)){ ?>
             <img src="<?php echo asset('assets/images/avatar-default.png');?>" alt="Card image cap">
             <?php } else { ?>
-            <img src="{{ asset('uploads/avatars/' . $user['avatar'])}}" alt="Card image cap">
+            <img src="{{ asset('uploads/avatars/' . $user->user->avatar)}}" alt="Card image cap">
             <?php }?>
           </div>
 
           <div class="profile-info">
-            <h5 class="profile-name">{{$user['firstname'] . " " . $user['lastname']}}</h5>
-            <div class="profile-username">{{"@" . $user->user}}</div>
+            <h5 class="profile-name">{{$user->user->firstname. " " . $user->user->lastname}}</h5>
+            <div class="profile-username">{{"@" . $user->user->user}}</div>
           </div>
 
           <div class="profile-social-buttons">
             @auth
-              @if(!$isLoggedProfile)
-                <form class="" action="{{URL::route('follow_user', ['user' => $user->id])}}" method="post">
-                  <button type="submit" class="btn"><i class="fa fa-rss"></i></button>
+              @if(!$user->isLoggedProfile)
+                <form class="" action="{{URL::route('follow_user', ['user' => $user->user->id])}}" method="post">
+                  @if($user->isFollowing)
+                    <button type="submit" class="btn active" role="button"><i class="fa fa-rss"></i></button>
+                  @else
+                    <button type="submit" class="btn" role="button"><i class="fa fa-rss"></i></button>
+                  @endif
                   <input type="hidden" name="_token" value="{{ csrf_token()}}">
                 </form>
 
@@ -58,16 +62,16 @@
         <div class="col-9">
           <ul class="nav" id="profile-menu">
             <li class="nav-item {{ request()->is('profile/*') ? 'active' : '' }}">
-              <a class="nav-link" href="<?php echo URL::route('profile.profile', ['profile' => $user->user]); ?>">Feed</a>
+              <a class="nav-link" href="<?php echo URL::route('profile.profile', ['profile' => $user->user->user]); ?>">Feed</a>
             </li>
             <li class="nav-item {{ request()->is('profile/*/about') ? 'active' : '' }}">
-              <a class="nav-link" href="<?php echo URL::route('profile.about', ['profile' => $user->user]); ?>">Sobre</a>
+              <a class="nav-link" href="<?php echo URL::route('profile.about', ['profile' => $user->user->user]); ?>">Sobre</a>
             </li>
             <li class="nav-item {{ request()->is('profile/*/following') ? 'active' : '' }}">
-              <a class="nav-link" href="<?php echo URL::route('profile.following', ['profile' => $user->user]);  ?>">Seguindo</a>
+              <a class="nav-link" href="<?php echo URL::route('profile.following', ['profile' => $user->user->user]);  ?>">Seguindo</a>
             </li>
             <li class="nav-item {{ request()->is('profile/*/followers') ? 'active' : '' }}">
-              <a class="nav-link" href="<?php echo URL::route('profile.followers', ['profile' => $user->user]);  ?>">Seguidores</a>
+              <a class="nav-link" href="<?php echo URL::route('profile.followers', ['profile' => $user->user->user]);  ?>">Seguidores</a>
             </li>
           </ul>
           <div id="profile-content">
@@ -75,6 +79,6 @@
               @show
           </div>
         </div>
-
+      </div>
     </div>
 @endsection

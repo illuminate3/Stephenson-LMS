@@ -1,4 +1,4 @@
-<div class="card mt-3">
+<div class="card mt-3 widget">
   <h5 class="card-header">Tags</h5>
   <div class="card-body">
     <p>Digite as tags separadas por vírgula.</p>

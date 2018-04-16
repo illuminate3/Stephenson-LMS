@@ -18,28 +18,7 @@
       </ol>
     </div>
 
-    <div class="row page-titles">
-        <div class="col-md-5 align-self-center">
-          <h3 class="text-primary">{{$course->title}}</h3>
-        </div>
-
-        <div class="col-md-7">
-          <ul class="nav nav-pills justify-content-end">
-            <li class="nav-item">
-              <a class="nav-link active" href="{{URL::route('courses.manage', ['course' => $course->id])}}">Gerenciar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" >Mensagens</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" >Estatísticas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::route('courses.edit', ['course' => $course->id])}}">Editar</a>
-            </li>
-          </ul>
-        </div>
-    </div>
+    @include('admin.courses.menu')
     <!-- End Bread crumb -->
 
 		<div class="container-fluid">
@@ -117,18 +96,16 @@
                             </div>
 
                             <div class="action">
-        											<div class="btn-group" role="group">
         												<button id="add-material-{{ $lesson->id}}" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         												Material
         											 </button>
         												<div class="dropdown-menu" aria-labelledby="add-material-{{ $lesson->id}}">
+        													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="link" href="#">Link</a>
         													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="file" href="#">Arquivo</a>
         													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="image" href="#">Imagem</a>
         													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="video" href="#">Vídeo</a>
         													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="note" href="#">Nota</a>
-        													<a class="dropdown-item" class="add-material" data-toggle="modal" data-target="#add-material-modal" data-mtype="poll" href="#">Enquete</a>
         												</div>
-        											</div>
                             </div>
       										</div>
       									</div>
@@ -170,6 +147,13 @@
                                           {{$material_meta['content']}}
                                         </div>
                                         <h5 class="card-title"><i class="far fa-play-circle"></i> {{$material_meta['title']}}</h5>
+                                      </div>
+                                      <?php break; case ("link"): ?>
+                                      <div class="card-body">
+                                        <div class="material-content">
+                                          {{$material_meta['content']}}
+                                        </div>
+                                        <h5 class="card-title"><i class="far fa-link"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                     <?php break;} ?>
                                 </div>
@@ -281,4 +265,5 @@
 		$('#add-material-modal .modal-dialog .modal-content').empty();
 	});
 </script>
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js')}}"></script>
 @endsection

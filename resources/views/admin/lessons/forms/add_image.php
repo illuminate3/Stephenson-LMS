@@ -11,10 +11,15 @@
 			<label for="exampleFormControlInput1">Nome do Material</label>
 			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Material" name="title">
 		</div>
-		<div class="file-upload">
-			<a id="lfm" data-input="image" data-preview="holder" class="btn"><i class="material-icons">file_upload</i></a>
-			<input id="image" type="text" name="content">
-		</div>
+		<div class="input-group">
+      <span class="input-group-btn">
+        <a id="lfm" data-input="image" data-preview="holder" class="btn btn-primary" style="color:white;">
+          <i class="fa fa-image"></i> Carregar
+        </a>
+      </span>
+      <input id="image" class="form-control" type="text" name="content">
+    </div>
+    <img id="holder" style="margin-top:15px;width:100%;">
 	</div>
 
 	<div class="modal-footer">

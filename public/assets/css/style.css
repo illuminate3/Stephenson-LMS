@@ -99,7 +99,7 @@ body{
 .profile-social-buttons{text-align: center;}
 .profile-social-buttons button, .profile-social-buttons form{display: inline-block;}
 .profile-social-buttons button{transition: 0.4s;border-radius: 100%;border: 1px solid #16ceb4;background: transparent;color: #16ceb4}
-.profile-social-buttons button:hover{background: #16ceb4;color: white;}
+.profile-social-buttons button:hover, .profile-social-buttons button.active{background: #16ceb4;color: white;}
 
 #profile-menu{
 	background: #ececec;

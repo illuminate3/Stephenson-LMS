@@ -201,6 +201,26 @@ class CoursesController{
     ]);
   }
 
+  public function statistics($course){
+    $course = $this->repository->find($course);
+    $title = "Gerenciar " . $course['title']." - Stephenson";
+
+    return view('admin.courses.statistics', [
+      'title' => $title,
+      'course' => $course
+    ]);
+  }
+
+  public function messages($course){
+    $course = $this->repository->find($course);
+    $title = "Gerenciar " . $course['title']." - Stephenson";
+
+    return view('admin.courses.messages', [
+      'title' => $title,
+      'course' => $course
+    ]);
+  }
+
   /**
   * Update the specified resource in storage.
   *

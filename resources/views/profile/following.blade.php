@@ -3,10 +3,10 @@
 
 @section('profileContent')
     @parent
-			<h2 class="profile-page-title">Seguindo ({{$user->getFollowed->count()}})</h2>
+			<h2 class="profile-page-title">Seguindo ({{$user->user->getFollowed->count()}})</h2>
 			<hr>
 
-      @php $followers = $user->getFollowed @endphp
+      @php $followers = $user->user->getFollowed @endphp
 
       <div class="row">
       @foreach($followers as $u)
