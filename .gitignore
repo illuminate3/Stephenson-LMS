@@ -1,3 +1,4 @@
 public/files/
 public/uploads/avatars
+vendor/
 .env

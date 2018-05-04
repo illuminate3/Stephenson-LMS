@@ -148,10 +148,10 @@
                                       </div>
                                       <?php break; case ("link"): ?>
                                       <div class="card-body">
-                                        <div class="material-content material-link">
+                                        <div class="material-content">
                                           {{$material_meta['content']}}
                                         </div>
-                                        <h5 class="card-title"><i class="fa fa-link"></i> {{$material_meta['title']}}</h5>
+                                        <h5 class="card-title"><i class="far fa-link"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                     <?php break;} ?>
                                 </div>
