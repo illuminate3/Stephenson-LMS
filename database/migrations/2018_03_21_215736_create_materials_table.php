@@ -17,9 +17,9 @@ class CreateMaterialsTable extends Migration
 	{
 		Schema::create('materials', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('type', 30)
+			$table->string('type', 30);
 			$table->unsignedInteger('type_id');
-			$table->text('meta')
+			$table->text('meta');
 			$table->timestamps();
 		});
 	}

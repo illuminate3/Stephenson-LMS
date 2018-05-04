@@ -11,8 +11,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\CourseCreateRequest;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Repositories\CourseRepository;
-use App\Repositories\CategoriesRepository;
+use App\Repositories\LessonsMetaRepository;
 use App\Repositories\ModuleRepository;
+use App\Repositories\CategoriesRepository;
 use App\Validators\CourseValidator;
 use App\Services\CourseService;
 use App\Services\UserActivitiesService;
@@ -25,13 +26,14 @@ class CoursesController{
   protected $validator;
   protected $service;
 
-  public function __construct(CourseRepository $repository, CourseValidator $validator, CourseService $service, CategoriesRepository $categoriesRepository, ModuleRepository $moduleRepository, UserActivitiesService $user_activities_service){
+  public function __construct(CourseRepository $repository, CourseValidator $validator, CourseService $service, ModuleRepository $moduleRepository, UserActivitiesService $user_activities_service, LessonsMetaRepository $lessons_meta_repository, CategoriesRepository $categories_repository){
     $this->repository = $repository;
     $this->validator  = $validator;
     $this->service  = $service;
-    $this->categoriesRepository  = $categoriesRepository;
     $this->moduleRepository  = $moduleRepository;
+    $this->lessonsMetaRepository = $lessons_meta_repository;
     $this->userActivitiesService  = $user_activities_service;
+    $this->categoriesRepository  = $categories_repository;
   }
 
   /* USUÁRIO */
@@ -58,10 +60,15 @@ class CoursesController{
       if(Auth::user()){
         $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
         if($user_joined){
+          $percentual_completed = $this->lessonsMetaRepository->percentualCompleted($course->id);
+          $last_lesson_completed = $this->lessonsMetaRepository->LastLessonCompleted($course->id);
+
           return view('courses.panel', [
             'page' => "single",
             'course' => $course,
             'modules' => $modules_list,
+            'percentual_completed' => $percentual_completed,
+            'last_lesson_completed' => $last_lesson_completed,
             'user_joined' => $user_joined
           ]);
         } else{
@@ -84,12 +91,16 @@ class CoursesController{
     $course = $this->repository->find($course);
     $modules_list = $this->moduleRepository->findByField('course_id',$course['id']);
     $user_joined = $this->repository->user_joined($course->id, Auth::user()->id);
+    $percentual_completed = $this->lessonsMetaRepository->percentualCompleted($course->id);
+    $last_lesson_completed = $this->lessonsMetaRepository->LastLessonCompleted($course->id);
 
     if($page == "content"){
       SEOMeta::setTitle($course->title . " | Conteúdo");
       return view('courses/panel_content', [
         'course' => $course,
         'page' => $page,
+        'percentual_completed' => $percentual_completed,
+        'last_lesson_completed' => $last_lesson_completed,
         'user_joined' => $user_joined
       ]);
     }
@@ -99,6 +110,8 @@ class CoursesController{
       return view('courses.panel_notices', [
         'course' => $course,
         'page' => $page,
+        'percentual_completed' => $percentual_completed,
+        'last_lesson_completed' => $last_lesson_completed,
         'user_joined' => $user_joined
       ]);
     }
@@ -108,6 +121,8 @@ class CoursesController{
       return view('courses.panel_rating', [
         'course' => $course,
         'page' => $page,
+        'percentual_completed' => $percentual_completed,
+        'last_lesson_completed' => $last_lesson_completed,
         'user_joined' => $user_joined
       ]);
     }
@@ -128,7 +143,8 @@ class CoursesController{
     }
 
     $new_activity = $this->userActivitiesService->store($activity);
-    return  $this->repository->enter_or_favorite_course($course_id, $user, $type);
+    $this->repository->enter_or_favorite_course($course_id, $user, $type);
+    return  redirect()->back();
   }
 
   public function leaveCourse(Request $request){

@@ -18,7 +18,7 @@ class CreateLessonsMetaTable extends Migration
 			$table->unsignedInteger('lesson_id');
 			$table->unsignedInteger('user_id');
 		 	$table->string('type', '24');
-		 	$table->text('data', '100');
+		 	$table->text('data', '100')->nullable();
 			$table->timestamps();
 
 			$table->foreign('lesson_id')->references('id')->on('lessons');

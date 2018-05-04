@@ -49,7 +49,7 @@
 
 						<div class="form-group col-md-2">
 							<label for="inputPassword4">Tempo</label>
-							<input type="datetime" class="form-control" id="inputPassword4" name="time">
+							<input type="time" class="form-control" id="inputPassword4" name="time">
 						</div>
 					</div>
 

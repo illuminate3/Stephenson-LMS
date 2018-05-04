@@ -120,6 +120,9 @@ return [
         'image/gif',
         'image/svg+xml',
         'application/pdf',
+        'application/pptx',
+        'application/rar',
+        'application/w',
         'text/plain',
     ],
 

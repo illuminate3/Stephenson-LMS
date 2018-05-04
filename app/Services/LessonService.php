@@ -3,25 +3,27 @@
 namespace App\Services;
 use Illuminate\Database\QueryException;
 use Exception;
-use Prettus\Validator\Contracts\ValidatorInterface;	
-use Prettus\Validator\Contracts\ValidatorException;	
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Contracts\ValidatorException;
 use App\Repositories\LessonRepository;
 use App\Validators\LessonValidator;
 
 class LessonService{
 	private $respository;
 	private $validator;
-	
+
 	public function __construct(LessonRepository $repository, LessonValidator $validator){
 		$this->repository = $repository;
 		$this->validator = $validator;
 	}
-	
+
 	public function store(array $data){
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-			$tutorial = $this->repository->create($data);
-			
+			$lessons_of_this_module = $this->repository->GetLastLessonPosition($data['course_id'], $data['module_id']);
+			$position = $lessons_of_this_module+1;
+			$tutorial = $this->repository->create(array_merge($data + ['position' => $position]));
+
 			return [
 				'success'   => true,
 				'messages'  => "Lição criado com sucesso!",
@@ -34,12 +36,12 @@ class LessonService{
 			];
 		}
 	}
-	
+
 	public function update($data, $lesson_id){
 		try{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 			$lesson = $this->repository->update($data, $lesson_id);
-			
+
 			return [
 				'success'   => true,
 				'messages'  => "Lição editada com sucesso!",
@@ -51,14 +53,14 @@ class LessonService{
 				'messages' => $e->getMessage(),
 			];
 		}
-		
+
 	}
-	
+
 	public function delete($lesson_id){
 		try{
 
 			$lesson = $this->repository->delete($lesson_id);
-			
+
 			return [
 				'success'   => true,
 				'messages'  => "Lição removida com sucesso!",

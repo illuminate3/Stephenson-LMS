@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-  	<link rel="stylesheet" href="<?php echo asset("assets/admin/css/material-icons.css"); ?>" >
+  <link rel="stylesheet" href="{{ asset("assets/admin/css/material-icons.css") }}">
   <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.min.css") }}">
   <link rel="stylesheet" href="{{ asset("assets/css/class-room.css") }}">
-  <script type="text/javascript" src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('assets/js/class-room.js') }}"></script>
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{$title}}</title>
 </head>
 
@@ -43,7 +41,8 @@
         <div class="tab-content" id="nav-tabContent">
           <div id="grid" class="tab-pane fade  show active" role="tabpanel" aria-labelledby="list-grid">
             <div id="modules-list" class="card">
-              @php $modules = $course->getModules @endphp @foreach ($modules as $module)
+              @php $modules = $course->getModules @endphp
+              @foreach ($modules as $module)
               <div class="card module">
                 <div class="card-header module-header" id="headingOne">
                   <h5 class="mb-0">
@@ -58,12 +57,13 @@
                   <div class="card-body">
                     @if(count($module->getLessons) > 0)
                     <ul class="list-group">
-                      @php $lessons = $module->getLessons @endphp @foreach ($lessons as $lesson)
+                      @php $m_lessons = $module->getLessons @endphp
+                      @foreach ($m_lessons as $m_lesson)
                       <li class="lesson list-group-item">
-                        <a href="{{ URL::route('lesson.view_lesson', ['course_id' => $course->id, 'lesson' => $lesson->id])}}">
-                          {{$lesson->title}}
+                        <a href="{{ URL::route('lesson.view_lesson', ['course_id' => $course->id, 'lesson' => $m_lesson->id])}}">
+                          {{$m_lesson->title}}
                         </a> -
-                        <span class="lesson-time">{{$lesson->time}}</span>
+                        <span class="lesson-time">{{$m_lesson->time}}</span>
                       </li>
                       @endforeach
                     </ul>
@@ -78,32 +78,41 @@
           </div>
 
           <div id="achive" class="tab-pane fade" role="tabpanel" aria-labelledby="list-achive">
-            @php $materials = $lesson->getMaterials @endphp @if(count($materials) > 0)
-              @foreach($materials as $material)
-              <div class="material-content card mt-2 mb-2">
-                  <?php switch ($material->type){ case ("note"): ?>
-                    <div class="card-body">
-                      <h5 class="card-title"><i class='material-icons'>note</i> {{$material->title}}</h5>
-                      {{$material->content}}
-                    </div>
-                  <?php break; case ("file"): ?>
-                    <div class="card-body">
-                      <h5 class="card-title"><i class='material-icons'>file</i> {{$material->title}}</h5>
-                      {{$material->content}}
-                    </div>
-                  <?php break; case ("image"): ?>
-                    <img class="card-img-top" src="{{$material->content}}">
-                    <div class="card-body">
-                      <h5 class="card-title"><i class='material-icons'>photo</i> {{$material->title}}</h5>
-                    </div>
-                  <?php break; case ("video"): ?>
-                    <div class="card-body">
-                      <h5 class="card-title"><i class='material-icons'>play_arrow</i> {{$material->title}}</h5>
-                      {{$material->content}}
-                    </div>
-                  <?php break;} ?>
-              </div>
+            @if(count($lesson->getMaterials) > 0)
+            <div class="materials row">
+              @php $materials = $lesson->getMaterials @endphp
+              @foreach ($materials as $material)
+              @php $material_meta = unserialize($material->meta) @endphp
+                <div class="material col-12 mt-3">
+                        <?php switch ($material_meta['material_type']){ case ("note"): ?>
+                          <div class="card-body">
+                            <div class="material-content">
+                              {{$material_meta['content']}}
+                            </div>
+                            <h5 class="card-title"><i class="fa fa-sticky-note"></i> {{$material_meta['title']}}</h5>
+                          </div>
+                        <?php break; case ("file"): ?>
+                          <a href="{{$material_meta['content']}}" class="btn btn-large btn-block btn-success btn-lg"><i class="fa fa-file"></i>{{$material_meta['title']}}</a>
+                        <?php break; case ("image"): ?>
+                          <div class="card-body">
+                            <div class="material-content material-image">
+                              <img src="{{$material_meta['content']}}">
+                            </div>
+                            <h5 class="card-title"><i class="far fa-images"></i> {{$material_meta['title']}}</h5>
+                          </div>
+                        <?php break; case ("video"): ?>
+                          <div class="card-body">
+                            <div class="material-content material-video">
+                              {{$material_meta['content']}}
+                            </div>
+                            <h5 class="card-title"><i class="far fa-play-circle"></i> {{$material_meta['title']}}</h5>
+                          </div>
+                        <?php break; case ("link"): ?>
+                          <a href="{{$material_meta['content']}}" class="btn btn-large btn-block btn-primary btn-lg"><i class="fa fa-link"></i>{{$material_meta['title']}}</a>
+                        <?php break;} ?>
+                </div>
               @endforeach
+            </div>
             @else
             <div class="alert alert-primary d-flex" role="alert">
               Não há materiais para essa aula.
@@ -129,20 +138,36 @@
       <div id="headerArticle" class="header-lesson">
         <div class="container">
           <div class="row">
-            <div class="col-3 text-left">
-              <button type="button" class="btn" title="Retroceder aula">
+            <div class="col-2 text-left">
+              @if ($prevLesson)
+              <a class="btn" title="Retroceder aula" href="{{ URL::route('lesson.view_lesson', ['course_id' => $course->id, 'lesson' => $prevLesson])}}">
+              @else
+              <a class="btn" href="#">
+              @endif
                 <i class="fa fa-angle-left"></i>
-              </button>
+              </a>
             </div>
 
-            <div class="col-6">
+            <div class="col-8">
               <h1>{{ $lesson->title }}</h1>
             </div>
 
-            <div class="col-3 text-right">
-              <button type="button" class="btn" title="Avançar aula">
+            <div class="col-2 text-right">
+              @if($is_completed)
+                <button name="" class="btn lesson-completed"><i class="fa fa-check"></i></button>
+              @else
+                <form style="display:inline">
+                  <button name="" class="btn" id="mark-as-completed"><i class="fa fa-check"></i></button>
+                </form>
+              @endif
+
+              @if ($nextLesson)
+              <a class="btn" title="Avançar aula" href="{{ URL::route('lesson.view_lesson', ['course_id' => $course->id, 'lesson' => $nextLesson])}}">
+              @else
+              <a class="btn" href="#">
+              @endif
                 <i class="fa fa-angle-right"></i>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -172,7 +197,35 @@
     </article>
   </main>
 
-  <footer></footer>
+  <script type="text/javascript" src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/js/class-room.js') }}"></script>
 
+  <script type="text/javascript">
+  $('#mark-as-completed').click(function(e){
+      e.preventDefault();
+      var course = {{$course->id}}
+      var lesson = {{$lesson->id}}
+
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+      $.ajax({
+          url: "{{URL::route('lesson.mark_as_completed')}}",
+          type: "POST",
+          data: {course:course, lesson:lesson},
+          dataType: 'json',
+          success:function(data){
+             console.log(data.success);
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr);
+          }
+       });
+  });
+  </script>
 </body>
 </html>

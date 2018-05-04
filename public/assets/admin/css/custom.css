@@ -25,6 +25,8 @@
   padding: 0px 15px;
 }
 
+#modules-list .lesson-title i, .module-title i{margin-right: 10px}
+
 #modules-list .card-header .action {line-height:normal; }
 
 #modules-list .module.card{padding: 0px}
@@ -34,11 +36,11 @@
 
 #modules-list .card-header{background: transparent;border-bottom: none;}
 
-.drag-module {float: left;width: 40px;height: 70px;}
-.drag-module i{line-height: 70px; cursor: move;}
+.drag-module, .drag-lesson {float: left;width: 25px;height: 70px;}
+.drag-module i, .drag-lesson i{line-height: 70px; cursor: move;}
 
 #modules-list .card-header h5{float: left;line-height: 70px}
-
+.lessons-list{min-height: 1px;}
 .material .card, .material .card-body{padding: 0px;}
 .material-content{padding: 10px;height: 160px;overflow: hidden;}
 .material .card-body{padding: 0px;}
@@ -51,6 +53,11 @@
   background-color: azure;
   padding: 0px 15px;
   margin-top: 10px;
+  overflow: hidden;
+}
+
+.material-link{
+  font-size: 1.8em;
 }
 
 .module .card-body{background: #eee}
@@ -68,3 +75,4 @@
 .widget{padding: 0px;}
 .widget .card-header{padding: 15px 20px;background: transparent; font-size: 1.1em}
 .widget .card-body{padding: 20px;}
+.ui-state-highlight{background: #ccc}

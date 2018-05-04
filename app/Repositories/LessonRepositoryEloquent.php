@@ -13,8 +13,12 @@ use App\Validators\LessonValidator;
  * Class LessonRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class LessonRepositoryEloquent extends BaseRepository implements LessonRepository
-{
+class LessonRepositoryEloquent extends BaseRepository implements LessonRepository {
+
+	public function GetLastLessonPosition($course, $module){
+		$lessons_of_this_module = $this->model->where('course_id', $course)->where('module_id', $module)->orderBy('position', 'desc')->first();
+		return $lessons_of_this_module->position;
+	}
 
 	public function create_material($lesson, $material, $title, $content){
 			$lesson_meta = new Material;

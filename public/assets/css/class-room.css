@@ -126,11 +126,11 @@ article .container{width: 90%; max-width: none;padding: 0px;}
   vertical-align:baseline;
 }
 
-.header-lesson .btn:hover, .header-lesson .btn:active{
-  color: #fff;
-  background-color: #333;
-}
+.header-lesson .btn .fa{line-height: 40px;}
+.header-lesson .btn:hover{color: #fff;background-color: #333;}
 .header-lesson .btn:focus{box-shadow: none;}
+.header-lesson .lesson-completed{color: #fff;background-color: #16ceb4;border: none;}
+.header-lesson .lesson-completed:hover{background-color: #16ceb4;}
 
 .content-lesson {
   background-color: #fefefe;
@@ -212,4 +212,24 @@ article .container{width: 90%; max-width: none;padding: 0px;}
   .main-lesson {
     padding: 2% 2%;
   }
+}
+
+.material .card, .material .card-body{padding: 0px;}
+.material-content{padding: 10px;height: 160px;overflow: hidden;}
+.material .card-body{padding: 0px;}
+.material img{width: 100%}
+
+.material .card-title{
+  width: 100%;
+  line-height: 50px;
+  height: 50px;
+  background-color: azure;
+  padding: 0px 15px;
+  margin-top: 10px;
+  overflow: hidden;
+  word-break: keep-all;
+}
+
+.material-link{
+  font-size: 1.8em;
 }

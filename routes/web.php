@@ -114,6 +114,7 @@ Route::post('/course/leave', ['as'=>'courses.leave_course','uses' => 'CoursesCon
 
 
 Route::get('/course/{course}/learn/{lesson}', ['as'=>'lesson.view_lesson','uses' => 'LessonsController@single']);
+Route::post('/lesson/mark-as-completed', ['as' => 'lesson.mark_as_completed', 'uses' => 'LessonsController@markAsCompleted']);
 
 /* ROTAS PARA OS TUTORIAIS */
 Route::get('/tutorials', ['as'=>'tutorials.all','uses' => 'TutorialsController@all']);

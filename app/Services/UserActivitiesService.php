@@ -21,9 +21,15 @@ class UserActivitiesService{
 	public function store($data){
 		try{
 			$v_data = strip_tags($data['data'], '<b><i><u>');
-			$v_token = $data['_token'];
 			$v_user = Auth::user()->id;
-			$data = ['data' => $v_data, 'token' => $v_token, 'user_id' => $v_user];
+
+			if(array_key_exists("type", $data)){
+				$v_type = $data['type'];
+			} else{
+				$v_type="status";
+			}
+
+			$data = ['data' => $v_data, 'user_id' => $v_user, 'type' => $v_type];
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 			$activity = $this->repository->create($data);
 

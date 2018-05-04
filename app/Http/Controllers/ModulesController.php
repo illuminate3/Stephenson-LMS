@@ -44,29 +44,24 @@ class ModulesController
      * @return \Illuminate\Http\Response
      */
     public function store(ModuleCreateRequest $request, $id){
-
 		 $request = $this->service->store($request->all());
 		 $module = $request['success'] ? $request['data'] : null;
-		 
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
+
 		 return redirect()->back();
     }
-	
+
 	public function reorder(){
-		$rm = DB::table('modules');
 		$module_id = Input::get('moduleId');
 		$module_index = Input::get('moduleIndex');
-		
-		foreach ($rm as $m){
-			return DB::table('modules')->where('id', '=', $module_id)->update(array('position' => $module_index));
-		}
+
+		return DB::table('modules')->where('id', '=', $module_id)->update(array('position' => $module_index));
 	}
-	
+
     /**
      * Update the specified resource in storage.
      *
@@ -76,15 +71,15 @@ class ModulesController
      * @return Response
      */
     public function update(Request $request, $course_id, $module_id){
-		 $request = $this->service->update($request->all(), $module_id); 
+		 $request = $this->service->update($request->all(), $module_id);
 		 $module = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
 
     /**
@@ -97,12 +92,12 @@ class ModulesController
     public function destroy($course_id, $module_id){
        $request= $this->service->delete($module_id);
 		 $module = $request['success'] ? $request['data'] : null;
-		  
+
 		 session()->flash('success',[
 			 'success' =>	$request['success'],
 			 'messages' =>	$request['messages']
 		 ]);
-		 
-		 return redirect()->back(); 
+
+		 return redirect()->back();
     }
 }

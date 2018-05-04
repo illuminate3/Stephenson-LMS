@@ -37,11 +37,11 @@
       		@php $modules = $course->getModules @endphp
           @foreach ($modules as $module)
       		<div class="card module" id="module-{{ $module->id }}">
-            <div class="card-header" id="module-heading-{{ $module->id }}">
+            <div class="card-header">
               <div class="drag-module"><i class="fa fa-bars"></i></div>
               <h5>
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-{{ $module->id }}" aria-expanded="false" aria-controls="collapse-{{ $module->id }}">
-                  {{ $module->name }}
+                <button class="btn btn-link collapsed module-title" data-toggle="collapse" data-target="#collapse-{{ $module->id }}" aria-expanded="false" aria-controls="collapse-{{ $module->id }}">
+                  <i class="fa fa-folder"></i> {{ $module->name }}
                 </button>
               </h5>
 
@@ -63,7 +63,7 @@
                 </div>
               </div>
       			</div>
-      			<div id="collapse-{{ $module->id }}" class="collapse" aria-labelledby="module-heading-{{ $module->id }}" data-parent="#modules-list">
+      			<div id="collapse-{{ $module->id }}" class="collapse">
       				<div class="card-body">
       					@if(count($module->getLessons) > 0)
       					<div class="lessons-list">
@@ -71,15 +71,14 @@
                   @foreach ($lessons as $lesson)
       						<div class="card lesson" id="lesson-{{ $lesson->id }}">
       							<div class="card-header" id="lesson-heading-{{ $lesson->id}}">
-      								<div class="row">
-      									<div class="col-1 drag-lesson"><i class="fa fa-bars"></i></div>
-      									<h5 class="mb-0 col-8">
-      										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#lesson-collapse-{{ $lesson->id}}" aria-expanded="false" aria-controls="collapseTwo">
-      											{{ $lesson->title }}
-      									   </button>
-      									</h5>
+                      <div class="drag-lesson"><i class="fa fa-bars"></i></div>
+                      <h5>
+                        <button class="btn btn-link collapsed lesson-title" data-toggle="collapse" data-target="#lesson-collapse-{{ $lesson->id }}" aria-expanded="false" aria-controls="collapse-{{ $lesson->id }}">
+                          <i class="fa fa-play-circle"></i> {{ $lesson->title }}
+                        </button>
+                      </h5>
 
-      									<div class="lesson-actions col-3">
+      									<div class="lesson-actions">
       										<div class="action-buttons" role="group" aria-label="Button group with nested dropdown">
                             <div class="action">
                               <a href="{{ URL::route('course.module.lesson.edit',['course_id' => $course->id, 'module_id' => $module->id, 'lesson_id' => $lesson->id])}}">
@@ -109,7 +108,6 @@
                             </div>
       										</div>
       									</div>
-      								</div>
       							</div>
       							<div id="lesson-collapse-{{ $lesson->id}}" class="collapse" aria-labelledby="lesson-heading-{{ $lesson->id}}" data-parent=".lesson-list">
       								<div class="card-body">
@@ -129,31 +127,31 @@
                                       </div>
                                     <?php break; case ("file"): ?>
                                       <div class="card-body">
-                                        <div class="material-content">
+                                        <div class="material-content material-file">
                                           {{$material_meta['content']}}
                                         </div>
                                         <h5 class="card-title"><i class="far fa-file"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                     <?php break; case ("image"): ?>
                                       <div class="card-body">
-                                        <div class="material-content">
+                                        <div class="material-content material-image">
                                           <img src="{{$material_meta['content']}}">
                                         </div>
                                         <h5 class="card-title"><i class="far fa-images"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                     <?php break; case ("video"): ?>
                                       <div class="card-body">
-                                        <div class="material-content">
+                                        <div class="material-content material-video">
                                           {{$material_meta['content']}}
                                         </div>
                                         <h5 class="card-title"><i class="far fa-play-circle"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                       <?php break; case ("link"): ?>
                                       <div class="card-body">
-                                        <div class="material-content">
+                                        <div class="material-content material-link">
                                           {{$material_meta['content']}}
                                         </div>
-                                        <h5 class="card-title"><i class="far fa-link"></i> {{$material_meta['title']}}</h5>
+                                        <h5 class="card-title"><i class="fa fa-link"></i> {{$material_meta['title']}}</h5>
                                       </div>
                                     <?php break;} ?>
                                 </div>
@@ -169,7 +167,9 @@
                   @endforeach
       					</div>
                 @else
-                  Nenhuma aula cadastrada
+                  <div class="lessons-list">
+
+                  </div>
       					@endif
       					<a class="btn btn-primary btn-lg btn-block mt-3" href="{{ URL::route('course.module.lesson.create',['course_id' => $course->id, 'module_id' => $module->id])}}">
       						Criar Aula para este Módulo
@@ -182,6 +182,7 @@
     	@else
     	   <p>Nenhum módulo criado, crie um usando o formulário abaixo.</p>
     	@endif
+
   		<div class="card">
   			<div class="card-body">
   				<form class="form-inline" method="post" action="{{ URL::route('course.module.store',['course_id' => $course->id])}}">
@@ -224,16 +225,20 @@
 
 	$( ".lessons-list" ).sortable({
 		handle: '.drag-lesson',
+    connectWith: '.lessons-list',
+    placeholder: "ui-state-highlight",
+    forcePlaceholderSize: true,
 			update: function(){
 			$.map($(this).find('.lesson'),function(el){
 				var lessonId = el.id.substr(7);
 				var lessonIndex = $(el).index();
+        var lessonModule = el.offsetParent.childNodes[1].parentElement.id.substr(7);
 
 				$.ajax({
 					url: '/admin/course/module/lesson/reorder',
 					type: 'POST',
 					dataType: 'json',
-					data: {lessonId: lessonId, lessonIndex: lessonIndex},
+					data: {lessonId: lessonId, lessonIndex: lessonIndex, lessonModule: lessonModule},
 					headers: {
 					 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				  }

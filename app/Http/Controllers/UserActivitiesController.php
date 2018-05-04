@@ -34,17 +34,15 @@ class UserActivitiesController{
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(UserActivitiesCreateRequest $request)
-    {
-		$request = $this->service->store($request->all());
-		$page = $request['success'] ? $request['data'] : null;
+    public function store(UserActivitiesCreateRequest $request){
+  		$request = $this->service->store($request->all());
 
-		session()->flash('success',[
-			'success' =>	$request['success'],
-			'messages' =>	$request['messages']
-		]);
+  		session()->flash('success',[
+  			'success' =>	$request['success'],
+  			'messages' =>	$request['messages']
+  		]);
 
-		return redirect()->back();
+  		return redirect()->back();
     }
 
     /**
@@ -55,30 +53,22 @@ class UserActivitiesController{
      *
      * @return Response
      */
-    public function update(UserActivitiesUpdateRequest $request, $id)
-    {
-
+    public function update(UserActivitiesUpdateRequest $request, $id){
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
             $userActivity = $this->repository->update($request->all(), $id);
-
             $response = [
                 'message' => 'UserActivities updated.',
                 'data'    => $userActivity->toArray(),
             ];
 
             if ($request->wantsJson()) {
-
-                return response()->json($response);
+              return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-
             if ($request->wantsJson()) {
-
                 return response()->json([
                     'error'   => true,
                     'message' => $e->getMessageBag()
@@ -97,12 +87,10 @@ class UserActivitiesController{
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $deleted = $this->repository->delete($id);
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'message' => 'UserActivities deleted.',
                 'deleted' => $deleted,

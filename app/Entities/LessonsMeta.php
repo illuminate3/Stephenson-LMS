@@ -12,7 +12,7 @@ class LessonsMeta extends Model{
 	public $timestamps = true;
 	protected $table = 'lessons_meta';
 	protected $fillable = ['lesson_id','type','title','content'];
-	
+
 	public function lesson(){
 		return $this->belongsTo(Lesson::class);
 	}
